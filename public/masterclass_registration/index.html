@@ -279,7 +279,7 @@
 
         // 4. Penghantaran ke Google Apps Script Webhook
         try {
-          await fetch(SCRIPT_URL, {
+          const response = await fetch(SCRIPT_URL, {
             method: 'POST',
             mode: 'no-cors',
             headers: { 'Content-Type': 'application/json' },
@@ -288,12 +288,17 @@
 
           // Sembunyikan form dan paparkan mesej kejayaan
           regForm.classList.add('hidden');
-          showFeedback("Pendaftaran Berjaya! Maklumat anda telah disimpan.", true);
+          showFeedback("Pendaftaran Berjaya! Maklumat anda telah disimpan. Kami akan menghubungi anda sebentar lagi.", true);
+          
+          // Optional: Tunjukkan popup atau alert tambahan untuk kepastian
+          alert("Pendaftaran Berjaya!\n\nSlot anda telah dikunci. Sila tunggu mesej pengesahan daripada Team OWLFX di WhatsApp.");
+          
           regForm.reset();
         } catch (error) {
-          console.error('Submission Error:', error.message);
+          console.error('Submission Error:', error);
           resetSubmitButton();
-          showFeedback("Ralat berlaku semasa menghantar maklumat. Sila cuba lagi.", false);
+          showFeedback("Ralat berlaku semasa menghantar maklumat. Sila pastikan talian internet anda stabil dan cuba lagi.", false);
+          alert("Ralat Penghantaran: " + error.message);
         }
       });
 

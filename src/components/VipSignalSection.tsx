@@ -51,7 +51,7 @@ export const VipSignalSection: React.FC<VipSignalSectionProps> = ({
 
           <a
             id="vip-signal-unlock-btn"
-            href="https://owlfx.my/my/register"
+            href="/my/register"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-6 md:mt-0 inline-flex items-center space-x-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#F59E0B] text-slate-950 font-bold text-xs shadow-lg hover:brightness-110 active:scale-95 transition-all cursor-pointer"

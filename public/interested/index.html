@@ -2,23 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>OWLFX VIP Access | Institutional Trading</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-dark: #07090C;
-      --card-bg: #0E1217;
-      --card-border: #1C232D;
+      --bg-dark: #03060a;
+      --card-bg: rgba(10, 15, 23, 0.78);
+      --card-border: rgba(212, 175, 55, 0.28);
       --gold-primary: #D4AF37;
-      --gold-hover: #F3E5AB;
-      --gold-glow: rgba(212, 175, 55, 0.22);
+      --gold-hover: #F9E79F;
+      --gold-glow: rgba(212, 175, 55, 0.35);
+      --gold-gradient: linear-gradient(135deg, #FDF0CD 0%, #D4AF37 50%, #997A15 100%);
       --emerald-accent: #10B981;
-      --emerald-glow: rgba(16, 185, 129, 0.35);
+      --emerald-glow: rgba(16, 185, 129, 0.45);
       --text-muted: #8E9BAE;
       --text-main: #F0F4F8;
+      --mono-font: 'JetBrains Mono', monospace;
     }
 
     * {
@@ -36,97 +38,217 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px 12px;
+      padding: 32px 14px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient Trading Canvas Background */
+    #marketCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.55;
+    }
+
+    /* Radial Depth Vignette */
+    .viewport-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: radial-gradient(circle at center, transparent 20%, rgba(3, 6, 10, 0.88) 85%, #03060a 100%);
+    }
+
+    /* Institutional HUD Watermark */
+    .hud-ticker {
+      position: fixed;
+      top: 18px;
+      left: 24px;
+      z-index: 2;
+      display: flex;
+      gap: 16px;
+      font-family: var(--mono-font);
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: rgba(212, 175, 55, 0.7);
+      text-transform: uppercase;
+      pointer-events: none;
+    }
+
+    .hud-ticker span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--emerald-accent);
+      box-shadow: 0 0 8px var(--emerald-accent);
+      animation: blink 1.4s infinite ease-in-out;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(0.8); }
+    }
+
+    /* Ultra-Luxe High-Ticket Card */
+    .vip-card-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 580px;
+      z-index: 3;
+      margin: auto;
+    }
+
+    .vip-card-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: -1.5px;
+      border-radius: 26px;
+      padding: 1.5px;
+      background: linear-gradient(145deg, rgba(212, 175, 55, 0.85), rgba(255, 255, 255, 0.05), rgba(212, 175, 55, 0.35), rgba(16, 185, 129, 0.2));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      box-shadow: 0 0 35px rgba(212, 175, 55, 0.15);
     }
 
     .vip-card {
       width: 100%;
-      max-width: 540px;
       background: var(--card-bg);
-      border: 1px solid var(--gold-primary);
-      box-shadow: 0 24px 60px rgba(0,0,0,0.9), 0 0 35px var(--gold-glow);
-      border-radius: 16px;
-      padding: 34px 26px;
+      backdrop-filter: blur(28px) saturate(190%);
+      -webkit-backdrop-filter: blur(28px) saturate(190%);
+      border-radius: 24px;
+      padding: 42px 34px;
       position: relative;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95), 0 0 50px rgba(212, 175, 55, 0.08);
+      overflow: hidden;
+    }
+
+    .vip-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.07) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
     }
 
     .header-box {
       text-align: center;
-      margin-bottom: 24px;
-      border-bottom: 1px solid var(--card-border);
-      padding-bottom: 18px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+      padding-bottom: 22px;
+      position: relative;
+      z-index: 1;
     }
 
     .owlfx-badge {
-      display: inline-block;
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      letter-spacing: 2.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono-font);
+      font-size: 10.5px;
+      letter-spacing: 2.8px;
       text-transform: uppercase;
       color: var(--gold-primary);
-      border: 1px solid rgba(212, 175, 55, 0.35);
-      padding: 5px 14px;
-      border-radius: 30px;
-      margin-bottom: 10px;
-      background: rgba(212, 175, 55, 0.06);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      padding: 6px 18px;
+      border-radius: 40px;
+      margin-bottom: 14px;
+      background: linear-gradient(180deg, rgba(212, 175, 55, 0.12) 0%, rgba(212, 175, 55, 0.02) 100%);
+      box-shadow: 0 0 16px rgba(212, 175, 55, 0.15);
     }
 
     .title {
       font-family: 'Cinzel', serif;
-      font-size: 24px;
-      font-weight: 700;
+      font-size: 26px;
+      font-weight: 800;
       color: #FFFFFF;
-      letter-spacing: 0.5px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      line-height: 1.2;
     }
 
     .title span {
-      color: var(--gold-primary);
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.4));
     }
 
     .subtitle {
-      font-size: 13px;
+      font-size: 13.5px;
       color: var(--text-muted);
-      margin-top: 6px;
-      line-height: 1.5;
+      margin-top: 8px;
+      line-height: 1.6;
+      font-weight: 400;
+      letter-spacing: 0.2px;
+    }
+
+    form {
+      position: relative;
+      z-index: 1;
     }
 
     .form-group {
-      margin-bottom: 15px;
+      margin-bottom: 18px;
     }
 
     .form-group label {
-      display: block;
-      font-size: 11.5px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: #CCD6E0;
-      margin-bottom: 6px;
+      letter-spacing: 1px;
+      color: #CBD5E1;
+      margin-bottom: 8px;
+      font-family: var(--mono-font);
     }
 
     .input-field, .select-field {
       width: 100%;
-      background-color: #07090C !important;
-      border: 1px solid var(--card-border);
-      border-radius: 8px;
-      padding: 12px 14px;
+      background-color: rgba(4, 8, 14, 0.85) !important;
+      border: 1px solid rgba(212, 175, 55, 0.22);
+      border-radius: 10px;
+      padding: 14px 16px;
       color: #FFFFFF !important;
       font-size: 14px;
       outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    .input-field::placeholder {
+      color: rgba(142, 155, 174, 0.45);
     }
 
     .input-field:focus, .select-field:focus {
       border-color: var(--gold-primary);
-      box-shadow: 0 0 10px rgba(212, 175, 55, 0.25);
+      box-shadow: 0 0 16px rgba(212, 175, 55, 0.28), inset 0 1px 3px rgba(0,0,0,0.8);
+      background-color: rgba(6, 11, 18, 0.95) !important;
     }
 
-    /* FIX: Chrome/Edge/Safari Autofill White Background Override */
+    /* Autofill Dark Protection */
     input:-webkit-autofill,
     input:-webkit-autofill:hover,
     input:-webkit-autofill:focus,
     input:-webkit-autofill:active {
-      -webkit-box-shadow: 0 0 0 1000px #07090C inset !important;
+      -webkit-box-shadow: 0 0 0 1000px #060B12 inset !important;
       -webkit-text-fill-color: #FFFFFF !important;
       caret-color: #FFFFFF !important;
       border: 1px solid var(--gold-primary) !important;
@@ -135,133 +257,178 @@
 
     .form-row {
       display: flex;
-      gap: 12px;
+      gap: 14px;
     }
 
     .form-row .form-group {
       flex: 1;
+      margin-bottom: 18px;
     }
 
     .phone-wrapper {
       display: flex;
-      gap: 8px;
+      gap: 10px;
     }
 
     .dial-select {
-      width: 115px;
+      width: 125px;
       flex-shrink: 0;
-      background: #07090C;
-      border: 1px solid var(--card-border);
+      background: rgba(4, 8, 14, 0.85);
+      border: 1px solid rgba(212, 175, 55, 0.22);
       color: #FFFFFF;
-      border-radius: 8px;
-      padding: 12px 8px;
-      font-size: 13px;
+      border-radius: 10px;
+      padding: 14px 10px;
+      font-size: 13.5px;
+      font-family: var(--mono-font);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .dial-select:focus {
+      border-color: var(--gold-primary);
     }
 
     .toggle-container {
       display: flex;
       gap: 10px;
       margin-top: 4px;
+      background: rgba(4, 8, 14, 0.6);
+      padding: 4px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .toggle-btn {
       flex: 1;
-      padding: 11px;
-      background: #07090C;
-      border: 1px solid var(--card-border);
+      padding: 12px 10px;
+      background: transparent;
+      border: 1px solid transparent;
       color: var(--text-muted);
       border-radius: 8px;
       cursor: pointer;
-      font-weight: 600;
-      font-size: 12.5px;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.5px;
       transition: all 0.25s ease;
       text-align: center;
+      font-family: var(--mono-font);
     }
 
     .toggle-btn.active {
-      background: rgba(212, 175, 55, 0.12);
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.06) 100%);
       border-color: var(--gold-primary);
-      color: var(--gold-primary);
-      box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+      color: #FFF;
+      box-shadow: 0 0 14px rgba(212, 175, 55, 0.25);
     }
 
     .conditional-box {
       display: none;
-      background: rgba(255, 255, 255, 0.02);
-      border-radius: 8px;
-      border: 1px dashed rgba(212, 175, 55, 0.3);
-      padding: 14px;
-      margin-top: 14px;
+      background: rgba(212, 175, 55, 0.03);
+      border-radius: 12px;
+      border: 1px dashed rgba(212, 175, 55, 0.35);
+      padding: 16px;
+      margin-top: 8px;
+      margin-bottom: 18px;
+      animation: fadeIn 0.3s ease-out;
     }
 
     .conditional-box.visible {
       display: block;
     }
 
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .security-note {
       display: flex;
       align-items: center;
-      gap: 10px;
-      background: rgba(212, 175, 55, 0.04);
-      border: 1px solid rgba(212, 175, 55, 0.2);
-      padding: 10px 14px;
-      border-radius: 8px;
-      margin: 18px 0;
+      gap: 12px;
+      background: linear-gradient(90deg, rgba(212, 175, 55, 0.07) 0%, rgba(16, 185, 129, 0.04) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      padding: 12px 16px;
+      border-radius: 10px;
+      margin: 22px 0;
     }
 
     .security-note svg {
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       fill: var(--gold-primary);
       flex-shrink: 0;
+      filter: drop-shadow(0 0 5px var(--gold-glow));
     }
 
     .security-note p {
       font-size: 11.5px;
       color: #A3B1C2;
-      line-height: 1.4;
+      line-height: 1.5;
     }
 
     .btn-submit {
       width: 100%;
-      background: linear-gradient(135deg, #E5C358 0%, #B88E28 100%);
-      color: #0A0C0F;
+      background: var(--gold-gradient);
+      color: #07090C;
       border: none;
-      padding: 14px;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.8px;
-      border-radius: 8px;
+      padding: 16px;
+      font-size: 14.5px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      border-radius: 10px;
       cursor: pointer;
-      transition: all 0.25s ease;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
       text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
+    }
+
+    .btn-submit::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+      transform: rotate(25deg);
+      transition: all 0.6s ease;
+      opacity: 0;
     }
 
     .btn-submit:hover:not(:disabled) {
-      filter: brightness(1.12);
-      box-shadow: 0 0 16px rgba(212, 175, 55, 0.45);
+      filter: brightness(1.15);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 30px rgba(212, 175, 55, 0.55);
+    }
+
+    .btn-submit:hover:not(:disabled)::after {
+      opacity: 1;
+      transform: rotate(25deg) translate(30%, 30%);
     }
 
     .btn-submit:disabled {
       opacity: 0.5;
       cursor: not-allowed;
+      transform: none;
     }
 
     .hp-field {
       display: none !important;
     }
 
-    /* Success Card & Pulse Animation */
+    /* Success Screen */
     .success-view {
       display: none;
       text-align: center;
-      padding: 20px 6px 10px 6px;
+      padding: 24px 8px 10px 8px;
     }
 
     .pulse-container {
-      width: 72px;
-      height: 72px;
-      margin: 0 auto 20px auto;
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 24px auto;
       position: relative;
       display: flex;
       align-items: center;
@@ -274,225 +441,329 @@
       height: 100%;
       border-radius: 50%;
       background: var(--emerald-accent);
-      opacity: 0.4;
-      animation: pulseAnim 2s infinite cubic-bezier(0.24, 0, 0.38, 1);
+      opacity: 0.45;
+      animation: pulseAnim 2.2s infinite cubic-bezier(0.24, 0, 0.38, 1);
     }
 
     .success-icon {
       position: relative;
-      width: 64px;
-      height: 64px;
+      width: 70px;
+      height: 70px;
       border-radius: 50%;
-      background: rgba(16, 185, 129, 0.12);
+      background: rgba(16, 185, 129, 0.15);
       border: 1.5px solid var(--emerald-accent);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 25px var(--emerald-glow);
+      box-shadow: 0 0 35px var(--emerald-glow);
     }
 
     .success-icon svg {
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
       fill: var(--emerald-accent);
     }
 
     @keyframes pulseAnim {
-      0% {
-        transform: scale(0.85);
-        opacity: 0.6;
-      }
-      50% {
-        transform: scale(1.35);
-        opacity: 0;
-      }
-      100% {
-        transform: scale(1.35);
-        opacity: 0;
-      }
+      0% { transform: scale(0.85); opacity: 0.7; }
+      50% { transform: scale(1.5); opacity: 0; }
+      100% { transform: scale(1.5); opacity: 0; }
     }
 
     .success-title {
       font-family: 'Cinzel', serif;
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 800;
       color: #10B981;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
       margin-bottom: 14px;
-      text-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+      text-shadow: 0 0 25px rgba(16, 185, 129, 0.5);
     }
 
     .success-desc {
-      font-size: 13.5px;
+      font-size: 14px;
       color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 26px;
+      line-height: 1.7;
+      margin-bottom: 30px;
     }
 
     .btn-return {
       display: inline-block;
       width: 100%;
-      padding: 13px;
+      padding: 15px;
       background: transparent;
       border: 1px solid var(--gold-primary);
       color: var(--gold-primary);
       font-weight: 700;
-      font-size: 13.5px;
-      letter-spacing: 0.8px;
-      border-radius: 8px;
+      font-size: 14px;
+      letter-spacing: 1px;
+      border-radius: 10px;
       text-decoration: none;
       text-transform: uppercase;
-      transition: all 0.25s ease;
+      transition: all 0.3s ease;
+      font-family: var(--mono-font);
     }
 
     .btn-return:hover {
-      background: rgba(212, 175, 55, 0.1);
-      box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+      background: rgba(212, 175, 55, 0.15);
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.4);
       color: #FFF;
+      border-color: #FFF;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 520px) {
+      body {
+        padding: 16px 8px;
+      }
+      .hud-ticker {
+        display: none;
+      }
+      .vip-card {
+        padding: 30px 20px;
+        border-radius: 20px;
+      }
       .form-row {
         flex-direction: column;
         gap: 0;
       }
-      .vip-card {
-        padding: 24px 18px;
+      .form-row .form-group {
+        margin-bottom: 16px;
       }
       .title {
-        font-size: 20px;
+        font-size: 21px;
+      }
+      .phone-wrapper {
+        flex-direction: row;
+      }
+      .dial-select {
+        width: 105px;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="vip-card">
+  <canvas id="marketCanvas"></canvas>
+  <div class="viewport-overlay"></div>
 
-    <!-- VIEW 1: REGISTRATION FORM -->
-    <div id="formContainer">
-      <div class="header-box">
-        <div class="owlfx-badge">REGISTRATION</div>
-        <h1 class="title">OWLFX <span>VIP ACCESS</span></h1>
-        <p class="subtitle">Join an elite trading community powered by institutional-grade execution.</p>
-      </div>
+  <div class="vip-card-wrapper">
+    <div class="vip-card">
 
-      <form id="owlVipForm" onsubmit="handleFormSubmit(event)">
-        <!-- Anti-Spam Honeypot -->
-        <input type="text" id="hpToken" class="hp-field" tabindex="-1" autocomplete="off">
-
-        <!-- Full Name -->
-        <div class="form-group">
-          <label>Full Name</label>
-          <input type="text" id="fullName" class="input-field" placeholder="Full name as per ID / Passport" required>
-        </div>
-
-        <!-- WhatsApp Phone -->
-        <div class="form-group">
-          <label>WhatsApp Contact</label>
-          <div class="phone-wrapper">
-            <select id="dialCode" class="dial-select">
-              <option value="+60">🇲🇾 +60</option>
-              <option value="+62">🇮🇩 +62</option>
-              <option value="+65">🇸🇬 +65</option>
-              <option value="+673">🇧🇳 +673</option>
-              <option value="+44">🇬🇧 +44</option>
-              <option value="+1">🇺🇸 +1</option>
-              <option value="+971">🇦🇪 +971</option>
-              <option value="+61">🇦🇺 +61</option>
-            </select>
-            <input type="tel" id="whatsapp" class="input-field" placeholder="123456789" required oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+      <div id="formContainer">
+        <div class="header-box">
+          <div class="owlfx-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1 21h22L12 2zm0 3.45l8.27 14.3H3.73L12 5.45zM11 10v4h2v-4h-2zm0 6v2h2v-2h-2z"/></svg>
+            VIP ALLOCATION
           </div>
+          <h1 class="title">OWLFX <span>VIP ACCESS</span></h1>
+          <p class="subtitle">Join an elite institutional trading network with tier-1 direct liquidity execution.</p>
         </div>
 
-        <!-- Email & Country -->
-        <div class="form-row">
+        <form id="owlVipForm" onsubmit="handleFormSubmit(event)">
+          <input type="text" id="hpToken" class="hp-field" tabindex="-1" autocomplete="off">
+
           <div class="form-group">
-            <label>Email Address</label>
-            <input type="email" id="email" class="input-field" placeholder="name@domain.com" required>
+            <label>Full Legal Name</label>
+            <input type="text" id="fullName" class="input-field" placeholder="Legal name as per Passport / ID" required>
           </div>
+
           <div class="form-group">
-            <label>Country of Residence</label>
-            <input type="text" id="country" class="input-field" placeholder="Malaysia" required>
+            <label>WhatsApp Contact</label>
+            <div class="phone-wrapper">
+              <select id="dialCode" class="dial-select">
+                <option value="+60">🇲🇾 +60</option>
+                <option value="+62">🇮🇩 +62</option>
+                <option value="+65">🇸🇬 +65</option>
+                <option value="+673">🇧🇳 +673</option>
+                <option value="+44">🇬🇧 +44</option>
+                <option value="+1">🇺🇸 +1</option>
+                <option value="+971">🇦🇪 +971</option>
+                <option value="+61">🇦🇺 +61</option>
+              </select>
+              <input type="tel" id="whatsapp" class="input-field" placeholder="123456789" required oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+            </div>
           </div>
-        </div>
 
-        <!-- Trading Experience Switch -->
-        <div class="form-group">
-          <label>Trading Experience?</label>
-          <div class="toggle-container">
-            <button type="button" class="toggle-btn active" id="btnExpNo" onclick="setExperience(false)">NO (BEGINNER)</button>
-            <button type="button" class="toggle-btn" id="btnExpYes" onclick="setExperience(true)">YES (EXPERIENCED)</button>
-          </div>
-        </div>
-
-        <!-- Conditional Experience Fields -->
-        <div class="conditional-box" id="expBox">
           <div class="form-row">
             <div class="form-group">
-              <label>Trading Tenure</label>
-              <select id="tradeDuration" class="select-field">
-                <option value="Under 6 Months">&lt; 6 Months</option>
-                <option value="6 - 12 Months">6 - 12 Months</option>
-                <option value="1 - 3 Years">1 - 3 Years</option>
-                <option value="More than 3 Years">&gt; 3 Years</option>
-              </select>
+              <label>Institutional Email</label>
+              <input type="email" id="email" class="input-field" placeholder="client@institution.com" required>
             </div>
             <div class="form-group">
-              <label>Current Broker</label>
-              <input type="text" id="currentBroker" class="input-field" placeholder="e.g. Valetax, Exness, XM">
+              <label>Country of Residence</label>
+              <input type="text" id="country" class="input-field" placeholder="Malaysia" required>
             </div>
           </div>
-        </div>
 
-        <!-- TradingView & Telegram Handles -->
-        <div class="form-row" style="margin-top: 12px;">
           <div class="form-group">
-            <label>TradingView Handle (Optional)</label>
-            <input type="text" id="tradingview" class="input-field" placeholder="@username">
+            <label>Market Experience Level</label>
+            <div class="toggle-container">
+              <button type="button" class="toggle-btn active" id="btnExpNo" onclick="setExperience(false)">NOVICE (BEGINNER)</button>
+              <button type="button" class="toggle-btn" id="btnExpYes" onclick="setExperience(true)">CAPITALIZED (EXPERIENCED)</button>
+            </div>
           </div>
-          <div class="form-group">
-            <label>Telegram Handle (Optional)</label>
-            <input type="text" id="telegram" class="input-field" placeholder="@username">
+
+          <div class="conditional-box" id="expBox">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Trading Tenure</label>
+                <select id="tradeDuration" class="select-field">
+                  <option value="Under 6 Months">&lt; 6 Months</option>
+                  <option value="6 - 12 Months">6 - 12 Months</option>
+                  <option value="1 - 3 Years">1 - 3 Years</option>
+                  <option value="More than 3 Years">&gt; 3 Years</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Current Brokerage</label>
+                <input type="text" id="currentBroker" class="input-field" placeholder="e.g. Valetax, Exness, XM">
+              </div>
+            </div>
           </div>
-        </div>
 
-        <!-- Institutional Security Badge -->
-        <div class="security-note">
-          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/></svg>
-          <p>Your data is secured under institutional-grade encryption protocols. We will be in touch within 24 to 48 hours.</p>
-        </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>TradingView Handle <span style="opacity:0.5;">(OPT)</span></label>
+              <input type="text" id="tradingview" class="input-field" placeholder="@trader_id">
+            </div>
+            <div class="form-group">
+              <label>Telegram Handle <span style="opacity:0.5;">(OPT)</span></label>
+              <input type="text" id="telegram" class="input-field" placeholder="@username">
+            </div>
+          </div>
 
-        <!-- Submit Action -->
-        <button type="submit" id="submitBtn" class="btn-submit">Submit VIP Application</button>
-      </form>
-    </div>
+          <div class="security-note">
+            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/></svg>
+            <p>Protected by institutional multi-layered end-to-end encryption. Priority compliance review guaranteed within 24–48 hours.</p>
+          </div>
 
-    <!-- VIEW 2: SUCCESS VIEW (EMERALD PULSE) -->
-    <div id="successContainer" class="success-view">
-      <div class="pulse-container">
-        <div class="pulse-ring"></div>
-        <div class="success-icon">
-          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-        </div>
+          <button type="submit" id="submitBtn" class="btn-submit">Authenticate &amp; Submit Application</button>
+        </form>
       </div>
 
-      <h2 class="success-title">APPLICATION RECEIVED</h2>
-      <p class="success-desc">
-        Thank you for your interest in <strong>Team OWLFX</strong>.<br>
-        Data anda dilindungi di bawah protokol penyulitan institusi.<br><br>
-        Our team will contact you via WhatsApp within <strong>24–48 hours</strong>.
-      </p>
+      <div id="successContainer" class="success-view">
+        <div class="pulse-container">
+          <div class="pulse-ring"></div>
+          <div class="success-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          </div>
+        </div>
 
-      <!-- Return to Main Page Button -->
-      <a href="https://owlfx.my" class="btn-return">Go to Main Page</a>
+        <h2 class="success-title">APPLICATION RECEIVED</h2>
+        <p class="success-desc">
+          Welcome to <strong>OWLFX Institutional Tier</strong>.<br>
+          Maklumat anda telah disulitkan di bawah standard perbankan digital.<br><br>
+          Private Managing Desk will connect with you via WhatsApp within <strong>24–48 hours</strong>.
+        </p>
+
+        <a href="https://owlfx.my" class="btn-return">Access Terminal Portal</a>
+      </div>
+
     </div>
-
   </div>
 
   <script>
     /**
-     * IqwanEngine Core Routing
+     * IqwanEngine Real-Time Interactive Canvas Background
+     * Institutional Depth Chart & Candlestick Simulation
+     */
+    const canvas = document.getElementById('marketCanvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let candles = [];
+    const candleWidth = 14;
+    const candleSpacing = 18;
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      initCandles();
+    }
+
+    function initCandles() {
+      candles = [];
+      const total = Math.ceil(width / candleSpacing) + 5;
+      let price = height * 0.52;
+      for (let i = 0; i < total; i++) {
+        const delta = (Math.random() - 0.49) * 28;
+        const open = price;
+        const close = open + delta;
+        const high = Math.max(open, close) + Math.random() * 15;
+        const low = Math.min(open, close) - Math.random() * 15;
+        candles.push({ x: i * candleSpacing, open, close, high, low });
+        price = close;
+        if (price < height * 0.2) price = height * 0.35;
+        if (price > height * 0.8) price = height * 0.65;
+      }
+    }
+
+    function drawTradingBackground() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Draw Grid Matrix
+      ctx.strokeStyle = "rgba(212, 175, 55, 0.04)";
+      ctx.lineWidth = 1;
+      const gridSize = 45;
+      for (let x = 0; x < width; x += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+      for (let y = 0; y < height; y += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+
+      // Draw Candlesticks with Gradient Glow
+      for (let i = 0; i < candles.length; i++) {
+        const c = candles[i];
+        const isUp = c.close <= c.open;
+        const color = isUp ? 'rgba(16, 185, 129, 0.45)' : 'rgba(239, 68, 68, 0.45)';
+        const wickColor = isUp ? 'rgba(16, 185, 129, 0.3)' : 'rgba(239, 68, 68, 0.3)';
+
+        // Wick
+        ctx.strokeStyle = wickColor;
+        ctx.beginPath();
+        ctx.moveTo(c.x + candleWidth / 2, c.low);
+        ctx.lineTo(c.x + candleWidth / 2, c.high);
+        ctx.stroke();
+
+        // Body
+        ctx.fillStyle = color;
+        const bodyY = Math.min(c.open, c.close);
+        const bodyHeight = Math.max(Math.abs(c.open - c.close), 2);
+        ctx.fillRect(c.x, bodyY, candleWidth, bodyHeight);
+
+        // Slow smooth shift left
+        c.x -= 0.35;
+      }
+
+      // Append new candle dynamically when shifted
+      if (candles.length && candles[0].x < -candleWidth) {
+        candles.shift();
+        const last = candles[candles.length - 1];
+        const delta = (Math.random() - 0.49) * 28;
+        const open = last.close;
+        const close = open + delta;
+        const high = Math.max(open, close) + Math.random() * 15;
+        const low = Math.min(open, close) - Math.random() * 15;
+        candles.push({ x: last.x + candleSpacing, open, close, high, low });
+      }
+
+      requestAnimationFrame(drawTradingBackground);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    requestAnimationFrame(drawTradingBackground);
+  </script>
+
+  <script>
+    /**
+     * IqwanEngine Core Routing & Transmission
      */
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzMFVzTffYAt5SvIU9JLxzfEAUQupOPgqCzqn1ZcB9gTI06S53ycda9Hm143zx1rqBcdw/exec";
 
@@ -555,7 +826,7 @@
         console.error("Submission error:", err);
         alert("Connection error. Please try again.");
         submitBtn.disabled = false;
-        submitBtn.innerText = "Submit VIP Application";
+        submitBtn.innerText = "Authenticate & Submit Application";
       }
     }
   </script>

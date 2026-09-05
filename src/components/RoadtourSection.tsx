@@ -602,7 +602,7 @@ export const RoadtourSection: React.FC<RoadtourSectionProps> = ({
                   <div className="flex flex-wrap items-center justify-center gap-3">
                     <a
                       id="roadtour-reserve-btn"
-                      href="https://owlfx.my/my/register"
+                      href="/my/register"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group btn-luxury-shimmer btn-gold-luxury inline-flex items-center space-x-2 px-7 py-3 rounded-xl bg-gradient-to-r from-amber-300 via-[#D4AF37] to-[#F59E0B] text-slate-950 font-extrabold text-xs tracking-wider uppercase border border-amber-300/60 cursor-pointer"

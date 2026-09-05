@@ -144,7 +144,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Quick Action: Daftar VIP - Direct Link */}
             <a
               id="navbar-cta-vip"
-              href="https://owlfx.my/interested?action=register"
+              href="/interested?action=register"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-luxury-shimmer btn-gold-luxury px-6 py-2 rounded-full bg-gradient-to-r from-amber-300 via-[#D4AF37] to-[#F59E0B] text-slate-950 text-xs font-black flex items-center justify-center space-x-1 cursor-pointer border border-amber-300/60"
@@ -208,7 +208,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <div className="pt-3 border-t border-white/10 flex flex-col space-y-2">
                 <a
                   id="mobile-cta-vip"
-                  href="https://owlfx.my/interested?action=register"
+                  href="/interested?action=register"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setMobileMenuOpen(false)}

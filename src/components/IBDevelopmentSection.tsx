@@ -44,7 +44,7 @@ export const IBDevelopmentSection: React.FC<IBDevelopmentSectionProps> = ({
   const totalVolumeStat = regionData?.stats?.totalVolume || (selectedRegion === 'MY' ? '$18.4M+ Lot Sebulan' : '$12.8M+ Volume Bulanan');
   const monthlyRebateStat = regionData?.stats?.monthlyRebate || (selectedRegion === 'MY' ? 'RM 1,250,000+' : 'Rp 3.8 Miliar+');
   const tierCommissionStat = regionData?.stats?.tierCommission || (selectedRegion === 'MY' ? 'Hingga $15 / Lot' : 'Hingga $16 / Lot');
-  const registrationLink = regionData?.registerLink || regionData?.registrationUrl || (selectedRegion === 'MY' ? 'https://owlfx.my/my/ib_development' : 'https://owlfx.my/id/ib_development');
+  const registrationLink = regionData?.registerLink || regionData?.registrationUrl || (selectedRegion === 'MY' ? '/my/ib_development' : '/id/ib_development');
 
   return (
     <section id="ib-development" ref={containerRef} className="py-24 relative bg-[#06090E] border-t border-white/5">

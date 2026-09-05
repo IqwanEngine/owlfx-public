@@ -69,7 +69,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             {/* Button 1: Malaysia Community / Daftar VIP */}
             <a
               id="hero-cta-malaysia"
-              href="https://owlfx.my/interested?action=register"
+              href="/interested?action=register"
               target="_blank"
               rel="noopener noreferrer"
               className="group btn-luxury-shimmer btn-gold-luxury w-full sm:w-auto px-8 py-4 rounded-full font-bold text-xs tracking-wider uppercase text-slate-950 bg-gradient-to-r from-white via-[#F5E6B3] to-[#D4AF37] border border-amber-300/60 flex items-center justify-center space-x-2.5 cursor-pointer"
@@ -82,7 +82,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             {/* Button 2: Indonesia Registration */}
             <a
               id="hero-cta-indonesia"
-              href="https://owlfx.my/id/register"
+              href="/id/register"
               target="_blank"
               rel="noopener noreferrer"
               className="group btn-luxury-shimmer btn-rose-luxury w-full sm:w-auto px-8 py-4 rounded-full font-bold text-xs tracking-wider uppercase text-white bg-gradient-to-r from-[#991B1B]/80 via-[#DC2626]/80 to-[#D4AF37]/80 border border-rose-400/50 backdrop-blur-md flex items-center justify-center space-x-2.5 cursor-pointer"

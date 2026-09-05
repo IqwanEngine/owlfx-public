@@ -565,7 +565,7 @@ export const AdminCMSModal: React.FC<AdminCMSModalProps> = ({
                   disabled={lockoutRemainingSec > 0}
                   value={passcode}
                   onChange={(e) => setPasscode(e.target.value)}
-                  placeholder="Kunci Keselamatan Pentadbir"
+                  placeholder="Password"
                   className={`w-full bg-slate-950 border rounded-xl px-4 py-3 text-sm text-center text-white placeholder-slate-600 focus:outline-none font-mono tracking-widest ${
                     lockoutRemainingSec > 0
                       ? 'border-rose-800 bg-rose-950/20 opacity-50 cursor-not-allowed'

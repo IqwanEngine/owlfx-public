@@ -64,42 +64,42 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
       case 'my-community':
         return {
           title: 'Pendaftaran Komuniti VIP Malaysia',
-          path: 'https://owlfx.my/my/register',
+          path: '/my/register',
           flag: '🇲🇾',
           desc: 'Akses percuma ke Setup Harian Institusi, kalkulator Self-Rebate, dan Telegram VIP.'
         };
       case 'id-community':
         return {
           title: 'Pendaftaran Komunitas VIP Indonesia',
-          path: 'https://owlfx.my/id/register',
+          path: '/id/register',
           flag: '🇮🇩',
           desc: 'Bergabung bersama ribuan trader Indonesia dengan deposit/withdrawal lokal kilat.'
         };
       case 'my-ib':
         return {
           title: 'Pendaftaran Introducing Broker (IB) Malaysia',
-          path: 'https://owlfx.my/my/ib_development',
+          path: '/my/ib_development',
           flag: '🇲🇾',
           desc: 'Bina agensi komisen anda sendiri, nikmati geran dewan latihan, dan komisen tertinggi.'
         };
       case 'id-ib':
         return {
           title: 'Pendaftaran Mitra IB Indonesia',
-          path: 'https://owlfx.my/id/ib_development',
+          path: '/id/ib_development',
           flag: '🇮🇩',
           desc: 'Akses program pengembangan IB Nusantara dengan dukungan materi workshop lengkap.'
         };
       case 'valetax':
         return {
           title: 'Pembukaan Akaun Valetax MIB & Lesen ALGO',
-          path: 'https://owlfx.my/my/register',
+          path: '/my/register',
           flag: '⚡',
           desc: 'Aktifkan petunjuk TradingView OWL ALGO 4.2 percuma dan sistem pulangan rebat.'
         };
       case 'lifestyle':
         return {
           title: 'Pendaftaran OWLFX Lifestyle & Event',
-          path: 'https://owlfx.my/my/register',
+          path: '/my/register',
           flag: '💎',
           desc: 'Sertai komuniti gaya hidup mewah dan acara eksklusif OWLFX.'
         };

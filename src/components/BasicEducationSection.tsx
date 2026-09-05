@@ -78,7 +78,7 @@ export const BasicEducationSection: React.FC<BasicEducationSectionProps> = () =>
             <div className="pt-3 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-400">
               <span className="text-emerald-400 font-bold">{t.education.step1Perk}</span>
               <a
-                href="https://owlfx.my/my/register"
+                href="/my/register"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group text-[#D4AF37] hover:text-amber-300 font-bold flex items-center space-x-1 cursor-pointer transition-colors"
@@ -267,7 +267,7 @@ export const BasicEducationSection: React.FC<BasicEducationSectionProps> = () =>
               <div className="pt-4">
                 <a
                   id="education-cta-masterclass-btn"
-                  href="https://owlfx.my/masterclass_registration"
+                  href="/masterclass_registration"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group btn-luxury-shimmer btn-gold-luxury w-full py-3.5 px-4 rounded-xl text-slate-950 font-extrabold text-xs tracking-wider uppercase bg-gradient-to-r from-amber-300 via-[#D4AF37] to-[#F59E0B] border border-amber-300/60 flex items-center justify-center space-x-2 cursor-pointer"

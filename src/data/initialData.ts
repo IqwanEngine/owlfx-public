@@ -333,8 +333,8 @@ export const IB_REGIONS_DATA: Record<'MY' | 'ID', IBRegionData> = {
     badge: "🇲🇾 Rasmi Malaysia Ecosystem",
     description: "Infrastruktur sokongan Introducing Broker (IB) paling komprehensif di Malaysia. Akses kepada sistem agihan komisen berbilang lapisan, rebat tunai automatik, sistem CRM pedagang, dan bantuan latihan fizikal di 14 negeri.",
     coverImage: "https://i.imgur.com/aCQ6hLX.jpg",
-    registrationUrl: "https://owlfx.my/my/ib_development",
-    registerLink: "https://owlfx.my/my/ib_development",
+    registrationUrl: "/my/ib_development",
+    registerLink: "/my/ib_development",
     buttonText: "Daftar IB Malaysia",
     stats: {
       activeIB: "420+ Master & Sub-IB",
@@ -418,8 +418,8 @@ export const IB_REGIONS_DATA: Record<'MY' | 'ID', IBRegionData> = {
     badge: "🇮🇩 Resmi Indonesia Ecosystem",
     description: "Inisiatif strategis ekspansi pasar Nusantara untuk para Introducing Broker dan pengelola komunitas trading di Indonesia. Didukung oleh integrasi deposit lokal kilat, komisi tertinggi, dan program edukasi terstruktur.",
     coverImage: "https://i.imgur.com/gjUvrHK.jpeg",
-    registrationUrl: "https://owlfx.my/id/ib_development",
-    registerLink: "https://owlfx.my/id/ib_development",
+    registrationUrl: "/id/ib_development",
+    registerLink: "/id/ib_development",
     buttonText: "Daftar IB Indonesia",
     stats: {
       activeIB: "280+ Mitra IB Nusantara",

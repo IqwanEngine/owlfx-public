@@ -455,7 +455,7 @@ export const OwlAlgoSection: React.FC<OwlAlgoSectionProps> = ({ onOpenLightbox }
 
             <a
               id="algo-cta-valetax-btn"
-              href="https://owlfx.my/my/register"
+              href="/my/register"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full py-3.5 px-4 rounded-xl text-slate-950 font-extrabold text-xs tracking-wider uppercase bg-gradient-to-r from-[#FFF6D3] via-[#F59E0B] to-[#D4AF37] hover:brightness-110 active:scale-95 shadow-xl transition-all flex items-center justify-center space-x-2 cursor-pointer"
