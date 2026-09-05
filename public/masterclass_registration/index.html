@@ -4,10 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Attendant Masterclass Zone KeyPrice</title>
+  <title>Pendaftaran Masterclass OWLFX</title>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 
   <!-- Google Fonts: Poppins & Cinzel -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -108,10 +111,10 @@
       <div class="relative mb-5 group cursor-pointer">
         <div class="absolute inset-0 bg-gradient-to-tr from-amber-500 to-amber-300 blur-lg opacity-35 rounded-full group-hover:opacity-60 transition-opacity duration-500"></div>
         <div class="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full border-2 border-amber-400/80 p-1 bg-neutral-950 shadow-2xl flex items-center justify-center overflow-hidden transition-transform duration-500 group-hover:scale-105">
-          <img src="https://lh3.googleusercontent.com/d/1AUbyeGj4spI26OQlW9ekG_daXEzjvMNY"
+          <img src="/OWLFXpng.png"
                alt="OWLFX Logo"
                class="w-full h-full object-cover rounded-full"
-               onerror="this.onerror=null; this.src='https://owlfx-register.vercel.app/assets/OWLFX.png';" />
+               onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1AUbyeGj4spI26OQlW9ekG_daXEzjvMNY';" />
         </div>
       </div>
 
@@ -123,7 +126,7 @@
 
       <!-- Tajuk Eksklusif -->
       <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-tight">
-        <span class="text-white drop-shadow-md">Masterclass Zone KeyPrice</span>
+        <span class="text-white drop-shadow-md">Pendaftaran Masterclass</span>
         <span class="text-xs sm:text-sm font-medium text-slate-400 italic block mt-1">Presented by</span>
         <span class="font-cinzel text-3xl sm:text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-600 drop-shadow-lg tracking-wider block mt-1">
           Wan OWL FX
@@ -141,14 +144,16 @@
       <!-- Baris 1: Nama Penuh & Nama Panggilan -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
         <div class="group">
-          <label for="nama" class="block text-[10px] sm:text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-2 group-focus-within:text-amber-400 transition-colors">
+          <label for="nama" class="block text-[10px] sm:text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-2 group-focus-within:text-amber-400 transition-colors flex items-center gap-2">
+            <i data-lucide="user" class="w-3 h-3"></i>
             Nama Penuh
           </label>
           <input type="text" id="nama" name="nama" autocomplete="name" placeholder="cth: Wan Mohd Fauzi"
             class="input-field w-full rounded-xl px-4 py-3.5 text-sm text-white placeholder-slate-500 outline-none">
         </div>
         <div class="group">
-          <label for="namaPanggilan" class="block text-[10px] sm:text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-2 group-focus-within:text-amber-400 transition-colors">
+          <label for="namaPanggilan" class="block text-[10px] sm:text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-2 group-focus-within:text-amber-400 transition-colors flex items-center gap-2">
+            <i data-lucide="tag" class="w-3 h-3"></i>
             Nama Panggilan
           </label>
           <input type="text" id="namaPanggilan" name="namaPanggilan" autocomplete="nickname" placeholder="cth: Wan Owl"
@@ -159,14 +164,16 @@
       <!-- Baris 2: No Tel & Email -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
         <div class="group">
-          <label for="telepon" class="block text-[10px] sm:text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-2 group-focus-within:text-amber-400 transition-colors">
+          <label for="telepon" class="block text-[10px] sm:text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-2 group-focus-within:text-amber-400 transition-colors flex items-center gap-2">
+            <i data-lucide="phone" class="w-3 h-3"></i>
             No. Telefon (WhatsApp)
           </label>
           <input type="tel" id="telepon" name="telepon" autocomplete="tel" placeholder="cth: 0123456789"
             class="input-field w-full rounded-xl px-4 py-3.5 text-sm text-white placeholder-slate-500 outline-none">
         </div>
         <div class="group">
-          <label for="email" class="block text-[10px] sm:text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-2 group-focus-within:text-amber-400 transition-colors">
+          <label for="email" class="block text-[10px] sm:text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-2 group-focus-within:text-amber-400 transition-colors flex items-center gap-2">
+            <i data-lucide="mail" class="w-3 h-3"></i>
             Email Valetax
           </label>
           <input type="email" id="email" name="email" autocomplete="email" placeholder="nama@email.com"
@@ -176,7 +183,8 @@
 
       <!-- Baris 3: Saiz Baju -->
       <div class="group">
-        <label for="saizBaju" class="block text-[10px] sm:text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-2 group-focus-within:text-amber-400 transition-colors">
+        <label for="saizBaju" class="block text-[10px] sm:text-[11px] font-semibold text-slate-300 uppercase tracking-wider mb-2 group-focus-within:text-amber-400 transition-colors flex items-center gap-2">
+          <i data-lucide="shirt" class="w-3 h-3"></i>
           Pilihan Saiz Baju
         </label>
         <div class="relative">
@@ -221,6 +229,9 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // Initialize Lucide Icons
+      lucide.createIcons();
+
       const regForm = document.getElementById('regForm');
       const submitBtn = document.getElementById('btnSubmit');
       const feedback = document.getElementById('feedback');
