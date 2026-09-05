@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OWLFX VIP Access | Institutional Trading</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #07090C;
+      --card-bg: #0E1217;
+      --card-border: #1C232D;
+      --gold-primary: #D4AF37;
+      --gold-hover: #F3E5AB;
+      --gold-glow: rgba(212, 175, 55, 0.22);
+      --emerald-accent: #10B981;
+      --emerald-glow: rgba(16, 185, 129, 0.35);
+      --text-muted: #8E9BAE;
+      --text-main: #F0F4F8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 12px;
+    }
+
+    .vip-card {
+      width: 100%;
+      max-width: 540px;
+      background: var(--card-bg);
+      border: 1px solid var(--gold-primary);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.9), 0 0 35px var(--gold-glow);
+      border-radius: 16px;
+      padding: 34px 26px;
+      position: relative;
+    }
+
+    .header-box {
+      text-align: center;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 18px;
+    }
+
+    .owlfx-badge {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      padding: 5px 14px;
+      border-radius: 30px;
+      margin-bottom: 10px;
+      background: rgba(212, 175, 55, 0.06);
+    }
+
+    .title {
+      font-family: 'Cinzel', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: 0.5px;
+    }
+
+    .title span {
+      color: var(--gold-primary);
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #CCD6E0;
+      margin-bottom: 6px;
+    }
+
+    .input-field, .select-field {
+      width: 100%;
+      background-color: #07090C !important;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: #FFFFFF !important;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .input-field:focus, .select-field:focus {
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.25);
+    }
+
+    /* FIX: Chrome/Edge/Safari Autofill White Background Override */
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 1000px #07090C inset !important;
+      -webkit-text-fill-color: #FFFFFF !important;
+      caret-color: #FFFFFF !important;
+      border: 1px solid var(--gold-primary) !important;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .form-row .form-group {
+      flex: 1;
+    }
+
+    .phone-wrapper {
+      display: flex;
+      gap: 8px;
+    }
+
+    .dial-select {
+      width: 115px;
+      flex-shrink: 0;
+      background: #07090C;
+      border: 1px solid var(--card-border);
+      color: #FFFFFF;
+      border-radius: 8px;
+      padding: 12px 8px;
+      font-size: 13px;
+    }
+
+    .toggle-container {
+      display: flex;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .toggle-btn {
+      flex: 1;
+      padding: 11px;
+      background: #07090C;
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 12.5px;
+      transition: all 0.25s ease;
+      text-align: center;
+    }
+
+    .toggle-btn.active {
+      background: rgba(212, 175, 55, 0.12);
+      border-color: var(--gold-primary);
+      color: var(--gold-primary);
+      box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+    }
+
+    .conditional-box {
+      display: none;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 8px;
+      border: 1px dashed rgba(212, 175, 55, 0.3);
+      padding: 14px;
+      margin-top: 14px;
+    }
+
+    .conditional-box.visible {
+      display: block;
+    }
+
+    .security-note {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(212, 175, 55, 0.04);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin: 18px 0;
+    }
+
+    .security-note svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--gold-primary);
+      flex-shrink: 0;
+    }
+
+    .security-note p {
+      font-size: 11.5px;
+      color: #A3B1C2;
+      line-height: 1.4;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, #E5C358 0%, #B88E28 100%);
+      color: #0A0C0F;
+      border: none;
+      padding: 14px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-transform: uppercase;
+    }
+
+    .btn-submit:hover:not(:disabled) {
+      filter: brightness(1.12);
+      box-shadow: 0 0 16px rgba(212, 175, 55, 0.45);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .hp-field {
+      display: none !important;
+    }
+
+    /* Success Card & Pulse Animation */
+    .success-view {
+      display: none;
+      text-align: center;
+      padding: 20px 6px 10px 6px;
+    }
+
+    .pulse-container {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 20px auto;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pulse-ring {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--emerald-accent);
+      opacity: 0.4;
+      animation: pulseAnim 2s infinite cubic-bezier(0.24, 0, 0.38, 1);
+    }
+
+    .success-icon {
+      position: relative;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1.5px solid var(--emerald-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 25px var(--emerald-glow);
+    }
+
+    .success-icon svg {
+      width: 32px;
+      height: 32px;
+      fill: var(--emerald-accent);
+    }
+
+    @keyframes pulseAnim {
+      0% {
+        transform: scale(0.85);
+        opacity: 0.6;
+      }
+      50% {
+        transform: scale(1.35);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1.35);
+        opacity: 0;
+      }
+    }
+
+    .success-title {
+      font-family: 'Cinzel', serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: #10B981;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+      text-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+    }
+
+    .success-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 26px;
+    }
+
+    .btn-return {
+      display: inline-block;
+      width: 100%;
+      padding: 13px;
+      background: transparent;
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-primary);
+      font-weight: 700;
+      font-size: 13.5px;
+      letter-spacing: 0.8px;
+      border-radius: 8px;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all 0.25s ease;
+    }
+
+    .btn-return:hover {
+      background: rgba(212, 175, 55, 0.1);
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+      color: #FFF;
+    }
+
+    @media (max-width: 480px) {
+      .form-row {
+        flex-direction: column;
+        gap: 0;
+      }
+      .vip-card {
+        padding: 24px 18px;
+      }
+      .title {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="vip-card">
+
+    <!-- VIEW 1: REGISTRATION FORM -->
+    <div id="formContainer">
+      <div class="header-box">
+        <div class="owlfx-badge">REGISTRATION</div>
+        <h1 class="title">OWLFX <span>VIP ACCESS</span></h1>
+        <p class="subtitle">Join an elite trading community powered by institutional-grade execution.</p>
+      </div>
+
+      <form id="owlVipForm" onsubmit="handleFormSubmit(event)">
+        <!-- Anti-Spam Honeypot -->
+        <input type="text" id="hpToken" class="hp-field" tabindex="-1" autocomplete="off">
+
+        <!-- Full Name -->
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="fullName" class="input-field" placeholder="Full name as per ID / Passport" required>
+        </div>
+
+        <!-- WhatsApp Phone -->
+        <div class="form-group">
+          <label>WhatsApp Contact</label>
+          <div class="phone-wrapper">
+            <select id="dialCode" class="dial-select">
+              <option value="+60">🇲🇾 +60</option>
+              <option value="+62">🇮🇩 +62</option>
+              <option value="+65">🇸🇬 +65</option>
+              <option value="+673">🇧🇳 +673</option>
+              <option value="+44">🇬🇧 +44</option>
+              <option value="+1">🇺🇸 +1</option>
+              <option value="+971">🇦🇪 +971</option>
+              <option value="+61">🇦🇺 +61</option>
+            </select>
+            <input type="tel" id="whatsapp" class="input-field" placeholder="123456789" required oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+          </div>
+        </div>
+
+        <!-- Email & Country -->
+        <div class="form-row">
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="email" class="input-field" placeholder="name@domain.com" required>
+          </div>
+          <div class="form-group">
+            <label>Country of Residence</label>
+            <input type="text" id="country" class="input-field" placeholder="Malaysia" required>
+          </div>
+        </div>
+
+        <!-- Trading Experience Switch -->
+        <div class="form-group">
+          <label>Trading Experience?</label>
+          <div class="toggle-container">
+            <button type="button" class="toggle-btn active" id="btnExpNo" onclick="setExperience(false)">NO (BEGINNER)</button>
+            <button type="button" class="toggle-btn" id="btnExpYes" onclick="setExperience(true)">YES (EXPERIENCED)</button>
+          </div>
+        </div>
+
+        <!-- Conditional Experience Fields -->
+        <div class="conditional-box" id="expBox">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Trading Tenure</label>
+              <select id="tradeDuration" class="select-field">
+                <option value="Under 6 Months">&lt; 6 Months</option>
+                <option value="6 - 12 Months">6 - 12 Months</option>
+                <option value="1 - 3 Years">1 - 3 Years</option>
+                <option value="More than 3 Years">&gt; 3 Years</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Current Broker</label>
+              <input type="text" id="currentBroker" class="input-field" placeholder="e.g. Valetax, Exness, XM">
+            </div>
+          </div>
+        </div>
+
+        <!-- TradingView & Telegram Handles -->
+        <div class="form-row" style="margin-top: 12px;">
+          <div class="form-group">
+            <label>TradingView Handle (Optional)</label>
+            <input type="text" id="tradingview" class="input-field" placeholder="@username">
+          </div>
+          <div class="form-group">
+            <label>Telegram Handle (Optional)</label>
+            <input type="text" id="telegram" class="input-field" placeholder="@username">
+          </div>
+        </div>
+
+        <!-- Institutional Security Badge -->
+        <div class="security-note">
+          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/></svg>
+          <p>Your data is secured under institutional-grade encryption protocols. We will be in touch within 24 to 48 hours.</p>
+        </div>
+
+        <!-- Submit Action -->
+        <button type="submit" id="submitBtn" class="btn-submit">Submit VIP Application</button>
+      </form>
+    </div>
+
+    <!-- VIEW 2: SUCCESS VIEW (EMERALD PULSE) -->
+    <div id="successContainer" class="success-view">
+      <div class="pulse-container">
+        <div class="pulse-ring"></div>
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        </div>
+      </div>
+
+      <h2 class="success-title">APPLICATION RECEIVED</h2>
+      <p class="success-desc">
+        Thank you for your interest in <strong>Team OWLFX</strong>.<br>
+        Data anda dilindungi di bawah protokol penyulitan institusi.<br><br>
+        Our team will contact you via WhatsApp within <strong>24–48 hours</strong>.
+      </p>
+
+      <!-- Return to Main Page Button -->
+      <a href="https://owlfx.my" class="btn-return">Go to Main Page</a>
+    </div>
+
+  </div>
+
+  <script>
+    /**
+     * IqwanEngine Core Routing
+     */
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzMFVzTffYAt5SvIU9JLxzfEAUQupOPgqCzqn1ZcB9gTI06S53ycda9Hm143zx1rqBcdw/exec";
+
+    let hasExperience = false;
+
+    function setExperience(val) {
+      hasExperience = val;
+      const btnYes = document.getElementById('btnExpYes');
+      const btnNo = document.getElementById('btnExpNo');
+      const expBox = document.getElementById('expBox');
+
+      if (val) {
+        btnYes.classList.add('active');
+        btnNo.classList.remove('active');
+        expBox.classList.add('visible');
+      } else {
+        btnNo.classList.add('active');
+        btnYes.classList.remove('active');
+        expBox.classList.remove('visible');
+      }
+    }
+
+    async function handleFormSubmit(e) {
+      e.preventDefault();
+
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+      submitBtn.innerText = "ENCRYPTING & SUBMITTING...";
+
+      const payload = {
+        hp_token: document.getElementById('hpToken').value,
+        full_name: document.getElementById('fullName').value.trim(),
+        dial_code: document.getElementById('dialCode').value,
+        whatsapp: document.getElementById('whatsapp').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        country: document.getElementById('country').value.trim(),
+        has_experience: hasExperience,
+        trade_duration: hasExperience ? document.getElementById('tradeDuration').value : "N/A",
+        current_broker: hasExperience ? document.getElementById('currentBroker').value.trim() : "N/A",
+        tradingview: document.getElementById('tradingview').value.trim() || "-",
+        telegram: document.getElementById('telegram').value.trim() || "-",
+        user_agent: navigator.userAgent
+      };
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        // Switch to Emerald Pulse Success Screen
+        document.getElementById('formContainer').style.display = 'none';
+        document.getElementById('successContainer').style.display = 'block';
+
+      } catch (err) {
+        console.error("Submission error:", err);
+        alert("Connection error. Please try again.");
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Submit VIP Application";
+      }
+    }
+  </script>
+</body>
+</html>

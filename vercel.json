@@ -1,0 +1,38 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/interested",
+      "destination": "/interested/index.html"
+    },
+    {
+      "source": "/my/ib_development",
+      "destination": "/my/ib_development/index.html"
+    },
+    {
+      "source": "/id/ib_development",
+      "destination": "/id/ib_development/index.html"
+    },
+    {
+      "source": "/my/register",
+      "destination": "/my/register/index.html"
+    },
+    {
+      "source": "/id/register",
+      "destination": "/id/register/index.html"
+    },
+    {
+      "source": "/masterclass_registration",
+      "destination": "/masterclass_registration/index.html"
+    },
+    {
+      "source": "/maintenance",
+      "destination": "/maintenance/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

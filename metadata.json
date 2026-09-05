@@ -1,0 +1,6 @@
+{
+  "name": "OWLFX - Institutional Trading Architecture",
+  "description": "Platform teknologi dagangan kuantitatif, IB development, dan algoritma berprestasi tinggi OWLFX.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
