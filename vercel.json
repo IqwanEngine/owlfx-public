@@ -1,33 +1,32 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/interested",
+      "source": "/interested(.*)",
       "destination": "/interested/index.html"
     },
     {
-      "source": "/my/ib_development",
+      "source": "/my/ib_development(.*)",
       "destination": "/my/ib_development/index.html"
     },
     {
-      "source": "/id/ib_development",
+      "source": "/id/ib_development(.*)",
       "destination": "/id/ib_development/index.html"
     },
     {
-      "source": "/my/register",
+      "source": "/my/register(.*)",
       "destination": "/my/register/index.html"
     },
     {
-      "source": "/id/register",
+      "source": "/id/register(.*)",
       "destination": "/id/register/index.html"
     },
     {
-      "source": "/masterclass_registration",
+      "source": "/masterclass_registration(.*)",
       "destination": "/masterclass_registration/index.html"
     },
     {
-      "source": "/maintenance",
+      "source": "/maintenance(.*)",
       "destination": "/maintenance/index.html"
     },
     {
