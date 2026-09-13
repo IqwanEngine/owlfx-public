@@ -76,7 +76,7 @@ export function Layout({ children, onOpenAdmin, communityLinks, securityToast }:
     setupCanvasResolution();
 
     const isMobile = width < 768;
-    const particleCount = isMobile ? 35 : 85;
+    const particleCount = isMobile ? 15 : 85;
     const particles: Particle[] = [];
     const goldPalette = ['#F59E0B', '#D4AF37', '#FDE68A', '#38BDF8', '#10B981'];
 
@@ -96,7 +96,7 @@ export function Layout({ children, onOpenAdmin, communityLinks, securityToast }:
 
     // Institutional Order Blocks
     const orderBlocks: OrderBlockNode[] = [];
-    const blockCount = isMobile ? 3 : 7;
+    const blockCount = isMobile ? 2 : 7;
     for (let i = 0; i < blockCount; i++) {
       orderBlocks.push({
         x: (width / (blockCount + 1)) * (i + 1) + (Math.random() * 60 - 30),
@@ -366,7 +366,7 @@ export function Layout({ children, onOpenAdmin, communityLinks, securityToast }:
       {/* ======================================================================= */}
       <aside
         aria-label="Institutional Market Status"
-        className="relative z-50 w-full bg-slate-950/80 backdrop-blur-md border-b border-[#D4AF37]/20 px-3 sm:px-6 py-1.5 flex items-center justify-between text-[11px] font-mono tracking-wider select-none"
+        className="relative z-50 w-full bg-slate-950/80 backdrop-blur-sm md:backdrop-blur-md border-b border-[#D4AF37]/20 px-3 sm:px-6 py-1.5 flex items-center justify-between text-[11px] font-mono tracking-wider select-none"
       >
         <div className="flex items-center space-x-3 sm:space-x-6 overflow-x-auto no-scrollbar">
           <div className="flex items-center space-x-1.5 text-emerald-400">
@@ -462,7 +462,7 @@ export function Layout({ children, onOpenAdmin, communityLinks, securityToast }:
           id="anti-theft-toast"
           role="alert"
           aria-live="polite"
-          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] flex items-center space-x-3.5 px-5 py-3 rounded-2xl bg-[#080d1a]/95 border border-[#D4AF37]/60 shadow-[0_12px_40px_rgba(0,0,0,0.9),0_0_30px_rgba(212,175,55,0.3)] backdrop-blur-xl animate-in fade-in slide-in-from-bottom-4 duration-300 pointer-events-none"
+          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] flex items-center space-x-3.5 px-5 py-3 rounded-2xl bg-[#080d1a]/95 border border-[#D4AF37]/60 shadow-[0_12px_40px_rgba(0,0,0,0.9),0_0_30px_rgba(212,175,55,0.3)] backdrop-blur-sm md:backdrop-blur-xl animate-in fade-in slide-in-from-bottom-4 duration-300 pointer-events-none"
         >
           <div className="relative">
             <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#D4AF37]/30 to-amber-500/10 border border-[#D4AF37]/60 flex items-center justify-center text-[#D4AF37] flex-shrink-0 shadow-[0_0_15px_rgba(212,175,55,0.4)]">

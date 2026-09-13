@@ -97,7 +97,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <div className="absolute inset-0 rounded-full bg-gradient-to-r from-emerald-500/10 to-amber-500/10 blur-sm pointer-events-none" />
 
             {/* Core Pill Container */}
-            <div className="relative flex items-center gap-2.5 sm:gap-3 px-4 sm:px-5 py-2 rounded-full bg-slate-950/85 backdrop-blur-2xl border border-white/[0.08] shadow-inner transition-colors duration-300 group-hover:bg-slate-950/75">
+            <div className="relative flex items-center gap-2.5 sm:gap-3 px-4 sm:px-5 py-2 rounded-full bg-slate-950/85 backdrop-blur-md md:backdrop-blur-2xl border border-white/[0.08] shadow-inner transition-colors duration-300 group-hover:bg-slate-950/75">
 
               {/* Radar Dot (Emerald Sync) */}
               <span className="relative flex h-2 w-2 shrink-0">
@@ -210,7 +210,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               id="hero-cta-algo-preview"
               type="button"
               onClick={onExploreAlgo}
-              className="relative group w-fit inline-flex items-center justify-center px-5 py-3 rounded-2xl font-mono text-xs font-bold text-cyan-300 bg-slate-950/90 border border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.25)] cursor-pointer transition-all duration-300 hover:border-cyan-400 hover:shadow-[0_0_35px_rgba(6,182,212,0.5)] hover:scale-[1.03] active:scale-[0.97] backdrop-blur-xl overflow-hidden shrink-0"
+              className="relative group w-fit inline-flex items-center justify-center px-5 py-3 rounded-2xl font-mono text-xs font-bold text-cyan-300 bg-slate-950/90 border border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.25)] cursor-pointer transition-all duration-300 hover:border-cyan-400 hover:shadow-[0_0_35px_rgba(6,182,212,0.5)] hover:scale-[1.03] active:scale-[0.97] backdrop-blur-md md:backdrop-blur-xl overflow-hidden shrink-0"
             >
               {/* Cyber Grid Pattern */}
               <div className="absolute inset-0 bg-repeat bg-center bg-[radial-gradient(#06b6d4_1.2px,transparent_1.2px)] [background-size:10px_10px] opacity-20 group-hover:opacity-40 transition-opacity pointer-events-none" />
@@ -256,7 +256,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         {/* ======================================================================= */}
         <div
           id="hero-metrics-ticker-bar"
-          className="mt-16 w-full rounded-3xl bg-slate-950/70 backdrop-blur-2xl border border-white/10 p-6 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_40px_rgba(212,175,55,0.08)] relative overflow-hidden group"
+          className="mt-16 w-full rounded-3xl bg-slate-950/70 backdrop-blur-md md:backdrop-blur-2xl border border-white/10 p-6 sm:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_40px_rgba(212,175,55,0.08)] relative overflow-hidden group"
         >
           {/* Top Golden Laser Line with Traveling Light Spot */}
           <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/80 to-transparent" />

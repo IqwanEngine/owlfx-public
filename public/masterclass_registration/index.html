@@ -112,10 +112,14 @@
       <div class="relative mb-5 group cursor-pointer">
         <div class="absolute inset-0 bg-gradient-to-tr from-amber-500 to-amber-300 blur-lg opacity-35 rounded-full group-hover:opacity-60 transition-opacity duration-500"></div>
         <div class="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full border-2 border-amber-400/80 p-1 bg-neutral-950 shadow-2xl flex items-center justify-center overflow-hidden transition-transform duration-500 group-hover:scale-105">
-          <img src="/OWLFXpng.png"
-               alt="OWLFX Logo"
-               class="w-full h-full object-cover rounded-full"
-               onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1AUbyeGj4spI26OQlW9ekG_daXEzjvMNY';" />
+          <picture>
+            <source srcset="/OWLFXpng.webp" type="image/webp">
+            <img src="/OWLFXpng.png"
+                 alt="OWLFX Logo"
+                 class="w-full h-full object-cover rounded-full"
+                 decoding="sync"
+                 onerror="this.onerror=null; this.src='https://lh3.googleusercontent.com/d/1AUbyeGj4spI26OQlW9ekG_daXEzjvMNY';" />
+          </picture>
         </div>
       </div>
 

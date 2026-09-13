@@ -139,8 +139,8 @@ export const Navbar: React.FC<NavbarProps> = ({
       id="main-navbar-header"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'py-2.5 backdrop-blur-xl bg-[#060911]/90 border-b border-[#D4AF37]/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]'
-          : 'py-3.5 backdrop-blur-md bg-transparent'
+          ? 'py-2.5 backdrop-blur-md md:backdrop-blur-xl bg-[#060911]/90 border-b border-[#D4AF37]/20 shadow-[0_10px_30px_rgba(0,0,0,0.8)]'
+          : 'py-3.5 backdrop-blur-sm md:backdrop-blur-md bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -155,17 +155,26 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             <div className="relative w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center shrink-0">
               <div className="absolute inset-0 rounded-full border border-amber-500/30 group-hover:border-amber-400 pointer-events-none transition-colors duration-300" />
-              <img
-                src="/OWLFXpng.png"
-                onError={(e) => {
-                  const target = e.currentTarget as HTMLImageElement;
-                  if (!target.src.endsWith('OWLFXpng.png')) {
-                    target.src = 'OWLFXpng.png';
-                  }
-                }}
-                alt="OWLFX Official Logo"
-                className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.3)] group-hover:scale-105 transition-transform duration-300"
-              />
+              <picture>
+                <source srcSet="/OWLFXpng.webp" type="image/webp" />
+                <img
+                  src="/OWLFXpng.png"
+                  width="44"
+                  height="44"
+                  // @ts-ignore
+                  fetchpriority="high"
+                  loading="eager"
+                  decoding="sync"
+                  onError={(e) => {
+                    const target = e.currentTarget as HTMLImageElement;
+                    if (!target.src.endsWith('OWLFXpng.png')) {
+                      target.src = 'OWLFXpng.png';
+                    }
+                  }}
+                  alt="OWLFX Official Logo"
+                  className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.3)] group-hover:scale-105 transition-transform duration-300"
+                />
+              </picture>
             </div>
 
             <div className="flex flex-col">
@@ -186,7 +195,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Desktop Navigation Links */}
           <nav
             id="desktop-nav-menu"
-            className="hidden lg:flex items-center space-x-1 xl:space-x-2 backdrop-blur-xl bg-slate-950/70 p-1.5 rounded-full border border-white/10 shadow-inner"
+            className="hidden lg:flex items-center space-x-1 xl:space-x-2 backdrop-blur-md md:backdrop-blur-xl bg-slate-950/70 p-1.5 rounded-full border border-white/10 shadow-inner"
           >
             {navLinks.map((item) => {
               const isEducation = item.href === '/education';
@@ -230,7 +239,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Language Switcher */}
             <div
               id="language-switcher"
-              className="flex items-center backdrop-blur-xl bg-slate-950/70 p-1 rounded-full border border-white/10 text-[10px] font-bold"
+              className="flex items-center backdrop-blur-md md:backdrop-blur-xl bg-slate-950/70 p-1 rounded-full border border-white/10 text-[10px] font-bold"
             >
               <button
                 id="language-switch-my"
@@ -272,7 +281,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               id="navbar-admin-trigger"
               type="button"
               onClick={onOpenAdmin}
-              className="p-2.5 rounded-full backdrop-blur-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-[#D4AF37] border border-white/10 transition-all cursor-pointer group shadow-md flex items-center justify-center"
+              className="p-2.5 rounded-full backdrop-blur-md md:backdrop-blur-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-[#D4AF37] border border-white/10 transition-all cursor-pointer group shadow-md flex items-center justify-center"
               title="Panel Pengurusan Kandungan (Admin CMS)"
             >
               <Lock className="w-4 h-4 group-hover:text-amber-400 transition-colors" />
@@ -306,7 +315,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         {mobileMenuOpen && (
           <div
             id="mobile-nav-drawer"
-            className="sm:hidden mt-3 p-5 rounded-3xl backdrop-blur-2xl bg-slate-950/95 border border-[#D4AF37]/40 shadow-2xl animate-in slide-in-from-top duration-200 overflow-hidden"
+            className="sm:hidden mt-3 p-5 rounded-3xl backdrop-blur-md md:backdrop-blur-2xl bg-slate-950/95 border border-[#D4AF37]/40 shadow-2xl animate-in slide-in-from-top duration-200 overflow-hidden"
           >
             <div className="flex flex-col space-y-2">
               {navLinks.map((item) => {

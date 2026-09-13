@@ -312,6 +312,8 @@ export const OwlAlgoSection: React.FC<OwlAlgoSectionProps> = ({ onOpenLightbox }
               id={`chart-image-${selectedTF.toLowerCase()}`}
               src={TIMEFRAME_CHART_IMAGES[selectedTF]}
               alt={`Owl Algo Chart ${selectedTF}`}
+              loading="lazy"
+              decoding="async"
               referrerPolicy="no-referrer"
               onClick={(e) => {
                 e.preventDefault();
@@ -398,6 +400,7 @@ export const OwlAlgoSection: React.FC<OwlAlgoSectionProps> = ({ onOpenLightbox }
                       src={imgUrl}
                       alt={`Hasil Setup Group VIP ${idx + 1}`}
                       loading="lazy"
+                      decoding="async"
                       referrerPolicy="no-referrer"
                       onContextMenu={(e) => e.preventDefault()}
                       onDragStart={(e) => e.preventDefault()}
@@ -480,6 +483,7 @@ export const OwlAlgoSection: React.FC<OwlAlgoSectionProps> = ({ onOpenLightbox }
                       src={imgUrl}
                       alt={`Maklum Balas Trader ${(idx % TESTIMONIAL_PERSONAL_IMAGES.length) + 1}`}
                       loading="lazy"
+                      decoding="async"
                       referrerPolicy="no-referrer"
                       onContextMenu={(e) => e.preventDefault()}
                       onDragStart={(e) => e.preventDefault()}

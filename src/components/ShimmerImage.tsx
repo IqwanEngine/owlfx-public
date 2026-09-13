@@ -127,6 +127,7 @@ export const ShimmerImage: React.FC<ShimmerImageProps> = ({
         src={currentSrc}
         alt={alt}
         loading={effectiveLoading}
+        decoding="async"
         // @ts-ignore fetchPriority support in React
         fetchPriority={priority ? 'high' : 'auto'}
         referrerPolicy="no-referrer"
