@@ -160,6 +160,61 @@
                 animation: pulse-gold 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
             }
 
+            /* ========================================================
+             * IQWANENGINE HEARTBEAT (DETAK JANTUNG BERDENYUT HALUS)
+             * ======================================================== */
+            @keyframes heartbeat-pulse {
+                0% {
+                    transform: scale(1);
+                    opacity: 0.92;
+                }
+                14% {
+                    transform: scale(1.09);
+                    opacity: 1;
+                }
+                28% {
+                    transform: scale(1);
+                    opacity: 0.92;
+                }
+                42% {
+                    transform: scale(1.15);
+                    opacity: 1;
+                }
+                70% {
+                    transform: scale(1);
+                    opacity: 0.92;
+                }
+                100% {
+                    transform: scale(1);
+                    opacity: 0.92;
+                }
+            }
+
+            .pulse-heartbeat {
+                display: inline-block;
+                animation: heartbeat-pulse 1.7s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+                transform-origin: center center;
+                will-change: transform, filter, opacity;
+            }
+
+            /* Efek Denyutan Berwarna Mengikut Status */
+            .pulse-heartbeat-green {
+                color: #10b981 !important;
+                filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.65));
+            }
+            .pulse-heartbeat-yellow {
+                color: #f59e0b !important;
+                filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.65));
+            }
+            .pulse-heartbeat-red {
+                color: #ef4444 !important;
+                filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.7));
+            }
+            .pulse-heartbeat-blue {
+                color: #60a5fa !important;
+                filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.65));
+            }
+
             .blob-wrapper {
                 position: absolute;
                 top: 0;
@@ -571,11 +626,17 @@
 
                         ibWarning.classList.add("hidden");
                         ibWarning.innerHTML = "";
-                        badge.innerText = result.status || "SUCCESS";
 
-                        if (result.status === "NOT VALID") {
+                        // Set text status
+                        const rawStatus = (result.status || "ACTIVE").toString().toUpperCase().trim();
+                        badge.innerText = result.status || "ACTIVE";
+
+                        // =========================================================================
+                        // DINAMIK DETAK JANTUNG (HEARTBEAT SMOOTH) MENGIKUT STATUS
+                        // =========================================================================
+                        if (rawStatus === "NOT VALID") {
                             badge.innerText = "NOT VALID ❗";
-                            badge.className = "text-red-500 font-black uppercase tracking-wider drop-shadow-md";
+                            badge.className = "font-black uppercase tracking-wider pulse-heartbeat pulse-heartbeat-red";
 
                             ibWarning.classList.remove("hidden");
                             ibWarning.innerHTML = `
@@ -583,10 +644,17 @@
                                     <span class="text-[10px] text-red-300 font-bold tracking-[0.05em] uppercase">Please contact your IB</span>
                                 </div>
                             `;
-                        } else if (result.status === "MC") {
-                            badge.className = "text-rose-400 font-extrabold uppercase tracking-wider animate-pulse";
+                        } else if (rawStatus === "MC") {
+                            badge.className = "font-black uppercase tracking-wider pulse-heartbeat pulse-heartbeat-red";
+                        } else if (rawStatus === "LOW BALANCE") {
+                            badge.className = "font-black uppercase tracking-wider pulse-heartbeat pulse-heartbeat-yellow";
+                        } else if (rawStatus === "VALID VIP INDICATOR") {
+                            badge.className = "font-black uppercase tracking-wider pulse-heartbeat pulse-heartbeat-blue";
+                        } else if (rawStatus === "VALID VIP") {
+                            badge.className = "font-black uppercase tracking-wider pulse-heartbeat pulse-heartbeat-green";
                         } else {
-                            badge.className = "text-emerald-400 font-extrabold uppercase tracking-wider";
+                            // Default / ACTIVE (Baki 30 - 49.99 USD)
+                            badge.className = "font-black uppercase tracking-wider pulse-heartbeat pulse-heartbeat-green";
                         }
 
                         const modal = document.getElementById("vipSuccessModal");
