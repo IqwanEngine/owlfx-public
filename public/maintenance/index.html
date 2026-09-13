@@ -309,9 +309,10 @@
 
   <main class="main-container" id="tiltCard">
     <div class="logo-wrapper">
-      <picture>
+      <picture class="block">
         <source srcset="/OWLFXpng.webp" type="image/webp">
-        <img src="/OWLFXpng.png" alt="OWLFX Official Logo" class="logo-img" decoding="sync" />
+        <img src="/OWLFXpng.png" alt="OWLFX Official Logo" class="logo-img" decoding="sync" 
+             onerror="if(!this.src.endsWith('OWLFXpng.png')) this.src='/OWLFXpng.png';" />
       </picture>
     </div>
 

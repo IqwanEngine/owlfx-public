@@ -331,18 +331,22 @@ export const CommunityFooterSection: React.FC<CommunityFooterSectionProps> = ({
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-xs font-mono">
           <div className="flex items-center space-x-3">
             <div className="flex items-center space-x-2 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-white/10">
-              <picture>
+              <picture className="block">
                 <source srcSet="/OWLFXpng.webp" type="image/webp" />
                 <img
                   src="/OWLFXpng.png"
+                  alt="OWLFX Logo"
+                  width="16"
+                  height="16"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-4 h-4 object-contain drop-shadow-[0_0_8px_rgba(212,175,55,0.3)]"
                   onError={(e) => {
-                    const target = e.currentTarget as HTMLImageElement;
+                    const target = e.currentTarget;
                     if (!target.src.endsWith('OWLFXpng.png')) {
-                      target.src = 'OWLFXpng.png';
+                      target.src = '/OWLFXpng.png';
                     }
                   }}
-                  alt="OWLFX Logo"
-                  className="w-4 h-4 object-contain drop-shadow-[0_0_8px_rgba(212,175,55,0.3)]"
                 />
               </picture>
               <span className="text-white font-bold">{t.footer.securedBy}</span>

@@ -155,24 +155,24 @@ export const Navbar: React.FC<NavbarProps> = ({
           >
             <div className="relative w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center shrink-0">
               <div className="absolute inset-0 rounded-full border border-amber-500/30 group-hover:border-amber-400 pointer-events-none transition-colors duration-300" />
-              <picture>
+              <picture className="w-full h-full block">
                 <source srcSet="/OWLFXpng.webp" type="image/webp" />
                 <img
                   src="/OWLFXpng.png"
+                  alt="OWLFX Official Logo"
                   width="44"
                   height="44"
                   // @ts-ignore
-                  fetchpriority="high"
+                  fetchPriority="high"
                   loading="eager"
                   decoding="sync"
+                  className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.3)] group-hover:scale-105 transition-transform duration-300"
                   onError={(e) => {
-                    const target = e.currentTarget as HTMLImageElement;
+                    const target = e.currentTarget;
                     if (!target.src.endsWith('OWLFXpng.png')) {
-                      target.src = 'OWLFXpng.png';
+                      target.src = '/OWLFXpng.png';
                     }
                   }}
-                  alt="OWLFX Official Logo"
-                  className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.3)] group-hover:scale-105 transition-transform duration-300"
                 />
               </picture>
             </div>
