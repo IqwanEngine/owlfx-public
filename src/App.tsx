@@ -16,7 +16,7 @@ import { LightboxModal } from './components/LightboxModal';
 import { RegistrationModal, RegistrationTabType } from './components/RegistrationModal';
 import { AdminCMSModal } from './components/AdminCMSModal';
 import { LiveEventAlert } from './components/LiveEventAlert';
-import { ArrowRight, MessageCircle, Send, Shield, Sparkles } from 'lucide-react';
+import { ArrowRight, MessageCircle, Send, Shield } from 'lucide-react';
 import ScrollToTop from './components/common/ScrollToTop';
 
 interface ContactMovingButtonProps {

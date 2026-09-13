@@ -18,7 +18,6 @@ import {
   CheckCircle2,
   LogOut,
   Lock,
-  Activity,
   Sparkles
 } from 'lucide-react';
 import { ShimmerImage } from './ShimmerImage';

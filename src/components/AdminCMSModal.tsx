@@ -25,8 +25,7 @@ import {
   Zap,
   Eye,
   EyeOff,
-  MessageCircle,
-  Activity
+  MessageCircle
 } from 'lucide-react';
 import { isEventExpired } from './LiveEventAlert';
 
