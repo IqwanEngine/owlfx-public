@@ -13,6 +13,32 @@
   }
 }
 
+@keyframes ambientPulse {
+  0%, 100% { transform: scale(1) translate(0, 0); opacity: 0.12; }
+  50% { transform: scale(1.15) translate(20px, -20px); opacity: 0.22; }
+}
+
+.animate-ambient-slow {
+  animation: ambientPulse 12s ease-in-out infinite;
+}
+
+@keyframes slow-pulse {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.animate-slow-pulse {
+  animation: slow-pulse 8s ease-in-out infinite;
+}
+
+.bg-cyber-grid {
+  background-size: 48px 48px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  mask-image: radial-gradient(circle at center, black, transparent 80%);
+}
+
 /* Custom Luxury Gradients & Glows */
 .text-gold-gradient {
   background: linear-gradient(135deg, #FFF6D3 0%, #F59E0B 40%, #D4AF37 70%, #996515 100%);
@@ -180,21 +206,17 @@
    ========================================================================== */
 
 @keyframes shimmerSweep {
-  0% {
-    transform: translateX(-150%) skewX(-20deg);
-  }
-  100% {
-    transform: translateX(200%) skewX(-20deg);
-  }
+  0% { transform: translateX(-150%) skewX(-20deg); }
+  100% { transform: translateX(200%) skewX(-20deg); }
 }
 
-.btn-luxury-shimmer {
+.btn-shimmer, .btn-luxury-shimmer {
   position: relative;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.btn-luxury-shimmer::after {
+.btn-shimmer::after, .btn-luxury-shimmer::after {
   content: '';
   position: absolute;
   top: -50%;
@@ -212,11 +234,11 @@
   pointer-events: none;
 }
 
-.btn-luxury-shimmer:hover::after {
-  animation: shimmerSweep 0.85s ease-in-out forwards;
+.btn-shimmer:hover::after, .btn-luxury-shimmer:hover::after {
+  animation: shimmerSweep 0.8s ease-in-out forwards;
 }
 
-/* Gold Button Luxury Presets */
+@keyframes luxurySkeletonShimmer {
 .btn-gold-luxury {
   box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);

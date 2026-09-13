@@ -30,7 +30,7 @@ export const INITIAL_ROADTOUR_STATES: RoadtourStateData[] = [
     zone: "Tengah",
     hotel: "Grand Ballroom, Mandarin Oriental Kuala Lumpur",
     date: "01 - 02 Mac 2026",
-    attendees: "300+ Pedagang",
+    attendees: "300+ Traders",
     status: "completed",
     highlight: "Sesi Tertutup Pembiayaan Akaun Institusi & Pelancaran Modul IB Platinum",
     coverImage: "https://owlfx.online/cdn/shop/files/WhatsApp_Image_2026-05-23_at_09.55.27.jpg?v=1781330207&width=900",
@@ -45,7 +45,7 @@ export const INITIAL_ROADTOUR_STATES: RoadtourStateData[] = [
       },
       {
         url: "https://i.imgur.com/aCQ6hLX.jpg",
-        caption: "300+ pedagang elit menghadiri sesi penerangan strategi kuantitatif."
+        caption: "300+ Traders elit menghadiri sesi penerangan strategi kuantitatif."
       }
     ]
   },
@@ -56,7 +56,7 @@ export const INITIAL_ROADTOUR_STATES: RoadtourStateData[] = [
     zone: "Tengah",
     hotel: "Grand Lagoon Ballroom, Sunway Resort Hotel",
     date: "22 - 23 Februari 2026",
-    attendees: "80+ Pedagang",
+    attendees: "80+ Traders",
     status: "completed",
     highlight: "Konvensyen Tahunan Quantitative Trading Summit & IB Recognition Gala",
     coverImage: "https://owlfx.online/cdn/shop/files/WhatsApp_Image_2026-05-11_at_01.06.57_2_280706c2-5d7d-4286-9bc2-e3a8d8b6e18f.jpg?v=1778819928&width=900",
@@ -82,21 +82,21 @@ export const INITIAL_ROADTOUR_STATES: RoadtourStateData[] = [
     zone: "Selatan",
     hotel: "Royal Ballroom, Thistle Hotel Johor Bahru",
     date: "28 - 29 Januari 2026",
-    attendees: "100+ Pedagang",
+    attendees: "100+ Traders",
     status: "completed",
     highlight: "Sesi Masterclass Institutional Order Flow & Algorithmic Scalping",
     coverImage: "https://owlfx.online/cdn/shop/files/WhatsApp_Image_2026-05-11_at_01.06.58_2_1d2b6890-d74d-4eed-a575-06d8bf5a5559.jpg?v=1778819895&width=900",
     gallery: [
       {
-        url: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1000&q=80",
+        url: "https://lh3.googleusercontent.com/rd-d/ALs6j_EiGMKhiZdiG4boktvHWgFRufcVRl7WPlADXGcUfT1SZhnIMGxWzVRBoYM_i95HqtqzCd8Nm9S0ZmMoVeVdJSUohMm9ajOjAlC7mGt9jqEj3mGGOWBIxqB1pntNh1TivRpa_q9vlsXdhukTi3uMTML9JEJ2HbX-hAPXvP-Tr_N2Y4eT84V-ImVwqXxKoUAY3iZR5MXmHI-zBdFRsuTPV9rH2N0RQ_5cNSXbLugkVGZY8BE5p5_qxbT1jO4jBkZ1-jFygquhfr3yVBE4IMlwPIcVhS55eelNFe3gpjmjG9N5aXivQ1a1HQU6DROrVYIiZwByMwWaCqr_eQNu_whaYg-bEX-3Rw8EDriSfuYwcDhXu-MssFy92JgVuSpw_PZHy9nCnb0qU-p6_LN-eMSvnpCv9vJH84XcBkvGgYHQ6m6taqfijyIqp3UXImlyEeGooWjZJd_-oXPuuybCg6kNMnHqWXkZi50lUenMWdMpx0idV4qo1pbSOOfIgDGt2qnjpsj6s5Tg7J-TvqiW5hM1glEL9KvwDRo461WAOvypHrmfAoYgpz_xB8na4h-3Vv69j06594kWs3PvxCRfrpmBzVfPncxNpLmAITTUXpDV-aVZ7H7sjmrpuDQMcEyXqkk1ruluH4c3kD2JSFxlGjFfUEUrRkLkj90h8o2Cb3wEF_kcDod48OT969ez1VNEYnOZPiplupq9ynj9K5ltOr2BCQ3pwKkJg3Yzp2RWaGtSsR3MZuAFrtZscfBaJOW63qb7ugY0t6uKlyjD5tcT2kfoziaiMmRmOm5QGA6LLUqEO9VOcJOvXT0EqkPoeI-L28qHVNeklNyxun2HrNYM-qYV7oanUh8eIExbOAI4j25iLcL-q5Ej_pkA76KTe6bI0ELwjvtkDkv_iKkqU6uEUjMb7wRwMoRlaoE7ZQ2_KvFvYSuowaDhTmqZGl596Drb6HF0nSOnNxGXgZ8x4OIHhUkqAV_xnVIMf85IppfPtdHPRAPj9XrR91n9a2IhohEjA3CkCTZANdbzwZ9KCx_YlbfxVvC68o9F314JkHnQI1z9rfMUUyMoLWWUyE_FWN0wX41XXeFs9lBC1n1ep4UhrA74tDMLmDPlOqcf46ITGqm3uVojnuAczsaYLS5QiNVHIljy6UC4QURju-E=w1920-h911?auditContext=prefetch?auto=format&fit=crop&w=1000&q=80",
         caption: "Dewan utama Thistle JB bergema dengan kehadiran 410+ komuniti selatan."
       },
       {
-        url: "https://images.unsplash.com/photo-1551818255-e6e10975bc17?auto=format&fit=crop&w=1000&q=80",
+        url: "https://lh3.googleusercontent.com/rd-d/ALs6j_EiGMKhiZdiG4boktvHWgFRufcVRl7WPlADXGcUfT1SZhnIMGxWzVRBoYM_i95HqtqzCd8Nm9S0ZmMoVeVdJSUohMm9ajOjAlC7mGt9jqEj3mGGOWBIxqB1pntNh1TivRpa_q9vlsXdhukTi3uMTML9JEJ2HbX-hAPXvP-Tr_N2Y4eT84V-ImVwqXxKoUAY3iZR5MXmHI-zBdFRsuTPV9rH2N0RQ_5cNSXbLugkVGZY8BE5p5_qxbT1jO4jBkZ1-jFygquhfr3yVBE4IMlwPIcVhS55eelNFe3gpjmjG9N5aXivQ1a1HQU6DROrVYIiZwByMwWaCqr_eQNu_whaYg-bEX-3Rw8EDriSfuYwcDhXu-MssFy92JgVuSpw_PZHy9nCnb0qU-p6_LN-eMSvnpCv9vJH84XcBkvGgYHQ6m6taqfijyIqp3UXImlyEeGooWjZJd_-oXPuuybCg6kNMnHqWXkZi50lUenMWdMpx0idV4qo1pbSOOfIgDGt2qnjpsj6s5Tg7J-TvqiW5hM1glEL9KvwDRo461WAOvypHrmfAoYgpz_xB8na4h-3Vv69j06594kWs3PvxCRfrpmBzVfPncxNpLmAITTUXpDV-aVZ7H7sjmrpuDQMcEyXqkk1ruluH4c3kD2JSFxlGjFfUEUrRkLkj90h8o2Cb3wEF_kcDod48OT969ez1VNEYnOZPiplupq9ynj9K5ltOr2BCQ3pwKkJg3Yzp2RWaGtSsR3MZuAFrtZscfBaJOW63qb7ugY0t6uKlyjD5tcT2kfoziaiMmRmOm5QGA6LLUqEO9VOcJOvXT0EqkPoeI-L28qHVNeklNyxun2HrNYM-qYV7oanUh8eIExbOAI4j25iLcL-q5Ej_pkA76KTe6bI0ELwjvtkDkv_iKkqU6uEUjMb7wRwMoRlaoE7ZQ2_KvFvYSuowaDhTmqZGl596Drb6HF0nSOnNxGXgZ8x4OIHhUkqAV_xnVIMf85IppfPtdHPRAPj9XrR91n9a2IhohEjA3CkCTZANdbzwZ9KCx_YlbfxVvC68o9F314JkHnQI1z9rfMUUyMoLWWUyE_FWN0wX41XXeFs9lBC1n1ep4UhrA74tDMLmDPlOqcf46ITGqm3uVojnuAczsaYLS5QiNVHIljy6UC4QURju-E=w1920-h911?auditContext=prefetch?auto=format&fit=crop&w=1000&q=80",
         caption: "Demonstrasi setup Order Block & Liquidity Pool pada carta TradingView."
       },
       {
-        url: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1000&q=80",
+        url: "https://lh3.googleusercontent.com/rd-d/ALs6j_EiGMKhiZdiG4boktvHWgFRufcVRl7WPlADXGcUfT1SZhnIMGxWzVRBoYM_i95HqtqzCd8Nm9S0ZmMoVeVdJSUohMm9ajOjAlC7mGt9jqEj3mGGOWBIxqB1pntNh1TivRpa_q9vlsXdhukTi3uMTML9JEJ2HbX-hAPXvP-Tr_N2Y4eT84V-ImVwqXxKoUAY3iZR5MXmHI-zBdFRsuTPV9rH2N0RQ_5cNSXbLugkVGZY8BE5p5_qxbT1jO4jBkZ1-jFygquhfr3yVBE4IMlwPIcVhS55eelNFe3gpjmjG9N5aXivQ1a1HQU6DROrVYIiZwByMwWaCqr_eQNu_whaYg-bEX-3Rw8EDriSfuYwcDhXu-MssFy92JgVuSpw_PZHy9nCnb0qU-p6_LN-eMSvnpCv9vJH84XcBkvGgYHQ6m6taqfijyIqp3UXImlyEeGooWjZJd_-oXPuuybCg6kNMnHqWXkZi50lUenMWdMpx0idV4qo1pbSOOfIgDGt2qnjpsj6s5Tg7J-TvqiW5hM1glEL9KvwDRo461WAOvypHrmfAoYgpz_xB8na4h-3Vv69j06594kWs3PvxCRfrpmBzVfPncxNpLmAITTUXpDV-aVZ7H7sjmrpuDQMcEyXqkk1ruluH4c3kD2JSFxlGjFfUEUrRkLkj90h8o2Cb3wEF_kcDod48OT969ez1VNEYnOZPiplupq9ynj9K5ltOr2BCQ3pwKkJg3Yzp2RWaGtSsR3MZuAFrtZscfBaJOW63qb7ugY0t6uKlyjD5tcT2kfoziaiMmRmOm5QGA6LLUqEO9VOcJOvXT0EqkPoeI-L28qHVNeklNyxun2HrNYM-qYV7oanUh8eIExbOAI4j25iLcL-q5Ej_pkA76KTe6bI0ELwjvtkDkv_iKkqU6uEUjMb7wRwMoRlaoE7ZQ2_KvFvYSuowaDhTmqZGl596Drb6HF0nSOnNxGXgZ8x4OIHhUkqAV_xnVIMf85IppfPtdHPRAPj9XrR91n9a2IhohEjA3CkCTZANdbzwZ9KCx_YlbfxVvC68o9F314JkHnQI1z9rfMUUyMoLWWUyE_FWN0wX41XXeFs9lBC1n1ep4UhrA74tDMLmDPlOqcf46ITGqm3uVojnuAczsaYLS5QiNVHIljy6UC4QURju-E=w1920-h911?auditContext=prefetch?auto=format&fit=crop&w=1000&q=80",
         caption: "Pemberian rebat tunai eksklusif dan cabutan bertuah trading capital."
       }
     ]
@@ -108,22 +108,22 @@ export const INITIAL_ROADTOUR_STATES: RoadtourStateData[] = [
     zone: "Utara",
     hotel: "Grand Ballroom, Eastern & Oriental (E&O) Hotel Penang",
     date: "10 - 11 Februari 2026",
-    attendees: "40+ Pedagang",
+    attendees: "40+ Traders",
     status: "completed",
     highlight: "Pelancaran Valetax MIB Node & Sistem Pengagihan Rebat Automatik",
     coverImage: "https://owlfx.online/cdn/shop/files/WhatsApp_Image_2026-05-11_at_01.06.58_ef864d9e-f6a5-4956-88e4-6850fe995626.jpg?v=1778819877&width=900",
     gallery: [
       {
-        url: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1000&q=80",
+        url: "https://lh3.googleusercontent.com/rd-d/ALs6j_EiGMKhiZdiG4boktvHWgFRufcVRl7WPlADXGcUfT1SZhnIMGxWzVRBoYM_i95HqtqzCd8Nm9S0ZmMoVeVdJSUohMm9ajOjAlC7mGt9jqEj3mGGOWBIxqB1pntNh1TivRpa_q9vlsXdhukTi3uMTML9JEJ2HbX-hAPXvP-Tr_N2Y4eT84V-ImVwqXxKoUAY3iZR5MXmHI-zBdFRsuTPV9rH2N0RQ_5cNSXbLugkVGZY8BE5p5_qxbT1jO4jBkZ1-jFygquhfr3yVBE4IMlwPIcVhS55eelNFe3gpjmjG9N5aXivQ1a1HQU6DROrVYIiZwByMwWaCqr_eQNu_whaYg-bEX-3Rw8EDriSfuYwcDhXu-MssFy92JgVuSpw_PZHy9nCnb0qU-p6_LN-eMSvnpCv9vJH84XcBkvGgYHQ6m6taqfijyIqp3UXImlyEeGooWjZJd_-oXPuuybCg6kNMnHqWXkZi50lUenMWdMpx0idV4qo1pbSOOfIgDGt2qnjpsj6s5Tg7J-TvqiW5hM1glEL9KvwDRo461WAOvypHrmfAoYgpz_xB8na4h-3Vv69j06594kWs3PvxCRfrpmBzVfPncxNpLmAITTUXpDV-aVZ7H7sjmrpuDQMcEyXqkk1ruluH4c3kD2JSFxlGjFfUEUrRkLkj90h8o2Cb3wEF_kcDod48OT969ez1VNEYnOZPiplupq9ynj9K5ltOr2BCQ3pwKkJg3Yzp2RWaGtSsR3MZuAFrtZscfBaJOW63qb7ugY0t6uKlyjD5tcT2kfoziaiMmRmOm5QGA6LLUqEO9VOcJOvXT0EqkPoeI-L28qHVNeklNyxun2HrNYM-qYV7oanUh8eIExbOAI4j25iLcL-q5Ej_pkA76KTe6bI0ELwjvtkDkv_iKkqU6uEUjMb7wRwMoRlaoE7ZQ2_KvFvYSuowaDhTmqZGl596Drb6HF0nSOnNxGXgZ8x4OIHhUkqAV_xnVIMf85IppfPtdHPRAPj9XrR91n9a2IhohEjA3CkCTZANdbzwZ9KCx_YlbfxVvC68o9F314JkHnQI1z9rfMUUyMoLWWUyE_FWN0wX41XXeFs9lBC1n1ep4UhrA74tDMLmDPlOqcf46ITGqm3uVojnuAczsaYLS5QiNVHIljy6UC4QURju-E=w1920-h911?auditContext=prefetch?auto=format&fit=crop&w=1000&q=80",
         caption: "Majlis Makan Malam Berprestij & Roadtour Wilayah Utara di E&O Penang."
       },
       {
-        url: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80",
+        url: "https://lh3.googleusercontent.com/rd-d/ALs6j_EiGMKhiZdiG4boktvHWgFRufcVRl7WPlADXGcUfT1SZhnIMGxWzVRBoYM_i95HqtqzCd8Nm9S0ZmMoVeVdJSUohMm9ajOjAlC7mGt9jqEj3mGGOWBIxqB1pntNh1TivRpa_q9vlsXdhukTi3uMTML9JEJ2HbX-hAPXvP-Tr_N2Y4eT84V-ImVwqXxKoUAY3iZR5MXmHI-zBdFRsuTPV9rH2N0RQ_5cNSXbLugkVGZY8BE5p5_qxbT1jO4jBkZ1-jFygquhfr3yVBE4IMlwPIcVhS55eelNFe3gpjmjG9N5aXivQ1a1HQU6DROrVYIiZwByMwWaCqr_eQNu_whaYg-bEX-3Rw8EDriSfuYwcDhXu-MssFy92JgVuSpw_PZHy9nCnb0qU-p6_LN-eMSvnpCv9vJH84XcBkvGgYHQ6m6taqfijyIqp3UXImlyEeGooWjZJd_-oXPuuybCg6kNMnHqWXkZi50lUenMWdMpx0idV4qo1pbSOOfIgDGt2qnjpsj6s5Tg7J-TvqiW5hM1glEL9KvwDRo461WAOvypHrmfAoYgpz_xB8na4h-3Vv69j06594kWs3PvxCRfrpmBzVfPncxNpLmAITTUXpDV-aVZ7H7sjmrpuDQMcEyXqkk1ruluH4c3kD2JSFxlGjFfUEUrRkLkj90h8o2Cb3wEF_kcDod48OT969ez1VNEYnOZPiplupq9ynj9K5ltOr2BCQ3pwKkJg3Yzp2RWaGtSsR3MZuAFrtZscfBaJOW63qb7ugY0t6uKlyjD5tcT2kfoziaiMmRmOm5QGA6LLUqEO9VOcJOvXT0EqkPoeI-L28qHVNeklNyxun2HrNYM-qYV7oanUh8eIExbOAI4j25iLcL-q5Ej_pkA76KTe6bI0ELwjvtkDkv_iKkqU6uEUjMb7wRwMoRlaoE7ZQ2_KvFvYSuowaDhTmqZGl596Drb6HF0nSOnNxGXgZ8x4OIHhUkqAV_xnVIMf85IppfPtdHPRAPj9XrR91n9a2IhohEjA3CkCTZANdbzwZ9KCx_YlbfxVvC68o9F314JkHnQI1z9rfMUUyMoLWWUyE_FWN0wX41XXeFs9lBC1n1ep4UhrA74tDMLmDPlOqcf46ITGqm3uVojnuAczsaYLS5QiNVHIljy6UC4QURju-E=w1920-h911?auditContext=prefetch?auto=format&fit=crop&w=1000&q=80",
         caption: "Perbincangan meja bulat antara IB terkemuka zon Utara bersama Founder."
       },
       {
-        url: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1000&q=80",
-        caption: "Sesi foto rasmi delegasi pedagang kuantitatif Pulau Pinang."
+        url: "https://lh3.googleusercontent.com/rd-d/ALs6j_EiGMKhiZdiG4boktvHWgFRufcVRl7WPlADXGcUfT1SZhnIMGxWzVRBoYM_i95HqtqzCd8Nm9S0ZmMoVeVdJSUohMm9ajOjAlC7mGt9jqEj3mGGOWBIxqB1pntNh1TivRpa_q9vlsXdhukTi3uMTML9JEJ2HbX-hAPXvP-Tr_N2Y4eT84V-ImVwqXxKoUAY3iZR5MXmHI-zBdFRsuTPV9rH2N0RQ_5cNSXbLugkVGZY8BE5p5_qxbT1jO4jBkZ1-jFygquhfr3yVBE4IMlwPIcVhS55eelNFe3gpjmjG9N5aXivQ1a1HQU6DROrVYIiZwByMwWaCqr_eQNu_whaYg-bEX-3Rw8EDriSfuYwcDhXu-MssFy92JgVuSpw_PZHy9nCnb0qU-p6_LN-eMSvnpCv9vJH84XcBkvGgYHQ6m6taqfijyIqp3UXImlyEeGooWjZJd_-oXPuuybCg6kNMnHqWXkZi50lUenMWdMpx0idV4qo1pbSOOfIgDGt2qnjpsj6s5Tg7J-TvqiW5hM1glEL9KvwDRo461WAOvypHrmfAoYgpz_xB8na4h-3Vv69j06594kWs3PvxCRfrpmBzVfPncxNpLmAITTUXpDV-aVZ7H7sjmrpuDQMcEyXqkk1ruluH4c3kD2JSFxlGjFfUEUrRkLkj90h8o2Cb3wEF_kcDod48OT969ez1VNEYnOZPiplupq9ynj9K5ltOr2BCQ3pwKkJg3Yzp2RWaGtSsR3MZuAFrtZscfBaJOW63qb7ugY0t6uKlyjD5tcT2kfoziaiMmRmOm5QGA6LLUqEO9VOcJOvXT0EqkPoeI-L28qHVNeklNyxun2HrNYM-qYV7oanUh8eIExbOAI4j25iLcL-q5Ej_pkA76KTe6bI0ELwjvtkDkv_iKkqU6uEUjMb7wRwMoRlaoE7ZQ2_KvFvYSuowaDhTmqZGl596Drb6HF0nSOnNxGXgZ8x4OIHhUkqAV_xnVIMf85IppfPtdHPRAPj9XrR91n9a2IhohEjA3CkCTZANdbzwZ9KCx_YlbfxVvC68o9F314JkHnQI1z9rfMUUyMoLWWUyE_FWN0wX41XXeFs9lBC1n1ep4UhrA74tDMLmDPlOqcf46ITGqm3uVojnuAczsaYLS5QiNVHIljy6UC4QURju-E=w1920-h911?auditContext=prefetch?auto=format&fit=crop&w=1000&q=80",
+        caption: "Sesi foto rasmi delegasi traders kuantitatif Pulau Pinang."
       }
     ]
   },
@@ -134,13 +134,13 @@ export const INITIAL_ROADTOUR_STATES: RoadtourStateData[] = [
     zone: "Utara",
     hotel: "The Grand Ballroom, WEIL Hotel Ipoh",
     date: "03 Mei 2026",
-    attendees: "40+ Pedagang",
+    attendees: "40+ Traders",
     status: "completed",
     highlight: "Bengkel Algoritma Lanjutan & Transformasi IB Tempatan Menjadi Agensi Global",
     coverImage: "https://owlfx.online/cdn/shop/files/WhatsApp_Image_2026-05-23_at_09.55.25.jpg?v=1781329626&width=900",
     gallery: [
       {
-        url: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1000&q=80",
+        url: "https://lh3.googleusercontent.com/rd-d/ALs6j_EiGMKhiZdiG4boktvHWgFRufcVRl7WPlADXGcUfT1SZhnIMGxWzVRBoYM_i95HqtqzCd8Nm9S0ZmMoVeVdJSUohMm9ajOjAlC7mGt9jqEj3mGGOWBIxqB1pntNh1TivRpa_q9vlsXdhukTi3uMTML9JEJ2HbX-hAPXvP-Tr_N2Y4eT84V-ImVwqXxKoUAY3iZR5MXmHI-zBdFRsuTPV9rH2N0RQ_5cNSXbLugkVGZY8BE5p5_qxbT1jO4jBkZ1-jFygquhfr3yVBE4IMlwPIcVhS55eelNFe3gpjmjG9N5aXivQ1a1HQU6DROrVYIiZwByMwWaCqr_eQNu_whaYg-bEX-3Rw8EDriSfuYwcDhXu-MssFy92JgVuSpw_PZHy9nCnb0qU-p6_LN-eMSvnpCv9vJH84XcBkvGgYHQ6m6taqfijyIqp3UXImlyEeGooWjZJd_-oXPuuybCg6kNMnHqWXkZi50lUenMWdMpx0idV4qo1pbSOOfIgDGt2qnjpsj6s5Tg7J-TvqiW5hM1glEL9KvwDRo461WAOvypHrmfAoYgpz_xB8na4h-3Vv69j06594kWs3PvxCRfrpmBzVfPncxNpLmAITTUXpDV-aVZ7H7sjmrpuDQMcEyXqkk1ruluH4c3kD2JSFxlGjFfUEUrRkLkj90h8o2Cb3wEF_kcDod48OT969ez1VNEYnOZPiplupq9ynj9K5ltOr2BCQ3pwKkJg3Yzp2RWaGtSsR3MZuAFrtZscfBaJOW63qb7ugY0t6uKlyjD5tcT2kfoziaiMmRmOm5QGA6LLUqEO9VOcJOvXT0EqkPoeI-L28qHVNeklNyxun2HrNYM-qYV7oanUh8eIExbOAI4j25iLcL-q5Ej_pkA76KTe6bI0ELwjvtkDkv_iKkqU6uEUjMb7wRwMoRlaoE7ZQ2_KvFvYSuowaDhTmqZGl596Drb6HF0nSOnNxGXgZ8x4OIHhUkqAV_xnVIMf85IppfPtdHPRAPj9XrR91n9a2IhohEjA3CkCTZANdbzwZ9KCx_YlbfxVvC68o9F314JkHnQI1z9rfMUUyMoLWWUyE_FWN0wX41XXeFs9lBC1n1ep4UhrA74tDMLmDPlOqcf46ITGqm3uVojnuAczsaYLS5QiNVHIljy6UC4QURju-E=w1920-h911?auditContext=prefetch?auto=format&fit=crop&w=1000&q=80",
         caption: "Dewan WEIL Hotel Ipoh dipenuhi barisan pemimpin komuniti Perak."
       }
     ]
@@ -152,13 +152,13 @@ export const INITIAL_ROADTOUR_STATES: RoadtourStateData[] = [
     zone: "Utara",
     hotel: "Grand Ballroom, Grand Alora Hotel Alor Setar",
     date: "17 Mei 2026",
-    attendees: "30+ Pedagang",
+    attendees: "30+ Traders",
     status: "completed",
-    highlight: "Sesi Pemantapan Mentaliti Pedagang Kuantitatif & Disiplin Execution",
+    highlight: "Sesi Pemantapan Mentaliti Trader Kuantitatif & Disiplin Execution",
     coverImage: "https://owlfx.online/cdn/shop/files/WhatsApp_Image_2026-05-11_at_01.06.59.jpg?v=1778818652&width=900",
     gallery: [
       {
-        url: "https://images.unsplash.com/photo-1551818255-e6e10975bc17?auto=format&fit=crop&w=1000&q=80",
+        url: "https://lh3.googleusercontent.com/rd-d/ALs6j_EiGMKhiZdiG4boktvHWgFRufcVRl7WPlADXGcUfT1SZhnIMGxWzVRBoYM_i95HqtqzCd8Nm9S0ZmMoVeVdJSUohMm9ajOjAlC7mGt9jqEj3mGGOWBIxqB1pntNh1TivRpa_q9vlsXdhukTi3uMTML9JEJ2HbX-hAPXvP-Tr_N2Y4eT84V-ImVwqXxKoUAY3iZR5MXmHI-zBdFRsuTPV9rH2N0RQ_5cNSXbLugkVGZY8BE5p5_qxbT1jO4jBkZ1-jFygquhfr3yVBE4IMlwPIcVhS55eelNFe3gpjmjG9N5aXivQ1a1HQU6DROrVYIiZwByMwWaCqr_eQNu_whaYg-bEX-3Rw8EDriSfuYwcDhXu-MssFy92JgVuSpw_PZHy9nCnb0qU-p6_LN-eMSvnpCv9vJH84XcBkvGgYHQ6m6taqfijyIqp3UXImlyEeGooWjZJd_-oXPuuybCg6kNMnHqWXkZi50lUenMWdMpx0idV4qo1pbSOOfIgDGt2qnjpsj6s5Tg7J-TvqiW5hM1glEL9KvwDRo461WAOvypHrmfAoYgpz_xB8na4h-3Vv69j06594kWs3PvxCRfrpmBzVfPncxNpLmAITTUXpDV-aVZ7H7sjmrpuDQMcEyXqkk1ruluH4c3kD2JSFxlGjFfUEUrRkLkj90h8o2Cb3wEF_kcDod48OT969ez1VNEYnOZPiplupq9ynj9K5ltOr2BCQ3pwKkJg3Yzp2RWaGtSsR3MZuAFrtZscfBaJOW63qb7ugY0t6uKlyjD5tcT2kfoziaiMmRmOm5QGA6LLUqEO9VOcJOvXT0EqkPoeI-L28qHVNeklNyxun2HrNYM-qYV7oanUh8eIExbOAI4j25iLcL-q5Ej_pkA76KTe6bI0ELwjvtkDkv_iKkqU6uEUjMb7wRwMoRlaoE7ZQ2_KvFvYSuowaDhTmqZGl596Drb6HF0nSOnNxGXgZ8x4OIHhUkqAV_xnVIMf85IppfPtdHPRAPj9XrR91n9a2IhohEjA3CkCTZANdbzwZ9KCx_YlbfxVvC68o9F314JkHnQI1z9rfMUUyMoLWWUyE_FWN0wX41XXeFs9lBC1n1ep4UhrA74tDMLmDPlOqcf46ITGqm3uVojnuAczsaYLS5QiNVHIljy6UC4QURju-E=w1920-h911?auditContext=prefetch?auto=format&fit=crop&w=1000&q=80",
         caption: "Perkongsian berwibawa di Grand Alora Hotel Alor Setar."
       }
     ]
@@ -170,14 +170,14 @@ export const INITIAL_ROADTOUR_STATES: RoadtourStateData[] = [
     zone: "Selatan",
     hotel: "Grand Ballroom, Hatten Hotel Melaka",
     date: "08 April 2026",
-    attendees: "60+ Pedagang",
+    attendees: "60+ Traders",
     status: "completed",
-    highlight: "Sinergi Komuniti Pedagang Bersepadu Zon Selatan & Agihan Rebat Harian",
+    highlight: "Sinergi Komuniti Trader Bersepadu Zon Selatan & Agihan Rebat Harian",
     coverImage: "https://owlfx.online/cdn/shop/files/WhatsApp_Image_2026-05-11_at_01.06.59_3.jpg?v=1778818540&width=900",
     gallery: [
       {
-        url: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1000&q=80",
-        caption: "Hatten Hotel Melaka mengumpulkan ratusan pedagang pelbagai latar belakang."
+        url: "https://lh3.googleusercontent.com/rd-d/ALs6j_EiGMKhiZdiG4boktvHWgFRufcVRl7WPlADXGcUfT1SZhnIMGxWzVRBoYM_i95HqtqzCd8Nm9S0ZmMoVeVdJSUohMm9ajOjAlC7mGt9jqEj3mGGOWBIxqB1pntNh1TivRpa_q9vlsXdhukTi3uMTML9JEJ2HbX-hAPXvP-Tr_N2Y4eT84V-ImVwqXxKoUAY3iZR5MXmHI-zBdFRsuTPV9rH2N0RQ_5cNSXbLugkVGZY8BE5p5_qxbT1jO4jBkZ1-jFygquhfr3yVBE4IMlwPIcVhS55eelNFe3gpjmjG9N5aXivQ1a1HQU6DROrVYIiZwByMwWaCqr_eQNu_whaYg-bEX-3Rw8EDriSfuYwcDhXu-MssFy92JgVuSpw_PZHy9nCnb0qU-p6_LN-eMSvnpCv9vJH84XcBkvGgYHQ6m6taqfijyIqp3UXImlyEeGooWjZJd_-oXPuuybCg6kNMnHqWXkZi50lUenMWdMpx0idV4qo1pbSOOfIgDGt2qnjpsj6s5Tg7J-TvqiW5hM1glEL9KvwDRo461WAOvypHrmfAoYgpz_xB8na4h-3Vv69j06594kWs3PvxCRfrpmBzVfPncxNpLmAITTUXpDV-aVZ7H7sjmrpuDQMcEyXqkk1ruluH4c3kD2JSFxlGjFfUEUrRkLkj90h8o2Cb3wEF_kcDod48OT969ez1VNEYnOZPiplupq9ynj9K5ltOr2BCQ3pwKkJg3Yzp2RWaGtSsR3MZuAFrtZscfBaJOW63qb7ugY0t6uKlyjD5tcT2kfoziaiMmRmOm5QGA6LLUqEO9VOcJOvXT0EqkPoeI-L28qHVNeklNyxun2HrNYM-qYV7oanUh8eIExbOAI4j25iLcL-q5Ej_pkA76KTe6bI0ELwjvtkDkv_iKkqU6uEUjMb7wRwMoRlaoE7ZQ2_KvFvYSuowaDhTmqZGl596Drb6HF0nSOnNxGXgZ8x4OIHhUkqAV_xnVIMf85IppfPtdHPRAPj9XrR91n9a2IhohEjA3CkCTZANdbzwZ9KCx_YlbfxVvC68o9F314JkHnQI1z9rfMUUyMoLWWUyE_FWN0wX41XXeFs9lBC1n1ep4UhrA74tDMLmDPlOqcf46ITGqm3uVojnuAczsaYLS5QiNVHIljy6UC4QURju-E=w1920-h911?auditContext=prefetch?auto=format&fit=crop&w=1000&q=80",
+        caption: "Hatten Hotel Melaka mengumpulkan ratusan trader pelbagai latar belakang."
       }
     ]
   },
@@ -188,13 +188,13 @@ export const INITIAL_ROADTOUR_STATES: RoadtourStateData[] = [
     zone: "Selatan",
     hotel: "Seremban Grand Hall, Royale Chulan Seremban",
     date: "19 April 2026",
-    attendees: "30+ Pedagang",
+    attendees: "30+ Traders",
     status: "completed",
     highlight: "Sesi Praktikal OWL ALGO Live Scanner & Pemilihan Pair Volatiliti Tinggi",
     coverImage: "https://owlfx.online/cdn/shop/files/photo_2026-06-17_09.51.21.jpg?v=1781661132&width=900",
     gallery: [
       {
-        url: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1000&q=80",
+        url: "https://lh3.googleusercontent.com/rd-d/ALs6j_EiGMKhiZdiG4boktvHWgFRufcVRl7WPlADXGcUfT1SZhnIMGxWzVRBoYM_i95HqtqzCd8Nm9S0ZmMoVeVdJSUohMm9ajOjAlC7mGt9jqEj3mGGOWBIxqB1pntNh1TivRpa_q9vlsXdhukTi3uMTML9JEJ2HbX-hAPXvP-Tr_N2Y4eT84V-ImVwqXxKoUAY3iZR5MXmHI-zBdFRsuTPV9rH2N0RQ_5cNSXbLugkVGZY8BE5p5_qxbT1jO4jBkZ1-jFygquhfr3yVBE4IMlwPIcVhS55eelNFe3gpjmjG9N5aXivQ1a1HQU6DROrVYIiZwByMwWaCqr_eQNu_whaYg-bEX-3Rw8EDriSfuYwcDhXu-MssFy92JgVuSpw_PZHy9nCnb0qU-p6_LN-eMSvnpCv9vJH84XcBkvGgYHQ6m6taqfijyIqp3UXImlyEeGooWjZJd_-oXPuuybCg6kNMnHqWXkZi50lUenMWdMpx0idV4qo1pbSOOfIgDGt2qnjpsj6s5Tg7J-TvqiW5hM1glEL9KvwDRo461WAOvypHrmfAoYgpz_xB8na4h-3Vv69j06594kWs3PvxCRfrpmBzVfPncxNpLmAITTUXpDV-aVZ7H7sjmrpuDQMcEyXqkk1ruluH4c3kD2JSFxlGjFfUEUrRkLkj90h8o2Cb3wEF_kcDod48OT969ez1VNEYnOZPiplupq9ynj9K5ltOr2BCQ3pwKkJg3Yzp2RWaGtSsR3MZuAFrtZscfBaJOW63qb7ugY0t6uKlyjD5tcT2kfoziaiMmRmOm5QGA6LLUqEO9VOcJOvXT0EqkPoeI-L28qHVNeklNyxun2HrNYM-qYV7oanUh8eIExbOAI4j25iLcL-q5Ej_pkA76KTe6bI0ELwjvtkDkv_iKkqU6uEUjMb7wRwMoRlaoE7ZQ2_KvFvYSuowaDhTmqZGl596Drb6HF0nSOnNxGXgZ8x4OIHhUkqAV_xnVIMf85IppfPtdHPRAPj9XrR91n9a2IhohEjA3CkCTZANdbzwZ9KCx_YlbfxVvC68o9F314JkHnQI1z9rfMUUyMoLWWUyE_FWN0wX41XXeFs9lBC1n1ep4UhrA74tDMLmDPlOqcf46ITGqm3uVojnuAczsaYLS5QiNVHIljy6UC4QURju-E=w1920-h911?auditContext=prefetch?auto=format&fit=crop&w=1000&q=80",
         caption: "Sesi bimbingan 1-on-1 bersama jurulatih teknikal Seremban."
       }
     ]
@@ -206,7 +206,7 @@ export const INITIAL_ROADTOUR_STATES: RoadtourStateData[] = [
     zone: "Pantai Timur",
     hotel: "Grand Ballroom, The Zenith Hotel Kuantan",
     date: "25 Mac 2026",
-    attendees: "40+ Pedagang",
+    attendees: "40+ Traders",
     status: "completed",
     highlight: "Bedah Analisis Struktur Pasaran Pasca-NFP & Pengoptimuman Lot",
     coverImage: "https://i.imgur.com/mPkSU5x.jpeg",
@@ -224,18 +224,18 @@ export const INITIAL_ROADTOUR_STATES: RoadtourStateData[] = [
     zone: "Pantai Timur",
     hotel: "Convention Hall, Duyong Marina & Resort Kuala Terengganu",
     date: "15 Mac 2026",
-    attendees: "30+ Pedagang",
+    attendees: "30+ Traders",
     status: "completed",
     highlight: "Bengkel Formula Pengurusan Modal Kuantitatif & Sistem Rebat Pantas",
     coverImage: "https://owlfx.online/cdn/shop/files/WhatsApp_Image_2026-05-11_at_01.06.57.jpg?v=1778819909&width=900",
     gallery: [
       {
-        url: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1000&q=80",
+        url: "https://lh3.googleusercontent.com/rd-d/ALs6j_EiGMKhiZdiG4boktvHWgFRufcVRl7WPlADXGcUfT1SZhnIMGxWzVRBoYM_i95HqtqzCd8Nm9S0ZmMoVeVdJSUohMm9ajOjAlC7mGt9jqEj3mGGOWBIxqB1pntNh1TivRpa_q9vlsXdhukTi3uMTML9JEJ2HbX-hAPXvP-Tr_N2Y4eT84V-ImVwqXxKoUAY3iZR5MXmHI-zBdFRsuTPV9rH2N0RQ_5cNSXbLugkVGZY8BE5p5_qxbT1jO4jBkZ1-jFygquhfr3yVBE4IMlwPIcVhS55eelNFe3gpjmjG9N5aXivQ1a1HQU6DROrVYIiZwByMwWaCqr_eQNu_whaYg-bEX-3Rw8EDriSfuYwcDhXu-MssFy92JgVuSpw_PZHy9nCnb0qU-p6_LN-eMSvnpCv9vJH84XcBkvGgYHQ6m6taqfijyIqp3UXImlyEeGooWjZJd_-oXPuuybCg6kNMnHqWXkZi50lUenMWdMpx0idV4qo1pbSOOfIgDGt2qnjpsj6s5Tg7J-TvqiW5hM1glEL9KvwDRo461WAOvypHrmfAoYgpz_xB8na4h-3Vv69j06594kWs3PvxCRfrpmBzVfPncxNpLmAITTUXpDV-aVZ7H7sjmrpuDQMcEyXqkk1ruluH4c3kD2JSFxlGjFfUEUrRkLkj90h8o2Cb3wEF_kcDod48OT969ez1VNEYnOZPiplupq9ynj9K5ltOr2BCQ3pwKkJg3Yzp2RWaGtSsR3MZuAFrtZscfBaJOW63qb7ugY0t6uKlyjD5tcT2kfoziaiMmRmOm5QGA6LLUqEO9VOcJOvXT0EqkPoeI-L28qHVNeklNyxun2HrNYM-qYV7oanUh8eIExbOAI4j25iLcL-q5Ej_pkA76KTe6bI0ELwjvtkDkv_iKkqU6uEUjMb7wRwMoRlaoE7ZQ2_KvFvYSuowaDhTmqZGl596Drb6HF0nSOnNxGXgZ8x4OIHhUkqAV_xnVIMf85IppfPtdHPRAPj9XrR91n9a2IhohEjA3CkCTZANdbzwZ9KCx_YlbfxVvC68o9F314JkHnQI1z9rfMUUyMoLWWUyE_FWN0wX41XXeFs9lBC1n1ep4UhrA74tDMLmDPlOqcf46ITGqm3uVojnuAczsaYLS5QiNVHIljy6UC4QURju-E=w1920-h911?auditContext=prefetch?auto=format&fit=crop&w=1000&q=80",
         caption: "Suasana Duyong Marina Resort dipenuhi usahawan dagangan Terengganu."
       },
       {
-        url: "https://images.unsplash.com/photo-1551818255-e6e10975bc17?auto=format&fit=crop&w=1000&q=80",
-        caption: "Pemberian kit eksklusif pedagang dan perkongsian rahsia lot sizing."
+        url: "https://lh3.googleusercontent.com/rd-d/ALs6j_EiGMKhiZdiG4boktvHWgFRufcVRl7WPlADXGcUfT1SZhnIMGxWzVRBoYM_i95HqtqzCd8Nm9S0ZmMoVeVdJSUohMm9ajOjAlC7mGt9jqEj3mGGOWBIxqB1pntNh1TivRpa_q9vlsXdhukTi3uMTML9JEJ2HbX-hAPXvP-Tr_N2Y4eT84V-ImVwqXxKoUAY3iZR5MXmHI-zBdFRsuTPV9rH2N0RQ_5cNSXbLugkVGZY8BE5p5_qxbT1jO4jBkZ1-jFygquhfr3yVBE4IMlwPIcVhS55eelNFe3gpjmjG9N5aXivQ1a1HQU6DROrVYIiZwByMwWaCqr_eQNu_whaYg-bEX-3Rw8EDriSfuYwcDhXu-MssFy92JgVuSpw_PZHy9nCnb0qU-p6_LN-eMSvnpCv9vJH84XcBkvGgYHQ6m6taqfijyIqp3UXImlyEeGooWjZJd_-oXPuuybCg6kNMnHqWXkZi50lUenMWdMpx0idV4qo1pbSOOfIgDGt2qnjpsj6s5Tg7J-TvqiW5hM1glEL9KvwDRo461WAOvypHrmfAoYgpz_xB8na4h-3Vv69j06594kWs3PvxCRfrpmBzVfPncxNpLmAITTUXpDV-aVZ7H7sjmrpuDQMcEyXqkk1ruluH4c3kD2JSFxlGjFfUEUrRkLkj90h8o2Cb3wEF_kcDod48OT969ez1VNEYnOZPiplupq9ynj9K5ltOr2BCQ3pwKkJg3Yzp2RWaGtSsR3MZuAFrtZscfBaJOW63qb7ugY0t6uKlyjD5tcT2kfoziaiMmRmOm5QGA6LLUqEO9VOcJOvXT0EqkPoeI-L28qHVNeklNyxun2HrNYM-qYV7oanUh8eIExbOAI4j25iLcL-q5Ej_pkA76KTe6bI0ELwjvtkDkv_iKkqU6uEUjMb7wRwMoRlaoE7ZQ2_KvFvYSuowaDhTmqZGl596Drb6HF0nSOnNxGXgZ8x4OIHhUkqAV_xnVIMf85IppfPtdHPRAPj9XrR91n9a2IhohEjA3CkCTZANdbzwZ9KCx_YlbfxVvC68o9F314JkHnQI1z9rfMUUyMoLWWUyE_FWN0wX41XXeFs9lBC1n1ep4UhrA74tDMLmDPlOqcf46ITGqm3uVojnuAczsaYLS5QiNVHIljy6UC4QURju-E=w1920-h911?auditContext=prefetch?auto=format&fit=crop&w=1000&q=80",
+        caption: "Pemberian kit eksklusif trader dan perkongsian rahsia lot sizing."
       }
     ]
   },
@@ -246,25 +246,25 @@ export const INITIAL_ROADTOUR_STATES: RoadtourStateData[] = [
     zone: "Pantai Timur",
     hotel: "Grand Ballroom, Hotel Perdana Kota Bharu",
     date: "14 - 15 Januari 2026",
-    attendees: "30+ Pedagang",
+    attendees: "30+ Traders",
     status: "completed",
-    highlight: "Pelancaran Kod Kuantitatif OWL ALGO 4.2 & Sesi Live Analysis Gold",
+    highlight: "Pelancaran Kod Kuantitatif OWL ALGO & Sesi Live Analysis Gold",
     coverImage: "https://owlfx.online/cdn/shop/files/WhatsApp_Image_2026-05-11_at_01.06.57_3.jpg?v=1778818675&width=900",
     gallery: [
       {
-        url: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1000&q=80",
+        url: "https://lh3.googleusercontent.com/rd-d/ALs6j_EiGMKhiZdiG4boktvHWgFRufcVRl7WPlADXGcUfT1SZhnIMGxWzVRBoYM_i95HqtqzCd8Nm9S0ZmMoVeVdJSUohMm9ajOjAlC7mGt9jqEj3mGGOWBIxqB1pntNh1TivRpa_q9vlsXdhukTi3uMTML9JEJ2HbX-hAPXvP-Tr_N2Y4eT84V-ImVwqXxKoUAY3iZR5MXmHI-zBdFRsuTPV9rH2N0RQ_5cNSXbLugkVGZY8BE5p5_qxbT1jO4jBkZ1-jFygquhfr3yVBE4IMlwPIcVhS55eelNFe3gpjmjG9N5aXivQ1a1HQU6DROrVYIiZwByMwWaCqr_eQNu_whaYg-bEX-3Rw8EDriSfuYwcDhXu-MssFy92JgVuSpw_PZHy9nCnb0qU-p6_LN-eMSvnpCv9vJH84XcBkvGgYHQ6m6taqfijyIqp3UXImlyEeGooWjZJd_-oXPuuybCg6kNMnHqWXkZi50lUenMWdMpx0idV4qo1pbSOOfIgDGt2qnjpsj6s5Tg7J-TvqiW5hM1glEL9KvwDRo461WAOvypHrmfAoYgpz_xB8na4h-3Vv69j06594kWs3PvxCRfrpmBzVfPncxNpLmAITTUXpDV-aVZ7H7sjmrpuDQMcEyXqkk1ruluH4c3kD2JSFxlGjFfUEUrRkLkj90h8o2Cb3wEF_kcDod48OT969ez1VNEYnOZPiplupq9ynj9K5ltOr2BCQ3pwKkJg3Yzp2RWaGtSsR3MZuAFrtZscfBaJOW63qb7ugY0t6uKlyjD5tcT2kfoziaiMmRmOm5QGA6LLUqEO9VOcJOvXT0EqkPoeI-L28qHVNeklNyxun2HrNYM-qYV7oanUh8eIExbOAI4j25iLcL-q5Ej_pkA76KTe6bI0ELwjvtkDkv_iKkqU6uEUjMb7wRwMoRlaoE7ZQ2_KvFvYSuowaDhTmqZGl596Drb6HF0nSOnNxGXgZ8x4OIHhUkqAV_xnVIMf85IppfPtdHPRAPj9XrR91n9a2IhohEjA3CkCTZANdbzwZ9KCx_YlbfxVvC68o9F314JkHnQI1z9rfMUUyMoLWWUyE_FWN0wX41XXeFs9lBC1n1ep4UhrA74tDMLmDPlOqcf46ITGqm3uVojnuAczsaYLS5QiNVHIljy6UC4QURju-E=w1920-h911?auditContext=prefetch?auto=format&fit=crop&w=1000&q=80",
         caption: "Suasana Grand Ballroom Hotel Perdana dipenuhi 340+ peserta dari seluruh Kelantan."
       },
       {
-        url: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1000&q=80",
+        url: "https://lh3.googleusercontent.com/rd-d/ALs6j_EiGMKhiZdiG4boktvHWgFRufcVRl7WPlADXGcUfT1SZhnIMGxWzVRBoYM_i95HqtqzCd8Nm9S0ZmMoVeVdJSUohMm9ajOjAlC7mGt9jqEj3mGGOWBIxqB1pntNh1TivRpa_q9vlsXdhukTi3uMTML9JEJ2HbX-hAPXvP-Tr_N2Y4eT84V-ImVwqXxKoUAY3iZR5MXmHI-zBdFRsuTPV9rH2N0RQ_5cNSXbLugkVGZY8BE5p5_qxbT1jO4jBkZ1-jFygquhfr3yVBE4IMlwPIcVhS55eelNFe3gpjmjG9N5aXivQ1a1HQU6DROrVYIiZwByMwWaCqr_eQNu_whaYg-bEX-3Rw8EDriSfuYwcDhXu-MssFy92JgVuSpw_PZHy9nCnb0qU-p6_LN-eMSvnpCv9vJH84XcBkvGgYHQ6m6taqfijyIqp3UXImlyEeGooWjZJd_-oXPuuybCg6kNMnHqWXkZi50lUenMWdMpx0idV4qo1pbSOOfIgDGt2qnjpsj6s5Tg7J-TvqiW5hM1glEL9KvwDRo461WAOvypHrmfAoYgpz_xB8na4h-3Vv69j06594kWs3PvxCRfrpmBzVfPncxNpLmAITTUXpDV-aVZ7H7sjmrpuDQMcEyXqkk1ruluH4c3kD2JSFxlGjFfUEUrRkLkj90h8o2Cb3wEF_kcDod48OT969ez1VNEYnOZPiplupq9ynj9K5ltOr2BCQ3pwKkJg3Yzp2RWaGtSsR3MZuAFrtZscfBaJOW63qb7ugY0t6uKlyjD5tcT2kfoziaiMmRmOm5QGA6LLUqEO9VOcJOvXT0EqkPoeI-L28qHVNeklNyxun2HrNYM-qYV7oanUh8eIExbOAI4j25iLcL-q5Ej_pkA76KTe6bI0ELwjvtkDkv_iKkqU6uEUjMb7wRwMoRlaoE7ZQ2_KvFvYSuowaDhTmqZGl596Drb6HF0nSOnNxGXgZ8x4OIHhUkqAV_xnVIMf85IppfPtdHPRAPj9XrR91n9a2IhohEjA3CkCTZANdbzwZ9KCx_YlbfxVvC68o9F314JkHnQI1z9rfMUUyMoLWWUyE_FWN0wX41XXeFs9lBC1n1ep4UhrA74tDMLmDPlOqcf46ITGqm3uVojnuAczsaYLS5QiNVHIljy6UC4QURju-E=w1920-h911?auditContext=prefetch?auto=format&fit=crop&w=1000&q=80",
         caption: "Sesi pembentangan Quantitative Risk Engine oleh Senior Lead Analyst."
       },
       {
-        url: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=1000&q=80",
+        url: "https://lh3.googleusercontent.com/rd-d/ALs6j_EiGMKhiZdiG4boktvHWgFRufcVRl7WPlADXGcUfT1SZhnIMGxWzVRBoYM_i95HqtqzCd8Nm9S0ZmMoVeVdJSUohMm9ajOjAlC7mGt9jqEj3mGGOWBIxqB1pntNh1TivRpa_q9vlsXdhukTi3uMTML9JEJ2HbX-hAPXvP-Tr_N2Y4eT84V-ImVwqXxKoUAY3iZR5MXmHI-zBdFRsuTPV9rH2N0RQ_5cNSXbLugkVGZY8BE5p5_qxbT1jO4jBkZ1-jFygquhfr3yVBE4IMlwPIcVhS55eelNFe3gpjmjG9N5aXivQ1a1HQU6DROrVYIiZwByMwWaCqr_eQNu_whaYg-bEX-3Rw8EDriSfuYwcDhXu-MssFy92JgVuSpw_PZHy9nCnb0qU-p6_LN-eMSvnpCv9vJH84XcBkvGgYHQ6m6taqfijyIqp3UXImlyEeGooWjZJd_-oXPuuybCg6kNMnHqWXkZi50lUenMWdMpx0idV4qo1pbSOOfIgDGt2qnjpsj6s5Tg7J-TvqiW5hM1glEL9KvwDRo461WAOvypHrmfAoYgpz_xB8na4h-3Vv69j06594kWs3PvxCRfrpmBzVfPncxNpLmAITTUXpDV-aVZ7H7sjmrpuDQMcEyXqkk1ruluH4c3kD2JSFxlGjFfUEUrRkLkj90h8o2Cb3wEF_kcDod48OT969ez1VNEYnOZPiplupq9ynj9K5ltOr2BCQ3pwKkJg3Yzp2RWaGtSsR3MZuAFrtZscfBaJOW63qb7ugY0t6uKlyjD5tcT2kfoziaiMmRmOm5QGA6LLUqEO9VOcJOvXT0EqkPoeI-L28qHVNeklNyxun2HrNYM-qYV7oanUh8eIExbOAI4j25iLcL-q5Ej_pkA76KTe6bI0ELwjvtkDkv_iKkqU6uEUjMb7wRwMoRlaoE7ZQ2_KvFvYSuowaDhTmqZGl596Drb6HF0nSOnNxGXgZ8x4OIHhUkqAV_xnVIMf85IppfPtdHPRAPj9XrR91n9a2IhohEjA3CkCTZANdbzwZ9KCx_YlbfxVvC68o9F314JkHnQI1z9rfMUUyMoLWWUyE_FWN0wX41XXeFs9lBC1n1ep4UhrA74tDMLmDPlOqcf46ITGqm3uVojnuAczsaYLS5QiNVHIljy6UC4QURju-E=w1920-h911?auditContext=prefetch?auto=format&fit=crop&w=1000&q=80",
         caption: "Sesi Q&A intensif & bedah setup live market XAUUSD bersama komuniti."
       },
       {
-        url: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1000&q=80",
+        url: "https://lh3.googleusercontent.com/rd-d/ALs6j_EiGMKhiZdiG4boktvHWgFRufcVRl7WPlADXGcUfT1SZhnIMGxWzVRBoYM_i95HqtqzCd8Nm9S0ZmMoVeVdJSUohMm9ajOjAlC7mGt9jqEj3mGGOWBIxqB1pntNh1TivRpa_q9vlsXdhukTi3uMTML9JEJ2HbX-hAPXvP-Tr_N2Y4eT84V-ImVwqXxKoUAY3iZR5MXmHI-zBdFRsuTPV9rH2N0RQ_5cNSXbLugkVGZY8BE5p5_qxbT1jO4jBkZ1-jFygquhfr3yVBE4IMlwPIcVhS55eelNFe3gpjmjG9N5aXivQ1a1HQU6DROrVYIiZwByMwWaCqr_eQNu_whaYg-bEX-3Rw8EDriSfuYwcDhXu-MssFy92JgVuSpw_PZHy9nCnb0qU-p6_LN-eMSvnpCv9vJH84XcBkvGgYHQ6m6taqfijyIqp3UXImlyEeGooWjZJd_-oXPuuybCg6kNMnHqWXkZi50lUenMWdMpx0idV4qo1pbSOOfIgDGt2qnjpsj6s5Tg7J-TvqiW5hM1glEL9KvwDRo461WAOvypHrmfAoYgpz_xB8na4h-3Vv69j06594kWs3PvxCRfrpmBzVfPncxNpLmAITTUXpDV-aVZ7H7sjmrpuDQMcEyXqkk1ruluH4c3kD2JSFxlGjFfUEUrRkLkj90h8o2Cb3wEF_kcDod48OT969ez1VNEYnOZPiplupq9ynj9K5ltOr2BCQ3pwKkJg3Yzp2RWaGtSsR3MZuAFrtZscfBaJOW63qb7ugY0t6uKlyjD5tcT2kfoziaiMmRmOm5QGA6LLUqEO9VOcJOvXT0EqkPoeI-L28qHVNeklNyxun2HrNYM-qYV7oanUh8eIExbOAI4j25iLcL-q5Ej_pkA76KTe6bI0ELwjvtkDkv_iKkqU6uEUjMb7wRwMoRlaoE7ZQ2_KvFvYSuowaDhTmqZGl596Drb6HF0nSOnNxGXgZ8x4OIHhUkqAV_xnVIMf85IppfPtdHPRAPj9XrR91n9a2IhohEjA3CkCTZANdbzwZ9KCx_YlbfxVvC68o9F314JkHnQI1z9rfMUUyMoLWWUyE_FWN0wX41XXeFs9lBC1n1ep4UhrA74tDMLmDPlOqcf46ITGqm3uVojnuAczsaYLS5QiNVHIljy6UC4QURju-E=w1920-h911?auditContext=prefetch?auto=format&fit=crop&w=1000&q=80",
         caption: "Penyerahan cenderahati rasmi OWLFX Gold Pin & sijil pentauliahan peserta."
       }
     ]
@@ -276,7 +276,7 @@ export const INITIAL_ROADTOUR_STATES: RoadtourStateData[] = [
     zone: "Utara",
     hotel: "Putra Ballroom, Putra Regency Hotel Kangar",
     date: "28 Mei 2026",
-    attendees: "30+ Pedagang",
+    attendees: "30+ Traders",
     status: "completed",
     highlight: "Meraikan Komuniti Utara & Penyusunan Struktur Akaun Trading Berskala",
     coverImage: "https://i.imgur.com/BcZZ0rU.jpeg",
@@ -300,7 +300,7 @@ export const INITIAL_ROADTOUR_STATES: RoadtourStateData[] = [
     coverImage: "https://owlfx.online/cdn/shop/files/WhatsApp_Image_2026-05-11_at_01.06.56_ceacde49-47b1-4183-97f5-0a81e8020125.jpg?v=1778818388&width=900",
     gallery: [
       {
-        url: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1000&q=80",
+        url: "https://lh3.googleusercontent.com/rd-d/ALs6j_EiGMKhiZdiG4boktvHWgFRufcVRl7WPlADXGcUfT1SZhnIMGxWzVRBoYM_i95HqtqzCd8Nm9S0ZmMoVeVdJSUohMm9ajOjAlC7mGt9jqEj3mGGOWBIxqB1pntNh1TivRpa_q9vlsXdhukTi3uMTML9JEJ2HbX-hAPXvP-Tr_N2Y4eT84V-ImVwqXxKoUAY3iZR5MXmHI-zBdFRsuTPV9rH2N0RQ_5cNSXbLugkVGZY8BE5p5_qxbT1jO4jBkZ1-jFygquhfr3yVBE4IMlwPIcVhS55eelNFe3gpjmjG9N5aXivQ1a1HQU6DROrVYIiZwByMwWaCqr_eQNu_whaYg-bEX-3Rw8EDriSfuYwcDhXu-MssFy92JgVuSpw_PZHy9nCnb0qU-p6_LN-eMSvnpCv9vJH84XcBkvGgYHQ6m6taqfijyIqp3UXImlyEeGooWjZJd_-oXPuuybCg6kNMnHqWXkZi50lUenMWdMpx0idV4qo1pbSOOfIgDGt2qnjpsj6s5Tg7J-TvqiW5hM1glEL9KvwDRo461WAOvypHrmfAoYgpz_xB8na4h-3Vv69j06594kWs3PvxCRfrpmBzVfPncxNpLmAITTUXpDV-aVZ7H7sjmrpuDQMcEyXqkk1ruluH4c3kD2JSFxlGjFfUEUrRkLkj90h8o2Cb3wEF_kcDod48OT969ez1VNEYnOZPiplupq9ynj9K5ltOr2BCQ3pwKkJg3Yzp2RWaGtSsR3MZuAFrtZscfBaJOW63qb7ugY0t6uKlyjD5tcT2kfoziaiMmRmOm5QGA6LLUqEO9VOcJOvXT0EqkPoeI-L28qHVNeklNyxun2HrNYM-qYV7oanUh8eIExbOAI4j25iLcL-q5Ej_pkA76KTe6bI0ELwjvtkDkv_iKkqU6uEUjMb7wRwMoRlaoE7ZQ2_KvFvYSuowaDhTmqZGl596Drb6HF0nSOnNxGXgZ8x4OIHhUkqAV_xnVIMf85IppfPtdHPRAPj9XrR91n9a2IhohEjA3CkCTZANdbzwZ9KCx_YlbfxVvC68o9F314JkHnQI1z9rfMUUyMoLWWUyE_FWN0wX41XXeFs9lBC1n1ep4UhrA74tDMLmDPlOqcf46ITGqm3uVojnuAczsaYLS5QiNVHIljy6UC4QURju-E=w1920-h911?auditContext=prefetch?auto=format&fit=crop&w=1000&q=80",
         caption: "Pratonton venue rasmi Le Méridien Kota Kinabalu bagi acara Jun 2026."
       }
     ]
@@ -318,7 +318,7 @@ export const INITIAL_ROADTOUR_STATES: RoadtourStateData[] = [
     coverImage: "https://owlfx.online/cdn/shop/files/WhatsApp_Image_2026-05-23_at_09.55.24.jpg?v=1781328629&width=900",
     gallery: [
       {
-        url: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1000&q=80",
+        url: "https://lh3.googleusercontent.com/rd-d/ALs6j_EiGMKhiZdiG4boktvHWgFRufcVRl7WPlADXGcUfT1SZhnIMGxWzVRBoYM_i95HqtqzCd8Nm9S0ZmMoVeVdJSUohMm9ajOjAlC7mGt9jqEj3mGGOWBIxqB1pntNh1TivRpa_q9vlsXdhukTi3uMTML9JEJ2HbX-hAPXvP-Tr_N2Y4eT84V-ImVwqXxKoUAY3iZR5MXmHI-zBdFRsuTPV9rH2N0RQ_5cNSXbLugkVGZY8BE5p5_qxbT1jO4jBkZ1-jFygquhfr3yVBE4IMlwPIcVhS55eelNFe3gpjmjG9N5aXivQ1a1HQU6DROrVYIiZwByMwWaCqr_eQNu_whaYg-bEX-3Rw8EDriSfuYwcDhXu-MssFy92JgVuSpw_PZHy9nCnb0qU-p6_LN-eMSvnpCv9vJH84XcBkvGgYHQ6m6taqfijyIqp3UXImlyEeGooWjZJd_-oXPuuybCg6kNMnHqWXkZi50lUenMWdMpx0idV4qo1pbSOOfIgDGt2qnjpsj6s5Tg7J-TvqiW5hM1glEL9KvwDRo461WAOvypHrmfAoYgpz_xB8na4h-3Vv69j06594kWs3PvxCRfrpmBzVfPncxNpLmAITTUXpDV-aVZ7H7sjmrpuDQMcEyXqkk1ruluH4c3kD2JSFxlGjFfUEUrRkLkj90h8o2Cb3wEF_kcDod48OT969ez1VNEYnOZPiplupq9ynj9K5ltOr2BCQ3pwKkJg3Yzp2RWaGtSsR3MZuAFrtZscfBaJOW63qb7ugY0t6uKlyjD5tcT2kfoziaiMmRmOm5QGA6LLUqEO9VOcJOvXT0EqkPoeI-L28qHVNeklNyxun2HrNYM-qYV7oanUh8eIExbOAI4j25iLcL-q5Ej_pkA76KTe6bI0ELwjvtkDkv_iKkqU6uEUjMb7wRwMoRlaoE7ZQ2_KvFvYSuowaDhTmqZGl596Drb6HF0nSOnNxGXgZ8x4OIHhUkqAV_xnVIMf85IppfPtdHPRAPj9XrR91n9a2IhohEjA3CkCTZANdbzwZ9KCx_YlbfxVvC68o9F314JkHnQI1z9rfMUUyMoLWWUyE_FWN0wX41XXeFs9lBC1n1ep4UhrA74tDMLmDPlOqcf46ITGqm3uVojnuAczsaYLS5QiNVHIljy6UC4QURju-E=w1920-h911?auditContext=prefetch?auto=format&fit=crop&w=1000&q=80",
         caption: "Pratonton venue Pullman Kuching yang bakal menempatkan 450 usahawan dagangan."
       }
     ]
@@ -331,7 +331,7 @@ export const IB_REGIONS_DATA: Record<'MY' | 'ID', IBRegionData> = {
     region: 'MY',
     title: "Program Pembangunan IB Wilayah Malaysia",
     badge: "🇲🇾 Rasmi Malaysia Ecosystem",
-    description: "Infrastruktur sokongan Introducing Broker (IB) paling komprehensif di Malaysia. Akses kepada sistem agihan komisen berbilang lapisan, rebat tunai automatik, sistem CRM pedagang, dan bantuan latihan fizikal di 14 negeri.",
+    description: "Infrastruktur sokongan Introducing Broker (IB) paling komprehensif di Malaysia. Akses kepada sistem agihan komisen berbilang lapisan, rebat tunai automatik, sistem CRM trader, dan bantuan latihan fizikal di 14 negeri.",
     coverImage: "https://i.imgur.com/aCQ6hLX.jpg",
     registrationUrl: "/my/ib_development",
     registerLink: "/my/ib_development",
@@ -374,7 +374,7 @@ export const IB_REGIONS_DATA: Record<'MY' | 'ID', IBRegionData> = {
         imageUrl: "https://i.imgur.com/dz1wYRT.jpg",
         url: "https://i.imgur.com/dz1wYRT.jpg",
         caption: "Bengkel Pemantapan Kepimpinan IB Kebangsaan — KLCC",
-        description: "Latihan intensif pembinaan rangkaian pedagang, pematuhan pengawalseliaan, dan strategi pengoptimuman saluran rebat terus."
+        description: "Latihan intensif pembinaan rangkaian trader, pematuhan pengawalseliaan, dan strategi pengoptimuman saluran rebat terus."
       },
       {
         id: "my-act-2",
@@ -536,7 +536,7 @@ export const INITIAL_SETUP_PROOFS: SetupProofItem[] = [
     gainPips: "+320 Pips",
     rrRatio: "1 : 3.8",
     date: "21 Februari 2026",
-    imageUrl: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=900&q=80",
+    imageUrl: "https://lh3.googleusercontent.com/rd-d/ALs6j_EiGMKhiZdiG4boktvHWgFRufcVRl7WPlADXGcUfT1SZhnIMGxWzVRBoYM_i95HqtqzCd8Nm9S0ZmMoVeVdJSUohMm9ajOjAlC7mGt9jqEj3mGGOWBIxqB1pntNh1TivRpa_q9vlsXdhukTi3uMTML9JEJ2HbX-hAPXvP-Tr_N2Y4eT84V-ImVwqXxKoUAY3iZR5MXmHI-zBdFRsuTPV9rH2N0RQ_5cNSXbLugkVGZY8BE5p5_qxbT1jO4jBkZ1-jFygquhfr3yVBE4IMlwPIcVhS55eelNFe3gpjmjG9N5aXivQ1a1HQU6DROrVYIiZwByMwWaCqr_eQNu_whaYg-bEX-3Rw8EDriSfuYwcDhXu-MssFy92JgVuSpw_PZHy9nCnb0qU-p6_LN-eMSvnpCv9vJH84XcBkvGgYHQ6m6taqfijyIqp3UXImlyEeGooWjZJd_-oXPuuybCg6kNMnHqWXkZi50lUenMWdMpx0idV4qo1pbSOOfIgDGt2qnjpsj6s5Tg7J-TvqiW5hM1glEL9KvwDRo461WAOvypHrmfAoYgpz_xB8na4h-3Vv69j06594kWs3PvxCRfrpmBzVfPncxNpLmAITTUXpDV-aVZ7H7sjmrpuDQMcEyXqkk1ruluH4c3kD2JSFxlGjFfUEUrRkLkj90h8o2Cb3wEF_kcDod48OT969ez1VNEYnOZPiplupq9ynj9K5ltOr2BCQ3pwKkJg3Yzp2RWaGtSsR3MZuAFrtZscfBaJOW63qb7ugY0t6uKlyjD5tcT2kfoziaiMmRmOm5QGA6LLUqEO9VOcJOvXT0EqkPoeI-L28qHVNeklNyxun2HrNYM-qYV7oanUh8eIExbOAI4j25iLcL-q5Ej_pkA76KTe6bI0ELwjvtkDkv_iKkqU6uEUjMb7wRwMoRlaoE7ZQ2_KvFvYSuowaDhTmqZGl596Drb6HF0nSOnNxGXgZ8x4OIHhUkqAV_xnVIMf85IppfPtdHPRAPj9XrR91n9a2IhohEjA3CkCTZANdbzwZ9KCx_YlbfxVvC68o9F314JkHnQI1z9rfMUUyMoLWWUyE_FWN0wX41XXeFs9lBC1n1ep4UhrA74tDMLmDPlOqcf46ITGqm3uVojnuAczsaYLS5QiNVHIljy6UC4QURju-E=w1920-h911?auditContext=prefetch?auto=format&fit=crop&w=900&q=80",
     chartDescription: "Rejection di premium zone harian semasa pengumuman data CPI, TP3 cecah sasaran dalam tempoh 4 jam."
   }
 ];

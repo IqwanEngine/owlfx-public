@@ -94,7 +94,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
           title: 'Pembukaan Akaun Valetax MIB & Lesen ALGO',
           path: '/my/register',
           flag: '⚡',
-          desc: 'Aktifkan petunjuk TradingView OWL ALGO 4.2 percuma dan sistem pulangan rebat.'
+          desc: 'Aktifkan petunjuk TradingView OWL ALGO percuma dan sistem pulangan rebat.'
         };
       case 'lifestyle':
         return {
@@ -213,7 +213,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
             </div>
             <h4 className="text-xl font-bold text-white">Permohonan Berjaya Diterima!</h4>
             <p className="text-xs sm:text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
-              Terima kasih, <strong className="text-white">{fullName || 'Pedagang'}</strong>. Pegawai perhubungan
+              Terima kasih, <strong className="text-white">{fullName || 'Trader'}</strong>. Pegawai perhubungan
               OWLFX Desk telah menghantar pautan pengesahan dan jemputan VIP melalui WhatsApp/Emel anda.
             </p>
             <div className="pt-4 flex justify-center space-x-3">
@@ -343,7 +343,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
               <ShieldCheck className="w-4 h-4 text-[#D4AF37] shrink-0 mt-0.5" />
               <span>
                 Data anda dilindungi di bawah protokol penyulitan institusi. Pendaftaran di bawah MIB Valetax
-                melayakkan anda menerima rebat tunai secara terus ke akaun pedagang anda.
+                melayakkan anda menerima rebat tunai secara terus ke akaun trade anda.
               </span>
             </div>
 
