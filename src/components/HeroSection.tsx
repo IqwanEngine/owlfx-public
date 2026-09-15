@@ -158,7 +158,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             {/* Button 1: Malaysia Community (Hyper-Charged Gold Reactor) */}
             <a
               id="hero-cta-malaysia"
-              href="/interested?action=register"
+              href="https://t.me/OWLfxPublicChannel"
               target="_blank"
               rel="noopener noreferrer"
               className="relative group p-[1.5px] rounded-2xl overflow-hidden transition-all duration-500 hover:scale-[1.04] active:scale-[0.97] cursor-pointer shadow-[0_0_30px_rgba(245,158,11,0.35)] hover:shadow-[0_0_50px_rgba(245,158,11,0.6)]"
