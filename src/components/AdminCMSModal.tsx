@@ -42,8 +42,6 @@ interface AdminCMSModalProps {
   isAdminAuthenticated: boolean;
   onLoginSuccess: (token: string) => void;
   onSignOut: () => void;
-  eventAlerts: LiveEventAlertData[];
-  onUpdateEventAlerts: (newEventAlerts: LiveEventAlertData[]) => void;
 }
 
 interface AdminMovingButtonProps {
@@ -189,8 +187,6 @@ export const AdminCMSModal: React.FC<AdminCMSModalProps> = ({
   isAdminAuthenticated,
   onLoginSuccess,
   onSignOut,
-  eventAlerts = [],
-  onUpdateEventAlerts,
 }) => {
   const [passcode, setPasscode] = useState('');
   const [passcodeError, setPasscodeError] = useState<string | null>(null);
@@ -217,6 +213,25 @@ export const AdminCMSModal: React.FC<AdminCMSModalProps> = ({
   const [alertLocation, setAlertLocation] = useState('');
   const [alertDate, setAlertDate] = useState('');
   const [alertQuota, setAlertQuota] = useState('');
+  const [alertImageUrl, setAlertImageUrl] = useState('');
+  const [localEventAlerts, setLocalEventAlerts] = useState<LiveEventAlertData[]>([]);
+
+  const CMS_ENDPOINT = (import.meta as any).env.VITE_CMS_ALERTS_ENDPOINT || "https://script.google.com/macros/s/AKfycbyt0FScPyyQUuMrATR7h4WTrUMZT7AM8Qujvga9JNC6pXvZiPefBOil-g-AoxOKE4jOUA/exec";
+
+  useEffect(() => {
+    if (isOpen && activeTab === 'events') {
+      fetch(`${CMS_ENDPOINT}?_t=${Date.now()}`, { cache: "no-store" })
+        .then(res => res.json())
+        .then(res => {
+          if (res && res.success && Array.isArray(res.data)) {
+            setLocalEventAlerts(res.data);
+          } else {
+            setLocalEventAlerts([]);
+          }
+        })
+        .catch(() => setLocalEventAlerts([]));
+    }
+  }, [isOpen, activeTab, CMS_ENDPOINT]);
 
   const resetAlertForm = () => {
     setEditingAlertId(null);
@@ -225,6 +240,7 @@ export const AdminCMSModal: React.FC<AdminCMSModalProps> = ({
     setAlertLocation('');
     setAlertDate('');
     setAlertQuota('');
+    setAlertImageUrl('');
   };
 
   const [selectedIBRegion, setSelectedIBRegion] = useState<Region>('MY');
@@ -395,7 +411,7 @@ export const AdminCMSModal: React.FC<AdminCMSModalProps> = ({
     showToast(`Gambar berjaya dipadam daripada album ${currentState.name}.`);
   };
 
-  const handleSaveOrUpdateAlert = (e: React.FormEvent) => {
+  const handleSaveOrUpdateAlert = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!alertEventName.trim()) {
       showToast('Sila masukkan Nama Acara / Kelas.');
@@ -410,50 +426,52 @@ export const AdminCMSModal: React.FC<AdminCMSModalProps> = ({
       return;
     }
 
-    if (editingAlertId) {
-      const updated = eventAlerts.map((item) => {
-        if (item.id === editingAlertId) {
-          return {
-            ...item,
-            eventName: alertEventName.trim(),
-            state: alertState.trim() || 'Selangor',
-            location: alertLocation.trim(),
-            date: alertDate.trim(),
-            quota: alertQuota.trim() || 'Tempat Terhad',
-            isActive: true,
-            updatedAt: new Date().toISOString()
-          };
-        }
-        return item;
+    const payload = {
+      id: editingAlertId || `ALERT_${Date.now()}`,
+      title: alertEventName.trim(),
+      state: alertState.trim() || 'Selangor',
+      location: alertLocation.trim(),
+      date: alertDate.trim(),
+      quota: alertQuota.trim() || 'Tempat Terhad',
+      image_url: alertImageUrl.trim(),
+      isActive: true
+    };
+
+    try {
+      await fetch(CMS_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload)
       });
-      onUpdateEventAlerts(updated);
+      
+      showToast('Acara Berjaya Disimpan & Disegerakkan ke Semua Peranti!');
       resetAlertForm();
-      showToast('Notifikasi Acara Berjaya Dikemaskini di Laman Utama!');
-    } else {
-      const newAlert: LiveEventAlertData = {
-        id: `alert-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`,
-        eventName: alertEventName.trim(),
-        state: alertState.trim() || 'Selangor',
-        location: alertLocation.trim(),
-        date: alertDate.trim(),
-        quota: alertQuota.trim() || 'Tempat Terhad',
-        isActive: true,
-        updatedAt: new Date().toISOString()
-      };
-      onUpdateEventAlerts([newAlert, ...eventAlerts]);
-      resetAlertForm();
-      showToast('Notifikasi Baharu Berjaya Disimpan & Diaktifkan di Laman Utama!');
+      
+      // Refetch
+      fetch(`${CMS_ENDPOINT}?_t=${Date.now()}`, { cache: "no-store" })
+        .then(res => res.json())
+        .then(res => {
+          if (res && res.success && Array.isArray(res.data)) {
+            setLocalEventAlerts(res.data);
+          }
+        });
+      
+      // Notify public component to refetch
+      window.dispatchEvent(new Event('owlfx-cms-updated'));
+    } catch (error) {
+      showToast('Gagal menyimpan acara.');
     }
   };
 
   const handleEditAlert = (item: LiveEventAlertData) => {
     setEditingAlertId(item.id);
-    setAlertEventName(item.eventName || '');
+    setAlertEventName(item.eventName || item.title || '');
     setAlertState(item.state || 'Selangor');
     setAlertLocation(item.location || '');
     setAlertDate(item.date || '');
     setAlertQuota(item.quota || '');
-    showToast(`Memuatkan maklumat "${item.eventName}" untuk disunting.`);
+    setAlertImageUrl(item.image_url || '');
+    showToast(`Memuatkan maklumat "${item.eventName || item.title}" untuk disunting.`);
 
     setTimeout(() => {
       document.getElementById('admin-events-form')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -465,32 +483,46 @@ export const AdminCMSModal: React.FC<AdminCMSModalProps> = ({
     showToast('Mod suntingan dibatalkan.');
   };
 
-  const handleToggleAlertStatus = (id: string) => {
-    const updated = eventAlerts.map((item) => {
-      if (item.id === id) {
-        return {
-          ...item,
-          isActive: !item.isActive,
-          updatedAt: new Date().toISOString()
-        };
-      }
-      return item;
-    });
-    onUpdateEventAlerts(updated);
-    const target = updated.find((a) => a.id === id);
-    showToast(target?.isActive ? 'Notifikasi diaktifkan di laman web!' : 'Notifikasi dinyahaktifkan dari laman web.');
+  const handleToggleAlertStatus = async (id: string) => {
+    const target = localEventAlerts.find(a => a.id === id);
+    if (!target) return;
+    const newStatus = !target.isActive;
+
+    try {
+      await fetch(CMS_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({ id, isActive: newStatus })
+      });
+      
+      showToast(newStatus ? 'Notifikasi diaktifkan di laman web!' : 'Notifikasi dinyahaktifkan dari laman web.');
+      
+      setLocalEventAlerts(prev => prev.map(item => item.id === id ? { ...item, isActive: newStatus } : item));
+      window.dispatchEvent(new Event('owlfx-cms-updated'));
+    } catch (e) {
+      showToast('Ralat mengubah status.');
+    }
   };
 
-  const handleDeleteAlert = (id: string) => {
+  const handleDeleteAlert = async (id: string) => {
     if (!window.confirm('Adakah anda pasti mahu memadam notifikasi ini? Kad akan dipadamkan daripada senarai storan dan tidak lagi dipaparkan kepada pengunjung laman web.')) {
       return;
     }
-    const updated = eventAlerts.filter((item) => item.id !== id);
-    onUpdateEventAlerts(updated);
-    if (editingAlertId === id) {
-      resetAlertForm();
+    
+    try {
+      await fetch(CMS_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({ id, isActive: false })
+      });
+      
+      setLocalEventAlerts(prev => prev.filter(item => item.id !== id));
+      if (editingAlertId === id) resetAlertForm();
+      showToast('Notifikasi acara telah dipadam dari pangkalan data dan laman utama.');
+      window.dispatchEvent(new Event('owlfx-cms-updated'));
+    } catch (e) {
+      showToast('Ralat memadam acara.');
     }
-    showToast('Notifikasi acara telah dipadam dari pangkalan data dan laman utama.');
   };
 
   const handleAddIBActivity = (e: React.FormEvent) => {
@@ -717,7 +749,7 @@ export const AdminCMSModal: React.FC<AdminCMSModalProps> = ({
               >
                 <Bell className="w-3.5 h-3.5" />
                 <span>3. Update News (Kelas)</span>
-                {eventAlerts && eventAlerts.some((a) => a.isActive) && (
+                {localEventAlerts && localEventAlerts.some((a) => a.isActive) && (
                   <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
                 )}
               </button>
@@ -1140,6 +1172,19 @@ export const AdminCMSModal: React.FC<AdminCMSModalProps> = ({
                             className="w-full bg-slate-900 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-[#D4AF37] transition-colors"
                           />
                         </div>
+
+                        <div>
+                          <label className="block text-xs font-mono text-slate-300 mb-1">
+                            URL Poster / Gambar: <span className="text-slate-500 font-sans italic">(Pilihan)</span>
+                          </label>
+                          <input
+                            type="text"
+                            value={alertImageUrl}
+                            onChange={(e) => setAlertImageUrl(e.target.value)}
+                            placeholder="cth: https://example.com/poster.jpg"
+                            className="w-full bg-slate-900 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-[#D4AF37] transition-colors"
+                          />
+                        </div>
                       </div>
 
                       {/* Action Buttons */}
@@ -1184,7 +1229,7 @@ export const AdminCMSModal: React.FC<AdminCMSModalProps> = ({
                       <div>
                         <span className="text-xs font-mono text-amber-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
                           <Zap className="w-4 h-4" />
-                          Pratonton Langsung Notifikasi Awam ({eventAlerts.length} Acara)
+                          Pratonton Langsung Notifikasi Awam ({localEventAlerts.length} Acara)
                         </span>
                         <p className="text-xs text-slate-400 mt-0.5">
                           Setiap kad memaparkan rupa notifikasi langsung di laman utama. Gunakan butang di bawah untuk Edit, Padam, atau Tukar Status secara masa nyata.
@@ -1194,15 +1239,15 @@ export const AdminCMSModal: React.FC<AdminCMSModalProps> = ({
                       <div className="flex flex-wrap items-center gap-2">
                         <span className="text-[11px] font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-2.5 py-1 rounded-lg flex items-center gap-1.5">
                           <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-                          {eventAlerts.filter((a) => a.isActive && !isEventExpired(a.date)).length} Aktif di Web
+                          {localEventAlerts.filter((a) => a.isActive && !isEventExpired(a.date)).length} Aktif di Web
                         </span>
                         <span className="text-[11px] font-mono text-slate-400 bg-slate-950 px-2.5 py-1 rounded-lg border border-white/10">
-                          Jumlah: {eventAlerts.length}
+                          Jumlah: {localEventAlerts.length}
                         </span>
                       </div>
                     </div>
 
-                    {eventAlerts.length === 0 ? (
+                    {localEventAlerts.length === 0 ? (
                       <div className="py-10 px-4 text-center rounded-2xl bg-slate-950/60 border border-dashed border-white/10">
                         <Bell className="w-8 h-8 text-slate-600 mx-auto mb-2" />
                         <p className="text-xs text-slate-300 font-mono font-medium">
@@ -1214,7 +1259,7 @@ export const AdminCMSModal: React.FC<AdminCMSModalProps> = ({
                       </div>
                     ) : (
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {eventAlerts.map((item) => {
+                        {localEventAlerts.map((item) => {
                           const isEditingThis = editingAlertId === item.id;
                           const expired = isEventExpired(item.date);
                           const isLiveOnSite = item.isActive && !expired;

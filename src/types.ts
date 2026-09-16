@@ -102,11 +102,13 @@ export interface UpcomingEventForm {
 
 export interface LiveEventAlertData {
   id: string;
-  eventName: string;
+  title?: string;
+  eventName?: string;
   state: string;
   location: string;
   date: string;
   quota: string;
+  image_url?: string;
   isActive: boolean;
   updatedAt?: string;
 }

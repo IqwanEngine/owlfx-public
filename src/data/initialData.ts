@@ -1,18 +1,8 @@
 import { RoadtourStateData, IBRegionData, SetupProofItem, TraderTestimonial, CommunityLinks, AlgoMetric, LiveEventAlertData } from '../types';
 
-export const INITIAL_LIVE_EVENT_ALERTS: LiveEventAlertData[] = [
-  {
-    id: "alert-default-1",
-    eventName: "Class Masterkey Price Zone",
-    state: "Selangor",
-    location: "Hotel Marriott, Putrajaya",
-    date: "19/09/2026",
-    quota: "5 Left",
-    isActive: true,
-  }
-];
+export const INITIAL_LIVE_EVENT_ALERTS: LiveEventAlertData[] = [];
 
-export const INITIAL_LIVE_EVENT_ALERT: LiveEventAlertData = INITIAL_LIVE_EVENT_ALERTS[0];
+export const INITIAL_LIVE_EVENT_ALERT: LiveEventAlertData | null = null;
 
 export const INITIAL_COMMUNITY_LINKS: CommunityLinks = {
   telegramVip: "https://t.me/OWLfxPublicChannel",
