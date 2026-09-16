@@ -16,7 +16,7 @@ export const BasicEducationSection: React.FC<BasicEducationSectionProps> = () =>
       id: 0,
       title: "Ep 01: Pendaftaran Akaun Valetax MIB & Pengesahan KYC",
       duration: "14:20",
-      youtubeId: "pb45FAzqJ34",
+      youtubeId: "W20G_6qiNE0",
       thumbnail: "https://i.imgur.com/mEDs7TZ.jpeg?auto=format&fit=crop&w=1000&q=80",
       description: "Panduan langkah demi langkah membuka akaun ECN Zero Spread di bawah naungan kod MIB rasmi OWLFX."
     },
@@ -24,7 +24,7 @@ export const BasicEducationSection: React.FC<BasicEducationSectionProps> = () =>
       id: 1,
       title: "Ep 02: Integrasi & Konfigurasi Script OWL ALGO",
       duration: "18:45",
-      youtubeId: "feAMZTrgY7Y",
+      youtubeId: "W20G_6qiNE0",
       thumbnail: "https://i.imgur.com/glB5iPP.png?auto=format&fit=crop&w=1000&q=80",
       description: "Cara menambah penunjuk proprietari ke akaun TradingView anda dan menetapkan push alert telefon pintar."
     },
@@ -32,7 +32,7 @@ export const BasicEducationSection: React.FC<BasicEducationSectionProps> = () =>
       id: 2,
       title: "Ep 03: Mengesan Zon Liquidity Sweeps & Order Block",
       duration: "24:10",
-      youtubeId: "d4KaTo69zt4",
+      youtubeId: "W20G_6qiNE0",
       thumbnail: "https://i.imgur.com/7635Vvy.png?auto=format&fit=crop&w=1000&q=80",
       description: "Memahami logik pasaran Smart Money dan mengelak perangkap manipulasi sesi dagangan London & NY."
     },
@@ -40,7 +40,7 @@ export const BasicEducationSection: React.FC<BasicEducationSectionProps> = () =>
       id: 3,
       title: "Ep 04: Pengurusan Modal & Matematik Saiz Lot Institusi",
       duration: "16:30",
-      youtubeId: "sx2zl75K5iQ",
+      youtubeId: "W20G_6qiNE0",
       thumbnail: "https://i.imgur.com/UwLaWfT.png?auto=format&fit=crop&w=1000&q=80",
       description: "Formula pengiraan risiko 1% hingga 2% bagi mengekalkan kestabilan modal dan kelayakan self-rebate."
     }
