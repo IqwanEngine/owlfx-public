@@ -135,24 +135,52 @@ export function HomePage() {
 
         <div className="max-w-7xl mx-auto">
           {/* Header Title Section */}
-          <div className="text-center mb-16">
+          <div className="relative text-center mb-20 max-w-3xl mx-auto px-4 z-10">
+            {/* Efek Cahaya Latar Belakang (Ambient Glow) */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-32 bg-gradient-to-r from-cyan-500/10 via-[#D4AF37]/10 to-emerald-500/10 blur-[80px] -z-10 rounded-full pointer-events-none" />
+
+            {/* Lencana Eksklusif (Badge) */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white/[0.03] border border-white/10 text-slate-300 text-xs font-mono mb-6 backdrop-blur-md shadow-[0_0_20px_rgba(255,255,255,0.05)]"
+            >
+              <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse shadow-[0_0_10px_rgba(212,175,55,0.5)]" />
+              <span className="tracking-widest uppercase font-semibold">Discover Our Ecosystem</span>
+            </motion.div>
+
+            {/* Tajuk Utama (Heading) */}
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-black bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent mb-4 uppercase tracking-tight"
+              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+              className="text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-slate-400 mb-5 uppercase tracking-tight drop-shadow-[0_0_25px_rgba(255,255,255,0.15)]"
             >
-              Executive Showcase Hub
+              Executive Showcase <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-amber-200 to-[#D4AF37]">Hub</span>
             </motion.h2>
+
+            {/* Teks Penerangan (Subtitle) */}
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base font-medium"
+              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+              className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base md:text-lg font-medium leading-relaxed"
             >
               Explore the OWLFX ecosystem. Choose a department to begin your journey.
             </motion.p>
+
+            {/* Garisan Hiasan Animasi (Decorative Divider) */}
+            <motion.div
+              initial={{ opacity: 0, scaleX: 0 }}
+              whileInView={{ opacity: 1, scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4, ease: "anticipate" }}
+              className="h-[1px] w-32 mx-auto mt-8 bg-gradient-to-r from-transparent via-[#D4AF37]/60 to-transparent"
+            />
           </div>
 
           {/* Institutional Grid Cards */}

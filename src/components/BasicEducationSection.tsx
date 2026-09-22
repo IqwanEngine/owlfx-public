@@ -14,36 +14,52 @@ export const BasicEducationSection: React.FC<BasicEducationSectionProps> = () =>
   const episodes = [
     {
       id: 0,
-      title: "Ep 01: Pendaftaran Akaun Valetax MIB & Pengesahan KYC",
-      duration: "14:20",
-      youtubeId: "W20G_6qiNE0",
-      thumbnail: "https://i.imgur.com/mEDs7TZ.jpeg?auto=format&fit=crop&w=1000&q=80",
-      description: "Panduan langkah demi langkah membuka akaun ECN Zero Spread di bawah naungan kod MIB rasmi OWLFX."
+      title: "TUTORIAL | Cara Daftar TradingView & Semak Username",
+      duration: "2:58",
+      youtubeId: "LroOIJXweVk",
+      thumbnail: "https://i.imgur.com/Fkg4CSh.jpeg?auto=format&fit=crop&w=1000&q=80",
+      description: "✅ Cara daftar / buka akaun TradingView ✅ Cara semak TradingView Username."
     },
     {
       id: 1,
-      title: "Ep 02: Integrasi & Konfigurasi Script OWL ALGO",
-      duration: "18:45",
-      youtubeId: "W20G_6qiNE0",
-      thumbnail: "https://i.imgur.com/glB5iPP.png?auto=format&fit=crop&w=1000&q=80",
-      description: "Cara menambah penunjuk proprietari ke akaun TradingView anda dan menetapkan push alert telefon pintar."
+      title: "TUTORIAL | Cara Akses Dashboard OWL Algo & Lengkapkan Borang Maklumat",
+      duration: "2:08",
+      youtubeId: "HILYMsIgM8Q",
+      thumbnail: "https://i.imgur.com/EtM8ZTf.jpeg?auto=format&fit=crop&w=1000&q=80",
+      description: "✅ Cara masuk ke Dashboard OWL Algo Indicator ✅ Cara lengkapkan borang maklumat yang diperlukan."
     },
     {
       id: 2,
-      title: "Ep 03: Mengesan Zon Liquidity Sweeps & Order Block",
-      duration: "24:10",
-      youtubeId: "W20G_6qiNE0",
-      thumbnail: "https://i.imgur.com/7635Vvy.png?auto=format&fit=crop&w=1000&q=80",
-      description: "Memahami logik pasaran Smart Money dan mengelak perangkap manipulasi sesi dagangan London & NY."
+      title: "TUTORIAL | Setup TradingView & OWL Algo Indicator — PHONE",
+      duration: "29:00",
+      youtubeId: "NAotGXx7kKY",
+      thumbnail: "https://i.imgur.com/3acp3Ff.jpeg?auto=format&fit=crop&w=1000&q=80",
+      description: "✅ Dalam video ini anda akan belajar cara setup TradingView menggunakan Phone."
     },
     {
       id: 3,
-      title: "Ep 04: Pengurusan Modal & Matematik Saiz Lot Institusi",
-      duration: "16:30",
-      youtubeId: "W20G_6qiNE0",
-      thumbnail: "https://i.imgur.com/UwLaWfT.png?auto=format&fit=crop&w=1000&q=80",
-      description: "Formula pengiraan risiko 1% hingga 2% bagi mengekalkan kestabilan modal dan kelayakan self-rebate."
-    }
+      title: "TUTORIAL | Cara Guna CHOCH BUY & SELL + Tandakan Zone",
+      duration: "7:08",
+      youtubeId: "X1mIeF8wc7s",
+      thumbnail: "https://i.imgur.com/Ee6NjGB.jpeg?auto=format&fit=crop&w=1000&q=80",
+      description: "✅ Cara kenal pasti CHOCH BUY ✅ Cara kenal pasti CHOCH SELL."
+    },
+    {
+      id: 4,
+      title: "TUTORIAL | Cara Guna BOS BUY & SELL + Tandakan Zone",
+      duration: "7:25",
+      youtubeId: "24llUiECGZs",
+      thumbnail: "https://i.imgur.com/YnG9Dgd.jpeg?auto=format&fit=crop&w=1000&q=80",
+      description: "✅ Cara kenal pasti BOS BUY ✅ Cara kenal pasti BOS SELL."
+    },
+    {
+      id: 5,
+      title: "TUTORIAL #07 | Cara Guna Support & Resistance + Tandakan Zone",
+      duration: "4:47",
+      youtubeId: "TMjjNMpVq0Q",
+      thumbnail: "https://i.imgur.com/XGthI3f.jpeg?auto=format&fit=crop&w=1000&q=80",
+      description: "✅ Cara kenal pasti Support ✅ Cara kenal pasti Resistance."
+    },
   ];
 
   const currentEp = episodes[activeEpisode];
@@ -228,7 +244,7 @@ export const BasicEducationSection: React.FC<BasicEducationSectionProps> = () =>
             <div className="lg:col-span-4 space-y-4">
               <div className="flex items-center justify-between pb-2 border-b border-white/10">
                 <span className="text-xs font-mono text-[#D4AF37] font-bold uppercase tracking-wider">
-                  MODUL MASTERCLASS // 4 SIRI LENGKAP
+                  E-BOOK (Cara Memahami Dan Pendaftaran OWLALGO)
                 </span>
                 <span className="text-xs font-mono text-slate-400">Terperinci</span>
               </div>

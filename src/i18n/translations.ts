@@ -10,7 +10,7 @@ export const translations = {
       community: 'Find Us',
       badge: 'Official',
       sub: 'ONE WORLD LEGACY',
-      ctaVip: 'DAFTAR VIP',
+      ctaVip: 'MAKLUM BALAS',
       adminCms: 'CMS Portal'
     },
     hero: {
@@ -175,7 +175,7 @@ export const translations = {
       step3Perk: '✓ Daily Cash Return',
       playlistTitle: 'SENARAI SIRI MASTERCLASS',
       btnMasterclass: 'Daftar Masterclass Percuma',
-      masterclassSub: 'Termasuk akses webinar mingguan & slide PDF rasmi'
+      masterclassSub: 'Ikuti Langkah demi Langkah Untuk Lebih Memahami'
     },
     footer: {
       badge: 'KOMUNITI ELIT TRADERS',
@@ -202,7 +202,7 @@ export const translations = {
       community: 'Find Us',
       badge: 'Official',
       sub: 'ONE WORLD LEGACY',
-      ctaVip: 'REGISTER VIP',
+      ctaVip: 'FEEDBACK',
       adminCms: 'CMS Portal'
     },
     hero: {
@@ -367,7 +367,7 @@ export const translations = {
       step3Perk: '✓ Daily Cash Return',
       playlistTitle: 'MASTERCLASS EPISODES',
       btnMasterclass: 'Register Free Masterclass',
-      masterclassSub: 'Includes weekly live webinar access & official slide decks'
+      masterclassSub: 'Follow Step by Step To Understand More'
     },
     footer: {
       badge: 'ELITE TRADER COMMUNITY',

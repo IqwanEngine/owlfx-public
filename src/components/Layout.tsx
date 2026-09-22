@@ -475,7 +475,7 @@ export function Layout({ children, onOpenAdmin, communityLinks, securityToast }:
           </div>
           <div className="flex flex-col">
             <span className="text-[10px] font-mono text-[#D4AF37] uppercase tracking-wider font-semibold">
-              IQWANENGINE DEFENSE SYSTEM
+              OWL_ENGINE DEFENSE SYSTEM
             </span>
             <p className="text-xs font-mono text-slate-100 tracking-wide font-medium whitespace-nowrap">
               {securityToast.message}

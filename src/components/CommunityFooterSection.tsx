@@ -131,10 +131,17 @@ export const CommunityFooterSection: React.FC<CommunityFooterSectionProps> = ({
   const instagramUrl = communityLinks.instagram || "https://www.instagram.com/wan.owlfx";
 
   return (
-    <footer id="community" className="relative bg-[#04060A] text-slate-400 border-t border-white/10 pt-20 pb-12 overflow-hidden selection:bg-[#D4AF37] selection:text-black">
+    <footer
+      id="community"
+      onContextMenu={(e) => e.preventDefault()}
+      className="relative bg-[#04060A] text-slate-400 border-t border-white/10 pt-20 pb-12 overflow-hidden select-none selection:bg-[#D4AF37] selection:text-black"
+    >
+      {/* Animated Cyber-Grid Overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+
       {/* Background Volumetric Core Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[850px] h-[250px] bg-[#D4AF37]/5 blur-[140px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] bg-cyan-500/5 blur-[160px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[300px] bg-[#D4AF37]/10 blur-[150px] rounded-full pointer-events-none transition-all duration-700" />
+      <div className="absolute bottom-1/4 -right-32 w-[600px] h-[600px] bg-cyan-500/10 blur-[180px] rounded-full pointer-events-none transition-all duration-700" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
@@ -197,13 +204,13 @@ export const CommunityFooterSection: React.FC<CommunityFooterSectionProps> = ({
           </div>
 
           <div className="flex flex-wrap justify-center gap-3 mb-14">
-            <Link to="/about-us" className="px-4 py-2 rounded-xl bg-slate-900/80 border border-white/10 text-xs font-mono font-semibold hover:text-[#D4AF37] hover:border-[#D4AF37]/50 hover:bg-[#D4AF37]/10 transition-all">About Us</Link>
-            <Link to="/ib-development" className="px-4 py-2 rounded-xl bg-slate-900/80 border border-white/10 text-xs font-mono font-semibold hover:text-[#D4AF37] hover:border-[#D4AF37]/50 hover:bg-[#D4AF37]/10 transition-all">IB Development</Link>
-            <Link to="/owlalgo" className="px-4 py-2 rounded-xl bg-slate-900/80 border border-white/10 text-xs font-mono font-semibold hover:text-[#D4AF37] hover:border-[#D4AF37]/50 hover:bg-[#D4AF37]/10 transition-all">OwlAlgo</Link>
-            <Link to="/roadtour" className="px-4 py-2 rounded-xl bg-slate-900/80 border border-white/10 text-xs font-mono font-semibold hover:text-[#D4AF37] hover:border-[#D4AF37]/50 hover:bg-[#D4AF37]/10 transition-all">Roadtour</Link>
-            <Link to="/group-support" className="px-4 py-2 rounded-xl bg-slate-900/80 border border-white/10 text-xs font-mono font-semibold hover:text-[#D4AF37] hover:border-[#D4AF37]/50 hover:bg-[#D4AF37]/10 transition-all">Group Support</Link>
-            <Link to="/education" className="px-4 py-2 rounded-xl bg-slate-900/80 border border-white/10 text-xs font-mono font-semibold hover:text-[#D4AF37] hover:border-[#D4AF37]/50 hover:bg-[#D4AF37]/10 transition-all">Education</Link>
-            <Link to="/contact" className="px-4 py-2 rounded-xl bg-slate-900/80 border border-white/10 text-xs font-mono font-semibold hover:text-[#D4AF37] hover:border-[#D4AF37]/50 hover:bg-[#D4AF37]/10 transition-all">Contact Us</Link>
+            <Link to="/about-us" className="px-4 py-2 rounded-xl bg-[#0A101D]/60 backdrop-blur-md border border-white/5 text-xs font-mono font-semibold hover:text-[#D4AF37] hover:border-[#D4AF37]/40 hover:bg-[#D4AF37]/10 hover:shadow-[0_0_15px_rgba(212,175,55,0.2)] transition-all duration-300 hover:-translate-y-0.5">About Us</Link>
+            <Link to="/ib-development" className="px-4 py-2 rounded-xl bg-[#0A101D]/60 backdrop-blur-md border border-white/5 text-xs font-mono font-semibold hover:text-[#D4AF37] hover:border-[#D4AF37]/40 hover:bg-[#D4AF37]/10 hover:shadow-[0_0_15px_rgba(212,175,55,0.2)] transition-all duration-300 hover:-translate-y-0.5">IB Development</Link>
+            <Link to="/owlalgo" className="px-4 py-2 rounded-xl bg-[#0A101D]/60 backdrop-blur-md border border-white/5 text-xs font-mono font-semibold hover:text-[#D4AF37] hover:border-[#D4AF37]/40 hover:bg-[#D4AF37]/10 hover:shadow-[0_0_15px_rgba(212,175,55,0.2)] transition-all duration-300 hover:-translate-y-0.5">OwlAlgo</Link>
+            <Link to="/roadtour" className="px-4 py-2 rounded-xl bg-[#0A101D]/60 backdrop-blur-md border border-white/5 text-xs font-mono font-semibold hover:text-[#D4AF37] hover:border-[#D4AF37]/40 hover:bg-[#D4AF37]/10 hover:shadow-[0_0_15px_rgba(212,175,55,0.2)] transition-all duration-300 hover:-translate-y-0.5">Roadtour</Link>
+            <Link to="/group-support" className="px-4 py-2 rounded-xl bg-[#0A101D]/60 backdrop-blur-md border border-white/5 text-xs font-mono font-semibold hover:text-[#D4AF37] hover:border-[#D4AF37]/40 hover:bg-[#D4AF37]/10 hover:shadow-[0_0_15px_rgba(212,175,55,0.2)] transition-all duration-300 hover:-translate-y-0.5">Group Support</Link>
+            <Link to="/education" className="px-4 py-2 rounded-xl bg-[#0A101D]/60 backdrop-blur-md border border-white/5 text-xs font-mono font-semibold hover:text-[#D4AF37] hover:border-[#D4AF37]/40 hover:bg-[#D4AF37]/10 hover:shadow-[0_0_15px_rgba(212,175,55,0.2)] transition-all duration-300 hover:-translate-y-0.5">Education</Link>
+            <Link to="/contact" className="px-4 py-2 rounded-xl bg-[#0A101D]/60 backdrop-blur-md border border-white/5 text-xs font-mono font-semibold hover:text-[#D4AF37] hover:border-[#D4AF37]/40 hover:bg-[#D4AF37]/10 hover:shadow-[0_0_15px_rgba(212,175,55,0.2)] transition-all duration-300 hover:-translate-y-0.5">Contact Us</Link>
           </div>
 
           <div className="text-center mb-8">
