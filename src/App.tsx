@@ -14,6 +14,7 @@ const OwlAlgoSection = lazy(() => import('./components/OwlAlgoSection').then(m =
 const RoadtourSection = lazy(() => import('./components/RoadtourSection').then(m => ({ default: m.RoadtourSection })));
 const IBDevelopmentSection = lazy(() => import('./components/IBDevelopmentSection').then(m => ({ default: m.IBDevelopmentSection })));
 const BasicEducationSection = lazy(() => import('./components/BasicEducationSection').then(m => ({ default: m.BasicEducationSection })));
+const NewsTerminal = lazy(() => import('./components/NewsTerminal'));
 
 import { LightboxModal } from './components/LightboxModal';
 import { RegistrationModal, RegistrationTabType } from './components/RegistrationModal';
@@ -335,278 +336,290 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
-      <Layout
-        onOpenAdmin={() => setAdminModalOpen(true)}
-        communityLinks={communityLinks}
-        securityToast={securityToast}
-      >
-        <Suspense fallback={<SectionLoading />}>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about-us" element={<AboutSection />} />
-            <Route
-              path="/ib-development"
-              element={
-                <IBDevelopmentSection
-                  currentRegion={currentRegion}
-                  ibData={ibData}
-                  onOpenLightbox={handleOpenLightbox}
+      <Routes>
+        {/* STANDALONE ROUTE - Absolute Isolation for News Terminal */}
+        <Route path="/news" element={
+          <Suspense fallback={<SectionLoading />}>
+            <NewsTerminal />
+          </Suspense>
+        } />
+
+        {/* ALL OTHER ROUTES WITH LAYOUT */}
+        <Route path="*" element={
+          <Layout
+            onOpenAdmin={() => setAdminModalOpen(true)}
+            communityLinks={communityLinks}
+            securityToast={securityToast}
+          >
+            <Suspense fallback={<SectionLoading />}>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/about-us" element={<AboutSection />} />
+                <Route
+                  path="/ib-development"
+                  element={
+                    <IBDevelopmentSection
+                      currentRegion={currentRegion}
+                      ibData={ibData}
+                      onOpenLightbox={handleOpenLightbox}
+                    />
+                  }
                 />
-              }
-            />
-            <Route
-              path="/owlalgo"
-              element={
-                <OwlAlgoSection
-                  onOpenLightbox={handleOpenLightbox}
+                <Route
+                  path="/owlalgo"
+                  element={
+                    <OwlAlgoSection
+                      onOpenLightbox={handleOpenLightbox}
+                    />
+                  }
                 />
-              }
-            />
-            <Route
-              path="/roadtour"
-              element={
-                <RoadtourSection
-                  statesData={statesData}
-                  onOpenLightbox={handleOpenLightbox}
-                  isAdmin={isAdminAuthenticated}
-                  onUpdateStatesData={handleUpdateStatesData}
-                  onOpenAdminLogin={() => setAdminModalOpen(true)}
-                  onAdminSignOut={handleAdminSignOut}
+                <Route
+                  path="/roadtour"
+                  element={
+                    <RoadtourSection
+                      statesData={statesData}
+                      onOpenLightbox={handleOpenLightbox}
+                      isAdmin={isAdminAuthenticated}
+                      onUpdateStatesData={handleUpdateStatesData}
+                      onOpenAdminLogin={() => setAdminModalOpen(true)}
+                      onAdminSignOut={handleAdminSignOut}
+                    />
+                  }
                 />
-              }
-            />
-            <Route
-              path="/group-support"
-              element={
-                <VipSignalSection
-                  onOpenLightbox={handleOpenLightbox}
+                <Route
+                  path="/group-support"
+                  element={
+                    <VipSignalSection
+                      onOpenLightbox={handleOpenLightbox}
+                    />
+                  }
                 />
-              }
-            />
-            <Route path="/education" element={<BasicEducationSection />} />
+                <Route path="/education" element={<BasicEducationSection />} />
+                
+                <Route
+                  path="/contact"
+                  element={
+                    <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative overflow-hidden selection:bg-[#D4AF37] selection:text-black">
+                      {/* Ambient Backlight Elements */}
+                      <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[160px] pointer-events-none -z-10" />
+                      <div className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[160px] pointer-events-none -z-10" />
 
-            <Route
-              path="/contact"
-              element={
-                <section className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative overflow-hidden selection:bg-[#D4AF37] selection:text-black">
-                  {/* Ambient Backlight Elements */}
-                  <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[160px] pointer-events-none -z-10" />
-                  <div className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[160px] pointer-events-none -z-10" />
-
-                  <div className="text-center max-w-3xl mx-auto mb-16">
-                    <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#D4AF37] text-xs font-mono mb-4 shadow-[0_0_15px_rgba(212,175,55,0.15)]">
-                      <Shield className="w-3.5 h-3.5 text-[#D4AF37]" />
-                      <span className="font-bold tracking-wider uppercase">OFFICIAL INSTITUTIONAL DESK</span>
-                    </div>
-
-                    <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight uppercase">
-                      Hubungi <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-[#D4AF37] drop-shadow-[0_0_25px_rgba(245,158,11,0.3)]">Admin</span> OWLFX
-                    </h1>
-                    <p className="mt-4 text-slate-400 text-sm sm:text-base leading-relaxed font-medium">
-                      Sertai saluran rasmi komuniti trader atau hubungi admin kami terus untuk sebarang pertanyaan berkaitan pendaftaran, sistem rebat, dan integrasi penunjuk algoritma.
-                    </p>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20 max-w-5xl mx-auto">
-                    {/* Card 1: WhatsApp Careline */}
-                    <div className="p-7 sm:p-9 rounded-3xl bg-[#0A101D]/80 backdrop-blur-2xl border border-white/10 hover:border-emerald-400/50 shadow-[0_20px_50px_rgba(0,0,0,0.85)] transition-all flex flex-col justify-between relative overflow-hidden">
-                      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/60 to-transparent" />
-
-                      <div>
-                        <div className="flex items-center justify-between mb-5">
-                          <div className="p-3.5 rounded-2xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-                            <MessageCircle className="w-6 h-6" />
-                          </div>
-                          <span className="text-[10px] font-mono font-bold px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-400 uppercase tracking-widest">
-                            MEJA PANTAS (24/7)
-                          </span>
+                      <div className="text-center max-w-3xl mx-auto mb-16">
+                        <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#D4AF37]/10 border border-[#D4AF37]/30 text-[#D4AF37] text-xs font-mono mb-4 shadow-[0_0_15px_rgba(212,175,55,0.15)]">
+                          <Shield className="w-3.5 h-3.5 text-[#D4AF37]" />
+                          <span className="font-bold tracking-wider uppercase">OFFICIAL INSTITUTIONAL DESK</span>
                         </div>
 
-                        <h2 className="text-xl sm:text-2xl font-black text-white mb-3 tracking-tight">Sokongan WhatsApp Careline</h2>
-                        <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6 font-medium">
-                          Pasukan operasi kami sedia membantu anda dengan pengesahan akaun MIB Valetax, bantuan teknikal TradingView, atau pendaftaran program IB Development.
+                        <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight uppercase">
+                          Hubungi <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-[#D4AF37] drop-shadow-[0_0_25px_rgba(245,158,11,0.3)]">Admin</span> OWLFX
+                        </h1>
+                        <p className="mt-4 text-slate-400 text-sm sm:text-base leading-relaxed font-medium">
+                          Sertai saluran rasmi komuniti trader atau hubungi admin kami terus untuk sebarang pertanyaan berkaitan pendaftaran, sistem rebat, dan integrasi penunjuk algoritma.
                         </p>
                       </div>
 
-                      <ContactMovingButton
-                        id="contact-whatsapp-careline-btn"
-                        href="http://wasap.my/+60102263677/(Website)Hai,%20saya%20nak%20tahu%20lebih%20mendalam%20tentang%20OWLFX"
-                        label="WhatsApp Careline"
-                        subLabel="Respon Pantas Pegawai Khidmat"
-                        icon={<MessageCircle className="w-5 h-5 text-emerald-400" />}
-                        variant="emerald"
-                      />
-                    </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20 max-w-5xl mx-auto">
+                        {/* Card 1: WhatsApp Careline */}
+                        <div className="p-7 sm:p-9 rounded-3xl bg-[#0A101D]/80 backdrop-blur-2xl border border-white/10 hover:border-emerald-400/50 shadow-[0_20px_50px_rgba(0,0,0,0.85)] transition-all flex flex-col justify-between relative overflow-hidden">
+                          <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/60 to-transparent" />
 
-                    {/* Card 2: Telegram Channel */}
-                    <div className="p-7 sm:p-9 rounded-3xl bg-[#0A101D]/80 backdrop-blur-2xl border border-white/10 hover:border-cyan-400/50 shadow-[0_20px_50px_rgba(0,0,0,0.85)] transition-all flex flex-col justify-between relative overflow-hidden">
-                      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent" />
+                          <div>
+                            <div className="flex items-center justify-between mb-5">
+                              <div className="p-3.5 rounded-2xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                                <MessageCircle className="w-6 h-6" />
+                              </div>
+                              <span className="text-[10px] font-mono font-bold px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-400 uppercase tracking-widest">
+                                MEJA PANTAS (24/7)
+                              </span>
+                            </div>
 
-                      <div>
-                        <div className="flex items-center justify-between mb-5">
-                          <div className="p-3.5 rounded-2xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
-                            <Send className="w-6 h-6" />
+                            <h2 className="text-xl sm:text-2xl font-black text-white mb-3 tracking-tight">Sokongan WhatsApp Careline</h2>
+                            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6 font-medium">
+                              Pasukan operasi kami sedia membantu anda dengan pengesahan akaun MIB Valetax, bantuan teknikal TradingView, atau pendaftaran program IB Development.
+                            </p>
                           </div>
-                          <span className="text-[10px] font-mono font-bold px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-cyan-400 uppercase tracking-widest">
-                            SIARAN LANGSUNG
-                          </span>
+
+                          <ContactMovingButton
+                            id="contact-whatsapp-careline-btn"
+                            href="http://wasap.my/+60102263677/(Website)Hai,%20saya%20nak%20tahu%20lebih%20mendalam%20tentang%20OWLFX"
+                            label="WhatsApp Careline"
+                            subLabel="Respon Pantas Pegawai Khidmat"
+                            icon={<MessageCircle className="w-5 h-5 text-emerald-400" />}
+                            variant="emerald"
+                          />
                         </div>
 
-                        <h2 className="text-xl sm:text-2xl font-black text-white mb-3 tracking-tight">Saluran Komuniti Telegram</h2>
-                        <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6 font-medium">
-                          Sertai saluran awam rasmi untuk menerima analisis struktur pasaran harian, zon kecairan harga Gold (XAUUSD), dan hebahan aktiviti jelajah seminar kebangsaan.
-                        </p>
+                        {/* Card 2: Telegram Channel */}
+                        <div className="p-7 sm:p-9 rounded-3xl bg-[#0A101D]/80 backdrop-blur-2xl border border-white/10 hover:border-cyan-400/50 shadow-[0_20px_50px_rgba(0,0,0,0.85)] transition-all flex flex-col justify-between relative overflow-hidden">
+                          <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent" />
+
+                          <div>
+                            <div className="flex items-center justify-between mb-5">
+                              <div className="p-3.5 rounded-2xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+                                <Send className="w-6 h-6" />
+                              </div>
+                              <span className="text-[10px] font-mono font-bold px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-cyan-400 uppercase tracking-widest">
+                                SIARAN LANGSUNG
+                              </span>
+                            </div>
+
+                            <h2 className="text-xl sm:text-2xl font-black text-white mb-3 tracking-tight">Saluran Komuniti Telegram</h2>
+                            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6 font-medium">
+                              Sertai saluran awam rasmi untuk menerima analisis struktur pasaran harian, zon kecairan harga Gold (XAUUSD), dan hebahan aktiviti jelajah seminar kebangsaan.
+                            </p>
+                          </div>
+
+                          <ContactMovingButton
+                            id="contact-telegram-channel-btn"
+                            href="https://t.me/OWLfxPublicChannel"
+                            label="Sertai Saluran Telegram"
+                            subLabel="Kemaskini Harian & Analisis Percuma"
+                            icon={<Send className="w-5 h-5 text-cyan-300" />}
+                            variant="cyan"
+                          />
+                        </div>
                       </div>
 
-                      <ContactMovingButton
-                        id="contact-telegram-channel-btn"
-                        href="https://t.me/OWLfxPublicChannel"
-                        label="Sertai Saluran Telegram"
-                        subLabel="Kemaskini Harian & Analisis Percuma"
-                        icon={<Send className="w-5 h-5 text-cyan-300" />}
-                        variant="cyan"
-                      />
-                    </div>
-                  </div>
+                      {/* --- BAHAGIAN BARU: BUTANG BORANG PENDAFTARAN CANGGIH --- */}
+                      <div className="relative pt-10 border-t border-white/5">
+                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent opacity-50" />
 
-                  {/* --- BAHAGIAN BARU: BUTANG BORANG PENDAFTARAN CANGGIH --- */}
-                  <div className="relative pt-10 border-t border-white/5">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent opacity-50" />
-
-                    <div className="text-center max-w-2xl mx-auto mb-10">
-                      <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight uppercase">
-                        Borang <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-amber-200">Pendaftaran</span>
-                      </h2>
-                      <p className="mt-3 text-slate-400 text-sm leading-relaxed font-medium">
-                        Pilih program atau modul yang bersesuaian. Sistem pendaftaran pantas kami sedia memproses permohonan anda.
-                      </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
-
-                      {/* 1. OWLALGO MY */}
-                      <Link to="/my/register" className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-emerald-500/50 transition-all duration-500 overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        <div className="relative h-full flex flex-col p-6 rounded-2xl bg-[#0A101D]/90 backdrop-blur-xl border border-white/5 group-hover:border-emerald-500/30 transition-colors">
-                          <div className="flex items-center justify-between mb-4">
-                            <div className="p-3 rounded-xl bg-white/5 text-slate-300 group-hover:text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500/10 transition-all duration-300 shadow-[0_0_0_rgba(16,185,129,0)] group-hover:shadow-[0_0_15px_rgba(16,185,129,0.3)]">
-                              <Cpu className="w-6 h-6" />
-                            </div>
-                            <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-emerald-950/50 border border-emerald-500/20 text-emerald-400">MALAYSIA</span>
-                          </div>
-                          <h3 className="text-lg font-bold text-white mb-1 group-hover:text-emerald-400 transition-colors">OWLALGO MY</h3>
-                          <p className="text-xs text-slate-400 font-medium line-clamp-2">Pendaftaran rasmi sistem algotrading untuk pelanggan Malaysia.</p>
-                          <div className="mt-auto pt-6 flex items-center text-sm font-bold text-slate-300 group-hover:text-emerald-400 transition-colors">
-                            <span>Daftar Sekarang</span>
-                            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1.5 transition-transform" />
-                          </div>
+                        <div className="text-center max-w-2xl mx-auto mb-10">
+                          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight uppercase">
+                            Borang <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-amber-200">Pendaftaran</span>
+                          </h2>
+                          <p className="mt-3 text-slate-400 text-sm leading-relaxed font-medium">
+                            Pilih program atau modul yang bersesuaian. Sistem pendaftaran pantas kami sedia memproses permohonan anda.
+                          </p>
                         </div>
-                      </Link>
 
-                      {/* 2. OWLALGO ID */}
-                      <Link to="/id/register" className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-rose-500/50 transition-all duration-500 overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-br from-rose-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        <div className="relative h-full flex flex-col p-6 rounded-2xl bg-[#0A101D]/90 backdrop-blur-xl border border-white/5 group-hover:border-rose-500/30 transition-colors">
-                          <div className="flex items-center justify-between mb-4">
-                            <div className="p-3 rounded-xl bg-white/5 text-slate-300 group-hover:text-rose-400 group-hover:scale-110 group-hover:bg-rose-500/10 transition-all duration-300 shadow-[0_0_0_rgba(244,63,94,0)] group-hover:shadow-[0_0_15px_rgba(244,63,94,0.3)]">
-                              <Cpu className="w-6 h-6" />
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
+
+                          {/* 1. OWLALGO MY */}
+                          <Link to="/my/register" className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-emerald-500/50 transition-all duration-500 overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            <div className="relative h-full flex flex-col p-6 rounded-2xl bg-[#0A101D]/90 backdrop-blur-xl border border-white/5 group-hover:border-emerald-500/30 transition-colors">
+                              <div className="flex items-center justify-between mb-4">
+                                <div className="p-3 rounded-xl bg-white/5 text-slate-300 group-hover:text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500/10 transition-all duration-300 shadow-[0_0_0_rgba(16,185,129,0)] group-hover:shadow-[0_0_15px_rgba(16,185,129,0.3)]">
+                                  <Cpu className="w-6 h-6" />
+                                </div>
+                                <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-emerald-950/50 border border-emerald-500/20 text-emerald-400">MALAYSIA</span>
+                              </div>
+                              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-emerald-400 transition-colors">OWLALGO MY</h3>
+                              <p className="text-xs text-slate-400 font-medium line-clamp-2">Pendaftaran rasmi sistem algotrading untuk pelanggan Malaysia.</p>
+                              <div className="mt-auto pt-6 flex items-center text-sm font-bold text-slate-300 group-hover:text-emerald-400 transition-colors">
+                                <span>Daftar Sekarang</span>
+                                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1.5 transition-transform" />
+                              </div>
                             </div>
-                            <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-rose-950/50 border border-rose-500/20 text-rose-400">INDONESIA</span>
-                          </div>
-                          <h3 className="text-lg font-bold text-white mb-1 group-hover:text-rose-400 transition-colors">OWLALGO ID</h3>
-                          <p className="text-xs text-slate-400 font-medium line-clamp-2">Registrasi resmi sistem algotrading untuk klien Indonesia.</p>
-                          <div className="mt-auto pt-6 flex items-center text-sm font-bold text-slate-300 group-hover:text-rose-400 transition-colors">
-                            <span>Daftar Sekarang</span>
-                            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1.5 transition-transform" />
-                          </div>
-                        </div>
-                      </Link>
+                          </Link>
 
-                      {/* 3. IB Development MY */}
-                      <Link to="/my/ib_development" className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-cyan-500/50 transition-all duration-500 overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        <div className="relative h-full flex flex-col p-6 rounded-2xl bg-[#0A101D]/90 backdrop-blur-xl border border-white/5 group-hover:border-cyan-500/30 transition-colors">
-                          <div className="flex items-center justify-between mb-4">
-                            <div className="p-3 rounded-xl bg-white/5 text-slate-300 group-hover:text-cyan-400 group-hover:scale-110 group-hover:bg-cyan-500/10 transition-all duration-300 shadow-[0_0_0_rgba(6,182,212,0)] group-hover:shadow-[0_0_15px_rgba(6,182,212,0.3)]">
-                              <TrendingUp className="w-6 h-6" />
+                          {/* 2. OWLALGO ID */}
+                          <Link to="/id/register" className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-rose-500/50 transition-all duration-500 overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-br from-rose-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            <div className="relative h-full flex flex-col p-6 rounded-2xl bg-[#0A101D]/90 backdrop-blur-xl border border-white/5 group-hover:border-rose-500/30 transition-colors">
+                              <div className="flex items-center justify-between mb-4">
+                                <div className="p-3 rounded-xl bg-white/5 text-slate-300 group-hover:text-rose-400 group-hover:scale-110 group-hover:bg-rose-500/10 transition-all duration-300 shadow-[0_0_0_rgba(244,63,94,0)] group-hover:shadow-[0_0_15px_rgba(244,63,94,0.3)]">
+                                  <Cpu className="w-6 h-6" />
+                                </div>
+                                <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-rose-950/50 border border-rose-500/20 text-rose-400">INDONESIA</span>
+                              </div>
+                              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-rose-400 transition-colors">OWLALGO ID</h3>
+                              <p className="text-xs text-slate-400 font-medium line-clamp-2">Registrasi resmi sistem algotrading untuk klien Indonesia.</p>
+                              <div className="mt-auto pt-6 flex items-center text-sm font-bold text-slate-300 group-hover:text-rose-400 transition-colors">
+                                <span>Daftar Sekarang</span>
+                                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1.5 transition-transform" />
+                              </div>
                             </div>
-                            <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-cyan-950/50 border border-cyan-500/20 text-cyan-400">MALAYSIA</span>
-                          </div>
-                          <h3 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">IB Development MY</h3>
-                          <p className="text-xs text-slate-400 font-medium line-clamp-2">Sertai program kerjaya Introducing Broker untuk pasaran Malaysia.</p>
-                          <div className="mt-auto pt-6 flex items-center text-sm font-bold text-slate-300 group-hover:text-cyan-400 transition-colors">
-                            <span>Mohon Sekarang</span>
-                            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1.5 transition-transform" />
-                          </div>
-                        </div>
-                      </Link>
+                          </Link>
 
-                      {/* 4. IB Development ID */}
-                      <Link to="/id/ib_development" className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-indigo-500/50 transition-all duration-500 overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        <div className="relative h-full flex flex-col p-6 rounded-2xl bg-[#0A101D]/90 backdrop-blur-xl border border-white/5 group-hover:border-indigo-500/30 transition-colors">
-                          <div className="flex items-center justify-between mb-4">
-                            <div className="p-3 rounded-xl bg-white/5 text-slate-300 group-hover:text-indigo-400 group-hover:scale-110 group-hover:bg-indigo-500/10 transition-all duration-300 shadow-[0_0_0_rgba(99,102,241,0)] group-hover:shadow-[0_0_15px_rgba(99,102,241,0.3)]">
-                              <TrendingUp className="w-6 h-6" />
+                          {/* 3. IB Development MY */}
+                          <Link to="/my/ib_development" className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-cyan-500/50 transition-all duration-500 overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            <div className="relative h-full flex flex-col p-6 rounded-2xl bg-[#0A101D]/90 backdrop-blur-xl border border-white/5 group-hover:border-cyan-500/30 transition-colors">
+                              <div className="flex items-center justify-between mb-4">
+                                <div className="p-3 rounded-xl bg-white/5 text-slate-300 group-hover:text-cyan-400 group-hover:scale-110 group-hover:bg-cyan-500/10 transition-all duration-300 shadow-[0_0_0_rgba(6,182,212,0)] group-hover:shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+                                  <TrendingUp className="w-6 h-6" />
+                                </div>
+                                <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-cyan-950/50 border border-cyan-500/20 text-cyan-400">MALAYSIA</span>
+                              </div>
+                              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">IB Development MY</h3>
+                              <p className="text-xs text-slate-400 font-medium line-clamp-2">Sertai program kerjaya Introducing Broker untuk pasaran Malaysia.</p>
+                              <div className="mt-auto pt-6 flex items-center text-sm font-bold text-slate-300 group-hover:text-cyan-400 transition-colors">
+                                <span>Mohon Sekarang</span>
+                                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1.5 transition-transform" />
+                              </div>
                             </div>
-                            <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-indigo-950/50 border border-indigo-500/20 text-indigo-400">INDONESIA</span>
-                          </div>
-                          <h3 className="text-lg font-bold text-white mb-1 group-hover:text-indigo-400 transition-colors">IB Development ID</h3>
-                          <p className="text-xs text-slate-400 font-medium line-clamp-2">Bergabung dengan program karir Introducing Broker pasar Indonesia.</p>
-                          <div className="mt-auto pt-6 flex items-center text-sm font-bold text-slate-300 group-hover:text-indigo-400 transition-colors">
-                            <span>Mohon Sekarang</span>
-                            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1.5 transition-transform" />
-                          </div>
-                        </div>
-                      </Link>
+                          </Link>
 
-                      {/* 5. Masterclass Zone Keyprice */}
-                      <Link to="/masterclass_registration" className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-[#D4AF37]/50 transition-all duration-500 overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        <div className="relative h-full flex flex-col p-6 rounded-2xl bg-[#0A101D]/90 backdrop-blur-xl border border-white/5 group-hover:border-[#D4AF37]/30 transition-colors">
-                          <div className="flex items-center justify-between mb-4">
-                            <div className="p-3 rounded-xl bg-white/5 text-slate-300 group-hover:text-[#D4AF37] group-hover:scale-110 group-hover:bg-[#D4AF37]/10 transition-all duration-300 shadow-[0_0_0_rgba(212,175,55,0)] group-hover:shadow-[0_0_15px_rgba(212,175,55,0.3)]">
-                              <GraduationCap className="w-6 h-6" />
+                          {/* 4. IB Development ID */}
+                          <Link to="/id/ib_development" className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-indigo-500/50 transition-all duration-500 overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            <div className="relative h-full flex flex-col p-6 rounded-2xl bg-[#0A101D]/90 backdrop-blur-xl border border-white/5 group-hover:border-indigo-500/30 transition-colors">
+                              <div className="flex items-center justify-between mb-4">
+                                <div className="p-3 rounded-xl bg-white/5 text-slate-300 group-hover:text-indigo-400 group-hover:scale-110 group-hover:bg-indigo-500/10 transition-all duration-300 shadow-[0_0_0_rgba(99,102,241,0)] group-hover:shadow-[0_0_15px_rgba(99,102,241,0.3)]">
+                                  <TrendingUp className="w-6 h-6" />
+                                </div>
+                                <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-indigo-950/50 border border-indigo-500/20 text-indigo-400">INDONESIA</span>
+                              </div>
+                              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-indigo-400 transition-colors">IB Development ID</h3>
+                              <p className="text-xs text-slate-400 font-medium line-clamp-2">Bergabung dengan program karir Introducing Broker pasar Indonesia.</p>
+                              <div className="mt-auto pt-6 flex items-center text-sm font-bold text-slate-300 group-hover:text-indigo-400 transition-colors">
+                                <span>Mohon Sekarang</span>
+                                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1.5 transition-transform" />
+                              </div>
                             </div>
-                            <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-amber-950/50 border border-[#D4AF37]/20 text-[#D4AF37]">AKADEMI</span>
-                          </div>
-                          <h3 className="text-lg font-bold text-white mb-1 group-hover:text-[#D4AF37] transition-colors">Masterclass Keyprice</h3>
-                          <p className="text-xs text-slate-400 font-medium line-clamp-2">Daftar kelas eksklusif penguasaan Zon Keyprice dan struktur pasaran.</p>
-                          <div className="mt-auto pt-6 flex items-center text-sm font-bold text-slate-300 group-hover:text-[#D4AF37] transition-colors">
-                            <span>Sertai Kelas</span>
-                            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1.5 transition-transform" />
-                          </div>
-                        </div>
-                      </Link>
+                          </Link>
 
-                      {/* 6. Feedback Form */}
-                      <Link to="/interested?action=register" className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-purple-500/50 transition-all duration-500 overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        <div className="relative h-full flex flex-col p-6 rounded-2xl bg-[#0A101D]/90 backdrop-blur-xl border border-white/5 group-hover:border-purple-500/30 transition-colors">
-                          <div className="flex items-center justify-between mb-4">
-                            <div className="p-3 rounded-xl bg-white/5 text-slate-300 group-hover:text-purple-400 group-hover:scale-110 group-hover:bg-purple-500/10 transition-all duration-300 shadow-[0_0_0_rgba(168,85,247,0)] group-hover:shadow-[0_0_15px_rgba(168,85,247,0.3)]">
-                              <ClipboardEdit className="w-6 h-6" />
+                          {/* 5. Masterclass Zone Keyprice */}
+                          <Link to="/masterclass_registration" className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-[#D4AF37]/50 transition-all duration-500 overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            <div className="relative h-full flex flex-col p-6 rounded-2xl bg-[#0A101D]/90 backdrop-blur-xl border border-white/5 group-hover:border-[#D4AF37]/30 transition-colors">
+                              <div className="flex items-center justify-between mb-4">
+                                <div className="p-3 rounded-xl bg-white/5 text-slate-300 group-hover:text-[#D4AF37] group-hover:scale-110 group-hover:bg-[#D4AF37]/10 transition-all duration-300 shadow-[0_0_0_rgba(212,175,55,0)] group-hover:shadow-[0_0_15px_rgba(212,175,55,0.3)]">
+                                  <GraduationCap className="w-6 h-6" />
+                                </div>
+                                <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-amber-950/50 border border-[#D4AF37]/20 text-[#D4AF37]">AKADEMI</span>
+                              </div>
+                              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-[#D4AF37] transition-colors">Masterclass Keyprice</h3>
+                              <p className="text-xs text-slate-400 font-medium line-clamp-2">Daftar kelas eksklusif penguasaan Zon Keyprice dan struktur pasaran.</p>
+                              <div className="mt-auto pt-6 flex items-center text-sm font-bold text-slate-300 group-hover:text-[#D4AF37] transition-colors">
+                                <span>Sertai Kelas</span>
+                                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1.5 transition-transform" />
+                              </div>
                             </div>
-                            <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-purple-950/50 border border-purple-500/20 text-purple-400">UMUM</span>
-                          </div>
-                          <h3 className="text-lg font-bold text-white mb-1 group-hover:text-purple-400 transition-colors">Borang Maklum Balas</h3>
-                          <p className="text-xs text-slate-400 font-medium line-clamp-2">Ada persoalan lain atau berminat dengan servis kami? Tinggalkan maklumat anda.</p>
-                          <div className="mt-auto pt-6 flex items-center text-sm font-bold text-slate-300 group-hover:text-purple-400 transition-colors">
-                            <span>Hantar Maklum Balas</span>
-                            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1.5 transition-transform" />
-                          </div>
-                        </div>
-                      </Link>
+                          </Link>
 
-                    </div>
-                  </div>
-                </section>
-              }
-            />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </Suspense>
-      </Layout>
+                          {/* 6. Feedback Form */}
+                          <Link to="/interested?action=register" className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-purple-500/50 transition-all duration-500 overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            <div className="relative h-full flex flex-col p-6 rounded-2xl bg-[#0A101D]/90 backdrop-blur-xl border border-white/5 group-hover:border-purple-500/30 transition-colors">
+                              <div className="flex items-center justify-between mb-4">
+                                <div className="p-3 rounded-xl bg-white/5 text-slate-300 group-hover:text-purple-400 group-hover:scale-110 group-hover:bg-purple-500/10 transition-all duration-300 shadow-[0_0_0_rgba(168,85,247,0)] group-hover:shadow-[0_0_15px_rgba(168,85,247,0.3)]">
+                                  <ClipboardEdit className="w-6 h-6" />
+                                </div>
+                                <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-full bg-purple-950/50 border border-purple-500/20 text-purple-400">UMUM</span>
+                              </div>
+                              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-purple-400 transition-colors">Borang Maklum Balas</h3>
+                              <p className="text-xs text-slate-400 font-medium line-clamp-2">Ada persoalan lain atau berminat dengan servis kami? Tinggalkan maklumat anda.</p>
+                              <div className="mt-auto pt-6 flex items-center text-sm font-bold text-slate-300 group-hover:text-purple-400 transition-colors">
+                                <span>Hantar Maklum Balas</span>
+                                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1.5 transition-transform" />
+                              </div>
+                            </div>
+                          </Link>
+
+                        </div>
+                      </div>
+                    </section>
+                  }
+                />
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Routes>
+            </Suspense>
+          </Layout>
+        } />
+      </Routes>
 
       {/* Modals & Floating Elements */}
       <LightboxModal
