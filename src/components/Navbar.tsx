@@ -4,6 +4,7 @@ import { Menu, X, Lock, GraduationCap } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { LiveClock } from './LiveClock';
 
 interface NavbarProps {
   onOpenAdmin: () => void;
@@ -236,6 +237,11 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Right Action Bar */}
           <div className="hidden sm:flex items-center space-x-3">
+            {/* Live Clock Component */}
+            <div className="hidden xl:flex items-center justify-center px-3 py-1.5 backdrop-blur-md md:backdrop-blur-xl bg-slate-950/70 rounded-full border border-white/10 shadow-inner">
+              <LiveClock />
+            </div>
+
             {/* Language Switcher */}
             <div
               id="language-switcher"

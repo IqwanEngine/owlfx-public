@@ -237,6 +237,8 @@
           <span class="hidden md:inline text-slate-500">LATENCY: <span id="ping-display" class="text-emerald-600 dark:text-emerald-400 font-semibold">12ms</span></span>
           <span class="text-slate-300 dark:text-slate-600 hidden md:inline">|</span>
           <span id="utc-clock" class="text-slate-800 dark:text-slate-300 font-semibold tabular-numbers">--:--:-- UTC</span>
+          <span class="text-slate-300 dark:text-slate-600 hidden md:inline">|</span>
+          <span id="myt-clock" class="text-amber-600 dark:text-amber-500 font-semibold tabular-numbers">--:--:-- MYT</span>
           <span class="text-slate-300 dark:text-slate-600">|</span>
           <button id="sound-toggle-btn" class="text-amber-700 dark:text-champagne hover:text-amber-600 dark:hover:text-amber-300 transition flex items-center gap-1 font-mono p-1 rounded min-h-[28px]" title="Toggle audio feedback">
             <i data-lucide="volume-2" class="w-3.5 h-3.5 text-amber-600 dark:text-champagne"></i>
@@ -976,7 +978,7 @@
                 <!-- Image Container -->
                 <div class="pt-2 text-center">
                   <img
-                    src="./assets/GXBANK-CVzTJ098.jpg"
+                    src="/GXBANK.jpg"
                     alt="GXBank DuitNow QR"
                     draggable="false"
                     oncontextmenu="return false;"
@@ -985,7 +987,7 @@
 
                   <!-- Action -->
                   <div class="mt-4 flex items-center justify-center">
-                    <a href="GXBANK.jpg" download="GXBank-QR-IqwanEngine.jpg"
+                    <a href="/GXBANK.jpg" download="GXBank-QR-IqwanEngine.jpg"
                        class="group relative inline-flex items-center justify-center h-10 px-5 overflow-hidden rounded-lg bg-slate-900 dark:bg-slate-950 text-slate-100 font-mono text-xs font-semibold border border-slate-700/80 hover:border-rose-500/60 shadow-md hover:shadow-rose-500/10 transition-all duration-300">
 
                       <!-- State 1: Default Text (Meluncur ke atas bila hover) -->
@@ -1620,6 +1622,19 @@
         const clockEl = document.getElementById('utc-clock');
         if (clockEl) {
           clockEl.textContent = `${hrs}:${mins}:${secs} UTC`;
+        }
+
+        // Format MYT (Malaysia Time - UTC+8)
+        const mytFormatter = new Intl.DateTimeFormat('en-GB', {
+          timeZone: 'Asia/Kuala_Lumpur',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: false
+        });
+        const mytClockEl = document.getElementById('myt-clock');
+        if (mytClockEl) {
+          mytClockEl.textContent = `${mytFormatter.format(now)} MYT`;
         }
       }
       setInterval(updateUTC, 1000);

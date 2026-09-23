@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 export default function NewsTerminal() {
   // Hide document body scrolling when terminal is active to ensure a true fullscreen standalone feel

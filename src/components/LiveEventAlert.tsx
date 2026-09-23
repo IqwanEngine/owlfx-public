@@ -105,9 +105,9 @@ export const LiveEventAlert: React.FC = () => {
     return () => window.removeEventListener('owlfx-cms-updated', handleUpdate);
   }, []);
 
-  // Filter active and non-expired alerts
+  // Filter active alerts regardless of date
   const validAlerts = (alerts || []).filter(
-    (item) => item && item.isActive && !isEventExpired(item.date)
+    (item) => item && item.isActive
   );
 
   // Exclude dismissed cards
