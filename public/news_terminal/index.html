@@ -410,7 +410,7 @@
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>
                   </span>
-                  <i data-lucide="folder-alert" class="w-3.5 h-3.5 text-rose-600 dark:text-rose-400"></i>
+                  <i data-lucide="alert-triangle" class="w-3.5 h-3.5 text-rose-600 dark:text-rose-400"></i>
                   <span>ALERT // TIER-1</span>
                 </span>
 
@@ -3112,124 +3112,131 @@
       const refreshIcon = document.getElementById('xau-refresh-icon');
       if (refreshIcon) refreshIcon.classList.add('animate-spin');
 
-      const startTime = performance.now();
-      let fetchedData = null;
-
-      // 1. Primary: TradingView public CFD quotes scanner for OANDA:XAUUSD & TVC:GOLD
       try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 4500);
-        const res = await fetch('https://scanner.tradingview.com/cfd/scan', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            symbols: { tickers: ['OANDA:XAUUSD', 'TVC:GOLD'] },
-            columns: ['close', 'change', 'change_abs', 'high', 'low', 'open']
-          }),
-          signal: controller.signal
-        });
-        clearTimeout(timeoutId);
+        const startTime = performance.now();
+        let fetchedData = null;
 
-        if (res.ok) {
-          const json = await res.json();
-          const match = json.data && json.data.find(row => row.d && row.d[0] > 100);
-          if (match && match.d) {
-            const [close, pctChange, absChange, high, low, open] = match.d;
-            const currentPrice = Number(close);
-            const netChange = Number(absChange);
-            const pct = Number(pctChange);
-            const dayHigh = Number(high);
-            const dayLow = Number(low);
-            const prevClose = Number(open);
-
-            if (!isNaN(currentPrice) && currentPrice > 100) {
-              fetchedData = {
-                price: currentPrice,
-                change: netChange,
-                changePercent: pct,
-                high: dayHigh,
-                low: dayLow,
-                prevClose: prevClose,
-                source: match.s || 'OANDA:XAUUSD'
-              };
-            }
-          }
-        }
-      } catch (e) {
-        // Fallback to secondary authentic spot benchmark
-      }
-
-      // 2. Secondary Zero-Cost Fallback: Binance Paxos Gold (PAXGUSDT 1:1 allocated physical spot gold benchmark)
-      if (!fetchedData) {
+        // 1. Primary: TradingView public CFD quotes scanner for OANDA:XAUUSD & TVC:GOLD
         try {
           const controller = new AbortController();
           const timeoutId = setTimeout(() => controller.abort(), 4500);
-          const res = await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=PAXGUSDT', {
+          const res = await fetch('https://scanner.tradingview.com/cfd/scan', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              symbols: { tickers: ['OANDA:XAUUSD', 'TVC:GOLD'] },
+              columns: ['close', 'change', 'change_abs', 'high', 'low', 'open']
+            }),
             signal: controller.signal
           });
           clearTimeout(timeoutId);
 
           if (res.ok) {
-            const data = await res.json();
-            const currentPrice = parseFloat(data.lastPrice);
-            const netChange = parseFloat(data.priceChange);
-            const pct = parseFloat(data.priceChangePercent);
-            const dayHigh = parseFloat(data.highPrice);
-            const dayLow = parseFloat(data.lowPrice);
-            const prevClose = parseFloat(data.prevClosePrice || data.openPrice);
+            const json = await res.json();
+            const match = json.data && json.data.find(row => row.d && row.d[0] > 100);
+            if (match && match.d) {
+              const [close, pctChange, absChange, high, low, open] = match.d;
+              const currentPrice = Number(close);
+              const netChange = Number(absChange);
+              const pct = Number(pctChange);
+              const dayHigh = Number(high);
+              const dayLow = Number(low);
+              const prevClose = Number(open);
 
-            if (!isNaN(currentPrice) && currentPrice > 100) {
-              fetchedData = {
-                price: currentPrice,
-                change: !isNaN(netChange) ? netChange : (currentPrice - prevClose),
-                changePercent: !isNaN(pct) ? pct : (((currentPrice - prevClose) / prevClose) * 100),
-                high: dayHigh,
-                low: dayLow,
-                prevClose: prevClose,
-                source: 'PAXG:XAUUSD'
-              };
+              if (!isNaN(currentPrice) && currentPrice > 100) {
+                fetchedData = {
+                  price: currentPrice,
+                  change: netChange,
+                  changePercent: pct,
+                  high: dayHigh,
+                  low: dayLow,
+                  prevClose: prevClose,
+                  source: match.s || 'OANDA:XAUUSD'
+                };
+              }
             }
           }
         } catch (e) {
-          // Both external sources unreachable
+          console.warn('[OWL-FX AUDIT] TradingView API (Primary) Error:', e.message);
         }
-      }
 
-      const elapsedMs = Math.round(performance.now() - startTime);
-      const pingEl = document.getElementById('ping-display');
-      if (pingEl && elapsedMs > 0) {
-        pingEl.textContent = `${elapsedMs}ms`;
-      }
+        // 2. Secondary Zero-Cost Fallback: Binance Paxos Gold (PAXGUSDT 1:1 allocated physical spot gold benchmark)
+        if (!fetchedData) {
+          try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 4500);
+            const res = await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=PAXGUSDT', {
+              signal: controller.signal
+            });
+            clearTimeout(timeoutId);
 
-      if (fetchedData) {
-        const prevPrice = goldTickerState.price;
-        const isUp = prevPrice !== null ? (fetchedData.price >= prevPrice) : (fetchedData.change >= 0);
-        const priceChanged = prevPrice !== null && Math.abs(fetchedData.price - prevPrice) > 0.01;
+            if (res.ok) {
+              const data = await res.json();
+              const currentPrice = parseFloat(data.lastPrice);
+              const netChange = parseFloat(data.priceChange);
+              const pct = parseFloat(data.priceChangePercent);
+              const dayHigh = parseFloat(data.highPrice);
+              const dayLow = parseFloat(data.lowPrice);
+              const prevClose = parseFloat(data.prevClosePrice || data.openPrice);
 
-        goldTickerState.price = fetchedData.price;
-        goldTickerState.change = fetchedData.change;
-        goldTickerState.changePercent = fetchedData.changePercent;
-        goldTickerState.high = fetchedData.high;
-        goldTickerState.low = fetchedData.low;
-        goldTickerState.prevClose = fetchedData.prevClose;
-        goldTickerState.source = fetchedData.source;
-        goldTickerState.lastFetchedAt = Date.now();
-
-        updateGoldTickerUI(isUp, priceChanged);
-
-        if (priceChanged) {
-          playAudioTick(isUp ? 587.33 : 440, 0.02);
+              if (!isNaN(currentPrice) && currentPrice > 100) {
+                fetchedData = {
+                  price: currentPrice,
+                  change: !isNaN(netChange) ? netChange : (currentPrice - prevClose),
+                  changePercent: !isNaN(pct) ? pct : (((currentPrice - prevClose) / prevClose) * 100),
+                  high: dayHigh,
+                  low: dayLow,
+                  prevClose: prevClose,
+                  source: 'PAXG:XAUUSD'
+                };
+              }
+            }
+          } catch (e) {
+            console.warn('[OWL-FX AUDIT] Binance API (Secondary) Error:', e.message);
+          }
         }
-      } else {
-        // External fetch failed or offline; show clean loading fallback indicator without fabricating math
+
+        const elapsedMs = Math.round(performance.now() - startTime);
+        const pingEl = document.getElementById('ping-display');
+        if (pingEl && elapsedMs > 0) {
+          pingEl.textContent = `${elapsedMs}ms`;
+        }
+
+        if (fetchedData) {
+          const prevPrice = goldTickerState.price;
+          const isUp = prevPrice !== null ? (fetchedData.price >= prevPrice) : (fetchedData.change >= 0);
+          const priceChanged = prevPrice !== null && Math.abs(fetchedData.price - prevPrice) > 0.01;
+
+          goldTickerState.price = fetchedData.price;
+          goldTickerState.change = fetchedData.change;
+          goldTickerState.changePercent = fetchedData.changePercent;
+          goldTickerState.high = fetchedData.high;
+          goldTickerState.low = fetchedData.low;
+          goldTickerState.prevClose = fetchedData.prevClose;
+          goldTickerState.source = fetchedData.source;
+          goldTickerState.lastFetchedAt = Date.now();
+
+          updateGoldTickerUI(isUp, priceChanged);
+
+          if (priceChanged) {
+            playAudioTick(isUp ? 587.33 : 440, 0.02);
+          }
+        } else {
+          // External fetch failed or offline; show clean loading fallback indicator without fabricating math
+          if (!goldTickerState.price) {
+            updateGoldTickerUI(true, false);
+          }
+        }
+      } catch (err) {
+        console.warn('[OWL-FX AUDIT] Global Error in fetchLiveGoldSpot:', err.message);
         if (!goldTickerState.price) {
           updateGoldTickerUI(true, false);
         }
-      }
-
-      goldTickerState.isFetching = false;
-      if (refreshIcon) {
-        setTimeout(() => refreshIcon.classList.remove('animate-spin'), 300);
+      } finally {
+        goldTickerState.isFetching = false;
+        if (refreshIcon) {
+          setTimeout(() => refreshIcon.classList.remove('animate-spin'), 300);
+        }
       }
     }
 
