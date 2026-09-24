@@ -204,7 +204,6 @@
       text-shadow: 0 1px 2px rgba(225, 29, 72, 0.25);
     }
   </style>
-  <script type="module" crossorigin src="./assets/index-Dm9-2kZv.js"></script>
 </head>
 <body class="bg-slate-50 dark:bg-[#0B0E14] text-slate-800 dark:text-slate-200 font-sans antialiased min-h-screen selection:bg-champagne/30 selection:text-white terminal-grid relative overflow-x-hidden">
 
@@ -755,13 +754,16 @@
               <h2 class="text-sm font-mono font-bold tracking-wider text-slate-900 dark:text-white">ACTIVE NEWS FEED</h2>
             </div>
 
-            <!-- Right: Filter Tabs ([All], [High Impact], [Central Bank], [Geopolitical]) -->
+            <!-- Right: Filter Tabs ([All], [High Impact], [Medium Impact], [Central Bank], [Geopolitical]) -->
             <div class="flex items-center gap-1.5 overflow-x-auto" id="news-filter-chips">
               <button onclick="filterNews('all', this)" id="filter-all-btn" class="news-filter active text-xs font-mono px-3 py-1.5 rounded-lg border border-amber-400 dark:border-champagne/40 bg-amber-100/80 dark:bg-champagne/15 text-amber-800 dark:text-champagne font-semibold transition whitespace-nowrap cursor-pointer">
                 All (<span id="count-all">9</span>)
               </button>
               <button onclick="filterNews('High Impact', this)" id="filter-red-btn" class="news-filter text-xs font-mono px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition whitespace-nowrap cursor-pointer">
                 High Impact (<span id="count-red">3</span>)
+              </button>
+              <button onclick="filterNews('Medium Impact', this)" id="filter-med-btn" class="news-filter text-xs font-mono px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition whitespace-nowrap cursor-pointer">
+                Medium Impact (<span id="count-med">0</span>)
               </button>
               <button onclick="filterNews('Central Bank', this)" id="filter-fed-btn" class="news-filter text-xs font-mono px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition whitespace-nowrap cursor-pointer">
                 Central Bank (<span id="count-fed">3</span>)
@@ -1458,46 +1460,71 @@
   <!-- SEPARATED DATASET SCRIPT FOR VERCEL / NEXT.JS PRODUCTION MIGRATION -->
   <script src="./mockMarketData.js"></script>
 
-  <!-- VANILLA JS ENGINE -->
+  <!-- =====================================================================
+      1. DATASETS & SUPABASE INTEGRATION LISTENER
+      ===================================================================== -->
   <script>
-    // #Generate by IqwanEngine
+    /* ==========================================
+     * Powered by IqwanEngine
+     * ========================================== */
 
-    /* =====================================================================
-       ZED EDITOR TODO: BACKEND TELEGRAM CRON INTEGRATION
-       =====================================================================
-       - Target VIP Group ID: -3960855060
-       - Bot Target: @OWLfx_IE_bot
-       - Architecture: Do not run Telegram POST requests directly from here.
-       - Action: Replace this dummy state by fetching from Next.js API route
-         (e.g., /api/active-alerts) which is updated by Vercel Cron Jobs.
-       ===================================================================== */
+    // Global Initial Data Setup
+    var TIER1_CATALYST_CONFIG = window.TIER1_CATALYST_CONFIG || null;
+    var MARKET_NEWS_DATA = window.MARKET_NEWS_DATA || { highImpact: [], centralBank: [], geopolitical: [] };
+    var MOCK_NEWS_DATA = window.MOCK_NEWS_DATA || MARKET_NEWS_DATA;
 
-    // DYNAMIC TARGET EVENT TIMESTAMP (Active Catalyst Countdown: ~18h 45m into future)
+    var NEWS_DATA = [
+      ...(MARKET_NEWS_DATA.highImpact || []),
+      ...(MARKET_NEWS_DATA.centralBank || []),
+      ...(MARKET_NEWS_DATA.geopolitical || [])
+    ];
+
+    let isFallbackEvent = false;
+
     function getTargetEventTime() {
-      const STORAGE_KEY = 'iqwan_target_event_epoch';
-      let stored = null;
-      try {
-        stored = sessionStorage.getItem(STORAGE_KEY);
-      } catch (e) {}
-      let epoch = stored ? parseInt(stored, 10) : NaN;
-      const now = Date.now();
-      // If not stored or already expired, set dynamically ~18 hours 45 minutes ahead
-      if (!epoch || isNaN(epoch) || epoch <= now) {
-        epoch = now + (18 * 60 * 60 * 1000) + (45 * 60 * 1000);
-        try {
-          sessionStorage.setItem(STORAGE_KEY, epoch.toString());
-        } catch (e) {}
+      // Jika data Supabase ada release_time yang valid untuk masa hadapan, guna masa tersebut
+      if (window.TIER1_CATALYST_CONFIG && window.TIER1_CATALYST_CONFIG.release_time) {
+        isFallbackEvent = false;
+        return new Date(window.TIER1_CATALYST_CONFIG.release_time);
       }
-      return new Date(epoch);
+      isFallbackEvent = true;
+      return null; // Fallback neutral state
     }
 
-    const targetEventTime = getTargetEventTime();
-    const NEXT_EVENT_TIMESTAMP = targetEventTime.toISOString();
+    let targetEventTime = getTargetEventTime();
+    let NEXT_EVENT_TIMESTAMP = targetEventTime ? targetEventTime.toISOString() : null;
+
+    // Dengar isyarat dari mockMarketData.js apabila data Supabase (Active News Feed) siap
+    window.addEventListener('supabaseDataLoaded', () => {
+      console.log("OWL-FX (Supabase): Data Active News Feed Berjaya Diterima.");
+
+      NEWS_DATA = [
+        ...(window.MARKET_NEWS_DATA.highImpact || []),
+        ...(window.MARKET_NEWS_DATA.centralBank || []),
+        ...(window.MARKET_NEWS_DATA.geopolitical || [])
+      ];
+
+      // Refresh pagination state upon new data
+      currentNewsPage = 1;
+      
+      renderNewsCards(currentNewsFilter, '');
+      updateFilterCounts();
+    });
+
+    // Dengar isyarat apabila data Radar (Supabase) siap
+    window.addEventListener('tier1DataLoaded', () => {
+      console.log("OWL-FX (Supabase): Data Radar Berimpak Tinggi Diterima.");
+      
+      targetEventTime = getTargetEventTime();
+      NEXT_EVENT_TIMESTAMP = targetEventTime ? targetEventTime.toISOString() : null;
+      applyCatalystConfigToUI();
+    });
 
     // Format helper to synchronize event badge with target event timestamp (MYT / UTC+8)
     function formatEventTimestampBadge(dateInput) {
+      if (!dateInput) return "AWAITING NEXT MARKET SIGNAL";
       const d = (dateInput instanceof Date) ? dateInput : new Date(dateInput);
-      if (isNaN(d.getTime())) return "Upcoming Event MYT";
+      if (isNaN(d.getTime())) return "Menunggu Data...";
       const mytTime = new Date(d.getTime() + (8 * 60 * 60 * 1000));
       const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
       const dayName = days[mytTime.getUTCDay()];
@@ -1511,53 +1538,25 @@
       return `${dayName}, ${hours}:${minutes} ${ampm} (${day}/${month}/${year}) MYT`;
     }
 
-    // 1. DATASETS (SEPARATED DATA ARCHITECTURE FOR NEXT.JS / VERCEL MIGRATION)
-    // Sourced from separated /public/mockMarketData.js module or API route
-    var TIER1_CATALYST_CONFIG = (typeof window !== "undefined" && window.TIER1_CATALYST_CONFIG)
-      ? window.TIER1_CATALYST_CONFIG
-      : {
-          id: "catalyst-nfp-2026",
-          title: "US Non-Farm Payrolls (NFP) & Unemployment Rate",
-          subLabel: "NFP // BLS CATALYST",
-          category: "HIGH_IMPACT",
-          description: "Benchmark US labor market report and wage inflation indicator. Functions as the primary institutional trigger for Federal Reserve policy path, Treasury yield curve repricing, and multi-asset gold volatility.",
-          consensus: { previous: "142K", forecast: "165K", devThreshold: "±25K", histVolatility: "150-220 Pips" },
-          sessionTime: "12:30 UTC // 08:30 EST",
-          defaultHoursAhead: 18,
-          defaultMinsAhead: 45,
-          vipTelegramSync: { active: true, badgeText: "🔔 VIP TELEGRAM SYNC: ACTIVE", targetGroupId: "-3960855060", botTarget: "@OWLfx_IE_bot" },
-          statusBadge: "COUNTDOWN TO RELEASE",
-          subStatus: "HIGH-IMPACT VOLATILITY WINDOW APPROACHING"
-        };
-
-    var MARKET_NEWS_DATA = (typeof window !== "undefined" && window.MARKET_NEWS_DATA)
-      ? window.MARKET_NEWS_DATA
-      : { highImpact: [], centralBank: [], geopolitical: [] };
-
-    var MOCK_NEWS_DATA = MARKET_NEWS_DATA;
-
-    if (typeof window !== "undefined") {
-      window.TIER1_CATALYST_CONFIG = TIER1_CATALYST_CONFIG;
-      window.MARKET_NEWS_DATA = MARKET_NEWS_DATA;
-      window.MOCK_NEWS_DATA = MARKET_NEWS_DATA;
-    }
-
-    // Flattened array for news rendering and filtering engine
-    var NEWS_DATA = [
-      ...(MARKET_NEWS_DATA.highImpact || []),
-      ...(MARKET_NEWS_DATA.centralBank || []),
-      ...(MARKET_NEWS_DATA.geopolitical || [])
-    ];
-
     function applyCatalystConfigToUI() {
-      const cfg = TIER1_CATALYST_CONFIG;
+      const cfg = window.TIER1_CATALYST_CONFIG;
       if (!cfg) return;
+
       const titleEl = document.getElementById("catalyst-title");
-      if (titleEl && cfg.title) titleEl.textContent = cfg.title;
+      if (titleEl && cfg.title) {
+        titleEl.textContent = isFallbackEvent ? "AWAITING NEXT MARKET SIGNAL" : cfg.title;
+      }
+
       const subLabelEl = document.getElementById("catalyst-sublabel-badge");
-      if (subLabelEl && cfg.subLabel) subLabelEl.textContent = cfg.subLabel;
+      if (subLabelEl && cfg.subLabel) {
+        subLabelEl.textContent = isFallbackEvent ? "SYSTEM // NEUTRAL STATE" : cfg.subLabel;
+      }
+
       const descEl = document.getElementById("catalyst-description");
-      if (descEl && cfg.description) descEl.textContent = cfg.description;
+      if (descEl && cfg.description) {
+         descEl.textContent = isFallbackEvent ? "Tiada acara makroekonomi berimpak tinggi dalam jadual waktu terdekat. Sistem sedang bersedia untuk isyarat pasaran seterusnya." : cfg.description;
+      }
+
       if (cfg.consensus) {
         const prevEl = document.getElementById("consensus-previous");
         if (prevEl && cfg.consensus.previous) prevEl.textContent = cfg.consensus.previous;
@@ -1568,11 +1567,20 @@
         const volEl = document.getElementById("consensus-volatility");
         if (volEl && cfg.consensus.histVolatility) volEl.textContent = cfg.consensus.histVolatility;
       }
+
       const vipBadgeEl = document.getElementById("vip-telegram-sync-badge");
       if (vipBadgeEl && cfg.vipTelegramSync) {
         if (!cfg.vipTelegramSync.active) {
           vipBadgeEl.classList.add("hidden");
+        } else {
+          vipBadgeEl.classList.remove("hidden");
         }
+      }
+
+      // Kemas kini lencana masa acara pada UI
+      const tsText = document.getElementById('event-timestamp-text');
+      if (tsText) {
+        tsText.textContent = formatEventTimestampBadge(targetEventTime);
       }
     }
 
@@ -1648,10 +1656,6 @@
 
       // Deterministic Active Countdown: Target Epoch Milliseconds - Current User System Epoch Milliseconds
       function updateCountdown() {
-        const targetEpochMs = targetEventTime.getTime();
-        const currentEpochMs = Date.now();
-        const diffMs = targetEpochMs - currentEpochMs;
-
         const elH = document.getElementById('countdown-hours');
         const elM = document.getElementById('countdown-mins');
         const elS = document.getElementById('countdown-secs');
@@ -1661,28 +1665,46 @@
         const subStatus = document.getElementById('countdown-sub-status');
         const countdownEl = document.getElementById('countdown-display');
 
+        // Jika tiada event sasaran, papar status neutral
+        if (!targetEventTime) {
+          if (elH) elH.textContent = '--';
+          if (elM) elM.textContent = '--';
+          if (elS) elS.textContent = '--';
+          if (countdownEl) countdownEl.textContent = '--h : --m : --s';
+          if (statusBadge) statusBadge.textContent = 'AWAITING EVENT';
+          if (statusContainer) statusContainer.className = 'inline-flex items-center gap-1.5 text-[10px] font-mono font-bold tracking-wider text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800/50 px-2.5 py-1 rounded border border-slate-300 dark:border-slate-600 shadow-sm';
+          if (statusPing) statusPing.innerHTML = '<span class="relative inline-flex rounded-full h-2 w-2 bg-slate-400 dark:bg-slate-500"></span>';
+          if (subStatus) {
+            subStatus.textContent = 'NO UPCOMING TIER-1 EVENT DETECTED';
+            subStatus.className = 'text-slate-500 dark:text-slate-400';
+          }
+          return;
+        }
+
+        const targetEpochMs = targetEventTime.getTime();
+        const currentEpochMs = Date.now();
+        const diffMs = targetEpochMs - currentEpochMs;
+
         // Check if countdown reached zero or negative
         if (diffMs <= 0) {
-          if (elH) elH.textContent = '00';
-          if (elM) elM.textContent = '00';
-          if (elS) elS.textContent = '00';
-          if (countdownEl) {
-            countdownEl.textContent = '00h : 00m : 00s';
+          // Event sudah berlalu, re-scan Supabase untuk event seterusnya
+          if (typeof window.recalcNextSupabaseEvent === 'function') {
+            window.recalcNextSupabaseEvent();
           }
 
-          if (statusBadge) {
-            statusBadge.textContent = 'DATA RELEASED // VOLATILITY EXPANSION';
+          // Fallback UI protection jika recalcNextSupabaseEvent gagal setkan event masa depan
+          if (diffMs < -2000) { // Beri kelonggaran 2 saat sebelum override force fallback
+             if (window.TIER1_CATALYST_CONFIG && window.TIER1_CATALYST_CONFIG.release_time) {
+               const checkMs = new Date(window.TIER1_CATALYST_CONFIG.release_time).getTime() - Date.now();
+               if (checkMs <= 0) {
+                 window.TIER1_CATALYST_CONFIG.release_time = null; // Ini akan jadikan ia fallback neutral state
+                 targetEventTime = getTargetEventTime();
+                 NEXT_EVENT_TIMESTAMP = targetEventTime ? targetEventTime.toISOString() : null;
+                 applyCatalystConfigToUI();
+               }
+             }
           }
-          if (statusContainer) {
-            statusContainer.className = 'inline-flex items-center gap-1.5 text-[10px] font-mono font-bold tracking-wider text-rose-300 bg-rose-950/90 px-2 py-0.5 rounded border border-rose-600/70 shadow-sm';
-          }
-          if (statusPing) {
-            statusPing.innerHTML = '<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-rose-500"></span>';
-          }
-          if (subStatus) {
-            subStatus.textContent = 'DATA RELEASED // VOLATILITY EXPANSION';
-            subStatus.className = 'text-rose-400 font-bold';
-          }
+          
           return;
         }
 
@@ -1797,12 +1819,18 @@
     function matchesCategoryTag(item, category) {
       if (!category || category === 'all') return true;
       const target = category.toLowerCase().trim();
+      const impactRaw = (item.impact || '').toLowerCase().trim();
+
+      if (target === 'high impact' || target === 'red') {
+        return impactRaw === 'high';
+      }
+      if (target === 'medium impact' || target === 'medium') {
+        return impactRaw === 'medium';
+      }
+
       const catTag = (item.categoryTag || item.category || '').toLowerCase().trim();
       const tags = Array.isArray(item.tags) ? item.tags.map(t => t.toLowerCase().trim()) : [];
 
-      if (target === 'high impact' || target === 'red') {
-        return catTag === 'high impact' || tags.includes('high impact') || catTag.includes('high');
-      }
       if (target === 'central bank' || target === 'fed') {
         return catTag === 'central bank' || tags.includes('central bank') || catTag.includes('central') || catTag.includes('fed');
       }
@@ -1815,16 +1843,19 @@
     function updateFilterCounts() {
       const allCount = NEWS_DATA.length;
       const redCount = NEWS_DATA.filter(n => matchesCategoryTag(n, 'High Impact')).length;
+      const medCount = NEWS_DATA.filter(n => matchesCategoryTag(n, 'Medium Impact')).length;
       const fedCount = NEWS_DATA.filter(n => matchesCategoryTag(n, 'Central Bank')).length;
       const geoCount = NEWS_DATA.filter(n => matchesCategoryTag(n, 'Geopolitical')).length;
 
       const cAll = document.getElementById('count-all');
       const cRed = document.getElementById('count-red');
+      const cMed = document.getElementById('count-med');
       const cFed = document.getElementById('count-fed');
       const cGeo = document.getElementById('count-geo');
 
       if (cAll) cAll.textContent = allCount;
       if (cRed) cRed.textContent = redCount;
+      if (cMed) cMed.textContent = medCount;
       if (cFed) cFed.textContent = fedCount;
       if (cGeo) cGeo.textContent = geoCount;
     }
@@ -1892,6 +1923,61 @@
     }
     window.toggleNewsCard = toggleNewsCard;
 
+    let currentNewsPage = 1;
+    const ITEMS_PER_PAGE = 20;
+
+    window.changeNewsPage = function(delta, totalPages) {
+      const newPage = currentNewsPage + delta;
+      if (newPage >= 1 && newPage <= totalPages) {
+        currentNewsPage = newPage;
+        const searchVal = document.getElementById('news-search-input')?.value || '';
+        const container = document.getElementById('news-feed-container');
+        if (container) {
+          container.classList.remove('opacity-100', 'translate-y-0');
+          container.classList.add('opacity-0', '-translate-y-2');
+          setTimeout(() => {
+            renderNewsCards(currentNewsFilter, searchVal);
+            requestAnimationFrame(() => {
+              container.classList.remove('opacity-0', '-translate-y-2');
+              container.classList.add('opacity-100', 'translate-y-0');
+              // Scroll to top of feed slightly
+              container.parentElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+          }, 200);
+        } else {
+           renderNewsCards(currentNewsFilter, searchVal);
+        }
+      }
+    };
+
+    function renderPaginationControls(totalPages) {
+      if (totalPages <= 1) return '';
+      
+      const prevDisabled = currentNewsPage === 1 ? 'opacity-50 cursor-not-allowed pointer-events-none' : 'hover:bg-slate-200 dark:hover:bg-champagne/10 hover:text-amber-600 dark:hover:text-champagne cursor-pointer';
+      const nextDisabled = currentNewsPage === totalPages ? 'opacity-50 cursor-not-allowed pointer-events-none' : 'hover:bg-slate-200 dark:hover:bg-champagne/10 hover:text-amber-600 dark:hover:text-champagne cursor-pointer';
+      
+      return `
+        <div class="flex items-center justify-between px-4 py-3 mt-6 border border-slate-200 dark:border-slate-800/80 rounded-lg bg-slate-50/50 dark:bg-[#0B0E14]/50 shadow-sm backdrop-blur-sm transition-all duration-200">
+          <button onclick="window.changeNewsPage(-1, ${totalPages})" class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-medium text-slate-500 dark:text-slate-400 transition-colors rounded border border-transparent hover:border-amber-300 dark:hover:border-champagne/30 ${prevDisabled}">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+            PREV
+          </button>
+          
+          <div class="flex items-center gap-2">
+            <span class="text-[10px] font-mono tracking-widest text-slate-400 dark:text-slate-500 hidden sm:inline">PAGE</span>
+            <span class="px-2.5 py-1 text-xs font-mono font-bold text-amber-800 dark:text-champagne bg-amber-100/80 dark:bg-champagne/10 rounded border border-amber-300/80 dark:border-champagne/30 shadow-sm">
+              ${currentNewsPage} / ${totalPages}
+            </span>
+          </div>
+
+          <button onclick="window.changeNewsPage(1, ${totalPages})" class="flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono font-medium text-slate-500 dark:text-slate-400 transition-colors rounded border border-transparent hover:border-amber-300 dark:hover:border-champagne/30 ${nextDisabled}">
+            NEXT
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      `;
+    }
+
     function renderNewsCards(filter = 'all', query = '') {
       const container = document.getElementById('news-feed-container');
       if (!container) return;
@@ -1928,29 +2014,51 @@
         return;
       }
 
-      container.innerHTML = filtered.map(item => {
+      const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
+      if (currentNewsPage > totalPages && totalPages > 0) {
+        currentNewsPage = totalPages;
+      }
+      
+      const startIndex = (currentNewsPage - 1) * ITEMS_PER_PAGE;
+      const paginatedItems = filtered.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+      const cardsHtml = paginatedItems.map(item => {
         const isExpanded = expandedNewsIds.has(item.id);
         const tag = item.categoryTag || (item.tags && item.tags[0]) || 'Market Intel';
         const tagLower = tag.toLowerCase();
-        const isHigh = (item.impact === 'HIGH') || tagLower.includes('high');
+        
+        const actualImpact = (item.impact || '').toLowerCase().trim();
+        const isHigh = actualImpact === 'high';
+        const isMedium = actualImpact === 'medium';
         const isCentral = tagLower.includes('central') || tagLower.includes('fed');
         const isGeo = tagLower.includes('geo');
 
         let badgeClass = 'bg-slate-100 dark:bg-slate-800/80 border-slate-300 dark:border-slate-700/60 text-slate-700 dark:text-slate-300';
         let pulseDot = '';
-        let impactLabel = item.impact ? `${item.impact} IMPACT` : tag.toUpperCase();
+        let impactLabel = 'LOW IMPACT';
+        
+        if (item.impact && actualImpact !== 'high' && actualImpact !== 'medium') {
+           impactLabel = `${item.impact.toUpperCase()} IMPACT`;
+        } else if (!item.impact) {
+           impactLabel = tag.toUpperCase();
+        }
+
         if (isHigh) {
           badgeClass = 'bg-rose-100 dark:bg-rose-950/80 border-rose-300 dark:border-rose-600/60 text-rose-700 dark:text-rose-400';
           pulseDot = '<span class="inline-block w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span>';
           impactLabel = 'HIGH IMPACT';
+        } else if (isMedium) {
+          badgeClass = 'bg-amber-100 dark:bg-amber-900/50 border-amber-300 dark:border-amber-800 text-amber-800 dark:text-amber-400';
+          pulseDot = '<span class="inline-block w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400"></span>';
+          impactLabel = 'MEDIUM IMPACT';
         } else if (isCentral) {
           badgeClass = 'bg-amber-100 dark:bg-amber-950/80 border-amber-300 dark:border-amber-600/60 text-amber-800 dark:text-champagne';
           pulseDot = '<span class="inline-block w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400"></span>';
-          impactLabel = item.impact ? `${item.impact} IMPACT` : 'MED IMPACT';
+          impactLabel = item.impact ? `${item.impact.toUpperCase()} IMPACT` : 'CENTRAL BANK';
         } else if (isGeo) {
           badgeClass = 'bg-cyan-100 dark:bg-cyan-950/80 border-cyan-300 dark:border-cyan-600/60 text-cyan-800 dark:text-cyan-400';
           pulseDot = '<span class="inline-block w-1.5 h-1.5 rounded-full bg-cyan-500 dark:bg-cyan-400"></span>';
-          impactLabel = item.impact ? `${item.impact} IMPACT` : 'GEOPOLITICAL';
+          impactLabel = item.impact ? `${item.impact.toUpperCase()} IMPACT` : 'GEOPOLITICAL';
         }
 
         const isGoldNegative = (item.xauDelta || '').includes('-$');
@@ -2158,11 +2266,14 @@
         `;
       }).join('');
 
+      container.innerHTML = cardsHtml + renderPaginationControls(totalPages);
+      
       lucide.createIcons();
     }
 
     function filterNews(filter, btnEl) {
       currentNewsFilter = filter;
+      currentNewsPage = 1; // Reset ke page 1 apabila filter bertukar
       document.querySelectorAll('.news-filter').forEach(btn => {
         btn.classList.remove('active', 'border-amber-400', 'dark:border-champagne/40', 'bg-amber-100/80', 'dark:bg-champagne/15', 'text-amber-800', 'dark:text-champagne', 'font-semibold');
         btn.classList.add('border-slate-200', 'dark:border-slate-800', 'bg-white', 'dark:bg-slate-900/60', 'text-slate-600', 'dark:text-slate-400');
@@ -2315,7 +2426,7 @@
       renderNewsCards(currentNewsFilter, searchVal);
       updateFilterCounts();
 
-      const isHighImpact = item.category === 'red' || item.impact === 'red' || item.isHighImpact;
+      const isHighImpact = item.category === 'red' || (item.impact || '').toLowerCase() === 'high' || item.isHighImpact;
       if (triggerAlert && isHighImpact) {
         triggerHighImpactToast(item);
       }
@@ -2326,7 +2437,7 @@
       {
         source: "BLS MACRO FLASH",
         category: "red",
-        impact: "red",
+        impact: "High",
         isHighImpact: true,
         badge: "HIGH IMPACT // CPI SHOCK",
         headline: "US Core CPI (MoM) Prints 0.1% vs 0.3% Forecast — Deep Disinflation Confirmed",
@@ -2341,7 +2452,7 @@
       {
         source: "FEDERAL RESERVE WIRE",
         category: "red",
-        impact: "red",
+        impact: "High",
         isHighImpact: true,
         badge: "HIGH IMPACT // FOMC EMERGENCY",
         headline: "FOMC Directs Accelerated Balance Sheet Runoff Pause to Support Sovereign Debt Liquidity",
@@ -2356,7 +2467,7 @@
       {
         source: "REUTERS MARITIME WIRE",
         category: "red",
-        impact: "red",
+        impact: "High",
         isHighImpact: true,
         badge: "HIGH IMPACT // GEOPOLITICAL",
         headline: "Strait of Hormuz Tanker Escort Protocol Declared Following Anti-Ship Ballistic Launch",
@@ -2371,7 +2482,7 @@
       {
         source: "BUREAU OF LABOR STATISTICS",
         category: "red",
-        impact: "red",
+        impact: "High",
         isHighImpact: true,
         badge: "HIGH IMPACT // NFP FLASH",
         headline: "US Non-Farm Payrolls Slump to 118k; Unemployment Rate Climbs to 4.3%",
@@ -3385,6 +3496,7 @@
       const newsInput = document.getElementById('news-search-input');
       if (newsInput) {
         newsInput.addEventListener('input', (e) => {
+          currentNewsPage = 1; // Reset ke page 1 apabila menaip carian
           renderNewsCards(currentNewsFilter, e.target.value);
         });
       }
@@ -3419,9 +3531,8 @@
       // Automated periodic authentic spot refresh every 45 seconds (within 30-60s range)
       setInterval(fetchLiveGoldSpot, 45000);
 
-      // Trigger incoming live news simulation toast 4 seconds after page load
-      // #Generate by IqwanEngine
-      setTimeout(simulateIncomingNews, 4000);
+      // DISABLED: Mock data simulation removed to ensure Supabase Single Source of Truth
+      // setTimeout(simulateIncomingNews, 4000);
 
       // Trigger threshold-based extreme volatility alert 8 seconds after page load
       // #Generate by IqwanEngine
