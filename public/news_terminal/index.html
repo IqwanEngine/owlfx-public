@@ -1513,11 +1513,28 @@
 
     // Dengar isyarat apabila data Radar (Supabase) siap
     window.addEventListener('tier1DataLoaded', () => {
-      console.log("OWL-FX (Supabase): Data Radar Berimpak Tinggi Diterima.");
+      console.info("[OWL-FX] tier1DataLoaded event received.");
       
       targetEventTime = getTargetEventTime();
       NEXT_EVENT_TIMESTAMP = targetEventTime ? targetEventTime.toISOString() : null;
+      
+      if (!targetEventTime) {
+        console.warn("[OWL-FX] No valid future event resolved from Supabase data.");
+      } else {
+        console.info("[OWL-FX] Target Event resolved:", targetEventTime.toLocaleString());
+      }
+      
       applyCatalystConfigToUI();
+    });
+
+    // Dengar ralat dari Supabase
+    window.addEventListener('supabaseError', (e) => {
+      console.error("[OWL-FX] Supabase Error Event:", e.detail);
+      const subStatus = document.getElementById('countdown-sub-status');
+      if (subStatus) {
+        subStatus.textContent = `CONNECTION ERROR: ${e.detail}`;
+        subStatus.className = 'text-rose-500 font-bold';
+      }
     });
 
     // Format helper to synchronize event badge with target event timestamp (MYT / UTC+8)

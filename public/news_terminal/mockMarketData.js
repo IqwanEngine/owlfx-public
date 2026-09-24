@@ -1,12 +1,41 @@
 /* =====================================================================
  * ⚡ ARCHITECTURE BY IQWANENGINE (UPDATED)
  * SINGLE SOURCE OF TRUTH: SUPABASE ONLY (VIP ALERTS)
+ * VERSION: 1.0.5 - PRODUCTION PARITY AUDIT READY
  * ===================================================================== */
 
 (async function () {
+  const AUDIT_VERSION = "1.0.5";
+  console.info(`[OWL-FX AUDIT] Core Engine Version: ${AUDIT_VERSION}`);
+
   // 1. Kredensial Supabase Anda
+  // WARNING: Ensure these match your Production Project in Supabase Dashboard
   const SUPABASE_URL = 'https://mxlkvnvegtsbzrdszzoi.supabase.co';
   const SUPABASE_ANON_KEY = 'sb_publishable_YJaMCHPp-pQqhpbweeT33w_9guu9eAn';
+
+  /**
+   * 2. CENTRALIZED TIMESTAMP RESOLVER
+   * Mengaudit pelbagai kemungkinan nama column database.
+   */
+  function resolveEventTimestamp(item) {
+    if (!item) return null;
+    
+    // Senarai kemungkinan column nama (priority order)
+    const fields = ['release_time', 'timestamp', 'date', 'created_at'];
+    
+    for (const f of fields) {
+      const val = item[f];
+      if (val) {
+        // Pastikan ia valid date
+        const d = new Date(val);
+        if (!isNaN(d.getTime())) {
+          return val;
+        }
+      }
+    }
+    
+    return null;
+  }
 
   // 2. Struktur Asas (Paparan sementara sebelum data berjaya ditarik)
   let TIER1_CATALYST_CONFIG = {
@@ -43,8 +72,8 @@
   // SINGLE FETCH: SUPABASE ENGINE
   // =====================================================================
   async function fetchAllDataFromSupabase() {
+    console.info(`[OWL-FX] Fetching from: ${SUPABASE_URL}/rest/v1/vip_alerts`);
     try {
-      // Ambil limit yang cukup besar dan sort by masa descending supaya kita dapat history & masa depan
       const response = await fetch(`${SUPABASE_URL}/rest/v1/vip_alerts?select=*&order=release_time.desc&limit=500`, {
         headers: {
           'apikey': SUPABASE_ANON_KEY,
@@ -54,12 +83,21 @@
       });
 
       if (!response.ok) {
+        console.error(`[OWL-FX] Supabase Error Response:`, response.status, response.statusText);
         throw new Error(`Ralat Supabase: ${response.statusText}`);
       }
 
       const alerts = await response.json();
+      console.info(`[OWL-FX] Supabase Data Received: ${alerts ? alerts.length : 0} rows.`);
 
       if (alerts && Array.isArray(alerts)) {
+        if (alerts.length > 0) {
+          // Check schema of the first record for debugging
+          console.info(`[OWL-FX] Schema Audit (Row 0):`, Object.keys(alerts[0]).join(', '));
+        } else {
+          console.warn(`[OWL-FX] Warning: Supabase returned zero rows. Check Table Permissions / RLS.`);
+        }
+
         supabaseDataCache = alerts;
 
         // 1. UPDATE ACTIVE NEWS FEED (PAGINATION READY)
@@ -69,7 +107,9 @@
         updateNextTier1Event(alerts);
       }
     } catch (error) {
-      console.error("Gagal menarik data dari Supabase:", error);
+      console.error("[OWL-FX] Gagal menarik data dari Supabase:", error);
+      // Explicit notification for UI fallback
+      window.dispatchEvent(new CustomEvent('supabaseError', { detail: error.message }));
     }
   }
 
@@ -79,16 +119,17 @@
   function updateActiveNewsFeed(alerts) {
     // Sort descending for feed (newest time first)
     const sortedForFeed = [...alerts].sort((a, b) => {
-      const timeA = new Date(a.release_time || a.created_at).getTime();
-      const timeB = new Date(b.release_time || b.created_at).getTime();
+      const timeA = new Date(resolveEventTimestamp(a)).getTime();
+      const timeB = new Date(resolveEventTimestamp(b)).getTime();
       return timeB - timeA;
     });
 
     const mappedNews = sortedForFeed.map(alert => {
-      // Check validity of release_time
+      // Check validity of resolved timestamp
       let timeStr = "Baru saja";
-      if (alert.release_time) {
-        const d = new Date(alert.release_time);
+      const resolvedTs = resolveEventTimestamp(alert);
+      if (resolvedTs) {
+        const d = new Date(resolvedTs);
         if (!isNaN(d.getTime())) {
           timeStr = d.toLocaleTimeString('ms-MY', { hour: '2-digit', minute: '2-digit' });
         }
@@ -139,48 +180,59 @@
   // =====================================================================
   function updateNextTier1Event(alerts) {
     const nowMs = Date.now();
+    console.info(`[OWL-FX] Scanning for Upcoming Tier-1. Now (ms): ${nowMs}`);
 
-    // 1. Tapis: Valid date, Future date, dan High Impact sahaja
+    // 1. Tapis: Valid date, Future date, dan High/Medium Impact
     let upcomingEvents = alerts.filter(evt => {
-      if (!evt.release_time || !evt.impact) return false;
+      const resolvedTs = resolveEventTimestamp(evt);
+      if (!resolvedTs || !evt.impact) return false;
 
       // Normalise impact naming
       const impactLower = String(evt.impact).toLowerCase().trim();
-      // Berdasarkan existing logic, hanya "high" atau "red" digunakan
-      if (impactLower !== 'high' && impactLower !== 'red') return false;
+      // Tier-1 Radar priority: high, red, medium, amber
+      const isEligibleImpact = ['high', 'red', 'medium', 'amber'].includes(impactLower);
+      if (!isEligibleImpact) return false;
 
-      const eventTime = new Date(evt.release_time).getTime();
+      const eventTime = new Date(resolvedTs).getTime();
       if (isNaN(eventTime)) return false;
 
       return eventTime > nowMs;
     });
 
     // 2. Susun mengikut masa terdekat dari sekarang (Ascending)
-    upcomingEvents.sort((a, b) => new Date(a.release_time).getTime() - new Date(b.release_time).getTime());
+    upcomingEvents.sort((a, b) => {
+      return new Date(resolveEventTimestamp(a)).getTime() - new Date(resolveEventTimestamp(b)).getTime();
+    });
+
+    console.info(`[OWL-FX] Future Events Found: ${upcomingEvents.length}`);
 
     if (upcomingEvents.length > 0) {
       const targetAlert = upcomingEvents[0]; // Nearest future event
+      const finalTs = resolveEventTimestamp(targetAlert);
+      
+      console.info(`[OWL-FX] Selected Upcoming Event: ${targetAlert.title} at ${finalTs}`);
 
       window.TIER1_CATALYST_CONFIG = {
         id: "supa-event-" + targetAlert.id,
         isDummy: false,
-        title: targetAlert.title || "Berita Impak Tinggi (Tiada Tajuk)",
+        title: targetAlert.title || "Upcoming Market Event",
         subLabel: targetAlert.currency ? `${targetAlert.currency} Impact` : "MACRO // TIER-1",
         category: "HIGH_IMPACT",
-        description: "Enjin Supabase mengesan pelepasan data makroekonomi ini sebagai pencetus utama volatiliti pasaran akan datang.",
+        description: targetAlert.description || "Enjin Supabase mengesan pelepasan data makroekonomi ini sebagai pencetus utama volatiliti pasaran akan datang.",
         consensus: {
           previous: targetAlert.previous || "--",
           forecast: targetAlert.forecast || "--",
-          devThreshold: "±N/A",
-          histVolatility: "N/A"
+          devThreshold: targetAlert.dev_threshold || "±N/A",
+          histVolatility: targetAlert.historical_volatility || "N/A"
         },
-        release_time: targetAlert.release_time,
+        release_time: finalTs,
         vipTelegramSync: { active: true, badgeText: "🔔 VIP TELEGRAM SYNC: ACTIVE" },
         statusBadge: "COUNTDOWN TO RELEASE",
         subStatus: "HIGH-IMPACT VOLATILITY WINDOW APPROACHING",
-        impact: "HIGH"
+        impact: String(targetAlert.impact).toUpperCase()
       };
     } else {
+      console.warn(`[OWL-FX] No upcoming High/Medium impact events found in the current ${alerts.length} rows.`);
       // Tiada high impact event dijumpai pada masa hadapan (Neutral State)
       window.TIER1_CATALYST_CONFIG.release_time = null;
     }
