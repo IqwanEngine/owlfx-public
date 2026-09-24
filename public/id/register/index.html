@@ -41,13 +41,22 @@
                 --champagne-gold: #F4E7B0;
             }
             body {
-                background-color: transparent !important;
+                background-color: #020617 !important; /* Disesuaikan dengan bg-slate-950 */
                 font-family: "Montserrat", sans-serif;
                 color: #e2e8f0;
                 overflow-x: hidden;
                 user-select: none;
                 -webkit-user-select: none;
             }
+
+            /* --- TAMBAHAN: CSS UNTUK GRID PATTERN --- */
+            .bg-grid-pattern {
+                background-image:
+                    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+                background-size: 40px 40px;
+            }
+            /* ---------------------------------------- */
 
             .glass-panel {
                 background: rgba(27, 23, 19, 0.85); /* Obsidian Black */
@@ -194,9 +203,17 @@
             }
         </style>
     </head>
-    <body class="min-h-screen flex items-center justify-center p-4">
+    <body class="min-h-screen flex items-center justify-center p-4 font-sans text-slate-200 relative overflow-hidden selection:bg-transparent bg-slate-950" oncontextmenu="return false;">
+
+        <!-- LAYER 1: Ambient Background Sub-system (Grid & Nebula Glow) -->
+        <div class="absolute inset-0 bg-grid-pattern z-0 pointer-events-none"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+
+        <!-- LAYER 2: HTML5 Canvas for Dynamic Trading Nodes/Waveform -->
+        <canvas id="iqwanTradingMatrix" class="absolute inset-0 z-0 opacity-60 pointer-events-none"></canvas>
+
         <div
-            class="w-full max-w-lg glass-panel rounded-3xl p-8 relative shadow-2xl"
+            class="w-full max-w-lg glass-panel rounded-3xl p-8 relative z-10 shadow-2xl"
         >
             <div class="blob-wrapper">
                 <div
@@ -731,6 +748,84 @@
                     modal.classList.add("hidden");
                 }, 700);
             }
+
+            /* * ==========================================
+             * TAMBAHAN: DYNAMIC TRADING MATRIX CANVAS
+             * ==========================================
+             */
+            function initTradingMatrix() {
+                const canvas = document.getElementById('iqwanTradingMatrix');
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                let w, h, particles;
+
+                function resize() {
+                    w = canvas.width = window.innerWidth;
+                    h = canvas.height = window.innerHeight;
+                }
+
+                window.addEventListener('resize', resize);
+                resize();
+
+                class Particle {
+                    constructor() {
+                        this.x = Math.random() * w;
+                        this.y = Math.random() * h;
+                        this.vx = (Math.random() - 0.5) * 0.4; // Kelajuan bergerak
+                        this.vy = (Math.random() - 0.5) * 0.4;
+                        this.radius = Math.random() * 1.5 + 0.5;
+                    }
+                    update() {
+                        this.x += this.vx;
+                        this.y += this.vy;
+                        // Pantul bila kena tepi skrin
+                        if (this.x < 0 || this.x > w) this.vx *= -1;
+                        if (this.y < 0 || this.y > h) this.vy *= -1;
+                    }
+                    draw() {
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = 'rgba(200, 154, 44, 0.4)'; // Warna emas
+                        ctx.fill();
+                    }
+                }
+
+                // Hasilkan 70 titik rangkaian
+                particles = Array.from({ length: 70 }, () => new Particle());
+
+                function animate() {
+                    ctx.clearRect(0, 0, w, h);
+
+                    particles.forEach(p => {
+                        p.update();
+                        p.draw();
+                    });
+
+                    // Sambungkan garisan antara titik yang berdekatan
+                    for (let i = 0; i < particles.length; i++) {
+                        for (let j = i + 1; j < particles.length; j++) {
+                            const dx = particles[i].x - particles[j].x;
+                            const dy = particles[i].y - particles[j].y;
+                            const dist = dx * dx + dy * dy;
+
+                            // Jika jarak kurang dari had tertentu, lukis garisan
+                            if (dist < 18000) {
+                                ctx.beginPath();
+                                ctx.moveTo(particles[i].x, particles[i].y);
+                                ctx.lineTo(particles[j].x, particles[j].y);
+                                ctx.strokeStyle = `rgba(200, 154, 44, ${0.12 - dist / 150000})`; // Garisan pudar ikut jarak
+                                ctx.lineWidth = 0.5;
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                    requestAnimationFrame(animate);
+                }
+                animate();
+            }
+
+            // Jalankan animasi bila website selesai loading
+            document.addEventListener('DOMContentLoaded', initTradingMatrix);
         </script>
     </body>
 </html>

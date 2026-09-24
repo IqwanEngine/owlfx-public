@@ -395,7 +395,7 @@ export default function App() {
                   }
                 />
                 <Route path="/education" element={<BasicEducationSection />} />
-                
+
                 <Route
                   path="/contact"
                   element={
@@ -496,7 +496,7 @@ export default function App() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
 
                           {/* 1. OWLALGO MY */}
-                          <Link to="/my/register" className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-emerald-500/50 transition-all duration-500 overflow-hidden">
+                          <a href="https://www.owlfx.my/my/register" className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-emerald-500/50 transition-all duration-500 overflow-hidden block">
                             <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             <div className="relative h-full flex flex-col p-6 rounded-2xl bg-[#0A101D]/90 backdrop-blur-xl border border-white/5 group-hover:border-emerald-500/30 transition-colors">
                               <div className="flex items-center justify-between mb-4">
@@ -512,10 +512,10 @@ export default function App() {
                                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1.5 transition-transform" />
                               </div>
                             </div>
-                          </Link>
+                          </a>
 
                           {/* 2. OWLALGO ID */}
-                          <Link to="/id/register" className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-rose-500/50 transition-all duration-500 overflow-hidden">
+                          <a href="https://www.owlfx.my/id/register" className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-rose-500/50 transition-all duration-500 overflow-hidden block">
                             <div className="absolute inset-0 bg-gradient-to-br from-rose-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             <div className="relative h-full flex flex-col p-6 rounded-2xl bg-[#0A101D]/90 backdrop-blur-xl border border-white/5 group-hover:border-rose-500/30 transition-colors">
                               <div className="flex items-center justify-between mb-4">
@@ -531,10 +531,10 @@ export default function App() {
                                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1.5 transition-transform" />
                               </div>
                             </div>
-                          </Link>
+                          </a>
 
                           {/* 3. IB Development MY */}
-                          <Link to="/my/ib_development" className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-cyan-500/50 transition-all duration-500 overflow-hidden">
+                          <a href="https://www.owlfx.my/my/ib_development" className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-cyan-500/50 transition-all duration-500 overflow-hidden block">
                             <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             <div className="relative h-full flex flex-col p-6 rounded-2xl bg-[#0A101D]/90 backdrop-blur-xl border border-white/5 group-hover:border-cyan-500/30 transition-colors">
                               <div className="flex items-center justify-between mb-4">
@@ -550,10 +550,10 @@ export default function App() {
                                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1.5 transition-transform" />
                               </div>
                             </div>
-                          </Link>
+                          </a>
 
                           {/* 4. IB Development ID */}
-                          <Link to="/id/ib_development" className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-indigo-500/50 transition-all duration-500 overflow-hidden">
+                          <a href="https://www.owlfx.my/id/ib_development" className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-indigo-500/50 transition-all duration-500 overflow-hidden block">
                             <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             <div className="relative h-full flex flex-col p-6 rounded-2xl bg-[#0A101D]/90 backdrop-blur-xl border border-white/5 group-hover:border-indigo-500/30 transition-colors">
                               <div className="flex items-center justify-between mb-4">
@@ -569,10 +569,10 @@ export default function App() {
                                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1.5 transition-transform" />
                               </div>
                             </div>
-                          </Link>
+                          </a>
 
                           {/* 5. Masterclass Zone Keyprice */}
-                          <Link to="/masterclass_registration" className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-[#D4AF37]/50 transition-all duration-500 overflow-hidden">
+                          <a href="https://www.owlfx.my/masterclass_registration" className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-[#D4AF37]/50 transition-all duration-500 overflow-hidden block">
                             <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             <div className="relative h-full flex flex-col p-6 rounded-2xl bg-[#0A101D]/90 backdrop-blur-xl border border-white/5 group-hover:border-[#D4AF37]/30 transition-colors">
                               <div className="flex items-center justify-between mb-4">
@@ -588,10 +588,10 @@ export default function App() {
                                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1.5 transition-transform" />
                               </div>
                             </div>
-                          </Link>
+                          </a>
 
                           {/* 6. Feedback Form */}
-                          <Link to="/interested?action=register" className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-purple-500/50 transition-all duration-500 overflow-hidden">
+                          <a href="https://www.owlfx.my/interested?action=register" className="group relative p-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-transparent hover:from-purple-500/50 transition-all duration-500 overflow-hidden block">
                             <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             <div className="relative h-full flex flex-col p-6 rounded-2xl bg-[#0A101D]/90 backdrop-blur-xl border border-white/5 group-hover:border-purple-500/30 transition-colors">
                               <div className="flex items-center justify-between mb-4">
@@ -607,7 +607,7 @@ export default function App() {
                                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1.5 transition-transform" />
                               </div>
                             </div>
-                          </Link>
+                          </a>
 
                         </div>
                       </div>
