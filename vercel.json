@@ -32,7 +32,7 @@
     },
     {
       "source": "/daftar(.*)",
-      "destination": "https://dashboard.owlfx.my/daftar"
+      "destination": "/daftar/index.html"
     },
     {
       "source": "/(.*)",
