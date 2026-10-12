@@ -31,6 +31,10 @@
       "destination": "/maintenance/index.html"
     },
     {
+      "source": "/daftar(.*)",
+      "destination": "https://dashboard.owlfx.my/daftar"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
