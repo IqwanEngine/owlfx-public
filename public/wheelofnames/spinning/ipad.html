@@ -1,0 +1,1930 @@
+<!-- // =============================================================================
+//  ██╗ ██████╗ ██╗    ██╗ █████╗ ███╗   ██╗███████╗███╗   ██╗ ██████╗ ██╗███╗   ██╗███████╗
+//  ██║██╔═══██╗██║    ██║██╔══██╗████╗  ██║██╔════╝████╗  ██║██╔════╝ ██║████╗  ██║██╔════╝
+//  ██║██║   ██║██║ █╗ ██║███████║██╔██╗ ██║█████╗  ██╔██╗ ██║██║  ███╗██║██╔██╗ ██║█████╗
+//  ██║██║▄▄ ██║██║███╗██║██╔══██║██║╚██╗██║██╔══╝  ██║╚██╗██║██║   ██║██║██║╚██╗██║██╔══╝
+//  ██║╚██████╔╝╚███╔███╔╝██║  ██║██║ ╚████║███████╗██║ ╚████║╚██████╔╝██║██║ ╚████║███████╗
+//  ╚═╝ ╚══▀▀═╝  ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝╚═╝  ╚═══╝╚══════╝
+// ============================================================================= -->
+<!-- Powered by IqwanEngine -->
+<!doctype html>
+<html lang="ms">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            href="https://owlfx-register.vercel.app/assets/OWLFX.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            href="https://owlfx-register.vercel.app/assets/OWLFX.png"
+        />
+
+        <title>OWLFX Spinning Wheel</title>
+
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <style>
+            * {
+                user-select: none;
+                -webkit-user-select: none;
+                -webkit-touch-callout: none;
+            }
+            body {
+                font-family: "Outfit", "Inter", sans-serif;
+                touch-action: manipulation;
+                transition:
+                    background-color 0.4s ease,
+                    color 0.4s ease;
+            }
+
+            body.bg-luxury-mesh {
+                background-color: #05070c;
+            }
+
+            body.theme-day {
+                background-color: #f8fafc;
+                color: #0f172a;
+            }
+            body.theme-day .text-white {
+                color: #0f172a;
+            }
+            body.theme-day .text-slate-400 {
+                color: #64748b !important;
+            }
+            body.theme-day .bg-slate-900\/80,
+            body.theme-day .bg-slate-900\/90 {
+                background-color: rgba(255, 255, 255, 0.85) !important;
+                border-color: #cbd5e1 !important;
+                color: #334155;
+            }
+            body.theme-day #modalCard {
+                background: linear-gradient(to bottom, #ffffff, #f8fafc);
+                border-color: #fbbf24;
+                box-shadow: 0 0 60px rgba(245, 158, 11, 0.3);
+            }
+            body.theme-day #modalTitle {
+                color: #0f172a !important;
+            }
+            body.theme-day #modalDesc {
+                color: #475569 !important;
+            }
+            body.theme-day #modalIconInner {
+                background-color: #ffffff;
+            }
+
+            @keyframes holdRipple {
+                0% {
+                    transform: scale(0.95);
+                    opacity: 0.8;
+                }
+                100% {
+                    transform: scale(1.65);
+                    opacity: 0;
+                }
+            }
+            .ripple-active-1 {
+                animation: holdRipple 1.1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+            }
+            .ripple-active-2 {
+                animation: holdRipple 1.1s cubic-bezier(0, 0.2, 0.8, 1) infinite
+                    0.55s;
+            }
+
+            .aura-charge {
+                animation: auraPulse 0.6s ease-in-out infinite alternate;
+            }
+            @keyframes auraPulse {
+                0% {
+                    box-shadow:
+                        0 0 25px rgba(229, 169, 60, 0.4),
+                        inset 0 0 15px rgba(229, 169, 60, 0.3);
+                    transform: scale(0.96);
+                }
+                100% {
+                    box-shadow:
+                        0 0 75px rgba(255, 215, 0, 0.9),
+                        inset 0 0 30px rgba(255, 215, 0, 0.7);
+                    transform: scale(1.04);
+                }
+            }
+
+            @keyframes shimmerTitle {
+                0% {
+                    background-position: 0% center;
+                }
+                100% {
+                    background-position: 200% center;
+                }
+            }
+            .title-shimmer {
+                background: linear-gradient(
+                    90deg,
+                    #fcd34d,
+                    #fffbeb,
+                    #fde047,
+                    #fbbf24,
+                    #f59e0b,
+                    #fcd34d
+                );
+                background-size: 200% auto;
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                animation: shimmerTitle 4s linear infinite;
+                filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.3));
+            }
+
+            @keyframes screenShake {
+                0%,
+                100% {
+                    transform: translate(0, 0);
+                }
+                10% {
+                    transform: translate(-10px, 5px) rotate(-1deg);
+                }
+                20% {
+                    transform: translate(10px, -5px) rotate(1deg);
+                }
+                30% {
+                    transform: translate(-8px, 7px) rotate(-0.5deg);
+                }
+                40% {
+                    transform: translate(8px, -7px) rotate(0.5deg);
+                }
+                50% {
+                    transform: translate(-6px, 3px);
+                }
+                60% {
+                    transform: translate(6px, -3px);
+                }
+                70% {
+                    transform: translate(-3px, 3px);
+                }
+                80% {
+                    transform: translate(3px, -3px);
+                }
+                90% {
+                    transform: translate(-1px, 1px);
+                }
+            }
+            .screen-shake {
+                animation: screenShake 0.55s ease-out;
+            }
+
+            @keyframes pulseRing {
+                0%,
+                100% {
+                    transform: scale(1);
+                    opacity: 0.25;
+                }
+                50% {
+                    transform: scale(1.08);
+                    opacity: 0.55;
+                }
+            }
+            .ring-pulse-1 {
+                animation: pulseRing 3s ease-in-out infinite;
+            }
+            .ring-pulse-2 {
+                animation: pulseRing 3s ease-in-out infinite 1.5s;
+            }
+
+            @keyframes shineSweep {
+                0% {
+                    left: -100%;
+                    opacity: 0;
+                }
+                20% {
+                    opacity: 1;
+                }
+                80% {
+                    opacity: 1;
+                }
+                100% {
+                    left: 100%;
+                    opacity: 0;
+                }
+            }
+            .shine-sweep::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 60%;
+                height: 100%;
+                background: linear-gradient(
+                    105deg,
+                    transparent,
+                    rgba(255, 215, 0, 0.35),
+                    transparent
+                );
+                animation: shineSweep 1.6s ease-in-out;
+                pointer-events: none;
+                border-radius: inherit;
+                z-index: 5;
+            }
+
+            @keyframes shakeModal {
+                0%,
+                100% {
+                    transform: scale(1) translateX(0);
+                }
+                15%,
+                45%,
+                75% {
+                    transform: scale(1.02) translateX(-8px) rotate(-1deg);
+                }
+                30%,
+                60%,
+                90% {
+                    transform: scale(1.02) translateX(8px) rotate(1deg);
+                }
+            }
+            .animate-troll-shake {
+                animation: shakeModal 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97)
+                    both;
+            }
+
+            @keyframes winPop {
+                0% {
+                    transform: scale(0.7) translateY(20px);
+                    opacity: 0;
+                }
+                70% {
+                    transform: scale(1.05) translateY(-5px);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(1) translateY(0);
+                    opacity: 1;
+                }
+            }
+            .animate-win-pop {
+                animation: winPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+                    forwards;
+            }
+
+            @keyframes iconBounce {
+                0%,
+                100% {
+                    transform: translateY(0) scale(1) rotate(0);
+                }
+                25% {
+                    transform: translateY(-10px) scale(1.15) rotate(-8deg);
+                }
+                75% {
+                    transform: translateY(-5px) scale(1.1) rotate(8deg);
+                }
+            }
+            .icon-bounce {
+                animation: iconBounce 1.2s ease-in-out infinite;
+            }
+
+            @keyframes pointerFlash {
+                0% {
+                    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+                }
+                50% {
+                    filter: drop-shadow(0 0 28px rgba(255, 215, 0, 1))
+                        drop-shadow(0 0 50px rgba(255, 215, 0, 0.8));
+                }
+                100% {
+                    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+                }
+            }
+            .pointer-flash {
+                animation: pointerFlash 0.15s ease-out;
+            }
+
+            @keyframes rotateGlow {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+            .rotating-glow {
+                animation: rotateGlow 4s linear infinite;
+                background: conic-gradient(
+                    from 0deg,
+                    transparent,
+                    rgba(245, 158, 11, 0.6),
+                    transparent,
+                    rgba(251, 191, 36, 0.6),
+                    transparent
+                );
+                filter: blur(8px);
+            }
+        </style>
+    </head>
+    <!-- FIX: Gunakan min-h-[100dvh] supaya tidak melimpah keluar dari bar alamat telefon -->
+    <body
+        class="bg-luxury-mesh text-white min-h-[100dvh] flex flex-col justify-between items-center p-3 md:p-6 overflow-hidden relative"
+    >
+        <canvas
+            id="bgCanvas"
+            class="fixed inset-0 pointer-events-none z-0"
+        ></canvas>
+        <canvas
+            id="confettiCanvas"
+            class="fixed inset-0 pointer-events-none z-50"
+        ></canvas>
+
+        <div
+            class="w-full max-w-4xl flex items-center justify-between z-10 pt-1 px-2"
+        >
+            <div class="flex items-center space-x-2">
+                <span
+                    class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"
+                ></span>
+                <span
+                    class="text-xs tracking-widest uppercase font-semibold text-emerald-400/80"
+                    >OWLFX.MY</span
+                >
+            </div>
+
+            <div class="flex items-center space-x-2">
+                <button
+                    id="themeToggleBtn"
+                    class="flex items-center justify-center w-8 h-8 md:w-auto md:px-3 md:py-1.5 rounded-full bg-slate-900/80 border border-slate-700/60 hover:border-amber-500/50 text-slate-300 hover:text-amber-400 transition-all text-xs font-medium backdrop-blur-md"
+                    title="Tukar Tema Siang/Malam"
+                >
+                    <svg
+                        id="themeIconSun"
+                        class="w-4 h-4 hidden md:mr-2 text-amber-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                        ></path>
+                    </svg>
+                    <svg
+                        id="themeIconMoon"
+                        class="w-4 h-4 md:mr-2 text-slate-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                        ></path>
+                    </svg>
+                    <span id="themeLabel" class="hidden md:inline-block"
+                        >GELAP</span
+                    >
+                </button>
+
+                <button
+                    id="audioToggleBtn"
+                    class="flex items-center space-x-2 px-3 py-1.5 rounded-full bg-slate-900/80 border border-slate-700/60 hover:border-amber-500/50 text-slate-300 hover:text-amber-400 transition-all text-xs font-medium backdrop-blur-md"
+                >
+                    <svg
+                        id="soundIconOn"
+                        class="w-4 h-4 text-amber-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"
+                        ></path>
+                    </svg>
+                    <svg
+                        id="soundIconOff"
+                        class="w-4 h-4 text-slate-500 hidden"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15zM17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"
+                        ></path>
+                    </svg>
+                    <span id="soundLabel">BUNYI: ON</span>
+                </button>
+            </div>
+        </div>
+
+        <header class="text-center z-10 my-1 md:my-2">
+            <div
+                class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gradient-to-r from-amber-500/15 via-amber-400/10 to-amber-500/15 border border-amber-500/40 shadow-[0_0_15px_rgba(245,158,11,0.25)] text-amber-300 text-xs font-bold tracking-widest uppercase mb-2.5 backdrop-blur-md transition-transform duration-300 hover:scale-105"
+            >
+                <svg
+                    class="w-3.5 h-3.5 text-amber-400 fill-current animate-[spin_8s_linear_infinite]"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                    />
+                </svg>
+                Exclusive Reward
+            </div>
+            <h1
+                id="mainTitle"
+                class="text-3xl md:text-5xl font-black tracking-tight title-shimmer"
+            >
+                OWLFX SPINNING WHEEL
+            </h1>
+            <p
+                class="text-xs md:text-sm text-slate-400 font-medium tracking-wide mt-0.5"
+            >
+                Tekan & tahan butang tengah untuk HOLD dan SPIN the WHEELS!
+            </p>
+        </header>
+
+        <main
+            class="relative flex-1 flex items-center justify-center w-full px-2 my-auto z-10"
+        >
+            <!-- FIX: Skala Responsif roda w-[min(90vw,50dvh)] agar serasi Tablet & Phone -->
+            <div
+                id="wheelContainer"
+                class="relative flex items-center justify-center w-[min(90vw,50dvh)] sm:w-[min(82vw,43dvh)] max-w-[540px] md:max-w-[620px] aspect-square transition-transform duration-300"
+            >
+                <div
+                    class="absolute inset-[-14px] rounded-full border-2 border-amber-500/20 pointer-events-none ring-pulse-1"
+                ></div>
+                <div
+                    class="absolute inset-[-28px] rounded-full border border-amber-400/15 pointer-events-none ring-pulse-2"
+                ></div>
+                <div
+                    class="absolute inset-[-8px] rounded-full pointer-events-none"
+                    style="
+                        box-shadow:
+                            0 0 60px rgba(245, 158, 11, 0.25),
+                            inset 0 0 60px rgba(245, 158, 11, 0.15);
+                    "
+                ></div>
+
+                <div
+                    id="wheelPointer"
+                    class="absolute -top-3 md:-top-4 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center filter drop-shadow-[0_8px_12px_rgba(0,0,0,0.8)] pointer-events-none transition-transform duration-75 origin-top"
+                >
+                    <div
+                        class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-b from-amber-300 via-yellow-500 to-amber-700 p-0.5 shadow-lg flex items-center justify-center"
+                    >
+                        <div
+                            class="w-4 h-4 md:w-5 md:h-5 rounded-full bg-slate-950 border border-amber-300/60 flex items-center justify-center"
+                        >
+                            <div
+                                class="w-1.5 h-1.5 rounded-full bg-amber-400 shadow-[0_0_8px_#ffd700]"
+                            ></div>
+                        </div>
+                    </div>
+                    <div
+                        class="w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[20px] md:border-t-[24px] border-t-amber-400 -mt-2"
+                    ></div>
+                </div>
+
+                <div
+                    class="absolute inset-0 rounded-full border-[6px] md:border-[8px] border-amber-500/30 shadow-[0_0_60px_rgba(229,169,60,0.2)] pointer-events-none z-10"
+                ></div>
+
+                <canvas
+                    id="wheelCanvas"
+                    class="w-full h-full block rounded-full shadow-2xl z-0"
+                ></canvas>
+
+                <div
+                    class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none"
+                >
+                    <div
+                        class="relative pointer-events-auto flex items-center justify-center"
+                    >
+                        <div
+                            id="holdWave1"
+                            class="absolute w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full border border-amber-400/60 pointer-events-none opacity-0"
+                        ></div>
+                        <div
+                            id="holdWave2"
+                            class="absolute w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full border border-yellow-300/40 pointer-events-none opacity-0"
+                        ></div>
+
+                        <svg
+                            class="absolute -inset-3.5 md:-inset-4 w-[calc(100%+28px)] md:w-[calc(100%+32px)] h-[calc(100%+28px)] md:h-[calc(100%+32px)] -rotate-90 pointer-events-none"
+                        >
+                            <circle
+                                cx="50%"
+                                cy="50%"
+                                r="46%"
+                                class="stroke-slate-900/90 fill-none"
+                                stroke-width="5"
+                            ></circle>
+                            <circle
+                                id="chargeProgressCircle"
+                                cx="50%"
+                                cy="50%"
+                                r="46%"
+                                class="stroke-amber-400 fill-none transition-all duration-75"
+                                stroke-width="6"
+                                stroke-linecap="round"
+                                stroke-dasharray="320"
+                                stroke-dashoffset="320"
+                                style="filter: drop-shadow(0 0 10px #f59e0b)"
+                            ></circle>
+                        </svg>
+
+                        <div
+                            class="absolute inset-0 rounded-full rotating-glow opacity-0 pointer-events-none"
+                            id="rotatingGlow"
+                            style="z-index: -1"
+                        ></div>
+
+                        <!-- FIX: touch-action: none wajib untuk elak pointer capture conflicts -->
+                        <button
+                            id="spinBtn"
+                            style="touch-action: none"
+                            class="group relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full bg-gradient-to-br from-slate-900 via-slate-950 to-neutral-900 border-2 border-amber-400/80 shadow-[0_0_30px_rgba(0,0,0,0.9)] flex flex-col items-center justify-center p-2 cursor-pointer transition-all duration-150 outline-none select-none"
+                        >
+                            <div
+                                class="absolute inset-1 rounded-full border border-amber-500/20 pointer-events-none"
+                            ></div>
+                            <div
+                                id="btnAura"
+                                class="absolute inset-0 rounded-full pointer-events-none transition-opacity duration-200 opacity-0"
+                            ></div>
+                            <div
+                                class="relative z-10 flex flex-col items-center justify-center pointer-events-none"
+                            >
+                                <span
+                                    id="btnMainText"
+                                    class="text-xs md:text-sm font-extrabold tracking-wider text-amber-300 uppercase text-center leading-tight"
+                                    >HOLD<br />TO SPIN</span
+                                >
+                                <span
+                                    id="btnChargeText"
+                                    class="hidden text-[10px] md:text-xs font-bold text-amber-200 mt-0.5 tracking-tight"
+                                    >0%</span
+                                >
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer
+            class="w-full max-w-md flex flex-col items-center z-10 pb-2 px-4"
+        >
+            <div
+                class="w-full bg-slate-900/90 border border-slate-800 rounded-full h-3 p-0.5 overflow-hidden shadow-inner mb-2"
+            >
+                <div
+                    id="footerPowerBar"
+                    class="h-full w-0 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-300 rounded-full transition-all duration-75 shadow-[0_0_12px_rgba(245,158,11,0.6)]"
+                ></div>
+            </div>
+            <div
+                class="flex items-center justify-between w-full text-[11px] text-slate-400 px-1 font-medium"
+            >
+                <span>Touch & Hold the Wheels</span>
+                <span
+                    id="powerStatusLabel"
+                    class="text-amber-400/90 font-semibold uppercase tracking-wider"
+                    >GOODLUCK</span
+                >
+                <span>Release for Spin</span>
+            </div>
+        </footer>
+
+        <div
+            id="resultModal"
+            class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300"
+        >
+            <!-- FIX: Buang overflow-hidden agar margin-top ikon tidak terpotong.-->
+            <div
+                id="modalCard"
+                class="relative w-full max-w-sm rounded-3xl bg-gradient-to-b from-slate-900 via-slate-950 to-neutral-950 border border-amber-500/40 p-6 md:p-8 text-center shadow-[0_0_60px_rgba(245,158,11,0.2)] transition-colors duration-300"
+            >
+                <!-- FIX: Shine Wrapper ditambah untuk mengawal animasi kilauan agar tidak melimpah dari kad -->
+                <div
+                    id="modalShineWrapper"
+                    class="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none z-0"
+                ></div>
+
+                <!-- CONTENT WRAPPER -->
+                <div class="relative z-10">
+                    <div
+                        id="modalIconContainer"
+                        class="w-20 h-20 mx-auto -mt-14 mb-4 rounded-full bg-gradient-to-tr from-amber-500 to-yellow-300 p-1 shadow-2xl flex items-center justify-center"
+                    >
+                        <div
+                            id="modalIconInner"
+                            class="w-full h-full rounded-full bg-slate-950 flex items-center justify-center text-3xl transition-colors duration-300"
+                        >
+                            🎁
+                        </div>
+                    </div>
+                    <span
+                        id="modalTag"
+                        class="inline-block px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase bg-amber-500/20 text-amber-300 border border-amber-500/30 mb-2"
+                        >KEPUTUSAN</span
+                    >
+                    <h3
+                        id="modalTitle"
+                        class="text-3xl md:text-4xl font-black text-white tracking-tight mb-2"
+                    >
+                        TAHNIAH!
+                    </h3>
+                    <p
+                        id="modalDesc"
+                        class="text-sm text-slate-300 mb-6 leading-relaxed"
+                    ></p>
+                    <button
+                        id="modalActionBtn"
+                        class="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 text-slate-950 font-extrabold text-base tracking-wider uppercase shadow-[0_8px_25px_rgba(245,158,11,0.4)] hover:brightness-110 active:scale-98 transition-all cursor-pointer"
+                    >
+                        Terima Kasih
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            let isMuted = false;
+            let isDayTheme = false;
+            let lastTime = 0;
+
+            class NetworkBackground {
+                constructor(canvasId) {
+                    this.canvas = document.getElementById(canvasId);
+                    this.ctx = this.canvas.getContext("2d");
+                    this.nodes = [];
+                    this.sparkles = [];
+                    this.nodeCount = 65;
+                    this.sparkleCount = 35;
+                    this.maxDistance = 140;
+                    this.init();
+                }
+                init() {
+                    this.resize();
+                    this.nodes = [];
+                    this.sparkles = [];
+                    for (let i = 0; i < this.nodeCount; i++) {
+                        this.nodes.push({
+                            x: Math.random() * this.width,
+                            y: Math.random() * this.height,
+                            vx: (Math.random() - 0.5) * 0.45,
+                            vy: (Math.random() - 0.5) * 0.45,
+                            radius: Math.random() * 2.2 + 1.2,
+                            baseAlpha: Math.random() * 0.5 + 0.3,
+                            pulseVal: Math.random() * Math.PI,
+                            pulseSpeed: Math.random() * 0.02 + 0.01,
+                        });
+                    }
+                    for (let i = 0; i < this.sparkleCount; i++) {
+                        this.sparkles.push({
+                            x: Math.random() * this.width,
+                            y: Math.random() * this.height,
+                            size: Math.random() * 2 + 0.5,
+                            speed: Math.random() * 0.3 + 0.05,
+                            phase: Math.random() * Math.PI * 2,
+                            twinkleSpeed: Math.random() * 0.03 + 0.01,
+                        });
+                    }
+                }
+                resize() {
+                    const dpr = window.devicePixelRatio || 1;
+                    this.width = window.innerWidth;
+                    this.height = window.innerHeight;
+                    this.canvas.width = this.width * dpr;
+                    this.canvas.height = this.height * dpr;
+                    this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                }
+                updateAndDraw(timeScale = 1) {
+                    this.ctx.clearRect(0, 0, this.width, this.height);
+
+                    const r = isDayTheme ? 217 : 229;
+                    const g = isDayTheme ? 119 : 169;
+                    const b = isDayTheme ? 6 : 60;
+
+                    for (const s of this.sparkles) {
+                        s.phase += s.twinkleSpeed * timeScale;
+                        s.y -= s.speed * timeScale;
+                        if (s.y < -10) {
+                            s.y = this.height + 10;
+                            s.x = Math.random() * this.width;
+                        }
+                        const alpha = 0.3 + Math.sin(s.phase) * 0.5;
+                        this.ctx.beginPath();
+                        this.ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                        this.ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${Math.max(0, alpha) * 0.6})`;
+                        this.ctx.shadowColor = `rgba(${r}, ${g}, ${b}, ${Math.max(0, alpha)})`;
+                        this.ctx.shadowBlur = 10;
+                        this.ctx.fill();
+                    }
+                    this.ctx.shadowBlur = 0;
+
+                    for (let i = 0; i < this.nodes.length; i++) {
+                        const n1 = this.nodes[i];
+                        n1.x += n1.vx * timeScale;
+                        n1.y += n1.vy * timeScale;
+                        n1.pulseVal += n1.pulseSpeed * timeScale;
+                        if (n1.x < 0) n1.x = this.width;
+                        if (n1.x > this.width) n1.x = 0;
+                        if (n1.y < 0) n1.y = this.height;
+                        if (n1.y > this.height) n1.y = 0;
+
+                        for (let j = i + 1; j < this.nodes.length; j++) {
+                            const n2 = this.nodes[j];
+                            const dist = Math.sqrt(
+                                Math.pow(n1.x - n2.x, 2) +
+                                    Math.pow(n1.y - n2.y, 2),
+                            );
+                            if (dist < this.maxDistance) {
+                                this.ctx.beginPath();
+                                this.ctx.moveTo(n1.x, n1.y);
+                                this.ctx.lineTo(n2.x, n2.y);
+                                const lineOpacity = isDayTheme ? 0.3 : 0.22;
+                                this.ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${(1 - dist / this.maxDistance) * lineOpacity})`;
+                                this.ctx.lineWidth = 0.9;
+                                this.ctx.stroke();
+                            }
+                        }
+                        this.ctx.beginPath();
+                        this.ctx.arc(n1.x, n1.y, n1.radius, 0, Math.PI * 2);
+                        this.ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${Math.max(0.1, n1.baseAlpha + Math.sin(n1.pulseVal) * 0.2)})`;
+                        this.ctx.fill();
+                    }
+                }
+            }
+            const networkBg = new NetworkBackground("bgCanvas");
+
+            // FIX: Sistem Audio Mudah Alih yang Lebih Teguh
+            const AudioContext =
+                window.AudioContext || window.webkitAudioContext;
+            const audioCtx = new AudioContext();
+
+            let masterGain = null;
+            let audioUnlocked = false;
+            let chargeOscillator = null;
+            let chargeGain = null;
+
+            async function initAudio() {
+                if (!masterGain) {
+                    masterGain = audioCtx.createGain();
+                    masterGain.connect(audioCtx.destination);
+                    // Pastikan ia sync dengan status mute di awal
+                    masterGain.gain.value = isMuted ? 0 : 1;
+                }
+
+                if (audioCtx.state === "suspended") {
+                    try {
+                        await audioCtx.resume();
+                    } catch (e) {
+                        console.warn("Gagal memulihkan AudioContext", e);
+                    }
+                }
+            }
+
+            // Audio Unlocker Global (Menembak 1 silent buffer untuk iOS hardware)
+            async function unlockAudio() {
+                if (audioUnlocked) return;
+                await initAudio();
+
+                if (audioCtx.state === "running") {
+                    const buffer = audioCtx.createBuffer(1, 1, 22050);
+                    const source = audioCtx.createBufferSource();
+                    source.buffer = buffer;
+                    source.connect(masterGain);
+                    if (source.start) source.start(0);
+                    else source.noteOn(0);
+
+                    audioUnlocked = true;
+                    // Bersihkan listeners apabila sudah dibuka kuncinya
+                    ["touchstart", "touchend", "pointerdown", "click"].forEach(
+                        (evt) => {
+                            window.removeEventListener(evt, unlockAudio, {
+                                capture: true,
+                            });
+                        },
+                    );
+                }
+            }
+
+            // Daftarkan event listener global
+            ["touchstart", "touchend", "pointerdown", "click"].forEach(
+                (evt) => {
+                    window.addEventListener(evt, unlockAudio, {
+                        capture: true,
+                        once: true,
+                    });
+                },
+            );
+
+            async function playTick() {
+                if (isMuted) return;
+                if (audioCtx.state === "suspended") await initAudio();
+                if (audioCtx.state === "suspended") return;
+
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(masterGain); // Sambungkan kepada masterGain!
+
+                osc.type = "triangle";
+                osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(
+                    100,
+                    audioCtx.currentTime + 0.03,
+                );
+                gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(
+                    0.001,
+                    audioCtx.currentTime + 0.03,
+                );
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.05);
+            }
+
+            async function playImpactSound() {
+                if (isMuted) return;
+                if (audioCtx.state === "suspended") await initAudio();
+                if (audioCtx.state === "suspended") return;
+
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = "sine";
+                osc.frequency.setValueAtTime(120, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(
+                    40,
+                    audioCtx.currentTime + 0.3,
+                );
+                gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(
+                    0.001,
+                    audioCtx.currentTime + 0.35,
+                );
+                osc.connect(gain);
+                gain.connect(masterGain);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.4);
+            }
+
+            async function playNearMissSuspense() {
+                if (isMuted) return;
+                if (audioCtx.state === "suspended") await initAudio();
+                if (audioCtx.state === "suspended") return;
+
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = "sine";
+                osc.frequency.setValueAtTime(110, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(
+                    55,
+                    audioCtx.currentTime + 0.5,
+                );
+                gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(
+                    0.001,
+                    audioCtx.currentTime + 0.5,
+                );
+                osc.connect(gain);
+                gain.connect(masterGain);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.55);
+            }
+
+            async function startChargeSound() {
+                if (isMuted) return;
+                await initAudio();
+                if (audioCtx.state === "suspended") return;
+
+                stopChargeSound();
+                chargeOscillator = audioCtx.createOscillator();
+                chargeGain = audioCtx.createGain();
+                chargeOscillator.connect(chargeGain);
+                chargeGain.connect(masterGain);
+
+                chargeOscillator.type = "sine";
+                chargeOscillator.frequency.setValueAtTime(
+                    200,
+                    audioCtx.currentTime,
+                );
+                chargeOscillator.frequency.linearRampToValueAtTime(
+                    1000,
+                    audioCtx.currentTime + 3,
+                );
+                chargeGain.gain.setValueAtTime(0, audioCtx.currentTime);
+                chargeGain.gain.linearRampToValueAtTime(
+                    0.3,
+                    audioCtx.currentTime + 0.5,
+                );
+                chargeOscillator.start();
+            }
+
+            function stopChargeSound() {
+                if (chargeOscillator && chargeGain) {
+                    try {
+                        chargeGain.gain.linearRampToValueAtTime(
+                            0,
+                            audioCtx.currentTime + 0.1,
+                        );
+                        chargeOscillator.stop(audioCtx.currentTime + 0.1);
+                    } catch (e) {
+                        // Telah diberhentikan dengan selamat
+                    }
+                    chargeOscillator = null;
+                }
+            }
+
+            async function playWinFanfare() {
+                if (isMuted) return;
+                if (audioCtx.state === "suspended") await initAudio();
+                if (audioCtx.state === "suspended") return;
+
+                const notes = [523.25, 659.25, 783.99, 1046.5];
+                notes.forEach((freq, idx) => {
+                    setTimeout(() => {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = "sine";
+                        osc.frequency.setValueAtTime(
+                            freq,
+                            audioCtx.currentTime,
+                        );
+                        gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                        gain.gain.exponentialRampToValueAtTime(
+                            0.001,
+                            audioCtx.currentTime + 0.45,
+                        );
+                        osc.connect(gain);
+                        gain.connect(masterGain);
+                        osc.start();
+                        osc.stop(audioCtx.currentTime + 0.5);
+                    }, idx * 110);
+                });
+            }
+
+            async function playTrollSound() {
+                if (isMuted) return;
+                if (audioCtx.state === "suspended") await initAudio();
+                if (audioCtx.state === "suspended") return;
+
+                const freqs = [380, 350, 310, 240];
+                freqs.forEach((freq, idx) => {
+                    setTimeout(() => {
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+                        osc.type = "sawtooth";
+                        osc.frequency.setValueAtTime(
+                            freq,
+                            audioCtx.currentTime,
+                        );
+                        osc.frequency.linearRampToValueAtTime(
+                            freq - 25,
+                            audioCtx.currentTime + 0.22,
+                        );
+                        gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                        gain.gain.exponentialRampToValueAtTime(
+                            0.001,
+                            audioCtx.currentTime + 0.24,
+                        );
+                        osc.connect(gain);
+                        gain.connect(masterGain);
+                        osc.start();
+                        osc.stop(audioCtx.currentTime + 0.25);
+                    }, idx * 160);
+                });
+            }
+
+            const SLICES = [
+                { text: "RM 1", isWin: true, type: "cash-sm", weight: 0.125 },
+                {
+                    text: "Tidak Mengapa, jangan sedih ya!",
+                    isWin: false,
+                    type: "troll",
+                    weight: 0.05,
+                },
+                { text: "RM 10", isWin: true, type: "cash-md", weight: 0.06 },
+                { text: "RM 5", isWin: true, type: "cash-sm", weight: 0.09 },
+                {
+                    text: "Hmm, bukan rezeki lah...",
+                    isWin: false,
+                    type: "troll",
+                    weight: 0.05,
+                },
+                { text: "RM 20", isWin: true, type: "cash-md", weight: 0.035 },
+                { text: "RM 50", isWin: true, type: "cash-lg", weight: 0.0125 },
+                {
+                    text: "Nasib Tak Menyebelahi Anda!",
+                    isWin: false,
+                    type: "troll",
+                    weight: 0.05,
+                },
+                { text: "RM 1", isWin: true, type: "cash-sm", weight: 0.125 },
+                {
+                    text: "Alahai Sipi-sipi Je Lagi!",
+                    isWin: false,
+                    type: "troll",
+                    weight: 0.05,
+                },
+                {
+                    text: "RM 100",
+                    isWin: true,
+                    type: "jackpot",
+                    weight: 0.005,
+                },
+                {
+                    text: "Bawa Balik Senyuman Manis :)",
+                    isWin: false,
+                    type: "troll",
+                    weight: 0.05,
+                },
+                { text: "RM 5", isWin: true, type: "cash-sm", weight: 0.09 },
+                { text: "RM 10", isWin: true, type: "cash-md", weight: 0.06 },
+                {
+                    text: "Tepuk Tangan Untuk Diri Sendiri!",
+                    isWin: false,
+                    type: "troll",
+                    weight: 0.05,
+                },
+                { text: "RM 20", isWin: true, type: "cash-md", weight: 0.035 },
+                { text: "RM 50", isWin: true, type: "cash-lg", weight: 0.0125 },
+                {
+                    text: "Masuk Zon Poket Kering!",
+                    isWin: false,
+                    type: "troll",
+                    weight: 0.05,
+                },
+            ];
+
+            const numSlices = SLICES.length;
+            const arc = (2 * Math.PI) / numSlices;
+            const jackpotIndex = SLICES.findIndex((s) => s.type === "jackpot");
+
+            const wheelCanvas = document.getElementById("wheelCanvas");
+            const ctx = wheelCanvas.getContext("2d");
+            const wheelPointer = document.getElementById("wheelPointer");
+            const wheelContainer = document.getElementById("wheelContainer");
+
+            const cachedWheelCanvas = document.createElement("canvas");
+            const cachedWheelCtx = cachedWheelCanvas.getContext("2d");
+
+            let currentRotation = 0;
+            let wheelState = "IDLE";
+            let lastPassedSlice = -1;
+            let wheelSize = 600;
+
+            let chargeParticles = [];
+            let flashSliceIndex = -1;
+            let flashStartTime = 0;
+
+            function buildWheelCache() {
+                const dpr = window.devicePixelRatio || 1;
+                cachedWheelCanvas.width = wheelSize * dpr;
+                cachedWheelCanvas.height = wheelSize * dpr;
+                cachedWheelCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+                const radius = wheelSize / 2;
+                cachedWheelCtx.clearRect(0, 0, wheelSize, wheelSize);
+
+                cachedWheelCtx.save();
+                cachedWheelCtx.translate(radius, radius);
+
+                const winColor1 = isDayTheme ? "#ffffff" : "#161e2e";
+                const winColor2 = isDayTheme ? "#f8fafc" : "#1f293d";
+                const loseColor = isDayTheme ? "#f1f5f9" : "#0f131c";
+                const loseTextColor = isDayTheme ? "#64748b" : "#94a3b8";
+
+                const sizeLg = Math.max(12, radius * 0.053);
+                const sizeMd = Math.max(11, radius * 0.05);
+                const sizeSm = Math.max(8, radius * 0.038);
+                const textOffset = radius * 0.086;
+
+                for (let i = 0; i < numSlices; i++) {
+                    const item = SLICES[i];
+                    const startRad = i * arc;
+                    const endRad = startRad + arc;
+
+                    cachedWheelCtx.beginPath();
+                    cachedWheelCtx.moveTo(0, 0);
+                    cachedWheelCtx.arc(0, 0, radius - 6, startRad, endRad);
+                    cachedWheelCtx.closePath();
+
+                    if (item.type === "jackpot") {
+                        const grad = cachedWheelCtx.createRadialGradient(
+                            0,
+                            0,
+                            radius * 0.3,
+                            0,
+                            0,
+                            radius,
+                        );
+                        grad.addColorStop(0, "#fbbf24");
+                        grad.addColorStop(0.5, "#d97706");
+                        grad.addColorStop(1, "#78350f");
+                        cachedWheelCtx.fillStyle = grad;
+                    } else if (item.type === "cash-lg") {
+                        const grad = cachedWheelCtx.createRadialGradient(
+                            0,
+                            0,
+                            radius * 0.3,
+                            0,
+                            0,
+                            radius,
+                        );
+                        grad.addColorStop(0, "#b45309");
+                        grad.addColorStop(1, "#78350f");
+                        cachedWheelCtx.fillStyle = grad;
+                    } else if (item.isWin) {
+                        cachedWheelCtx.fillStyle =
+                            i % 2 === 0 ? winColor1 : winColor2;
+                    } else {
+                        cachedWheelCtx.fillStyle = loseColor;
+                    }
+                    cachedWheelCtx.fill();
+
+                    if (item.isWin) {
+                        const highlight = cachedWheelCtx.createRadialGradient(
+                            0,
+                            0,
+                            radius * 0.4,
+                            0,
+                            0,
+                            radius,
+                        );
+                        highlight.addColorStop(0, "rgba(255,255,255,0.05)");
+                        highlight.addColorStop(1, "rgba(255,255,255,0)");
+                        cachedWheelCtx.fillStyle = highlight;
+                        cachedWheelCtx.fill();
+                    }
+
+                    cachedWheelCtx.strokeStyle = isDayTheme
+                        ? "rgba(245, 158, 11, 0.4)"
+                        : "rgba(245, 158, 11, 0.22)";
+                    cachedWheelCtx.lineWidth = 1.5;
+                    cachedWheelCtx.stroke();
+
+                    cachedWheelCtx.save();
+                    cachedWheelCtx.rotate(startRad + arc / 2);
+                    cachedWheelCtx.textAlign = "right";
+                    cachedWheelCtx.textBaseline = "middle";
+
+                    if (item.type === "jackpot") {
+                        cachedWheelCtx.fillStyle = "#fef08a";
+                        cachedWheelCtx.font = `900 ${sizeLg}px Outfit, sans-serif`;
+                        cachedWheelCtx.shadowColor = isDayTheme
+                            ? "rgba(0,0,0,0.3)"
+                            : "#000000";
+                        cachedWheelCtx.shadowBlur = 4;
+                        cachedWheelCtx.fillText(
+                            "★ " + item.text,
+                            radius - textOffset,
+                            0,
+                        );
+                    } else if (item.isWin) {
+                        cachedWheelCtx.fillStyle = "#fde047";
+                        cachedWheelCtx.font = `800 ${sizeMd}px Outfit, sans-serif`;
+                        cachedWheelCtx.shadowColor = isDayTheme
+                            ? "rgba(0,0,0,0.3)"
+                            : "#000000";
+                        cachedWheelCtx.shadowBlur = 3;
+                        cachedWheelCtx.fillText(
+                            item.text,
+                            radius - textOffset,
+                            0,
+                        );
+                    } else {
+                        cachedWheelCtx.fillStyle = loseTextColor;
+                        cachedWheelCtx.font = `600 ${sizeSm}px Inter, sans-serif`;
+                        cachedWheelCtx.fillText(
+                            item.text,
+                            radius - textOffset,
+                            0,
+                        );
+                    }
+                    cachedWheelCtx.restore();
+
+                    const pinX = Math.cos(startRad) * (radius - 14);
+                    const pinY = Math.sin(startRad) * (radius - 14);
+                    cachedWheelCtx.beginPath();
+                    cachedWheelCtx.arc(pinX, pinY, 4, 0, 2 * Math.PI);
+                    cachedWheelCtx.fillStyle = "#fbbf24";
+                    cachedWheelCtx.shadowColor = isDayTheme
+                        ? "rgba(0,0,0,0.15)"
+                        : "#000";
+                    cachedWheelCtx.shadowBlur = 4;
+                    cachedWheelCtx.fill();
+                    cachedWheelCtx.strokeStyle = "#78350f";
+                    cachedWheelCtx.lineWidth = 1;
+                    cachedWheelCtx.stroke();
+                }
+
+                const vignette = cachedWheelCtx.createRadialGradient(
+                    0,
+                    0,
+                    radius * 0.4,
+                    0,
+                    0,
+                    radius,
+                );
+                vignette.addColorStop(0, "rgba(0,0,0,0)");
+                vignette.addColorStop(0.7, "rgba(0,0,0,0.08)");
+                vignette.addColorStop(1, "rgba(0,0,0,0.4)");
+                cachedWheelCtx.fillStyle = vignette;
+                cachedWheelCtx.beginPath();
+                cachedWheelCtx.arc(0, 0, radius - 6, 0, Math.PI * 2);
+                cachedWheelCtx.fill();
+
+                cachedWheelCtx.beginPath();
+                cachedWheelCtx.arc(0, 0, radius - 6, 0, 2 * Math.PI);
+                cachedWheelCtx.strokeStyle = isDayTheme
+                    ? "rgba(245, 158, 11, 0.9)"
+                    : "rgba(245, 158, 11, 0.6)";
+                cachedWheelCtx.lineWidth = 4;
+                cachedWheelCtx.stroke();
+
+                cachedWheelCtx.restore();
+            }
+
+            function resizeCanvases() {
+                const container = document.getElementById("wheelContainer");
+                const rect = container.getBoundingClientRect();
+                const dpr = window.devicePixelRatio || 1;
+                wheelSize = Math.floor(rect.width);
+                wheelCanvas.width = wheelSize * dpr;
+                wheelCanvas.height = wheelSize * dpr;
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+                const confettiCanvas =
+                    document.getElementById("confettiCanvas");
+                confettiCanvas.width = window.innerWidth * dpr;
+                confettiCanvas.height = window.innerHeight * dpr;
+                confettiCanvas
+                    .getContext("2d")
+                    .setTransform(dpr, 0, 0, dpr, 0, 0);
+
+                networkBg.resize();
+                buildWheelCache();
+            }
+
+            let resizeTimeout;
+            window.addEventListener("resize", () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(resizeCanvases, 150);
+            });
+
+            function spawnChargeParticle() {
+                if (chargeParticles.length > 60) return;
+                const angle = Math.random() * Math.PI * 2;
+                const dist = (wheelSize / 2) * (0.7 + Math.random() * 0.25);
+                chargeParticles.push({
+                    x: Math.cos(angle) * dist,
+                    y: Math.sin(angle) * dist,
+                    vx: -Math.cos(angle) * (2 + Math.random() * 2.5),
+                    vy: -Math.sin(angle) * (2 + Math.random() * 2.5),
+                    life: 1,
+                    size: Math.random() * 3.5 + 1.5,
+                    color:
+                        Math.random() > 0.4 ? "251, 191, 36" : "245, 158, 11",
+                });
+            }
+
+            function updateChargeParticles(c, timeScale = 1) {
+                for (let i = chargeParticles.length - 1; i >= 0; i--) {
+                    const p = chargeParticles[i];
+                    p.x += p.vx * timeScale;
+                    p.y += p.vy * timeScale;
+                    p.life -= 0.025 * timeScale;
+                    if (p.life <= 0) {
+                        chargeParticles.splice(i, 1);
+                        continue;
+                    }
+                    c.save();
+                    c.globalAlpha = p.life;
+                    c.beginPath();
+                    c.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    c.fillStyle = `rgba(${p.color}, 1)`;
+                    c.shadowColor = `rgba(${p.color}, 1)`;
+                    c.shadowBlur = 14;
+                    c.fill();
+                    c.restore();
+                }
+            }
+
+            function drawWheel(timeScale = 1) {
+                const radius = wheelSize / 2;
+                ctx.clearRect(0, 0, wheelSize, wheelSize);
+
+                ctx.save();
+                ctx.translate(radius, radius);
+                ctx.rotate(currentRotation);
+
+                ctx.drawImage(
+                    cachedWheelCanvas,
+                    -radius,
+                    -radius,
+                    wheelSize,
+                    wheelSize,
+                );
+
+                if (flashSliceIndex >= 0) {
+                    const flashElapsed = performance.now() - flashStartTime;
+                    if (flashElapsed < 900) {
+                        const flashIntensity =
+                            Math.abs(Math.sin(flashElapsed / 90)) * 0.6 + 0.3;
+                        const startRad = flashSliceIndex * arc;
+                        const endRad = startRad + arc;
+
+                        ctx.beginPath();
+                        ctx.moveTo(0, 0);
+                        ctx.arc(0, 0, radius - 6, startRad, endRad);
+                        ctx.closePath();
+                        ctx.fillStyle = `rgba(255, 215, 0, ${flashIntensity})`;
+                        ctx.shadowColor = "#ffd700";
+                        ctx.shadowBlur = 40;
+                        ctx.fill();
+                        ctx.shadowBlur = 0;
+                    }
+                }
+                ctx.restore();
+
+                ctx.save();
+                ctx.translate(radius, radius);
+                updateChargeParticles(ctx, timeScale);
+                ctx.restore();
+
+                let normRot = currentRotation % (2 * Math.PI);
+                if (normRot < 0) normRot += 2 * Math.PI;
+                let pointerAngle = Math.PI * 1.5 - normRot;
+                if (pointerAngle < 0) pointerAngle += 2 * Math.PI;
+                let currentSlice = Math.floor(pointerAngle / arc);
+
+                if (
+                    currentSlice !== lastPassedSlice &&
+                    (wheelState === "SPINNING" || wheelState === "CHARGING")
+                ) {
+                    lastPassedSlice = currentSlice;
+                    const isNearMissZone =
+                        wheelState === "SPINNING" &&
+                        isNearMissScenario &&
+                        (currentSlice === jackpotIndex ||
+                            currentSlice ===
+                                (jackpotIndex - 1 + numSlices) % numSlices ||
+                            currentSlice === (jackpotIndex + 1) % numSlices);
+
+                    playTick();
+
+                    wheelPointer.style.transform =
+                        "translate(-50%, 0) rotate(-22deg)";
+                    wheelPointer.classList.add("pointer-flash");
+                    setTimeout(() => {
+                        wheelPointer.style.transform =
+                            "translate(-50%, 0) rotate(0deg)";
+                    }, 40);
+                    setTimeout(() => {
+                        wheelPointer.classList.remove("pointer-flash");
+                    }, 120);
+                }
+            }
+
+            let chargeStartTime = 0;
+            let chargePower = 0;
+            let easterEggTapCount = 0;
+            let lastTapTime = 0;
+            let spinStartRotation = 0;
+            let spinTargetRotation = 0;
+            let spinStartTime = 0;
+            let spinDuration = 0;
+            let winningSlice = null;
+            let winningIndex = -1;
+            let isNearMissScenario = false;
+            let nearMissTriggered = false;
+
+            const btnChargeText = document.getElementById("btnChargeText");
+            const footerPowerBar = document.getElementById("footerPowerBar");
+            const chargeProgressCircle = document.getElementById(
+                "chargeProgressCircle",
+            );
+            const powerStatusLabel =
+                document.getElementById("powerStatusLabel");
+            const btnMainText = document.getElementById("btnMainText");
+            const spinBtn = document.getElementById("spinBtn");
+            const btnAura = document.getElementById("btnAura");
+            const holdWave1 = document.getElementById("holdWave1");
+            const holdWave2 = document.getElementById("holdWave2");
+            const rotatingGlow = document.getElementById("rotatingGlow");
+
+            function easeOutCubic(t) {
+                return 1 - Math.pow(1 - t, 3);
+            }
+
+            function engineLoop(currentTime) {
+                if (!lastTime) lastTime = currentTime;
+                const deltaTime = Math.min(currentTime - lastTime, 50);
+                lastTime = currentTime;
+                const timeScale = deltaTime / 16.666;
+
+                networkBg.updateAndDraw(timeScale);
+
+                if (wheelState === "IDLE") {
+                    currentRotation += 0.002 * timeScale;
+                } else if (wheelState === "CHARGING") {
+                    const heldTime = Math.min(
+                        currentTime - chargeStartTime,
+                        3000,
+                    );
+                    chargePower = heldTime / 3000;
+                    currentRotation += (0.002 + chargePower * 0.15) * timeScale;
+
+                    if (Math.random() < (0.4 + chargePower * 0.5) * timeScale) {
+                        spawnChargeParticle();
+                    }
+
+                    const percent = Math.round(chargePower * 100);
+                    btnChargeText.textContent = `${percent}%`;
+                    footerPowerBar.style.width = `${percent}%`;
+                    chargeProgressCircle.style.strokeDashoffset =
+                        320 - chargePower * 320;
+                    powerStatusLabel.textContent =
+                        percent < 40 ? "CHARGESSS..." : "MAXIMUM SPINNING...";
+                } else if (wheelState === "SPINNING") {
+                    const elapsed = currentTime - spinStartTime;
+                    let progress = Math.min(elapsed / spinDuration, 1);
+                    const eased = easeOutCubic(progress);
+
+                    currentRotation =
+                        spinStartRotation +
+                        (spinTargetRotation - spinStartRotation) * eased;
+                    footerPowerBar.style.width = `${Math.round((1 - progress) * 100)}%`;
+
+                    if (
+                        isNearMissScenario &&
+                        progress > 0.82 &&
+                        !nearMissTriggered
+                    ) {
+                        nearMissTriggered = true;
+                        playNearMissSuspense();
+                        powerStatusLabel.textContent = "HAMPIR JACKPOT?! 😱";
+                        powerStatusLabel.classList.add(
+                            "text-amber-300",
+                            "animate-pulse",
+                        );
+                        if (navigator.vibrate)
+                            navigator.vibrate([20, 50, 20, 70]);
+                    }
+
+                    if (progress === 1) {
+                        wheelState = "FLASHING";
+                        flashSliceIndex = winningIndex;
+                        flashStartTime = performance.now();
+                        playImpactSound();
+                        triggerScreenShake();
+
+                        setTimeout(() => {
+                            wheelState = "MODAL";
+                            flashSliceIndex = -1;
+                            showResultModal();
+                        }, 900);
+                    }
+                }
+
+                drawWheel(timeScale);
+
+                if (confettiActive) updateAndDrawConfetti(timeScale);
+                requestAnimationFrame(engineLoop);
+            }
+
+            function triggerScreenShake() {
+                wheelContainer.classList.add("screen-shake");
+                setTimeout(
+                    () => wheelContainer.classList.remove("screen-shake"),
+                    600,
+                );
+            }
+
+            function getWeightedWinner() {
+                const rand = Math.random();
+                let cumulative = 0;
+                for (let i = 0; i < numSlices; i++) {
+                    cumulative += SLICES[i].weight;
+                    if (rand <= cumulative) return i;
+                }
+                return numSlices - 1;
+            }
+
+            function startCharge(e) {
+                if (e.cancelable) e.preventDefault();
+                if (wheelState !== "IDLE" && wheelState !== "MODAL") return;
+
+                const now = performance.now();
+                if (now - lastTapTime < 450) {
+                    easterEggTapCount++;
+                } else {
+                    easterEggTapCount = 1;
+                }
+                lastTapTime = now;
+
+                initAudio();
+                wheelState = "CHARGING";
+                chargeStartTime = performance.now();
+                chargePower = 0;
+                startChargeSound();
+
+                if (navigator.vibrate) navigator.vibrate(15);
+
+                spinBtn.style.transform = "scale(0.92)";
+                btnAura.classList.add("aura-charge", "opacity-100");
+                holdWave1.classList.add("ripple-active-1");
+                holdWave2.classList.add("ripple-active-2");
+                rotatingGlow.classList.remove("opacity-0");
+                btnMainText.innerHTML = "LEPAS<br>UNTUK SPIN";
+                btnChargeText.classList.remove("hidden");
+            }
+
+            function releaseCharge(e) {
+                if (e && e.cancelable) e.preventDefault();
+                if (wheelState !== "CHARGING") return;
+
+                const heldTime = performance.now() - chargeStartTime;
+
+                if (heldTime < 220) {
+                    stopChargeSound();
+                    wheelState = "IDLE";
+                    spinBtn.style.transform = "scale(1)";
+                    btnAura.classList.remove("aura-charge", "opacity-100");
+                    holdWave1.classList.remove("ripple-active-1");
+                    holdWave2.classList.remove("ripple-active-2");
+                    rotatingGlow.classList.add("opacity-0");
+                    btnMainText.innerHTML = "HOLD<br>TO SPIN";
+                    btnChargeText.classList.add("hidden");
+                    chargeProgressCircle.style.strokeDashoffset = 320;
+                    footerPowerBar.style.width = "0%";
+                    powerStatusLabel.textContent = "GOODLUCK";
+                    return;
+                }
+
+                stopChargeSound();
+                wheelState = "SPINNING";
+                const finalPower = Math.max(chargePower, 0.15);
+
+                spinBtn.style.transform = "scale(1)";
+                btnAura.classList.remove("aura-charge", "opacity-100");
+                holdWave1.classList.remove("ripple-active-1");
+                holdWave2.classList.remove("ripple-active-2");
+                rotatingGlow.classList.add("opacity-0");
+                btnMainText.innerHTML = "SPINNING..";
+                btnChargeText.classList.add("hidden");
+                powerStatusLabel.textContent = "SPINNING...";
+                powerStatusLabel.classList.remove(
+                    "text-amber-300",
+                    "animate-pulse",
+                );
+
+                let winIndex;
+                if (easterEggTapCount === 3) {
+                    winIndex = jackpotIndex >= 0 ? jackpotIndex : 10;
+                } else if (easterEggTapCount === 2) {
+                    const idx50 = SLICES.findIndex((s) => s.text === "RM 50");
+                    winIndex = idx50 >= 0 ? idx50 : 6;
+                } else {
+                    winIndex = getWeightedWinner();
+                }
+                easterEggTapCount = 0;
+
+                winningSlice = SLICES[winIndex];
+                winningIndex = winIndex;
+
+                const isAdjacentToJackpot =
+                    winIndex === (jackpotIndex - 1 + numSlices) % numSlices ||
+                    winIndex === (jackpotIndex + 1) % numSlices;
+
+                isNearMissScenario = isAdjacentToJackpot && !winningSlice.isWin;
+                nearMissTriggered = false;
+
+                spinStartTime = performance.now();
+                spinDuration =
+                    3000 + finalPower * 4500 + (isNearMissScenario ? 500 : 0);
+                spinStartRotation = currentRotation;
+
+                const sliceCenterAngle = winIndex * arc + arc / 2;
+                const jitter = (Math.random() - 0.5) * (arc * 0.7);
+                const targetAbsoluteAngle =
+                    Math.PI * 1.5 - sliceCenterAngle + jitter;
+
+                let currentNorm = currentRotation % (2 * Math.PI);
+                if (currentNorm < 0) currentNorm += 2 * Math.PI;
+                let diff = targetAbsoluteAngle - currentNorm;
+                if (diff <= 0) diff += 2 * Math.PI;
+
+                const extraSpins = Math.floor(2 + finalPower * 6);
+                spinTargetRotation =
+                    currentRotation + diff + extraSpins * 2 * Math.PI;
+            }
+
+            let activePointerId = null;
+
+            spinBtn.addEventListener("pointerdown", (e) => {
+                activePointerId = e.pointerId;
+                try {
+                    spinBtn.setPointerCapture(e.pointerId);
+                } catch (err) {}
+                startCharge(e);
+            });
+
+            spinBtn.addEventListener("pointerup", (e) => {
+                if (
+                    activePointerId !== null &&
+                    e.pointerId === activePointerId
+                ) {
+                    try {
+                        spinBtn.releasePointerCapture(e.pointerId);
+                    } catch (err) {}
+                    activePointerId = null;
+                }
+                releaseCharge(e);
+            });
+
+            spinBtn.addEventListener("pointercancel", (e) => {
+                if (
+                    activePointerId !== null &&
+                    e.pointerId === activePointerId
+                ) {
+                    try {
+                        spinBtn.releasePointerCapture(e.pointerId);
+                    } catch (err) {}
+                    activePointerId = null;
+                }
+                releaseCharge(e);
+            });
+
+            spinBtn.addEventListener("contextmenu", (e) => e.preventDefault());
+
+            const resultModal = document.getElementById("resultModal");
+            const modalCard = document.getElementById("modalCard");
+            const modalShineWrapper =
+                document.getElementById("modalShineWrapper");
+            const modalIconInner = document.getElementById("modalIconInner");
+            const modalTag = document.getElementById("modalTag");
+            const modalTitle = document.getElementById("modalTitle");
+            const modalDesc = document.getElementById("modalDesc");
+            const modalActionBtn = document.getElementById("modalActionBtn");
+
+            let confettiActive = false;
+            let confettiParticles = [];
+            const cCtx = document
+                .getElementById("confettiCanvas")
+                .getContext("2d");
+
+            function showResultModal() {
+                btnMainText.innerHTML = "HOLD<br>TO SPIN";
+                powerStatusLabel.textContent = "SELESAI!";
+                chargeProgressCircle.style.strokeDashoffset = 320;
+                footerPowerBar.style.width = "0%";
+
+                modalCard.classList.remove(
+                    "animate-win-pop",
+                    "animate-troll-shake",
+                );
+                // FIX: Buang shine-sweep dari wrapper, bukan card utama
+                modalShineWrapper.classList.remove("shine-sweep");
+                modalIconInner.classList.remove("icon-bounce");
+                void modalCard.offsetWidth;
+
+                if (winningSlice.isWin) {
+                    modalIconInner.textContent = "🏆";
+                    modalIconInner.classList.add("icon-bounce");
+                    modalTag.textContent = "TAHNIAH! ANDA MENANG!";
+                    modalTag.className =
+                        "inline-block px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase bg-amber-500/20 text-amber-500 md:text-amber-300 border border-amber-500/40 mb-2";
+                    modalTitle.textContent = winningSlice.text;
+                    modalTitle.className =
+                        "text-4xl md:text-5xl font-black bg-gradient-to-r from-amber-300 via-amber-500 to-yellow-600 md:from-amber-200 md:via-amber-400 md:to-yellow-500 bg-clip-text text-transparent mb-2";
+                    modalDesc.textContent = `Syabas! Anda berjaya membawa pulang hadiah bernilai ${winningSlice.text}.`;
+
+                    // FIX: Letak animasi kilauan di dalam wrapper khas
+                    modalShineWrapper.classList.add("shine-sweep");
+                    modalCard.classList.add("animate-win-pop");
+
+                    playWinFanfare();
+                    if (navigator.vibrate) navigator.vibrate([40, 60, 120]);
+                    startConfetti();
+                } else {
+                    modalIconInner.textContent = "🤡";
+                    modalTag.textContent = "OOPS! TIADA REZEKI";
+                    modalTag.className =
+                        "inline-block px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase bg-rose-500/20 text-rose-500 md:text-rose-300 border border-rose-500/40 mb-2";
+                    modalTitle.textContent = winningSlice.text;
+
+                    // FIX: Tukar "text-slate-800" kepada "text-slate-100" untuk kontras tinggi di mod gelap bimbit
+                    modalTitle.className =
+                        "text-2xl md:text-3xl font-extrabold text-slate-100 mb-2";
+
+                    if (isDayTheme) modalTitle.style.color = "#0f172a";
+                    else modalTitle.style.color = "";
+
+                    modalDesc.textContent =
+                        "Jangan putus asa, rezeki tidak pernah salah alamat!";
+                    modalCard.classList.add("animate-troll-shake");
+
+                    playTrollSound();
+                    if (navigator.vibrate) navigator.vibrate([80, 50, 80]);
+                }
+
+                resultModal.classList.remove(
+                    "opacity-0",
+                    "pointer-events-none",
+                );
+            }
+
+            modalActionBtn.addEventListener("click", () => {
+                resultModal.classList.add("opacity-0", "pointer-events-none");
+                stopConfetti();
+                setTimeout(() => {
+                    wheelState = "IDLE";
+                }, 200);
+            });
+
+            function startConfetti() {
+                confettiParticles = [];
+                const colors = [
+                    "#f59e0b",
+                    "#fbbf24",
+                    "#fef08a",
+                    "#ffffff",
+                    "#38bdf8",
+                    "#ec4899",
+                    "#a78bfa",
+                ];
+                const shapes = ["rect", "circle", "star"];
+                for (let i = 0; i < 130; i++) {
+                    confettiParticles.push({
+                        x: Math.random() * window.innerWidth,
+                        y:
+                            Math.random() * window.innerHeight * 0.4 -
+                            window.innerHeight * 0.2,
+                        w: Math.random() * 9 + 4,
+                        h: Math.random() * 6 + 4,
+                        color: colors[
+                            Math.floor(Math.random() * colors.length)
+                        ],
+                        vx: (Math.random() - 0.5) * 5,
+                        vy: Math.random() * 4 + 3,
+                        rot: Math.random() * 360,
+                        rotSpeed: (Math.random() - 0.5) * 8,
+                        shape: shapes[
+                            Math.floor(Math.random() * shapes.length)
+                        ],
+                    });
+                }
+                confettiActive = true;
+            }
+
+            function stopConfetti() {
+                confettiActive = false;
+                cCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+            }
+
+            function updateAndDrawConfetti(timeScale = 1) {
+                cCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+                confettiParticles.forEach((p) => {
+                    p.x += p.vx * timeScale;
+                    p.y += p.vy * timeScale;
+                    p.rot += p.rotSpeed * timeScale;
+                    cCtx.save();
+                    cCtx.translate(p.x, p.y);
+                    cCtx.rotate((p.rot * Math.PI) / 180);
+                    cCtx.fillStyle = p.color;
+                    if (p.shape === "circle") {
+                        cCtx.beginPath();
+                        cCtx.arc(0, 0, p.w / 2, 0, Math.PI * 2);
+                        cCtx.fill();
+                    } else if (p.shape === "star") {
+                        drawStar(cCtx, 0, 0, 5, p.w / 2, p.w / 4);
+                    } else {
+                        cCtx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+                    }
+                    cCtx.restore();
+                    if (p.y > window.innerHeight) {
+                        p.y = -10;
+                        p.x = Math.random() * window.innerWidth;
+                    }
+                });
+            }
+
+            function drawStar(c, cx, cy, spikes, outerR, innerR) {
+                let rot = (Math.PI / 2) * 3;
+                const step = Math.PI / spikes;
+                c.beginPath();
+                c.moveTo(cx, cy - outerR);
+                for (let i = 0; i < spikes; i++) {
+                    c.lineTo(
+                        cx + Math.cos(rot) * outerR,
+                        cy + Math.sin(rot) * outerR,
+                    );
+                    rot += step;
+                    c.lineTo(
+                        cx + Math.cos(rot) * innerR,
+                        cy + Math.sin(rot) * innerR,
+                    );
+                    rot += step;
+                }
+                c.closePath();
+                c.fill();
+            }
+
+            const themeToggleBtn = document.getElementById("themeToggleBtn");
+            const themeIconSun = document.getElementById("themeIconSun");
+            const themeIconMoon = document.getElementById("themeIconMoon");
+            const themeLabel = document.getElementById("themeLabel");
+
+            themeToggleBtn.addEventListener("click", async () => {
+                isDayTheme = !isDayTheme;
+                await initAudio();
+                if (isDayTheme) {
+                    document.body.classList.replace(
+                        "bg-luxury-mesh",
+                        "theme-day",
+                    );
+                    themeIconMoon.classList.add("hidden");
+                    themeIconSun.classList.remove("hidden");
+                    themeLabel.textContent = "CERAH";
+                    themeLabel.className =
+                        "hidden md:inline-block text-amber-500 font-semibold";
+                } else {
+                    document.body.classList.replace(
+                        "theme-day",
+                        "bg-luxury-mesh",
+                    );
+                    themeIconSun.classList.add("hidden");
+                    themeIconMoon.classList.remove("hidden");
+                    themeLabel.textContent = "GELAP";
+                    themeLabel.className =
+                        "hidden md:inline-block text-slate-400";
+                }
+
+                buildWheelCache();
+                if (wheelState === "IDLE" || wheelState === "MODAL") {
+                    drawWheel(0);
+                    networkBg.updateAndDraw(0);
+                }
+            });
+
+            const audioToggleBtn = document.getElementById("audioToggleBtn");
+            const soundIconOn = document.getElementById("soundIconOn");
+            const soundIconOff = document.getElementById("soundIconOff");
+            const soundLabel = document.getElementById("soundLabel");
+
+            audioToggleBtn.addEventListener("click", async () => {
+                isMuted = !isMuted;
+                if (!isMuted) {
+                    await initAudio();
+                    if (masterGain)
+                        masterGain.gain.setTargetAtTime(
+                            1,
+                            audioCtx.currentTime,
+                            0.015,
+                        );
+                    soundIconOn.classList.remove("hidden");
+                    soundIconOff.classList.add("hidden");
+                    soundLabel.textContent = "BUNYI: ON";
+                    soundLabel.classList.remove("text-slate-500");
+                } else {
+                    if (masterGain)
+                        masterGain.gain.setTargetAtTime(
+                            0,
+                            audioCtx.currentTime,
+                            0.015,
+                        );
+                    soundIconOn.classList.add("hidden");
+                    soundIconOff.classList.remove("hidden");
+                    soundLabel.textContent = "BUNYI: MUTE";
+                    soundLabel.classList.add("text-slate-500");
+                    stopChargeSound();
+                }
+            });
+
+            window.onload = function () {
+                resizeCanvases();
+                requestAnimationFrame(engineLoop);
+            };
+        </script>
+    </body>
+</html>
