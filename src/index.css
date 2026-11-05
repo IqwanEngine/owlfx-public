@@ -160,40 +160,70 @@
     radial-gradient(circle at 10% 40%, rgba(37, 99, 235, 0.15) 0%, transparent 40%);
 }
 
-/* Dual Infinite Horizontal Testimonial Loop Animations */
-@keyframes marquee-left {
+/* Dual Infinite Horizontal Testimonial Loop Animations (Hardware Accelerated 60fps) */
+@keyframes marquee-scroll-left {
   0% {
-    transform: translateX(0%);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
-@keyframes marquee-right {
+@keyframes marquee-scroll-right {
   0% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
   100% {
-    transform: translateX(0%);
+    transform: translate3d(0, 0, 0);
   }
 }
 
 .animate-marquee-left {
   display: flex;
   width: max-content;
-  animation: marquee-left 38s linear infinite;
+  animation: marquee-scroll-left 50s linear infinite;
+  will-change: transform;
 }
 
 .animate-marquee-right {
   display: flex;
   width: max-content;
-  animation: marquee-right 42s linear infinite;
+  animation: marquee-scroll-right 55s linear infinite;
+  will-change: transform;
 }
 
 .animate-marquee-left:hover,
-.animate-marquee-right:hover {
+.animate-marquee-right:hover,
+.marquee-container:hover .animate-marquee-left,
+.marquee-container:hover .animate-marquee-right {
   animation-play-state: paused;
+}
+
+/* Gradient Fade Mask for Horizontal Marquee Edges */
+.marquee-fade-mask {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/* Deep Obsidian Glass Testimonial Card */
+.obsidian-testimonial-card {
+  background: rgba(4, 23, 45, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(10, 67, 116, 0.45);
+  border-radius: 16px;
+  padding: 1.5rem;
+  width: 340px;
+  min-width: 340px;
+  max-width: 340px;
+  transition: all 0.3s ease-in-out;
+}
+
+.obsidian-testimonial-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  border-color: rgba(255, 215, 0, 0.8);
+  box-shadow: 0 8px 32px rgba(255, 215, 0, 0.15);
 }
 
 

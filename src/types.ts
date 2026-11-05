@@ -16,6 +16,14 @@ export interface RoadtourStateData {
     url: string;
     caption: string;
   }[];
+  version?: '1.0' | '2.0';
+}
+
+export interface SiteContent {
+  heroHeadline: string;
+  heroSubheadline: string;
+  roadtourTagline: string;
+  algoTagline: string;
 }
 
 export interface IBActivityItem {

@@ -1,8 +1,15 @@
-import { RoadtourStateData, IBRegionData, SetupProofItem, TraderTestimonial, CommunityLinks, AlgoMetric, LiveEventAlertData } from '../types';
+import { RoadtourStateData, IBRegionData, SetupProofItem, TraderTestimonial, CommunityLinks, AlgoMetric, LiveEventAlertData, SiteContent } from '../types';
 
 export const INITIAL_LIVE_EVENT_ALERTS: LiveEventAlertData[] = [];
 
 export const INITIAL_LIVE_EVENT_ALERT: LiveEventAlertData | null = null;
+
+export const INITIAL_SITE_CONTENT: SiteContent = {
+  heroHeadline: "GERBANG EKOSISTEM TRADING INSTITUSI NO. 1 ASIA TENGGARA",
+  heroSubheadline: "Memperkasakan komuniti pedagang dengan algoritma kuantitatif berprestasi tinggi, infrastruktur Introducing Broker bertaraf antarabangsa, dan program jelajah edukasi berimpak di seluruh Malaysia.",
+  roadtourTagline: "Siri Jelajah 14 Negeri: Mempertemukan Pedagang Runcit & Rangkaian Pembiayaan Institusi",
+  algoTagline: "Teknologi Algoritma Pintar: Penunjuk Arah & Zon Kecairan Pasaran Tanpa Emosi"
+};
 
 export const INITIAL_COMMUNITY_LINKS: CommunityLinks = {
   telegramVip: "https://t.me/OWLfxPublicChannel",
@@ -12,7 +19,7 @@ export const INITIAL_COMMUNITY_LINKS: CommunityLinks = {
   instagram: "https://www.instagram.com/wan.owlfx"
 };
 
-export const INITIAL_ROADTOUR_STATES: RoadtourStateData[] = [
+export const INITIAL_ROADTOUR_1_STATES: RoadtourStateData[] = [
   {
     id: "kuala-lumpur",
     name: "Kuala Lumpur",
@@ -314,6 +321,207 @@ export const INITIAL_ROADTOUR_STATES: RoadtourStateData[] = [
     ]
   }
 ];
+
+export const INITIAL_ROADTOUR_2_STATES: RoadtourStateData[] = [
+  {
+    id: "selangor",
+    name: "Selangor",
+    code: "SGR",
+    zone: "Tengah",
+    hotel: "Grand Lagoon Ballroom, Sunway Resort Hotel",
+    date: "Akan Diumumkan 2026",
+    attendees: "Sasaran 500+ Pedagang",
+    status: "coming_soon",
+    highlight: "Siri Jelajah Roadtour 2.0: Pelancaran Ekosistem Algoritma & Rangkaian Pembiayaan Institusi",
+    coverImage: "https://i.imgur.com/aCQ6hLX.jpg",
+    gallery: [],
+    version: "2.0"
+  },
+  {
+    id: "pulau-pinang",
+    name: "Pulau Pinang",
+    code: "PNG",
+    zone: "Utara",
+    hotel: "Grand Ballroom, Eastern & Oriental (E&O) Hotel Penang",
+    date: "Akan Diumumkan 2026",
+    attendees: "Sasaran 350+ Pedagang",
+    status: "coming_soon",
+    highlight: "Siri Jelajah Wilayah Utara: Bedah Strategi Liquidity Pool & Node Agihan Rebat Terkini",
+    coverImage: "https://i.imgur.com/aCQ6hLX.jpg",
+    gallery: [],
+    version: "2.0"
+  },
+  {
+    id: "perak",
+    name: "Perak",
+    code: "PRK",
+    zone: "Utara",
+    hotel: "The Grand Ballroom, WEIL Hotel Ipoh",
+    date: "Akan Diumumkan 2026",
+    attendees: "Sasaran 300+ Pedagang",
+    status: "coming_soon",
+    highlight: "Sesi Lanjutan Algoritma Kuantitatif & Pembangunan Komuniti Trader Berdikari",
+    coverImage: "https://i.imgur.com/aCQ6hLX.jpg",
+    gallery: [],
+    version: "2.0"
+  },
+  {
+    id: "kedah",
+    name: "Kedah",
+    code: "KDH",
+    zone: "Utara",
+    hotel: "Grand Ballroom, Grand Alora Hotel Alor Setar",
+    date: "Akan Diumumkan 2026",
+    attendees: "Sasaran 250+ Pedagang",
+    status: "coming_soon",
+    highlight: "Pemerkasaan Disiplin Eksekusi & Pengurusan Risiko Tanpa Emosi",
+    coverImage: "https://i.imgur.com/aCQ6hLX.jpg",
+    gallery: [],
+    version: "2.0"
+  },
+  {
+    id: "kuala-lumpur",
+    name: "Kuala Lumpur",
+    code: "KUL",
+    zone: "Tengah",
+    hotel: "Grand Ballroom, Mandarin Oriental Kuala Lumpur",
+    date: "Akan Diumumkan 2026",
+    attendees: "Sasaran 600+ Pedagang VIP",
+    status: "coming_soon",
+    highlight: "Kemuncak Siri 2.0 Wilayah Persekutuan: Majlis Pengiktirafan Master IB & Dana Padanan Institusi",
+    coverImage: "https://i.imgur.com/aCQ6hLX.jpg",
+    gallery: [],
+    version: "2.0"
+  },
+  {
+    id: "johor",
+    name: "Johor",
+    code: "JHR",
+    zone: "Selatan",
+    hotel: "Royal Ballroom, Thistle Hotel Johor Bahru",
+    date: "Akan Diumumkan 2026",
+    attendees: "Sasaran 450+ Pedagang",
+    status: "coming_soon",
+    highlight: "Hub Dagangan Selatan: Integrasi Model Kuantitatif & Pertemuan Elit Pelabur Antarabangsa",
+    coverImage: "https://i.imgur.com/aCQ6hLX.jpg",
+    gallery: [],
+    version: "2.0"
+  },
+  {
+    id: "pahang",
+    name: "Pahang",
+    code: "PHG",
+    zone: "Pantai Timur",
+    hotel: "Grand Ballroom, The Zenith Hotel Kuantan",
+    date: "Akan Diumumkan 2026",
+    attendees: "Sasaran 300+ Pedagang",
+    status: "coming_soon",
+    highlight: "Bengkel Analisis Volatiliti Pasaran & Pengoptimuman Lot Komuniti Pantai Timur",
+    coverImage: "https://i.imgur.com/aCQ6hLX.jpg",
+    gallery: [],
+    version: "2.0"
+  },
+  {
+    id: "terengganu",
+    name: "Terengganu",
+    code: "TRG",
+    zone: "Pantai Timur",
+    hotel: "Convention Hall, Duyong Marina & Resort Kuala Terengganu",
+    date: "Akan Diumumkan 2026",
+    attendees: "Sasaran 250+ Pedagang",
+    status: "coming_soon",
+    highlight: "Sinergi Keusahawanan Trading & Formula Pengurusan Modal Kuantitatif",
+    coverImage: "https://i.imgur.com/aCQ6hLX.jpg",
+    gallery: [],
+    version: "2.0"
+  },
+  {
+    id: "kelantan",
+    name: "Kelantan",
+    code: "KEL",
+    zone: "Pantai Timur",
+    hotel: "Grand Ballroom, Hotel Perdana Kota Bharu",
+    date: "Akan Diumumkan 2026",
+    attendees: "Sasaran 350+ Pedagang",
+    status: "coming_soon",
+    highlight: "Sesi Live Analysis Komuniti Serambi & Penyelarasan Sistem Rebat Automatik",
+    coverImage: "https://i.imgur.com/aCQ6hLX.jpg",
+    gallery: [],
+    version: "2.0"
+  },
+  {
+    id: "melaka",
+    name: "Melaka",
+    code: "MLK",
+    zone: "Selatan",
+    hotel: "Grand Ballroom, Hatten Hotel Melaka",
+    date: "Akan Diumumkan 2026",
+    attendees: "Sasaran 250+ Pedagang",
+    status: "coming_soon",
+    highlight: "Jalinan Rakan Niaga IB & Penstrukturan Akaun Dagangan Berskala",
+    coverImage: "https://i.imgur.com/aCQ6hLX.jpg",
+    gallery: [],
+    version: "2.0"
+  },
+  {
+    id: "negeri-sembilan",
+    name: "Negeri Sembilan",
+    code: "NSE",
+    zone: "Selatan",
+    hotel: "Seremban Grand Hall, Royale Chulan Seremban",
+    date: "Akan Diumumkan 2026",
+    attendees: "Sasaran 250+ Pedagang",
+    status: "coming_soon",
+    highlight: "Bengkel Amali Scanner Algoritma & Pendedahan Setup Berketepatan Tinggi",
+    coverImage: "https://i.imgur.com/aCQ6hLX.jpg",
+    gallery: [],
+    version: "2.0"
+  },
+  {
+    id: "sabah",
+    name: "Sabah",
+    code: "SBH",
+    zone: "Borneo",
+    hotel: "Grand Ballroom, Le Méridien Kota Kinabalu",
+    date: "Akan Diumumkan 2026",
+    attendees: "Sasaran 400+ Pedagang",
+    status: "coming_soon",
+    highlight: "Simposium Institusi Borneo: Pelancaran Hab Pembelajaran & Hub Komuniti Sabah",
+    coverImage: "https://i.imgur.com/aCQ6hLX.jpg",
+    gallery: [],
+    version: "2.0"
+  },
+  {
+    id: "sarawak",
+    name: "Sarawak",
+    code: "SWK",
+    zone: "Borneo",
+    hotel: "Colosseum Ballroom, Pullman Hotel Kuching",
+    date: "Akan Diumumkan 2026",
+    attendees: "Sasaran 450+ Pedagang",
+    status: "coming_soon",
+    highlight: "Siri Kemuncak Jelajah Borneo & Inisiatif Dana Padanan Wilayah",
+    coverImage: "https://i.imgur.com/aCQ6hLX.jpg",
+    gallery: [],
+    version: "2.0"
+  },
+  {
+    id: "perlis",
+    name: "Perlis",
+    code: "PLS",
+    zone: "Utara",
+    hotel: "Putra Ballroom, Putra Regency Hotel Kangar",
+    date: "Akan Diumumkan 2026",
+    attendees: "Sasaran 200+ Pedagang",
+    status: "coming_soon",
+    highlight: "Pertemuan Mesra Komuniti Perlis & Bimbingan Pengurusan Risiko Berstruktur",
+    coverImage: "https://i.imgur.com/aCQ6hLX.jpg",
+    gallery: [],
+    version: "2.0"
+  }
+];
+
+export const INITIAL_ROADTOUR_STATES: RoadtourStateData[] = INITIAL_ROADTOUR_2_STATES;
 
 export const IB_REGIONS_DATA: Record<'MY' | 'ID', IBRegionData> = {
   MY: {

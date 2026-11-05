@@ -2,7 +2,20 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { INITIAL_SETUP_PROOFS } from '../data/initialData';
-import { Target, DollarSign, BarChart2, Image as ImageIcon, ZoomIn, ArrowUpRight, Check, Calculator, TrendingUp } from 'lucide-react';
+import {
+  Target,
+  DollarSign,
+  BarChart2,
+  Image as ImageIcon,
+  ZoomIn,
+  ArrowUpRight,
+  Check,
+  Calculator,
+  TrendingUp,
+  Star,
+  MessageSquare,
+  Sparkles
+} from 'lucide-react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
 interface VipSignalSectionProps {
@@ -19,14 +32,13 @@ interface VipMovingButtonProps {
 
 /**
  * Reusable Overpower Institutional Button with Embedded Moving Candlestick/Wave Chart
- * (Strictly Static Non-Rotating Vector Icons)
  */
 function VipMovingButton({ id, href, onClick, label, className = '' }: VipMovingButtonProps) {
   const content = (
     <div
       id={id}
       onClick={onClick}
-      className={`group relative overflow-hidden rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-[#D4AF37] px-5 py-3 flex items-center justify-center space-x-2 text-slate-950 font-black text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(245,158,11,0.25)] hover:shadow-[0_0_30px_rgba(245,158,11,0.45)] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer select-none ${className}`}
+      className={`group relative overflow-hidden rounded-xl bg-gradient-to-r from-[#ffd700] via-[#f2c15c] to-[#eab84f] px-6 py-3.5 flex items-center justify-center space-x-2 text-slate-950 font-black text-xs uppercase tracking-wider shadow-[0_0_20px_rgba(255,215,0,0.25)] hover:shadow-[0_0_35px_rgba(255,215,0,0.45)] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer select-none ${className}`}
     >
       {/* Dynamic Candlestick Bars Wave in Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-30 group-hover:opacity-60 transition-opacity">
@@ -75,13 +87,13 @@ function VipMovingButton({ id, href, onClick, label, className = '' }: VipMoving
           />
         </svg>
 
-        <div className="absolute inset-0 bg-gradient-to-r from-amber-400/80 via-amber-300/60 to-amber-500/90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#ffd700]/80 via-[#f2c15c]/60 to-[#ffd700]/90" />
       </div>
 
       {/* Shimmer Specular Light Sweep */}
       <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent transform skew-x-12 transition-transform ease-out pointer-events-none" />
 
-      <span className="relative z-10 drop-shadow-sm font-sans font-extrabold">{label}</span>
+      <span className="relative z-10 drop-shadow-sm font-sans font-black">{label}</span>
       <ArrowUpRight className="relative z-10 w-4 h-4 text-slate-950 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
     </div>
   );
@@ -96,6 +108,179 @@ function VipMovingButton({ id, href, onClick, label, className = '' }: VipMoving
 
   return content;
 }
+
+// 23 EXACT TESTIMONIALS OF PARTICIPANTS (ROAD TOUR 1.0)
+interface CommunityTestimonial {
+  id: string;
+  name: string;
+  state: string;
+  rating: number;
+  quote: string;
+}
+
+const EXACT_23_TESTIMONIALS: CommunityTestimonial[] = [
+  {
+    id: "test-1",
+    name: "Amir Hakim",
+    state: "Selangor",
+    rating: 5,
+    quote: "Cara Wan explain memang senang nak follow. Benda yang sebelum ni blur jadi lebih tersusun bila nampak step by step."
+  },
+  {
+    id: "test-2",
+    name: "Aiman Zulkifli",
+    state: "Johor",
+    rating: 5,
+    quote: "Datang sebab nak tengok sendiri macam mana kelas dia. Rupanya banyak benda baru belajar terutamanya pasal setup liquidity."
+  },
+  {
+    id: "test-3",
+    name: "Hafiz Rahman",
+    state: "Perak",
+    rating: 5,
+    quote: "Bukan sekadar dapat signal, tapi kami diajar faham logik di sebalik market structure dan pengurusan risiko institusi."
+  },
+  {
+    id: "test-4",
+    name: "Syafiq Azman",
+    state: "Kedah",
+    rating: 5,
+    quote: "Sistem self-rebate memang betul-betul telus dan membantu cashflow trading bulanan secara konsisten."
+  },
+  {
+    id: "test-5",
+    name: "Farhan Iskandar",
+    state: "Kuala Lumpur",
+    rating: 5,
+    quote: "Suasana komuniti yang sangat supportive, tak ada hype kosong, semua bersandarkan data dan jurnal dagangan."
+  },
+  {
+    id: "test-6",
+    name: "Nabil Firdaus",
+    state: "Pulau Pinang",
+    rating: 5,
+    quote: "Penerangan Wan tentang Order Block dan FVG membuka perspektif baru bagaimana bank dan institusi bergerak."
+  },
+  {
+    id: "test-7",
+    name: "Akmal Danish",
+    state: "Melaka",
+    rating: 5,
+    quote: "Paling berharga bila Wan tunjukkan live execution dan kawalan emosi bila berdepan floating pasaran."
+  },
+  {
+    id: "test-8",
+    name: "Fikri Hamdan",
+    state: "Negeri Sembilan",
+    rating: 5,
+    quote: "Dari trader yang selalu MC, sekarang dah mula faham erti disiplin dan risk to reward ratio minimum 1:3."
+  },
+  {
+    id: "test-9",
+    name: "Azri Faizal",
+    state: "Pahang",
+    rating: 5,
+    quote: "Road Tour yang padat dengan ilmu. Balik terus kemas kini trading plan dan rasa lebih yakin buat analisis sendiri."
+  },
+  {
+    id: "test-10",
+    name: "Hilmi Roslan",
+    state: "Terengganu",
+    rating: 5,
+    quote: "Rebate masuk on-time dan sokongan careline sangat responsif bila ada sebarang persoalan teknikal."
+  },
+  {
+    id: "test-11",
+    name: "Danial Asyraf",
+    state: "Kelantan",
+    rating: 5,
+    quote: "Wan ajar kami jadi independent trader, bukan bergantung semata-mata pada signal orang lain."
+  },
+  {
+    id: "test-12",
+    name: "Izzat Syahmi",
+    state: "Perlis",
+    rating: 5,
+    quote: "Sesi hands-on yang mantap, jarang jumpa mentor yang sanggup luangkan masa kupas kesilapan peserta satu per satu."
+  },
+  {
+    id: "test-13",
+    name: "Rizal Hamid",
+    state: "Sabah",
+    rating: 5,
+    quote: "Jelajah ke Kota Kinabalu memang dinanti-nantikan, silibus yang dibawakan bertaraf profesional antarabangsa."
+  },
+  {
+    id: "test-14",
+    name: "Khairul Anwar",
+    state: "Sarawak",
+    rating: 5,
+    quote: "Penyampaian yang sangat bersahaja tapi penuh dengan fakta pasaran yang bernilai tinggi."
+  },
+  {
+    id: "test-15",
+    name: "Muaz Faris",
+    state: "Selangor",
+    rating: 5,
+    quote: "VIP channel bukan tempat buang signal rawak, setiap analisis ada penerangan teknikal yang kukuh."
+  },
+  {
+    id: "test-16",
+    name: "Ilyana",
+    state: "Kuala Lumpur",
+    rating: 5,
+    quote: "Sebagai wanita dalam trading, panduan langkah demi langkah dan komuniti yang berhemah amat memudahkan pembelajaran."
+  },
+  {
+    id: "test-17",
+    name: "Syahmi Khalid",
+    state: "Johor",
+    rating: 5,
+    quote: "Dapat lihat sendiri bagaimana drawdown dikawal dengan ketat. Tiada lagi entry over-lot secara membuta tuli."
+  },
+  {
+    id: "test-18",
+    name: "Firdaus Hadi",
+    state: "Perak",
+    rating: 5,
+    quote: "Alat dan sistem sokongan Valetax di bawah naungan OWL FX memang memudahkan urusan transaksi dan deposit/withdrawal."
+  },
+  {
+    id: "test-19",
+    name: "Azlan Shukri",
+    state: "Pahang",
+    rating: 5,
+    quote: "Belajar mengawal emosi dan kekal tenang waktu berita berimpak tinggi seperti NFP dan FOMC."
+  },
+  {
+    id: "test-20",
+    name: "Shahril Azmi",
+    state: "Kedah",
+    rating: 5,
+    quote: "Silibus yang sangat teratur. Dari asas struktur sehinggalah ke zon kecairan institusi, semuanya jelas."
+  },
+  {
+    id: "test-21",
+    name: "Jason Lim",
+    state: "Pulau Pinang",
+    rating: 5,
+    quote: "Clear institutional framework and logical risk model. The best trading community I've joined in Malaysia."
+  },
+  {
+    id: "test-22",
+    name: "Michelle Tan",
+    state: "Kuala Lumpur",
+    rating: 5,
+    quote: "The self-rebate transparency and high-accuracy setup proofs gave me the confidence to trade systematically."
+  },
+  {
+    id: "test-23",
+    name: "Arvind Kumar",
+    state: "Selangor",
+    rating: 5,
+    quote: "Solid mentorship, genuine community, and reliable trade setups without unnecessary noise."
+  }
+];
 
 export const VipSignalSection: React.FC<VipSignalSectionProps> = ({
   onOpenLightbox,
@@ -121,505 +306,682 @@ export const VipSignalSection: React.FC<VipSignalSectionProps> = ({
   };
 
   return (
-    <section id="vip-signal" ref={containerRef} className="py-24 relative bg-[#06090e] border-t border-white/5 overflow-hidden selection:bg-[#D4AF37] selection:text-black">
-      {/* Ambient Lighting Background */}
-      <div className="absolute top-1/4 -left-32 w-[600px] h-[600px] bg-blue-600/5 rounded-full blur-[160px] pointer-events-none -z-10" />
-      <div className="absolute bottom-1/4 -right-32 w-[600px] h-[600px] bg-amber-500/5 rounded-full blur-[160px] pointer-events-none -z-10" />
+    <div className="bg-[#01040a] text-slate-200 selection:bg-[#ffd700] selection:text-black overflow-hidden pt-20 pb-28">
+      {/* ========================================================================= */}
+      {/* SECTION 1 (TOP): VIP SIGNAL, SUPPORT & CASH REBATE                        */}
+      {/* ========================================================================= */}
+      <section id="vip-signal" ref={containerRef} className="relative pt-6 sm:pt-10 pb-20 border-b border-white/5">
+        {/* Ambient Backlight Elements */}
+        <div className="absolute top-1/4 -left-32 w-[600px] h-[600px] bg-[#0869e8]/10 rounded-full blur-[170px] pointer-events-none -z-10" />
+        <div className="absolute bottom-1/4 -right-32 w-[600px] h-[600px] bg-[#ffd700]/5 rounded-full blur-[170px] pointer-events-none -z-10" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* Section Header (Static Clean Non-Spinning Presentation) */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 reveal-on-scroll">
-          <div>
-            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#2563EB]/15 border border-[#2563EB]/30 text-[#60A5FA] text-xs font-mono mb-4 shadow-[0_0_15px_rgba(37,99,235,0.15)]">
-              <Target className="w-3.5 h-3.5 text-[#60A5FA]" />
-              <span className="font-bold tracking-wider uppercase">VIP SIGNAL, SUPPORT & CASH REBATE</span>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 reveal-on-scroll">
+            <div>
+              <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#04172d]/80 border border-[#00e5ff]/35 text-[#00e5ff] text-xs font-mono mb-4 shadow-[0_0_20px_rgba(0,229,255,0.15)]">
+                <Target className="w-3.5 h-3.5 text-[#ffd700]" />
+                <span className="font-bold tracking-widest uppercase">VIP SIGNAL, SUPPORT & CASH REBATE</span>
+              </div>
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-[-0.035em] uppercase leading-tight">
+                Sistem Isyarat Kuantitatif & <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#ffd700] to-[#f2c15c] drop-shadow-[0_0_25px_rgba(255,215,0,0.3)]">Self-Rebate</span>
+              </h1>
+              <p className="mt-3 text-slate-400 text-sm sm:text-base max-w-2xl font-medium leading-relaxed">
+                Platform komprehensif yang dibina untuk memaksimumkan pulangan dagangan anda melalui setup kebarangkalian tinggi dan pemulangan tunai bagi setiap transaksi.
+              </p>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight uppercase">
-              Sistem Isyarat Kuantitatif & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-[#D4AF37] drop-shadow-[0_0_25px_rgba(245,158,11,0.3)]">Self-Rebate</span>
-            </h2>
-            <p className="mt-3 text-slate-400 text-sm sm:text-base max-w-2xl font-medium leading-relaxed">
-              Platform menyeluruh yang direka untuk memaksimumkan keuntungan dagangan anda melalui
-              setup kebarangkalian tinggi dan pemulangan tunai bagi setiap transaksi.
-            </p>
+
+            <div className="mt-6 md:mt-0 w-full md:w-auto">
+              <VipMovingButton
+                id="vip-signal-unlock-btn"
+                href="/my/register"
+                label="Buka Akses Percuma Valetax"
+              />
+            </div>
           </div>
 
-          <div className="mt-6 md:mt-0 w-full md:w-auto">
-            <VipMovingButton
-              id="vip-signal-unlock-btn"
-              href="/my/register"
-              label="Buka Akses Percuma Valetax"
-            />
+          {/* 4 Interactive Tab Selectors */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8 reveal-on-scroll reveal-delay-1">
+            <button
+              type="button"
+              id="vip-tab-provide"
+              onClick={() => setActiveTab('provide')}
+              className={`group p-4 sm:p-5 rounded-2xl text-left transition-all duration-300 border backdrop-blur-xl cursor-pointer select-none ${
+                activeTab === 'provide'
+                  ? 'border-[#ffd700] bg-gradient-to-b from-[#ffd700]/20 via-[#04172d] to-[#01040a] shadow-[0_10px_25px_rgba(255,215,0,0.2)] scale-[1.02]'
+                  : 'bg-[rgba(4,23,45,0.65)] border-[rgba(10,67,116,0.45)] hover:border-[#ffd700]/40 hover:bg-[rgba(6,35,68,0.7)]'
+              }`}
+            >
+              <div className="flex items-center space-x-3">
+                <div className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 shrink-0 ${activeTab === 'provide' ? 'bg-[#ffd700] text-slate-950 font-bold shadow-[0_0_15px_rgba(255,215,0,0.4)]' : 'bg-slate-800/60 text-slate-400 group-hover:text-[#ffd700]'}`}>
+                  <Target className="w-5 h-5" />
+                </div>
+                <div className="min-w-0">
+                  <span className={`block text-[10px] font-mono tracking-widest uppercase font-bold ${activeTab === 'provide' ? 'text-[#ffd700]' : 'text-slate-500'}`}>MODUL 01</span>
+                  <span className="text-xs sm:text-sm font-black text-white group-hover:text-[#ffd700] transition-colors truncate block">Apa Kami Provide</span>
+                </div>
+              </div>
+            </button>
+
+            <button
+              type="button"
+              id="vip-tab-rebate"
+              onClick={() => setActiveTab('rebate')}
+              className={`group p-4 sm:p-5 rounded-2xl text-left transition-all duration-300 border backdrop-blur-xl cursor-pointer select-none ${
+                activeTab === 'rebate'
+                  ? 'border-[#ffd700] bg-gradient-to-b from-[#ffd700]/20 via-[#04172d] to-[#01040a] shadow-[0_10px_25px_rgba(255,215,0,0.2)] scale-[1.02]'
+                  : 'bg-[rgba(4,23,45,0.65)] border-[rgba(10,67,116,0.45)] hover:border-[#ffd700]/40 hover:bg-[rgba(6,35,68,0.7)]'
+              }`}
+            >
+              <div className="flex items-center space-x-3">
+                <div className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 shrink-0 ${activeTab === 'rebate' ? 'bg-[#ffd700] text-slate-950 font-bold shadow-[0_0_15px_rgba(255,215,0,0.4)]' : 'bg-slate-800/60 text-slate-400 group-hover:text-[#ffd700]'}`}>
+                  <DollarSign className="w-5 h-5" />
+                </div>
+                <div className="min-w-0">
+                  <span className={`block text-[10px] font-mono tracking-widest uppercase font-bold ${activeTab === 'rebate' ? 'text-[#ffd700]' : 'text-slate-500'}`}>MODUL 02</span>
+                  <span className="text-xs sm:text-sm font-black text-white group-hover:text-[#ffd700] transition-colors truncate block">Self-Rebate System</span>
+                </div>
+              </div>
+            </button>
+
+            <button
+              type="button"
+              id="vip-tab-track"
+              onClick={() => setActiveTab('track')}
+              className={`group p-4 sm:p-5 rounded-2xl text-left transition-all duration-300 border backdrop-blur-xl cursor-pointer select-none ${
+                activeTab === 'track'
+                  ? 'border-[#ffd700] bg-gradient-to-b from-[#ffd700]/20 via-[#04172d] to-[#01040a] shadow-[0_10px_25px_rgba(255,215,0,0.2)] scale-[1.02]'
+                  : 'bg-[rgba(4,23,45,0.65)] border-[rgba(10,67,116,0.45)] hover:border-[#ffd700]/40 hover:bg-[rgba(6,35,68,0.7)]'
+              }`}
+            >
+              <div className="flex items-center space-x-3">
+                <div className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 shrink-0 ${activeTab === 'track' ? 'bg-[#ffd700] text-slate-950 font-bold shadow-[0_0_15px_rgba(255,215,0,0.4)]' : 'bg-slate-800/60 text-slate-400 group-hover:text-[#ffd700]'}`}>
+                  <BarChart2 className="w-5 h-5" />
+                </div>
+                <div className="min-w-0">
+                  <span className={`block text-[10px] font-mono tracking-widest uppercase font-bold ${activeTab === 'track' ? 'text-[#ffd700]' : 'text-slate-500'}`}>MODUL 03</span>
+                  <span className="text-xs sm:text-sm font-black text-white group-hover:text-[#ffd700] transition-colors truncate block">Track Record & Data</span>
+                </div>
+              </div>
+            </button>
+
+            <button
+              type="button"
+              id="vip-tab-proof"
+              onClick={() => setActiveTab('proof')}
+              className={`group p-4 sm:p-5 rounded-2xl text-left transition-all duration-300 border backdrop-blur-xl cursor-pointer select-none ${
+                activeTab === 'proof'
+                  ? 'border-[#ffd700] bg-gradient-to-b from-[#ffd700]/20 via-[#04172d] to-[#01040a] shadow-[0_10px_25px_rgba(255,215,0,0.2)] scale-[1.02]'
+                  : 'bg-[rgba(4,23,45,0.65)] border-[rgba(10,67,116,0.45)] hover:border-[#ffd700]/40 hover:bg-[rgba(6,35,68,0.7)]'
+              }`}
+            >
+              <div className="flex items-center space-x-3">
+                <div className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 shrink-0 ${activeTab === 'proof' ? 'bg-[#ffd700] text-slate-950 font-bold shadow-[0_0_15px_rgba(255,215,0,0.4)]' : 'bg-slate-800/60 text-slate-400 group-hover:text-[#ffd700]'}`}>
+                  <ImageIcon className="w-5 h-5" />
+                </div>
+                <div className="min-w-0">
+                  <span className={`block text-[10px] font-mono tracking-widest uppercase font-bold ${activeTab === 'proof' ? 'text-[#ffd700]' : 'text-slate-500'}`}>MODUL 04</span>
+                  <span className="text-xs sm:text-sm font-black text-white group-hover:text-[#ffd700] transition-colors truncate block">Galeri Bukti Setup</span>
+                </div>
+              </div>
+            </button>
           </div>
-        </div>
 
-        {/* 4 Interactive Tab Selectors (Strictly Static Non-Rotating Icons) */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8 reveal-on-scroll reveal-delay-1">
-          <button
-            type="button"
-            id="vip-tab-provide"
-            onClick={() => setActiveTab('provide')}
-            className={`group p-4 sm:p-5 rounded-2xl text-left transition-all duration-300 border backdrop-blur-xl cursor-pointer select-none ${
-              activeTab === 'provide'
-                ? 'border-amber-400/80 bg-gradient-to-b from-amber-500/15 via-[#0d1424] to-[#080d19] shadow-[0_10px_25px_rgba(245,158,11,0.15)] scale-[1.02]'
-                : 'bg-slate-900/60 border-white/5 hover:border-white/20 hover:bg-slate-900/90'
-            }`}
-          >
-            <div className="flex items-center space-x-3">
-              <div className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 shrink-0 ${activeTab === 'provide' ? 'bg-amber-500 text-slate-950 font-bold shadow-[0_0_15px_rgba(245,158,11,0.4)]' : 'bg-slate-800/60 text-slate-400 group-hover:text-amber-400 group-hover:bg-amber-500/10'}`}>
-                <Target className="w-5 h-5" />
-              </div>
-              <div className="min-w-0">
-                <span className={`block text-[10px] font-mono tracking-widest uppercase font-bold ${activeTab === 'provide' ? 'text-amber-400' : 'text-slate-500'}`}>MODUL 01</span>
-                <span className="text-xs sm:text-sm font-bold text-white group-hover:text-amber-200 transition-colors truncate block">Apa Kami Provide</span>
-              </div>
-            </div>
-          </button>
+          {/* Tab Content Display Container */}
+          <div className="rounded-3xl backdrop-blur-2xl bg-[rgba(4,23,45,0.85)] border border-[rgba(10,67,116,0.45)] p-6 sm:p-10 relative min-h-[420px] shadow-[0_20px_50px_rgba(0,0,0,0.9)] reveal-on-scroll reveal-delay-2 overflow-hidden">
 
-          <button
-            type="button"
-            id="vip-tab-rebate"
-            onClick={() => setActiveTab('rebate')}
-            className={`group p-4 sm:p-5 rounded-2xl text-left transition-all duration-300 border backdrop-blur-xl cursor-pointer select-none ${
-              activeTab === 'rebate'
-                ? 'border-amber-400/80 bg-gradient-to-b from-amber-500/15 via-[#0d1424] to-[#080d19] shadow-[0_10px_25px_rgba(245,158,11,0.15)] scale-[1.02]'
-                : 'bg-slate-900/60 border-white/5 hover:border-white/20 hover:bg-slate-900/90'
-            }`}
-          >
-            <div className="flex items-center space-x-3">
-              <div className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 shrink-0 ${activeTab === 'rebate' ? 'bg-amber-500 text-slate-950 font-bold shadow-[0_0_15px_rgba(245,158,11,0.4)]' : 'bg-slate-800/60 text-slate-400 group-hover:text-amber-400 group-hover:bg-amber-500/10'}`}>
-                <DollarSign className="w-5 h-5" />
-              </div>
-              <div className="min-w-0">
-                <span className={`block text-[10px] font-mono tracking-widest uppercase font-bold ${activeTab === 'rebate' ? 'text-amber-400' : 'text-slate-500'}`}>MODUL 02</span>
-                <span className="text-xs sm:text-sm font-bold text-white group-hover:text-amber-200 transition-colors truncate block">Self-Rebate System</span>
-              </div>
-            </div>
-          </button>
-
-          <button
-            type="button"
-            id="vip-tab-track"
-            onClick={() => setActiveTab('track')}
-            className={`group p-4 sm:p-5 rounded-2xl text-left transition-all duration-300 border backdrop-blur-xl cursor-pointer select-none ${
-              activeTab === 'track'
-                ? 'border-amber-400/80 bg-gradient-to-b from-amber-500/15 via-[#0d1424] to-[#080d19] shadow-[0_10px_25px_rgba(245,158,11,0.15)] scale-[1.02]'
-                : 'bg-slate-900/60 border-white/5 hover:border-white/20 hover:bg-slate-900/90'
-            }`}
-          >
-            <div className="flex items-center space-x-3">
-              <div className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 shrink-0 ${activeTab === 'track' ? 'bg-amber-500 text-slate-950 font-bold shadow-[0_0_15px_rgba(245,158,11,0.4)]' : 'bg-slate-800/60 text-slate-400 group-hover:text-amber-400 group-hover:bg-amber-500/10'}`}>
-                <BarChart2 className="w-5 h-5" />
-              </div>
-              <div className="min-w-0">
-                <span className={`block text-[10px] font-mono tracking-widest uppercase font-bold ${activeTab === 'track' ? 'text-amber-400' : 'text-slate-500'}`}>MODUL 03</span>
-                <span className="text-xs sm:text-sm font-bold text-white group-hover:text-amber-200 transition-colors truncate block">Track Record & Data</span>
-              </div>
-            </div>
-          </button>
-
-          <button
-            type="button"
-            id="vip-tab-proof"
-            onClick={() => setActiveTab('proof')}
-            className={`group p-4 sm:p-5 rounded-2xl text-left transition-all duration-300 border backdrop-blur-xl cursor-pointer select-none ${
-              activeTab === 'proof'
-                ? 'border-amber-400/80 bg-gradient-to-b from-amber-500/15 via-[#0d1424] to-[#080d19] shadow-[0_10px_25px_rgba(245,158,11,0.15)] scale-[1.02]'
-                : 'bg-slate-900/60 border-white/5 hover:border-white/20 hover:bg-slate-900/90'
-            }`}
-          >
-            <div className="flex items-center space-x-3">
-              <div className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 shrink-0 ${activeTab === 'proof' ? 'bg-amber-500 text-slate-950 font-bold shadow-[0_0_15px_rgba(245,158,11,0.4)]' : 'bg-slate-800/60 text-slate-400 group-hover:text-amber-400 group-hover:bg-amber-500/10'}`}>
-                <ImageIcon className="w-5 h-5" />
-              </div>
-              <div className="min-w-0">
-                <span className={`block text-[10px] font-mono tracking-widest uppercase font-bold ${activeTab === 'proof' ? 'text-amber-400' : 'text-slate-500'}`}>MODUL 04</span>
-                <span className="text-xs sm:text-sm font-bold text-white group-hover:text-amber-200 transition-colors truncate block">Galeri Bukti Setup</span>
-              </div>
-            </div>
-          </button>
-        </div>
-
-        {/* Tab Content Display Container */}
-        <div className="rounded-3xl backdrop-blur-2xl bg-[#080d19]/90 border border-white/10 p-6 sm:p-10 relative min-h-[420px] shadow-[0_20px_50px_rgba(0,0,0,0.85)] reveal-on-scroll reveal-delay-2 overflow-hidden">
-
-          {/* TAB 1: APA YANG KAMI PROVIDE */}
-          {activeTab === 'provide' && (
-            <div className="animate-in fade-in duration-300">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {/* Card 01 */}
-                <div className="relative group bg-[#0d1424]/70 backdrop-blur-xl border border-white/5 hover:border-amber-400/50 rounded-2xl p-6 sm:p-8 transition-all duration-300 shadow-xl flex flex-col justify-between">
-                  <div>
-                    <div className="w-10 h-10 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-400 flex items-center justify-center font-mono font-bold mb-5 shadow-[0_0_15px_rgba(245,158,11,0.15)]">
-                      01
-                    </div>
-                    <h4 className="text-xl font-bold text-white mb-3">Daily Institutional Setups</h4>
-                    <p className="text-sm text-slate-400 leading-relaxed mb-6 font-medium">
-                      Setiap pagi sebelum pembukaan sesi London dan New York, pasukan kuantitatif OWLFX memuat naik
-                      analisis terperinci zon pesanan institusi (Gold, Currencies, Index).
-                    </p>
-                  </div>
-                  <ul className="space-y-3 text-xs font-mono pt-4 border-t border-white/5">
-                    <li className="flex items-center space-x-2.5 text-slate-300">
-                      <div className="p-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 shrink-0">
-                        <Check className="w-3 h-3 text-emerald-400" />
-                      </div>
-                      <span>Entry Precise Limit / Market Order</span>
-                    </li>
-                    <li className="flex items-center space-x-2.5 text-slate-300">
-                      <div className="p-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 shrink-0">
-                        <Check className="w-3 h-3 text-emerald-400" />
-                      </div>
-                      <span>Stop Loss Maksimum 25 Pips (Gold)</span>
-                    </li>
-                    <li className="flex items-center space-x-2.5 text-slate-300">
-                      <div className="p-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 shrink-0">
-                        <Check className="w-3 h-3 text-emerald-400" />
-                      </div>
-                      <span>Pelan Skala TP1, TP2, & TP3 Dinamik</span>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* Card 02 */}
-                <div className="relative group bg-[#0d1424]/70 backdrop-blur-xl border border-white/5 hover:border-cyan-400/50 rounded-2xl p-6 sm:p-8 transition-all duration-300 shadow-xl flex flex-col justify-between">
-                  <div>
-                    <div className="w-10 h-10 rounded-xl bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 flex items-center justify-center font-mono font-bold mb-5 shadow-[0_0_15px_rgba(6,182,212,0.15)]">
-                      02
-                    </div>
-                    <h4 className="text-xl font-bold text-white mb-3">Risk Management Blueprint</h4>
-                    <p className="text-sm text-slate-400 leading-relaxed mb-6 font-medium">
-                      Kunci kelangsungan akaun dagangan ialah nisbah risiko yang terkawal. Kami membekalkan kalkulator
-                      saiz lot automatik dan panduan modal untuk mengelakkan 'margin call'.
-                    </p>
-                  </div>
-                  <ul className="space-y-3 text-xs font-mono pt-4 border-t border-white/5">
-                    <li className="flex items-center space-x-2.5 text-slate-300">
-                      <div className="p-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 shrink-0">
-                        <Check className="w-3 h-3 text-emerald-400" />
-                      </div>
-                      <span>Risiko terhad 1% - 2% setiap posisi</span>
-                    </li>
-                    <li className="flex items-center space-x-2.5 text-slate-300">
-                      <div className="p-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 shrink-0">
-                        <Check className="w-3 h-3 text-emerald-400" />
-                      </div>
-                      <span>Prosedur Breakeven selepas TP1</span>
-                    </li>
-                    <li className="flex items-center space-x-2.5 text-slate-300">
-                      <div className="p-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 shrink-0">
-                        <Check className="w-3 h-3 text-emerald-400" />
-                      </div>
-                      <span>Perlindungan drawdown pasaran</span>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* Card 03 */}
-                <div className="relative group bg-[#0d1424]/70 backdrop-blur-xl border border-white/5 hover:border-emerald-400/50 rounded-2xl p-6 sm:p-8 transition-all duration-300 shadow-xl flex flex-col justify-between">
-                  <div>
-                    <div className="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center font-mono font-bold mb-5 shadow-[0_0_15px_rgba(16,185,129,0.15)]">
-                      03
-                    </div>
-                    <h4 className="text-xl font-bold text-white mb-3">High-Probability Zone</h4>
-                    <p className="text-sm text-slate-400 leading-relaxed mb-6 font-medium">
-                      Pengesanan zon Order Block dan Liquidity Sweep yang hanya diambil apabila algoritma OWL ALGO
-                      menunjukkan persetujuan pelbagai kerangka masa.
-                    </p>
-                  </div>
-                  <ul className="space-y-3 text-xs font-mono pt-4 border-t border-white/5">
-                    <li className="flex items-center space-x-2.5 text-slate-300">
-                      <div className="p-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 shrink-0">
-                        <Check className="w-3 h-3 text-emerald-400" />
-                      </div>
-                      <span>Penapisan zon palsu (Fakeout filter)</span>
-                    </li>
-                    <li className="flex items-center space-x-2.5 text-slate-300">
-                      <div className="p-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 shrink-0">
-                        <Check className="w-3 h-3 text-emerald-400" />
-                      </div>
-                      <span>Konfluens penunjuk volum kuantitatif</span>
-                    </li>
-                    <li className="flex items-center space-x-2.5 text-slate-300">
-                      <div className="p-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 shrink-0">
-                        <Check className="w-3 h-3 text-emerald-400" />
-                      </div>
-                      <span>Peringatan terus ke Telegram VIP</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* TAB 2: SELF-REBATE SYSTEM */}
-          {activeTab === 'rebate' && (
-            <div className="animate-in fade-in duration-300">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div className="lg:col-span-6 space-y-4">
-                  <span className="inline-block px-3.5 py-1 rounded-full bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/35 text-xs font-mono font-bold tracking-wider uppercase">
-                    100% PULANGAN REBAT TUNAI TELUS
-                  </span>
-                  <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-                    Setiap Lot Yang Anda Dagangkan Membawa Pulangan Tunai
-                  </h3>
-                  <p className="text-sm text-slate-300 leading-relaxed font-medium">
-                    Berbeza dengan model IB konvensional di mana komisen disimpan oleh pengantara, sistem Valetax MIB
-                    di bawah naungan OWLFX membolehkan anda menikmati rebat pulangan tunai terus ke dompet akaun anda.
-                    Menang atau kalah dagangan anda, rebat tetap dikira dan boleh dikeluarkan bila-bila masa!
-                  </p>
-
-                  <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2.5 font-mono text-xs backdrop-blur-md">
-                    <div className="flex justify-between text-slate-300">
-                      <span>Model Pembayaran:</span>
-                      <span className="text-[#D4AF37] font-bold">Harian / Serta-merta (Instant Payout)</span>
-                    </div>
-                    <div className="flex justify-between text-slate-300">
-                      <span>Kadar Rebat Standard:</span>
-                      <span className="text-white font-bold">Hingga $10 - $15 / Lot Pusingan</span>
-                    </div>
-                    <div className="flex justify-between text-slate-300">
-                      <span>Integrasi Akaun:</span>
-                      <span className="text-[#06B6D4] font-bold">Akaun Valetax</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Interactive Rebate Calculator */}
-                <div className="lg:col-span-6 p-6 sm:p-8 rounded-3xl backdrop-blur-xl bg-slate-950/70 border border-[#D4AF37]/35 shadow-2xl">
-                  <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-5">
-                    <div className="flex items-center space-x-2 text-white font-bold text-sm">
-                      <Calculator className="w-4 h-4 text-[#D4AF37]" />
-                      <span>Kalkulator Anggaran Rebat Tunai Anda</span>
-                    </div>
-                    <span className="text-[10px] font-mono text-[#D4AF37] font-bold tracking-[0.2em] uppercase">LIVE SIMULATOR</span>
-                  </div>
-
-                  {/* Slider Control */}
-                  <div className="space-y-4 mb-6">
+            {/* TAB 1: APA YANG KAMI PROVIDE */}
+            {activeTab === 'provide' && (
+              <div className="animate-in fade-in duration-300">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {/* Card 01 */}
+                  <div className="relative group bg-[rgba(3,17,38,0.7)] backdrop-blur-xl border border-white/5 hover:border-[#ffd700]/50 rounded-2xl p-6 sm:p-8 transition-all duration-300 shadow-xl flex flex-col justify-between">
                     <div>
-                      <div className="flex justify-between text-xs font-mono text-slate-300 mb-2">
-                        <span>Anggaran Volum Dagangan Sebulan:</span>
-                        <span className="text-lg font-bold text-white font-mono">{tradedLots} Lots</span>
+                      <div className="w-10 h-10 rounded-xl bg-[#ffd700]/15 border border-[#ffd700]/30 text-[#ffd700] flex items-center justify-center font-mono font-bold mb-5 shadow-[0_0_15px_rgba(255,215,0,0.2)]">
+                        01
                       </div>
-                      <input
-                        type="range"
-                        min="5"
-                        max="250"
-                        step="5"
-                        value={tradedLots}
-                        onChange={(e) => setTradedLots(Number(e.target.value))}
-                        className="w-full accent-[#D4AF37] h-2 bg-white/10 rounded-lg cursor-pointer"
-                      />
-                      <div className="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
-                        <span>5 Lots</span>
-                        <span>100 Lots</span>
-                        <span>250+ Lots</span>
+                      <h4 className="text-xl font-black text-white mb-3 tracking-tight">Daily Institutional Setups</h4>
+                      <p className="text-sm text-slate-400 leading-relaxed mb-6 font-medium">
+                        Setiap pagi sebelum pembukaan sesi London dan New York, pasukan kuantitatif OWLFX memuat naik analisis terperinci zon pesanan institusi (Gold, Currencies, Index).
+                      </p>
+                    </div>
+                    <ul className="space-y-3 text-xs font-mono pt-4 border-t border-white/5">
+                      <li className="flex items-center space-x-2.5 text-slate-300">
+                        <div className="p-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 shrink-0">
+                          <Check className="w-3 h-3 text-emerald-400" />
+                        </div>
+                        <span>Entry Precise Limit / Market Order</span>
+                      </li>
+                      <li className="flex items-center space-x-2.5 text-slate-300">
+                        <div className="p-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 shrink-0">
+                          <Check className="w-3 h-3 text-emerald-400" />
+                        </div>
+                        <span>Stop Loss Maksimum 25 Pips (Gold)</span>
+                      </li>
+                      <li className="flex items-center space-x-2.5 text-slate-300">
+                        <div className="p-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 shrink-0">
+                          <Check className="w-3 h-3 text-emerald-400" />
+                        </div>
+                        <span>Pelan Skala TP1, TP2, & TP3 Dinamik</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Card 02 */}
+                  <div className="relative group bg-[rgba(3,17,38,0.7)] backdrop-blur-xl border border-white/5 hover:border-[#00e5ff]/50 rounded-2xl p-6 sm:p-8 transition-all duration-300 shadow-xl flex flex-col justify-between">
+                    <div>
+                      <div className="w-10 h-10 rounded-xl bg-[#00e5ff]/15 border border-[#00e5ff]/30 text-[#00e5ff] flex items-center justify-center font-mono font-bold mb-5 shadow-[0_0_15px_rgba(0,229,255,0.2)]">
+                        02
                       </div>
+                      <h4 className="text-xl font-black text-white mb-3 tracking-tight">Risk Management Blueprint</h4>
+                      <p className="text-sm text-slate-400 leading-relaxed mb-6 font-medium">
+                        Kunci kelangsungan akaun dagangan ialah nisbah risiko yang terkawal. Kami membekalkan kalkulator saiz lot automatik dan panduan modal untuk mengelakkan margin call.
+                      </p>
                     </div>
+                    <ul className="space-y-3 text-xs font-mono pt-4 border-t border-white/5">
+                      <li className="flex items-center space-x-2.5 text-slate-300">
+                        <div className="p-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 shrink-0">
+                          <Check className="w-3 h-3 text-emerald-400" />
+                        </div>
+                        <span>Risiko terhad 1% - 2% setiap posisi</span>
+                      </li>
+                      <li className="flex items-center space-x-2.5 text-slate-300">
+                        <div className="p-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 shrink-0">
+                          <Check className="w-3 h-3 text-emerald-400" />
+                        </div>
+                        <span>Prosedur Breakeven selepas TP1</span>
+                      </li>
+                      <li className="flex items-center space-x-2.5 text-slate-300">
+                        <div className="p-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 shrink-0">
+                          <Check className="w-3 h-3 text-emerald-400" />
+                        </div>
+                        <span>Perlindungan drawdown pasaran</span>
+                      </li>
+                    </ul>
+                  </div>
 
-                    {/* Rebate rate toggle */}
-                    <div className="flex items-center justify-between text-xs font-mono flex-wrap gap-2">
-                      <span className="text-slate-400">Peringkat Rebat Lot:</span>
-                      <div className="flex space-x-1.5">
-                        {[8, 10, 12, 15].map((rate) => (
-                          <button
-                            key={rate}
-                            type="button"
-                            onClick={() => setRebatePerLot(rate)}
-                            className={`px-3 py-1 rounded-full text-[11px] transition-all cursor-pointer font-bold ${
-                              rebatePerLot === rate
-                                ? 'bg-[#D4AF37] text-slate-950 shadow-[0_0_10px_rgba(212,175,55,0.3)]'
-                                : 'bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10'
-                            }`}
-                          >
-                            ${rate}/lot
-                          </button>
-                        ))}
+                  {/* Card 03 */}
+                  <div className="relative group bg-[rgba(3,17,38,0.7)] backdrop-blur-xl border border-white/5 hover:border-emerald-400/50 rounded-2xl p-6 sm:p-8 transition-all duration-300 shadow-xl flex flex-col justify-between">
+                    <div>
+                      <div className="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center font-mono font-bold mb-5 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+                        03
                       </div>
+                      <h4 className="text-xl font-black text-white mb-3 tracking-tight">High-Probability Zone</h4>
+                      <p className="text-sm text-slate-400 leading-relaxed mb-6 font-medium">
+                        Pengesanan zon Order Block dan Liquidity Sweep yang hanya diambil apabila algoritma OWL ALGO menunjukkan persetujuan multi-timeframe.
+                      </p>
                     </div>
-                  </div>
-
-                  {/* Output Display Cards */}
-                  <div className="grid grid-cols-2 gap-3 pt-3 border-t border-white/10">
-                    <div className="p-4 rounded-2xl bg-white/5 border border-white/5">
-                      <span className="text-[10px] font-mono text-slate-400 block tracking-wider uppercase">ANGGARAN REBAT (USD)</span>
-                      <span className="text-xl sm:text-2xl font-black font-mono text-emerald-400">
-                        ${monthlyRebateUSD.toLocaleString()}
-                      </span>
-                      <span className="text-[10px] text-slate-500 block mt-0.5">Dikreditkan bulanan</span>
-                    </div>
-
-                    <div className="p-4 rounded-2xl bg-white/5 border border-white/5">
-                      <span className="text-[10px] font-mono text-slate-400 block tracking-wider uppercase">NILAI RINGGIT (MYR)</span>
-                      <span className="text-xl sm:text-2xl font-black font-mono text-[#D4AF37]">
-                        RM {Math.round(monthlyRebateMYR).toLocaleString()}
-                      </span>
-                      <span className="text-[10px] text-slate-500 block mt-0.5 font-mono">
-                        ≈ Rp {(monthlyRebateIDR / 1000000).toFixed(1)} Juta
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* TAB 3: TRACK RECORD & RESULTS */}
-          {activeTab === 'track' && (
-            <div className="animate-in fade-in duration-300">
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                <div className="p-4 rounded-2xl bg-slate-900/80 border border-white/5 text-center">
-                  <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 uppercase">Purata Winrate YTD</span>
-                  <div className="text-2xl sm:text-3xl font-black font-mono text-emerald-400 mt-1">82.4%</div>
-                  <span className="text-[10px] text-slate-500 font-mono">Daripada 1,420+ Posisi</span>
-                </div>
-                <div className="p-4 rounded-2xl bg-slate-900/80 border border-white/5 text-center">
-                  <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 uppercase">Risk : Reward Ratio</span>
-                  <div className="text-2xl sm:text-3xl font-black font-mono text-[#D4AF37] mt-1">1 : 3.4</div>
-                  <span className="text-[10px] text-slate-500 font-mono">Disiplin Stop Loss Ketat</span>
-                </div>
-                <div className="p-4 rounded-2xl bg-slate-900/80 border border-white/5 text-center">
-                  <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 uppercase">Max Drawdown</span>
-                  <div className="text-2xl sm:text-3xl font-black font-mono text-sky-400 mt-1">4.2%</div>
-                  <span className="text-[10px] text-slate-500 font-mono">Pengurusan Modal Teguh</span>
-                </div>
-                <div className="p-4 rounded-2xl bg-slate-900/80 border border-white/5 text-center">
-                  <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 uppercase">Jumlah Pips Dijana</span>
-                  <div className="text-2xl sm:text-3xl font-black font-mono text-white mt-1">+14,850</div>
-                  <span className="text-[10px] text-slate-500 font-mono">Bagi Q1 2026</span>
-                </div>
-              </div>
-
-              {/* Monthly Visual Progress Breakdown */}
-              <div className="p-5 sm:p-6 rounded-2xl bg-slate-900/90 border border-white/5">
-                <div className="flex items-center justify-between mb-4">
-                  <h4 className="text-sm font-bold text-white flex items-center space-x-2">
-                    <TrendingUp className="w-4 h-4 text-[#D4AF37]" />
-                    <span>Laporan Prestasi Bulanan 2026 (Audit Terbuka)</span>
-                  </h4>
-                  <span className="text-xs font-mono text-[#10B981] font-bold">100% DISAHKAN</span>
-                </div>
-
-                <div className="space-y-4 font-mono text-xs">
-                  <div>
-                    <div className="flex justify-between text-slate-300 mb-1.5">
-                      <span>Januari 2026 — Winrate 84.1%</span>
-                      <span className="text-emerald-400 font-bold">+3,940 Pips (+$48,200)</span>
-                    </div>
-                    <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                      <div className="bg-gradient-to-r from-[#D4AF37] to-emerald-400 h-2 rounded-full" style={{ width: '84%' }}></div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="flex justify-between text-slate-300 mb-1.5">
-                      <span>Februari 2026 — Winrate 81.8%</span>
-                      <span className="text-emerald-400 font-bold">+4,210 Pips (+$56,400)</span>
-                    </div>
-                    <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                      <div className="bg-gradient-to-r from-[#D4AF37] to-emerald-400 h-2 rounded-full" style={{ width: '82%' }}></div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="flex justify-between text-slate-300 mb-1.5">
-                      <span>Mac 2026 (Semasa) — Winrate 83.0%</span>
-                      <span className="text-emerald-400 font-bold">+6,700 Pips (+$74,900)</span>
-                    </div>
-                    <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                      <div className="bg-gradient-to-r from-[#D4AF37] to-emerald-400 h-2 rounded-full" style={{ width: '83%' }}></div>
-                    </div>
+                    <ul className="space-y-3 text-xs font-mono pt-4 border-t border-white/5">
+                      <li className="flex items-center space-x-2.5 text-slate-300">
+                        <div className="p-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 shrink-0">
+                          <Check className="w-3 h-3 text-emerald-400" />
+                        </div>
+                        <span>Penapisan zon palsu (Fakeout filter)</span>
+                      </li>
+                      <li className="flex items-center space-x-2.5 text-slate-300">
+                        <div className="p-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 shrink-0">
+                          <Check className="w-3 h-3 text-emerald-400" />
+                        </div>
+                        <span>Konfluens penunjuk volum kuantitatif</span>
+                      </li>
+                      <li className="flex items-center space-x-2.5 text-slate-300">
+                        <div className="p-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 shrink-0">
+                          <Check className="w-3 h-3 text-emerald-400" />
+                        </div>
+                        <span>Peringatan terus ke Telegram VIP</span>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {/* TAB 4: GALERI BUKTI & SETUP MT4/MT5 */}
-          {activeTab === 'proof' && (
-            <div className="animate-in fade-in duration-300">
-              <div className="flex items-center justify-between mb-4">
-                <p className="text-xs text-slate-300">
-                  Klik mana-mana tangkap layar setup untuk paparan pembesar skrin penuh (Lightbox HD).
-                </p>
-                <span className="text-xs font-mono text-[#D4AF37]">4 Setup Terkini</span>
-              </div>
+            {/* TAB 2: SELF-REBATE SYSTEM */}
+            {activeTab === 'rebate' && (
+              <div className="animate-in fade-in duration-300">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                  <div className="lg:col-span-6 space-y-4">
+                    <span className="inline-block px-3.5 py-1 rounded-full bg-[#ffd700]/15 text-[#ffd700] border border-[#ffd700]/35 text-xs font-mono font-bold tracking-wider uppercase">
+                      100% PULANGAN REBAT TUNAI TELUS
+                    </span>
+                    <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+                      Setiap Lot Yang Anda Dagangkan Membawa Pulangan Tunai
+                    </h3>
+                    <p className="text-sm text-slate-300 leading-relaxed font-medium">
+                      Berbeza dengan model IB konvensional di mana komisen disimpan oleh pengantara, sistem Valetax MIB di bawah naungan OWLFX membolehkan anda menikmati rebat pulangan tunai terus ke dompet akaun anda. Menang atau kalah dagangan anda, rebat tetap dikira dan boleh dikeluarkan bila-bila masa!
+                    </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {INITIAL_SETUP_PROOFS.map((proof, idx) => (
-                  <div
-                    key={proof.id}
-                    id={`proof-card-${proof.id}`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      handleProofClick(idx);
-                    }}
-                    onAuxClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                    }}
-                    className="group relative rounded-2xl overflow-hidden bg-slate-900 border border-white/10 hover:border-[#D4AF37] transition-all cursor-pointer shadow-lg"
-                  >
-                    <div className="relative h-44 w-full overflow-hidden">
-                      <img
-                        src={proof.imageUrl}
-                        alt={proof.pair}
-                        referrerPolicy="no-referrer"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          handleProofClick(idx);
-                        }}
-                        onAuxClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                        }}
-                        onContextMenu={(e) => e.preventDefault()}
-                        onDragStart={(e) => e.preventDefault()}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 select-none"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none"></div>
+                    <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2.5 font-mono text-xs backdrop-blur-md">
+                      <div className="flex justify-between text-slate-300">
+                        <span>Model Pembayaran:</span>
+                        <span className="text-[#ffd700] font-bold">Harian / Serta-merta (Instant Payout)</span>
+                      </div>
+                      <div className="flex justify-between text-slate-300">
+                        <span>Kadar Rebat Standard:</span>
+                        <span className="text-white font-bold">Hingga $10 - $15 / Lot Pusingan</span>
+                      </div>
+                      <div className="flex justify-between text-slate-300">
+                        <span>Integrasi Akaun:</span>
+                        <span className="text-[#00e5ff] font-bold">Akaun Valetax</span>
+                      </div>
+                    </div>
+                  </div>
 
-                      <div className="absolute top-2 left-2 flex items-center space-x-1.5 pointer-events-none">
-                        <span
-                          className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold ${
-                            proof.type === 'BUY'
-                              ? 'bg-emerald-500/90 text-slate-950'
-                              : 'bg-rose-500/90 text-white'
-                          }`}
-                        >
-                          {proof.type}
-                        </span>
-                        <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-black/70 text-white border border-white/10">
-                          {proof.pair}
-                        </span>
+                  {/* Interactive Rebate Calculator */}
+                  <div className="lg:col-span-6 p-6 sm:p-8 rounded-3xl backdrop-blur-xl bg-[#01040a]/80 border border-[#ffd700]/35 shadow-2xl">
+                    <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-5">
+                      <div className="flex items-center space-x-2 text-white font-bold text-sm">
+                        <Calculator className="w-4 h-4 text-[#ffd700]" />
+                        <span>Kalkulator Anggaran Rebat Tunai Anda</span>
+                      </div>
+                      <span className="text-[10px] font-mono text-[#ffd700] font-bold tracking-[0.2em] uppercase">LIVE SIMULATOR</span>
+                    </div>
+
+                    {/* Slider Control */}
+                    <div className="space-y-4 mb-6">
+                      <div>
+                        <div className="flex justify-between text-xs font-mono text-slate-300 mb-2">
+                          <span>Anggaran Volum Dagangan Sebulan:</span>
+                          <span className="text-lg font-bold text-white font-mono">{tradedLots} Lots</span>
+                        </div>
+                        <input
+                          type="range"
+                          min="5"
+                          max="250"
+                          step="5"
+                          value={tradedLots}
+                          onChange={(e) => setTradedLots(Number(e.target.value))}
+                          className="w-full accent-[#ffd700] h-2 bg-white/10 rounded-lg cursor-pointer"
+                        />
+                        <div className="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
+                          <span>5 Lots</span>
+                          <span>100 Lots</span>
+                          <span>250+ Lots</span>
+                        </div>
                       </div>
 
-                      <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-xs font-mono pointer-events-none">
-                        <span className="font-bold text-emerald-400">{proof.gainPips}</span>
-                        <span className="text-slate-300 font-medium">RR {proof.rrRatio}</span>
-                      </div>
-
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-                        <div className="p-2 rounded-full bg-[#D4AF37] text-slate-950 shadow-xl">
-                          <ZoomIn className="w-5 h-5" />
+                      {/* Rebate rate toggle */}
+                      <div className="flex items-center justify-between text-xs font-mono flex-wrap gap-2">
+                        <span className="text-slate-400">Peringkat Rebat Lot:</span>
+                        <div className="flex space-x-1.5">
+                          {[8, 10, 12, 15].map((rate) => (
+                            <button
+                              key={rate}
+                              type="button"
+                              onClick={() => setRebatePerLot(rate)}
+                              className={`px-3 py-1 rounded-full text-[11px] transition-all cursor-pointer font-bold ${
+                                rebatePerLot === rate
+                                  ? 'bg-[#ffd700] text-slate-950 shadow-[0_0_10px_rgba(255,215,0,0.3)]'
+                                  : 'bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10'
+                              }`}
+                            >
+                              ${rate}/lot
+                            </button>
+                          ))}
                         </div>
                       </div>
                     </div>
 
-                    <div className="p-3 text-[11px] text-slate-400 font-mono line-clamp-2">
-                      {proof.chartDescription}
+                    {/* Output Display Cards */}
+                    <div className="grid grid-cols-2 gap-3 pt-3 border-t border-white/10">
+                      <div className="p-4 rounded-2xl bg-white/5 border border-white/5">
+                        <span className="text-[10px] font-mono text-slate-400 block tracking-wider uppercase">ANGGARAN REBAT (USD)</span>
+                        <span className="text-xl sm:text-2xl font-black font-mono text-emerald-400">
+                          ${monthlyRebateUSD.toLocaleString()}
+                        </span>
+                        <span className="text-[10px] text-slate-500 block mt-0.5">Dikreditkan bulanan</span>
+                      </div>
+
+                      <div className="p-4 rounded-2xl bg-white/5 border border-white/5">
+                        <span className="text-[10px] font-mono text-slate-400 block tracking-wider uppercase">NILAI RINGGIT (MYR)</span>
+                        <span className="text-xl sm:text-2xl font-black font-mono text-[#ffd700]">
+                          RM {Math.round(monthlyRebateMYR).toLocaleString()}
+                        </span>
+                        <span className="text-[10px] text-slate-500 block mt-0.5 font-mono">
+                          ≈ Rp {(monthlyRebateIDR / 1000000).toFixed(1)} Juta
+                        </span>
+                      </div>
                     </div>
                   </div>
-                ))}
+                </div>
               </div>
+            )}
+
+            {/* TAB 3: TRACK RECORD & RESULTS */}
+            {activeTab === 'track' && (
+              <div className="animate-in fade-in duration-300">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                  <div className="p-4 rounded-2xl bg-[#020817] border border-white/5 text-center">
+                    <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 uppercase">Purata Winrate YTD</span>
+                    <div className="text-2xl sm:text-3xl font-black font-mono text-emerald-400 mt-1">82.4%</div>
+                    <span className="text-[10px] text-slate-500 font-mono">Daripada 1,420+ Posisi</span>
+                  </div>
+                  <div className="p-4 rounded-2xl bg-[#020817] border border-white/5 text-center">
+                    <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 uppercase">Risk : Reward Ratio</span>
+                    <div className="text-2xl sm:text-3xl font-black font-mono text-[#ffd700] mt-1">1 : 3.4</div>
+                    <span className="text-[10px] text-slate-500 font-mono">Disiplin Stop Loss Ketat</span>
+                  </div>
+                  <div className="p-4 rounded-2xl bg-[#020817] border border-white/5 text-center">
+                    <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 uppercase">Max Drawdown</span>
+                    <div className="text-2xl sm:text-3xl font-black font-mono text-[#00e5ff] mt-1">4.2%</div>
+                    <span className="text-[10px] text-slate-500 font-mono">Pengurusan Modal Teguh</span>
+                  </div>
+                  <div className="p-4 rounded-2xl bg-[#020817] border border-white/5 text-center">
+                    <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 uppercase">Jumlah Pips Dijana</span>
+                    <div className="text-2xl sm:text-3xl font-black font-mono text-white mt-1">+14,850</div>
+                    <span className="text-[10px] text-slate-500 font-mono">Bagi Q1 2026</span>
+                  </div>
+                </div>
+
+                {/* Monthly Visual Progress Breakdown */}
+                <div className="p-5 sm:p-6 rounded-2xl bg-[#020817] border border-white/5">
+                  <div className="flex items-center justify-between mb-4">
+                    <h4 className="text-sm font-bold text-white flex items-center space-x-2">
+                      <TrendingUp className="w-4 h-4 text-[#ffd700]" />
+                      <span>Laporan Prestasi Bulanan 2026 (Audit Terbuka)</span>
+                    </h4>
+                    <span className="text-xs font-mono text-[#10B981] font-bold">100% DISAHKAN</span>
+                  </div>
+
+                  <div className="space-y-4 font-mono text-xs">
+                    <div>
+                      <div className="flex justify-between text-slate-300 mb-1.5">
+                        <span>Januari 2026 — Winrate 84.1%</span>
+                        <span className="text-emerald-400 font-bold">+3,940 Pips (+$48,200)</span>
+                      </div>
+                      <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                        <div className="bg-gradient-to-r from-[#ffd700] to-emerald-400 h-2 rounded-full" style={{ width: '84%' }}></div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="flex justify-between text-slate-300 mb-1.5">
+                        <span>Februari 2026 — Winrate 81.8%</span>
+                        <span className="text-emerald-400 font-bold">+4,210 Pips (+$56,400)</span>
+                      </div>
+                      <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                        <div className="bg-gradient-to-r from-[#ffd700] to-emerald-400 h-2 rounded-full" style={{ width: '82%' }}></div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div className="flex justify-between text-slate-300 mb-1.5">
+                        <span>Mac 2026 (Semasa) — Winrate 83.0%</span>
+                        <span className="text-emerald-400 font-bold">+6,700 Pips (+$74,900)</span>
+                      </div>
+                      <div className="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                        <div className="bg-gradient-to-r from-[#ffd700] to-emerald-400 h-2 rounded-full" style={{ width: '83%' }}></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* TAB 4: GALERI BUKTI & SETUP */}
+            {activeTab === 'proof' && (
+              <div className="animate-in fade-in duration-300">
+                <div className="flex items-center justify-between mb-4">
+                  <p className="text-xs text-slate-300">
+                    Klik mana-mana tangkap layar setup untuk paparan pembesar skrin penuh (Lightbox HD).
+                  </p>
+                  <span className="text-xs font-mono text-[#ffd700]">4 Setup Terkini</span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {INITIAL_SETUP_PROOFS.map((proof, idx) => (
+                    <div
+                      key={proof.id}
+                      id={`proof-card-${proof.id}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleProofClick(idx);
+                      }}
+                      className="group relative rounded-2xl overflow-hidden bg-slate-900 border border-white/10 hover:border-[#ffd700] transition-all cursor-pointer shadow-lg"
+                    >
+                      <div className="relative h-44 w-full overflow-hidden">
+                        <img
+                          src={proof.imageUrl}
+                          alt={proof.pair}
+                          referrerPolicy="no-referrer"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 select-none"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none"></div>
+
+                        <div className="absolute top-2 left-2 flex items-center space-x-1.5 pointer-events-none">
+                          <span
+                            className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold ${
+                              proof.type === 'BUY'
+                                ? 'bg-emerald-500/90 text-slate-950'
+                                : 'bg-rose-500/90 text-white'
+                            }`}
+                          >
+                            {proof.type}
+                          </span>
+                          <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-black/70 text-white border border-white/10">
+                            {proof.pair}
+                          </span>
+                        </div>
+
+                        <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between text-xs font-mono pointer-events-none">
+                          <span className="font-bold text-emerald-400">{proof.gainPips}</span>
+                          <span className="text-slate-300 font-medium">RR {proof.rrRatio}</span>
+                        </div>
+
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                          <div className="p-2 rounded-full bg-[#ffd700] text-slate-950 shadow-xl">
+                            <ZoomIn className="w-5 h-5" />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="p-3 text-[11px] text-slate-400 font-mono line-clamp-2">
+                        {proof.chartDescription}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* SECTION 2 (BOTTOM): SUARA KOMUNITI OWL FX (INFINITE MARQUEE TICKER)       */}
+      {/* ========================================================================= */}
+      <section id="suara-komuniti" className="pt-20 pb-16 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
+          
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+              <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#04172d]/80 border border-[#ffd700]/30 text-[#ffd700] text-xs font-mono mb-4 shadow-[0_0_20px_rgba(255,215,0,0.15)]">
+                <MessageSquare className="w-3.5 h-3.5 text-[#ffd700]" />
+                <span className="font-bold tracking-widest uppercase">ROAD TOUR 1.0 FEEDBACK</span>
+              </div>
+              <h2 className="text-3xl sm:text-5xl font-black text-white tracking-[-0.035em] uppercase leading-tight font-sans">
+                Suara Komuniti <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#ffd700] to-[#f2c15c]">OWL FX</span>
+              </h2>
+              <p className="mt-2 text-slate-400 text-sm sm:text-base max-w-2xl font-normal font-sans">
+                Ulasan tulen daripada 23 peserta Road Tour Siri 1.0 di seluruh pelusuk Malaysia membuktikan impak silibus institusi dan ketelusan rebat kami.
+              </p>
             </div>
-          )}
+
+            {/* Live Ticker Status Indicator */}
+            <div className="flex items-center space-x-3 text-xs font-mono">
+              <div className="flex items-center space-x-2 px-3 py-1.5 rounded-full bg-[#04172d]/90 border border-[#00e5ff]/30 text-[#00e5ff] shadow-[0_0_15px_rgba(0,229,255,0.15)]">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="font-bold tracking-wider uppercase">60 FPS AUTO-SCROLL</span>
+              </div>
+              <span className="text-slate-400 hidden sm:inline text-[11px]">
+                Arahkan kursor untuk jeda
+              </span>
+            </div>
+          </div>
         </div>
 
-      </div>
-    </section>
+        {/* ========================================================================= */}
+        {/* INFINITE AUTO-SCROLLING TICKER CONTAINER WITH EDGE FADE MASKS             */}
+        {/* ========================================================================= */}
+        <div
+          className="marquee-container relative w-full overflow-hidden py-4 space-y-6 marquee-fade-mask"
+          style={{
+            maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)'
+          }}
+        >
+          {/* TRACK ROW 1: Scrolling Left (Items 1 to 12) */}
+          <div className="animate-marquee-left flex gap-5 px-4">
+            {[...EXACT_23_TESTIMONIALS.slice(0, 12), ...EXACT_23_TESTIMONIALS.slice(0, 12)].map((item, idx) => (
+              <div
+                key={`r1-${item.id}-${idx}`}
+                className="obsidian-testimonial-card flex flex-col justify-between shrink-0 select-none group"
+                style={{
+                  background: 'rgba(4, 23, 45, 0.6)',
+                  backdropFilter: 'blur(16px)',
+                  WebkitBackdropFilter: 'blur(16px)',
+                  border: '1px solid rgba(10, 67, 116, 0.45)',
+                  borderRadius: '16px',
+                  padding: '1.5rem',
+                  width: '340px',
+                  minWidth: '340px',
+                  maxWidth: '340px',
+                  transition: 'all 0.3s ease-in-out'
+                }}
+              >
+                <div>
+                  {/* Stars: ★★★★★ in bright Cyber Gold (#FFD700) */}
+                  <div className="flex items-center space-x-1 mb-3.5">
+                    {[...Array(item.rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-[#FFD700] text-[#FFD700]" />
+                    ))}
+                  </div>
+
+                  {/* Quote Text: Inter font, Weight 400, color #aab8c7, line-height 1.6, italicized */}
+                  <p
+                    className="font-sans text-[13px] italic leading-[1.6] line-clamp-4 mb-5"
+                    style={{ color: '#aab8c7', fontWeight: 400 }}
+                  >
+                    “{item.quote}”
+                  </p>
+                </div>
+
+                {/* Trader Name & State Badge */}
+                <div className="pt-3.5 border-t border-[rgba(10,67,116,0.35)] flex items-center justify-between gap-2 mt-auto">
+                  <span
+                    className="font-sans text-sm font-bold truncate"
+                    style={{ color: '#ffffff', fontWeight: 700 }}
+                  >
+                    {item.name}
+                  </span>
+
+                  {/* State Badge: Sleek Cyan Pill */}
+                  <span
+                    className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold tracking-wider shrink-0 uppercase"
+                    style={{
+                      background: 'rgba(0, 229, 255, 0.1)',
+                      color: '#00e5ff',
+                      border: '1px solid rgba(0, 229, 255, 0.35)'
+                    }}
+                  >
+                    {item.state}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* TRACK ROW 2: Scrolling Right (Items 13 to 23) */}
+          <div className="animate-marquee-right flex gap-5 px-4">
+            {[...EXACT_23_TESTIMONIALS.slice(12), ...EXACT_23_TESTIMONIALS.slice(12)].map((item, idx) => (
+              <div
+                key={`r2-${item.id}-${idx}`}
+                className="obsidian-testimonial-card flex flex-col justify-between shrink-0 select-none group"
+                style={{
+                  background: 'rgba(4, 23, 45, 0.6)',
+                  backdropFilter: 'blur(16px)',
+                  WebkitBackdropFilter: 'blur(16px)',
+                  border: '1px solid rgba(10, 67, 116, 0.45)',
+                  borderRadius: '16px',
+                  padding: '1.5rem',
+                  width: '340px',
+                  minWidth: '340px',
+                  maxWidth: '340px',
+                  transition: 'all 0.3s ease-in-out'
+                }}
+              >
+                <div>
+                  {/* Stars: ★★★★★ in bright Cyber Gold (#FFD700) */}
+                  <div className="flex items-center space-x-1 mb-3.5">
+                    {[...Array(item.rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-[#FFD700] text-[#FFD700]" />
+                    ))}
+                  </div>
+
+                  {/* Quote Text: Inter font, Weight 400, color #aab8c7, line-height 1.6, italicized */}
+                  <p
+                    className="font-sans text-[13px] italic leading-[1.6] line-clamp-4 mb-5"
+                    style={{ color: '#aab8c7', fontWeight: 400 }}
+                  >
+                    “{item.quote}”
+                  </p>
+                </div>
+
+                {/* Trader Name & State Badge */}
+                <div className="pt-3.5 border-t border-[rgba(10,67,116,0.35)] flex items-center justify-between gap-2 mt-auto">
+                  <span
+                    className="font-sans text-sm font-bold truncate"
+                    style={{ color: '#ffffff', fontWeight: 700 }}
+                  >
+                    {item.name}
+                  </span>
+
+                  {/* State Badge: Sleek Cyan Pill */}
+                  <span
+                    className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-semibold tracking-wider shrink-0 uppercase"
+                    style={{
+                      background: 'rgba(0, 229, 255, 0.1)',
+                      color: '#00e5ff',
+                      border: '1px solid rgba(0, 229, 255, 0.35)'
+                    }}
+                  >
+                    {item.state}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom Community Summary Callout */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+          <div className="p-6 rounded-2xl bg-[rgba(4,23,45,0.7)] border border-white/10 backdrop-blur-xl flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center space-x-3 text-slate-300 text-xs sm:text-sm">
+              <Sparkles className="w-5 h-5 text-[#ffd700] shrink-0" />
+              <span>Sertai 10,000+ pedagang dalam rangkaian komuniti Telegram & WhatsApp rasmi OWLFX.</span>
+            </div>
+
+            <div className="flex items-center space-x-3 w-full sm:w-auto">
+              <a
+                href="https://t.me/OWLfxPublicChannel"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/40 font-mono text-xs font-bold uppercase tracking-wider text-center transition-all"
+              >
+                Telegram Komuniti
+              </a>
+              <a
+                href="/my/register"
+                className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-[#ffd700] hover:bg-[#f2c15c] text-slate-950 font-sans text-xs font-black uppercase tracking-wider text-center transition-all shadow-[0_0_15px_rgba(255,215,0,0.25)]"
+              >
+                Daftar VIP
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };

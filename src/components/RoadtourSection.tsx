@@ -22,10 +22,13 @@ import {
 } from 'lucide-react';
 import { ShimmerImage } from './ShimmerImage';
 
-interface RoadtourSectionProps {
-  statesData: RoadtourStateData[];
+export interface RoadtourSectionProps {
+  statesV2Data?: RoadtourStateData[];
+  statesV1Data?: RoadtourStateData[];
+  statesData?: RoadtourStateData[];
   onOpenLightbox: (images: { url: string; caption?: string; title?: string }[], index: number) => void;
   isAdmin?: boolean;
+  onUpdateStatesV2Data?: (newStates: RoadtourStateData[]) => void;
   onUpdateStatesData?: (newStates: RoadtourStateData[]) => void;
   onOpenAdminLogin?: () => void;
   onAdminSignOut?: () => void;
@@ -44,7 +47,7 @@ interface MovingChartButtonProps {
 /**
  * Visual Vector Renderer for 14 Malaysian State Flags
  */
-const StateFlagGraphic: React.FC<{ code: string; className?: string }> = ({ code, className = '' }) => {
+export const StateFlagGraphic: React.FC<{ code: string; className?: string }> = ({ code, className = '' }) => {
   const normalizedCode = code?.toUpperCase() || 'MY';
 
   switch (normalizedCode) {
@@ -294,17 +297,43 @@ function MovingChartButton({
 }
 
 export const RoadtourSection: React.FC<RoadtourSectionProps> = ({
+  statesV2Data,
+  statesV1Data,
   statesData,
   onOpenLightbox,
   isAdmin = false,
+  onUpdateStatesV2Data,
   onUpdateStatesData,
   onOpenAdminLogin,
   onAdminSignOut,
 }) => {
-  // Nisa Core: Version Switcher State (1.0 vs 2.0)
+  // Version Switcher State (1.0 vs 2.0) - Default to 2.0 (Active Season)
   const [activeVersion, setActiveVersion] = useState<'1.0' | '2.0'>('2.0');
 
-  const [selectedStateId, setSelectedStateId] = useState<string>('');
+  const v2States = useMemo(() => {
+    if (statesV2Data && statesV2Data.length > 0) return statesV2Data;
+    if (statesData && statesData.length > 0) {
+      const filtered = statesData.filter((s) => s.version === '2.0');
+      if (filtered.length > 0) return filtered;
+      return statesData;
+    }
+    return [];
+  }, [statesV2Data, statesData]);
+
+  const v1States = useMemo(() => {
+    if (statesV1Data && statesV1Data.length > 0) return statesV1Data;
+    if (statesData && statesData.length > 0) {
+      const filtered = statesData.filter((s) => s.version === '1.0');
+      if (filtered.length > 0) return filtered;
+    }
+    return [];
+  }, [statesV1Data, statesData]);
+
+  const currentStatesList = useMemo(() => {
+    return activeVersion === '2.0' ? v2States : v1States;
+  }, [activeVersion, v2States, v1States]);
+
+  const [selectedStateId, setSelectedStateId] = useState<string>('selangor');
   const [selectedZone, setSelectedZone] = useState<string>('Semua');
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -320,20 +349,16 @@ export const RoadtourSection: React.FC<RoadtourSectionProps> = ({
 
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  // Nisa: Auto-select KL for V2.0, and the first completed state for V1.0
+  // Auto-select first state when version changes or if current state is not in list
   useEffect(() => {
-    if (!statesData || statesData.length === 0) return;
-
-    if (activeVersion === '2.0') {
-      const kl = statesData.find(s => ['kuala-lumpur', 'wpkl', 'kul'].includes(s.id.toLowerCase()) || s.name.toLowerCase().includes('kuala lumpur'));
-      if (kl) setSelectedStateId(kl.id);
-      else setSelectedStateId(statesData[0].id);
-    } else {
-      const firstV1 = statesData.find(s => s.status === 'completed' && !['kuala-lumpur', 'wpkl', 'kul'].includes(s.id.toLowerCase()));
-      if (firstV1) setSelectedStateId(firstV1.id);
-      else setSelectedStateId(statesData[0].id);
+    if (!currentStatesList || currentStatesList.length === 0) return;
+    const exists = currentStatesList.some(
+      (s) => s.id.toLowerCase() === selectedStateId.toLowerCase()
+    );
+    if (!exists) {
+      setSelectedStateId(currentStatesList[0].id);
     }
-  }, [activeVersion, statesData]);
+  }, [activeVersion, currentStatesList, selectedStateId]);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
@@ -341,31 +366,23 @@ export const RoadtourSection: React.FC<RoadtourSectionProps> = ({
   };
 
   const currentState = useMemo(() => {
-    if (!statesData || statesData.length === 0) return undefined;
+    if (!currentStatesList || currentStatesList.length === 0) return undefined;
     return (
-      statesData.find(
+      currentStatesList.find(
         (s) =>
           s.id.toLowerCase() === selectedStateId.toLowerCase() ||
           s.name.toLowerCase() === selectedStateId.toLowerCase() ||
           s.code.toLowerCase() === selectedStateId.toLowerCase()
-      ) || statesData[0]
+      ) || currentStatesList[0]
     );
-  }, [statesData, selectedStateId]);
+  }, [currentStatesList, selectedStateId]);
 
   const zones = ['Semua', 'Pantai Timur', 'Selatan', 'Utara', 'Tengah', 'Borneo'];
 
-  // Nisa: Pre-filter logic separating 1.0 and 2.0 based on KL/status mapping
-  const versionFilteredStates = useMemo(() => {
-    return statesData.filter(s => {
-      const isKL = ['kuala-lumpur', 'wpkl', 'kul'].includes(s.id.toLowerCase()) || s.name.toLowerCase().includes('kuala lumpur');
-      const isV2 = isKL || s.status === 'coming_soon' || (s as any).version === '2.0';
-      return activeVersion === '2.0' ? isV2 : !isV2;
-    });
-  }, [statesData, activeVersion]);
-
-  const filteredStates = selectedZone === 'Semua'
-    ? versionFilteredStates
-    : versionFilteredStates.filter((s) => s.zone === selectedZone);
+  const filteredStates = useMemo(() => {
+    if (selectedZone === 'Semua') return currentStatesList;
+    return currentStatesList.filter((s) => s.zone === selectedZone);
+  }, [currentStatesList, selectedZone]);
 
   const handleImageClick = (index: number) => {
     if (!currentState?.gallery || currentState.gallery.length === 0) return;
@@ -394,32 +411,53 @@ export const RoadtourSection: React.FC<RoadtourSectionProps> = ({
       return;
     }
 
-    if (!onUpdateStatesData || !currentState) return;
+    if (!currentState) return;
 
     const targetId = currentState.id.toLowerCase();
     const targetName = currentState.name.toLowerCase();
 
-    const updated = statesData.map((st) => {
-      if (st.id.toLowerCase() === targetId || st.name.toLowerCase() === targetName) {
-        return {
-          ...st,
-          hotel: editHotel.trim(),
-          date: editDate.trim() || st.date,
-          attendees: editAttendees.trim() || st.attendees,
-          status: editStatus,
-          highlight: editHighlight.trim() || st.highlight
-        };
-      }
-      return st;
-    });
+    if (activeVersion === '2.0') {
+      const updated = v2States.map((st) => {
+        if (st.id.toLowerCase() === targetId || st.name.toLowerCase() === targetName) {
+          return {
+            ...st,
+            hotel: editHotel.trim(),
+            date: editDate.trim() || st.date,
+            attendees: editAttendees.trim() || st.attendees,
+            status: editStatus,
+            highlight: editHighlight.trim() || st.highlight
+          };
+        }
+        return st;
+      });
 
-    onUpdateStatesData(updated);
+      if (onUpdateStatesV2Data) onUpdateStatesV2Data(updated);
+      else if (onUpdateStatesData) onUpdateStatesData(updated);
+    } else {
+      const updated = v1States.map((st) => {
+        if (st.id.toLowerCase() === targetId || st.name.toLowerCase() === targetName) {
+          return {
+            ...st,
+            hotel: editHotel.trim(),
+            date: editDate.trim() || st.date,
+            attendees: editAttendees.trim() || st.attendees,
+            status: editStatus,
+            highlight: editHighlight.trim() || st.highlight
+          };
+        }
+        return st;
+      });
+
+      if (onUpdateStatesData) onUpdateStatesData(updated);
+    }
+
     setIsEditModalOpen(false);
     showToast(`Maklumat acara Roadtour ${currentState.name} berjaya dikemaskini!`);
   };
 
+  // Instant non-blocking delete image function
   const handleDeleteImage = (index: number) => {
-    if (!currentState || !onUpdateStatesData) return;
+    if (!currentState) return;
 
     const currentGallery = currentState.gallery || [];
     if (index < 0 || index >= currentGallery.length) return;
@@ -429,17 +467,33 @@ export const RoadtourSection: React.FC<RoadtourSectionProps> = ({
 
     const updatedGallery = currentGallery.filter((_, i) => i !== index);
 
-    const updatedStates = statesData.map((st) => {
-      if (st.id.toLowerCase() === targetId || st.name.toLowerCase() === targetName) {
-        return {
-          ...st,
-          gallery: updatedGallery
-        };
-      }
-      return st;
-    });
+    if (activeVersion === '2.0') {
+      const updatedStates = v2States.map((st) => {
+        if (st.id.toLowerCase() === targetId || st.name.toLowerCase() === targetName) {
+          return {
+            ...st,
+            gallery: updatedGallery
+          };
+        }
+        return st;
+      });
 
-    onUpdateStatesData(updatedStates);
+      if (onUpdateStatesV2Data) onUpdateStatesV2Data(updatedStates);
+      else if (onUpdateStatesData) onUpdateStatesData(updatedStates);
+    } else {
+      const updatedStates = v1States.map((st) => {
+        if (st.id.toLowerCase() === targetId || st.name.toLowerCase() === targetName) {
+          return {
+            ...st,
+            gallery: updatedGallery
+          };
+        }
+        return st;
+      });
+
+      if (onUpdateStatesData) onUpdateStatesData(updatedStates);
+    }
+
     showToast(`Gambar berjaya dipadam daripada album ${currentState.name}.`);
   };
 
@@ -450,7 +504,7 @@ export const RoadtourSection: React.FC<RoadtourSectionProps> = ({
       return;
     }
 
-    if (!onUpdateStatesData || !currentState) return;
+    if (!currentState) return;
 
     const newPhoto = {
       url: newImageUrl.trim(),
@@ -460,17 +514,33 @@ export const RoadtourSection: React.FC<RoadtourSectionProps> = ({
     const targetId = currentState.id.toLowerCase();
     const targetName = currentState.name.toLowerCase();
 
-    const updatedStates = statesData.map((st) => {
-      if (st.id.toLowerCase() === targetId || st.name.toLowerCase() === targetName) {
-        return {
-          ...st,
-          gallery: [...(st.gallery || []), newPhoto]
-        };
-      }
-      return st;
-    });
+    if (activeVersion === '2.0') {
+      const updatedStates = v2States.map((st) => {
+        if (st.id.toLowerCase() === targetId || st.name.toLowerCase() === targetName) {
+          return {
+            ...st,
+            gallery: [...(st.gallery || []), newPhoto]
+          };
+        }
+        return st;
+      });
 
-    onUpdateStatesData(updatedStates);
+      if (onUpdateStatesV2Data) onUpdateStatesV2Data(updatedStates);
+      else if (onUpdateStatesData) onUpdateStatesData(updatedStates);
+    } else {
+      const updatedStates = v1States.map((st) => {
+        if (st.id.toLowerCase() === targetId || st.name.toLowerCase() === targetName) {
+          return {
+            ...st,
+            gallery: [...(st.gallery || []), newPhoto]
+          };
+        }
+        return st;
+      });
+
+      if (onUpdateStatesData) onUpdateStatesData(updatedStates);
+    }
+
     setNewImageUrl('');
     setNewImageCaption('');
     setIsAddImageModalOpen(false);
@@ -889,12 +959,14 @@ export const RoadtourSection: React.FC<RoadtourSectionProps> = ({
                           id={`delete-img-btn-${currentState.id}-${idx}`}
                           onClick={(e) => {
                             e.stopPropagation();
+                            e.preventDefault();
                             handleDeleteImage(idx);
                           }}
-                          className="absolute top-2 right-2 z-30 p-2 rounded-xl bg-rose-950/90 text-rose-400 hover:bg-rose-900 hover:text-white border border-rose-500/50 shadow-lg transition-all active:scale-90 cursor-pointer"
-                          title="Padam Gambar Ini"
+                          className="absolute top-2.5 right-2.5 z-30 p-2.5 rounded-xl bg-rose-950/95 text-rose-300 hover:bg-rose-900 hover:text-white border border-rose-500/60 shadow-[0_4px_14px_rgba(244,63,94,0.4)] transition-all active:scale-90 cursor-pointer flex items-center justify-center"
+                          title="Padam Gambar Ini Serta-Merta"
+                          aria-label="Padam Gambar Ini"
                         >
-                          <Trash2 className="w-3.5 h-3.5" />
+                          <Trash2 className="w-4 h-4 text-rose-300 hover:text-white" />
                         </button>
                       )}
 
