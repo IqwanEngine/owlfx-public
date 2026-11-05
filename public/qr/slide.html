@@ -1,0 +1,761 @@
+<!--
+// =============================================================================
+//  ██╗ ██████╗ ██╗    ██╗ █████╗ ███╗   ██╗███████╗███╗   ██╗ ██████╗ ██╗███╗   ██╗███████╗
+//  ██║██╔═══██╗██║    ██║██╔══██╗████╗  ██║██╔════╝████╗  ██║██╔════╝ ██║████╗  ██║██╔════╝
+//  ██║██║   ██║██║ █╗ ██║███████║██╔██╗ ██║█████╗  ██╔██╗ ██║██║  ███╗██║██╔██╗ ██║█████╗
+//  ██║██║▄▄ ██║██║███╗██║██╔══██║██║╚██╗██║██╔══╝  ██║╚██╗██║██║   ██║██║██║╚██╗██║██╔══╝
+//  ██║╚██████╔╝╚███╔███╔╝██║  ██║██║ ╚████║███████╗██║ ╚████║╚██████╔╝██║██║ ╚████║███████╗
+//  ╚═╝ ╚══▀▀═╝  ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝╚═╝  ╚═══╝╚══════╝
+// =============================================================================
+// _._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.__
+// Generated & Multi-Layout Optimized by IqwanEngine
+// _._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._._.__
+-->
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- IqwanEngine : Meta Settings & Title -->
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- Favicon -->
+        <link
+            rel="icon"
+            type="image/png"
+            href="https://owlfx-register.vercel.app/assets/OWLFX.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            href="https://owlfx-register.vercel.app/assets/OWLFX.png"
+        />
+
+        <title>REGISTER OWLALGO (MALAYSIA) | OWLFX ✨</title>
+        <meta
+            name="description"
+            content="Platform teknologi dagangan kuantitatif, IB development, dan algoritma berprestasi tinggi OWLFX."
+        />
+        <meta
+            property="og:title"
+            content="OWLFX - Institutional Trading Architecture"
+        />
+        <meta
+            property="og:description"
+            content="Platform teknologi dagangan kuantitatif, IB development, dan algoritma berprestasi tinggi OWLFX."
+        />
+        <meta property="og:type" content="website" />
+
+        <!-- Preconnect & Preload -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <!-- IqwanEngine : Fonts (Outfit & Montserrat) -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;700;900&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- IqwanEngine : Tailwind CSS -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- IqwanEngine : Tailwind Configuration -->
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: ["Outfit", "sans-serif"],
+                            montserrat: ["Montserrat", "sans-serif"],
+                        },
+                        animation: {
+                            float: "float 6s ease-in-out infinite",
+                        },
+                        keyframes: {
+                            float: {
+                                "0%, 100%": { transform: "translateY(0)" },
+                                "50%": { transform: "translateY(-10px)" },
+                            },
+                        },
+                    },
+                },
+            };
+        </script>
+
+        <!-- Custom CSS (User Restrictions & Transitions) -->
+        <style>
+            :root {
+                --gold-primary: #d4af37;
+                --gold-light: #fbeea4;
+                --gold-dark: #8a661c;
+            }
+
+            /* Prevent users from highlighting text & drag-saving */
+            body {
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                background-color: #020617; /* slate-950 */
+                -webkit-font-smoothing: antialiased;
+            }
+
+            img {
+                -webkit-user-drag: none;
+                -khtml-user-drag: none;
+                -moz-user-drag: none;
+                -o-user-drag: none;
+                pointer-events: none;
+            }
+
+            /* Ambient Glass Panel styles */
+            .glass-panel-wrapper {
+                background: linear-gradient(
+                    145deg,
+                    rgba(16, 16, 24, 0.85) 0%,
+                    rgba(8, 8, 14, 0.95) 100%
+                );
+                backdrop-filter: blur(28px);
+                -webkit-backdrop-filter: blur(28px);
+                border: 2px solid rgba(212, 175, 55, 0.28);
+                box-shadow:
+                    0 35px 80px -15px rgba(0, 0, 0, 0.9),
+                    0 0 60px -15px rgba(212, 175, 55, 0.15),
+                    inset 0 1px 0 0 rgba(255, 238, 170, 0.15);
+            }
+
+            /* Inner Registration Card Styling - Mirroring Image 2 */
+            .glass-panel-inner {
+                background: linear-gradient(
+                    165deg,
+                    rgba(14, 17, 24, 0.92) 0%,
+                    rgba(8, 10, 15, 0.98) 100%
+                );
+                border: 1.5px solid rgba(212, 175, 55, 0.22);
+                box-shadow:
+                    0 25px 60px -15px rgba(0, 0, 0, 0.95),
+                    0 0 40px -10px rgba(212, 175, 55, 0.12),
+                    inset 0 1px 0 0 rgba(255, 238, 170, 0.15);
+            }
+
+            /* Gold Shimmer Animation */
+            @keyframes shimmer {
+                0% {
+                    background-position: -200% center;
+                }
+                100% {
+                    background-position: 200% center;
+                }
+            }
+            .animate-metallic-shimmer {
+                background-size: 200% auto;
+                animation: shimmer 4s linear infinite;
+            }
+
+            .glass-shine-text {
+                background: linear-gradient(
+                    110deg,
+                    #fbf1b3 0%,
+                    #ffffff 30%,
+                    #fcf6ba 50%,
+                    #e5c365 75%,
+                    #fbf1b3 100%
+                );
+                background-size: 250% auto;
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                animation: shine-text 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            }
+
+            @keyframes shine-text {
+                0% {
+                    background-position: -200% center;
+                }
+                100% {
+                    background-position: 200% center;
+                }
+            }
+
+            /* Consistent Uniform Inputs */
+            .input-field {
+                background: rgba(11, 14, 21, 0.85);
+                border: 1px solid rgba(212, 175, 55, 0.22);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.6);
+            }
+
+            .input-field:focus {
+                border-color: rgba(251, 238, 164, 0.6);
+                background: rgba(15, 19, 29, 0.95);
+                box-shadow:
+                    0 0 0 1px rgba(251, 238, 164, 0.35),
+                    0 0 20px rgba(212, 175, 55, 0.2),
+                    inset 0 2px 4px rgba(0, 0, 0, 0.4);
+                outline: none;
+            }
+
+            /* Metallic Gold Button matching Image 2 */
+            .vip-button {
+                background: linear-gradient(
+                    90deg,
+                    #b58028 0%,
+                    #dfae45 35%,
+                    #fbe48e 70%,
+                    #fbee9d 100%
+                );
+                position: relative;
+                overflow: hidden;
+                transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+                color: #0c0a04;
+                box-shadow:
+                    0 12px 30px -5px rgba(212, 175, 55, 0.45),
+                    inset 0 1px 1px 0 rgba(255, 255, 255, 0.7);
+            }
+
+            .vip-button:hover {
+                transform: translateY(-2px);
+                box-shadow:
+                    0 18px 36px -5px rgba(212, 175, 55, 0.6),
+                    inset 0 1px 2px 0 rgba(255, 255, 255, 0.9);
+            }
+
+            .vip-button:active {
+                transform: translateY(0);
+            }
+
+            .vip-button::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 60%;
+                height: 100%;
+                background: linear-gradient(
+                    to right,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.75) 50%,
+                    rgba(255, 255, 255, 0) 100%
+                );
+                transform: skewX(-25deg);
+                animation: glass-flare 4.5s cubic-bezier(0.4, 0, 0.2, 1)
+                    infinite;
+            }
+
+            @keyframes glass-flare {
+                0% {
+                    left: -100%;
+                }
+                22% {
+                    left: 200%;
+                }
+                100% {
+                    left: 200%;
+                }
+            }
+
+            /* Grid Overlay Setup */
+            .bg-grid-pattern {
+                background-image:
+                    linear-gradient(
+                        to right,
+                        rgba(255, 255, 255, 0.03) 1px,
+                        transparent 1px
+                    ),
+                    linear-gradient(
+                        to bottom,
+                        rgba(255, 255, 255, 0.03) 1px,
+                        transparent 1px
+                    );
+                background-size: 40px 40px;
+            }
+        </style>
+    </head>
+
+    <!-- Main Landscape Layout -->
+    <body
+        class="min-h-screen flex items-center justify-center font-sans text-slate-200 relative overflow-hidden selection:bg-amber-400 selection:text-black py-6 md:py-10 px-4"
+        oncontextmenu="return false;"
+    >
+        <!-- LAYER 1: Ambient Background Sub-system -->
+        <div
+            class="absolute inset-0 bg-grid-pattern z-0 pointer-events-none"
+        ></div>
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-amber-500/5 rounded-full blur-[140px] pointer-events-none z-0"
+        ></div>
+
+        <!-- LAYER 2: HTML5 Canvas for Dynamic Trading Nodes -->
+        <canvas
+            id="iqwanTradingMatrix"
+            class="absolute inset-0 z-0 opacity-50 pointer-events-none"
+        ></canvas>
+
+        <!-- LAYER 3: Combined Dashboard Container -->
+        <div
+            class="group relative z-10 overflow-hidden glass-panel-wrapper p-6 sm:p-8 md:p-10 lg:p-12 rounded-[2.5rem] w-[98%] max-w-7xl transition-all duration-75 hover:border-amber-400/50 hover:shadow-[0_0_80px_rgba(245,158,11,0.15)] animate-float"
+        >
+            <!-- Card Backdrop Glow -->
+            <div
+                class="absolute inset-0 bg-no-repeat bg-cover bg-center opacity-10 filter blur-[50px] scale-[1.2] pointer-events-none transition-all duration-700"
+                style="
+                    background-image: url(&quot;https://lh3.googleusercontent.com/d/1AUbyeGj4spI26OQlW9ekG_daXEzjvMNY&quot;);
+                "
+            ></div>
+
+            <div
+                class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 relative z-20 items-stretch"
+            >
+                <!-- LHS: QR Code & Branding Section (Kotak Oren Penuh - 5 Columns) -->
+                <div
+                    class="lg:col-span-5 flex flex-col justify-between items-center text-center lg:items-start lg:text-left h-full gap-6"
+                >
+                    <!-- Brand Header -->
+                    <div class="w-full">
+                        <div
+                            class="flex flex-col sm:flex-row items-center lg:items-start gap-4 justify-center lg:justify-start"
+                        >
+                            <!-- Logo Frame -->
+                            <div
+                                class="relative w-20 h-20 sm:w-22 sm:h-22 rounded-full border-[2px] border-amber-300/80 p-0.5 bg-slate-950 shadow-[0_0_25px_5px_rgba(251,191,36,0.3)] flex items-center justify-center overflow-hidden transition-all duration-500 shrink-0"
+                            >
+                                <img
+                                    src="https://lh3.googleusercontent.com/d/1AUbyeGj4spI26OQlW9ekG_daXEzjvMNY"
+                                    alt="OWLFX Logo"
+                                    draggable="false"
+                                    class="w-full h-full object-cover rounded-full relative z-10"
+                                    onerror="
+                                        this.onerror = null;
+                                        this.src =
+                                            'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=150&q=80';
+                                    "
+                                />
+                            </div>
+
+                            <div class="flex flex-col justify-center">
+                                <!-- Label Pendaftaran -->
+                                <div
+                                    class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-400/20 mb-1.5 w-fit mx-auto lg:mx-0"
+                                >
+                                    <span
+                                        class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"
+                                    ></span>
+                                    <span
+                                        class="text-[9px] sm:text-[10px] font-bold tracking-[0.25em] text-amber-400 uppercase font-sans"
+                                        >REGISTRATION</span
+                                    >
+                                </div>
+                                <!-- Title -->
+                                <h2
+                                    class="text-3xl sm:text-4xl font-extrabold uppercase tracking-wide text-transparent bg-clip-text bg-[linear-gradient(110deg,#d4af37,45%,#ffffff,55%,#e2e8f0,70%,#f59e0b)] animate-metallic-shimmer drop-shadow-[0_0_15px_rgba(245,158,11,0.5)]"
+                                >
+                                    OWL ALGO
+                                </h2>
+                                <!-- Subtitle -->
+                                <h3
+                                    class="text-sm sm:text-base font-bold tracking-[0.3em] text-transparent bg-clip-text bg-gradient-to-b from-amber-200/90 via-amber-500/70 to-amber-700/80 drop-shadow-[0_1px_3px_rgba(0,0,0,0.6)] uppercase"
+                                >
+                                    REGISTRATION
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Massive QR Code Section (Penuh & Padat Mengikut Zon Oren) -->
+                    <div
+                        class="w-full flex justify-center items-center my-auto"
+                    >
+                        <div
+                            class="relative w-full max-w-[340px] sm:max-w-[380px] lg:max-w-[420px] xl:max-w-[450px] aspect-square"
+                        >
+                            <!-- Frame Animasi Luar Emas -->
+                            <div
+                                class="relative p-[6px] md:p-[8px] rounded-[32px] bg-[linear-gradient(110deg,#d4af37,40%,#ffffff,50%,#e2e8f0,65%,#f59e0b)] animate-metallic-shimmer shadow-[0_0_40px_rgba(245,158,11,0.4)] transform hover:scale-[1.02] duration-300 w-full h-full"
+                            >
+                                <!-- Inner Container Solid Putih -->
+                                <div
+                                    class="bg-white rounded-[24px] p-4 sm:p-5 shadow-[inset_0_0_20px_rgba(0,0,0,0.08)] flex items-center justify-center w-full h-full"
+                                >
+                                    <!-- QR Image -->
+                                    <img
+                                        src="https://i.imgur.com/U9mCfpr.png"
+                                        alt="OWLFX Custom QR"
+                                        draggable="false"
+                                        class="w-full h-full object-contain"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Call To Action & Footer -->
+                    <div class="w-full">
+                        <p
+                            class="text-sm sm:text-base lg:text-lg font-light leading-relaxed text-transparent bg-clip-text bg-gradient-to-r from-slate-300 via-white to-slate-400 drop-shadow-[0_0_8px_rgba(255,255,255,0.2)] mb-3"
+                        >
+                            Sila
+                            <span class="font-bold text-amber-400"
+                                >Scan QR</span
+                            >
+                            di atas menggunakan telefon untuk memulakan
+                            pendaftaran VIP.
+                        </p>
+
+                        <!-- Powered By OWLFX -->
+                        <div class="relative inline-flex items-center">
+                            <div
+                                class="bg-slate-900/80 px-4 py-2 rounded-full border border-slate-700/50 backdrop-blur-md flex items-center space-x-2 text-[11px] sm:text-xs text-slate-400 font-medium tracking-wide"
+                            >
+                                <span
+                                    class="inline-block w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse shadow-[0_0_8px_#fbbf24]"
+                                ></span>
+                                <span>Presentation</span>
+                                <a
+                                    href="https://www.owlfx.my/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="font-extrabold text-amber-300 drop-shadow-[0_0_12px_rgba(251,191,36,0.8)] hover:text-white hover:drop-shadow-[0_0_18px_rgba(255,255,255,0.9)] transition-all duration-300 z-30 relative pointer-events-auto"
+                                >
+                                    OWL ALGO &nearr;
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RHS: Form Registration Card (Kotak Kuning Penuh - 7 Columns, Padan 100% dengan Gambar 2) -->
+                <div
+                    class="lg:col-span-7 rounded-[2.5rem] glass-panel-inner p-6 sm:p-8 md:p-10 flex flex-col justify-center shadow-2xl relative w-full h-full"
+                >
+                    <!-- Panel Glow Overlay -->
+                    <div
+                        class="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#fbeea4]/30 to-transparent"
+                    ></div>
+                    <div
+                        class="absolute -top-10 -right-10 w-44 h-44 bg-amber-400/10 rounded-full blur-3xl pointer-events-none"
+                    ></div>
+
+                    <!-- Inner Form Container -->
+                    <div class="w-full my-auto">
+                        <!-- Header Preview Seragam -->
+                        <div class="text-center mb-6">
+                            <!-- Top Pill Badge -->
+                            <div
+                                class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 mb-3"
+                            >
+                                <span
+                                    class="w-1.5 h-1.5 rounded-full bg-amber-400"
+                                ></span>
+                                <span
+                                    class="text-[10px] sm:text-xs font-bold tracking-[0.25em] text-amber-400 uppercase font-sans"
+                                    >REGISTRATION</span
+                                >
+                            </div>
+
+                            <!-- Main Title -->
+                            <h2
+                                class="text-4xl sm:text-5xl font-black tracking-[0.28em] glass-shine-text uppercase mb-2 font-sans drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]"
+                            >
+                                OWLFX
+                            </h2>
+
+                            <!-- Subtitle with Dual Dividers -->
+                            <div
+                                class="flex items-center justify-center gap-3 sm:gap-4"
+                            >
+                                <span
+                                    class="h-px w-10 sm:w-16 bg-gradient-to-r from-transparent to-amber-400/50"
+                                ></span>
+                                <p
+                                    class="text-[10px] sm:text-[11px] text-amber-200/80 uppercase tracking-[0.35em] font-bold font-montserrat"
+                                >
+                                    EXCLUSIVE VIP ACCESS
+                                </p>
+                                <span
+                                    class="h-px w-10 sm:w-16 bg-gradient-to-l from-transparent to-amber-400/50"
+                                ></span>
+                            </div>
+                        </div>
+
+                        <!-- Form Kolum & Input Seragam -->
+                        <form
+                            onsubmit="return false;"
+                            class="w-full space-y-4 font-montserrat"
+                        >
+                            <!-- FULL NAME -->
+                            <div>
+                                <label
+                                    class="text-[11px] font-bold text-amber-400 uppercase mb-2 flex items-center gap-1.5 tracking-wider font-montserrat"
+                                >
+                                    <span
+                                        class="w-1 h-3 bg-amber-400 rounded-full inline-block"
+                                    ></span>
+                                    FULL NAME
+                                </label>
+                                <input
+                                    type="text"
+                                    name="nama"
+                                    disabled
+                                    class="w-full py-3.5 px-4 sm:py-4 sm:px-4 rounded-2xl text-slate-200 input-field text-xs sm:text-sm placeholder:text-slate-500 cursor-not-allowed"
+                                    placeholder="Please fill your name"
+                                />
+                            </div>
+
+                            <!-- CONTACT NUMBER -->
+                            <div>
+                                <label
+                                    class="text-[11px] font-bold text-amber-400 uppercase mb-2 flex items-center gap-1.5 tracking-wider font-montserrat"
+                                >
+                                    <span
+                                        class="w-1 h-3 bg-amber-400 rounded-full inline-block"
+                                    ></span>
+                                    CONTACT NUMBER
+                                </label>
+                                <input
+                                    type="tel"
+                                    name="contact_number"
+                                    disabled
+                                    class="w-full py-3.5 px-4 sm:py-4 sm:px-4 rounded-2xl text-slate-200 input-field text-xs sm:text-sm placeholder:text-slate-500 cursor-not-allowed"
+                                    placeholder="Cth: +60123456789"
+                                />
+                            </div>
+
+                            <!-- EMAIL VALETAX & TRADINGVIEW ID (2 Columns Grid) -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <!-- EMAIL VALETAX -->
+                                <div>
+                                    <label
+                                        class="text-[11px] font-bold text-amber-400 uppercase mb-2 flex items-center gap-1.5 tracking-wider font-montserrat"
+                                    >
+                                        <span
+                                            class="w-1 h-3 bg-amber-400 rounded-full inline-block"
+                                        ></span>
+                                        EMAIL VALETAX
+                                    </label>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        disabled
+                                        class="w-full py-3.5 px-4 sm:py-4 sm:px-4 rounded-2xl text-slate-200 input-field text-xs sm:text-sm placeholder:text-slate-500 cursor-not-allowed"
+                                        placeholder="email@domain.com"
+                                    />
+                                </div>
+
+                                <!-- TRADINGVIEW ID (Dengan Ikon Info Bulat Kanan) -->
+                                <div>
+                                    <label
+                                        class="text-[11px] font-bold text-amber-400 uppercase mb-2 flex items-center gap-1.5 tracking-wider font-montserrat"
+                                    >
+                                        <span
+                                            class="w-1 h-3 bg-amber-400 rounded-full inline-block"
+                                        ></span>
+                                        TRADINGVIEW ID
+                                    </label>
+                                    <div class="relative">
+                                        <input
+                                            type="text"
+                                            name="tradingview"
+                                            disabled
+                                            class="w-full py-3.5 px-4 sm:py-4 sm:px-4 pr-11 rounded-2xl text-slate-200 input-field text-xs sm:text-sm placeholder:text-slate-500 cursor-not-allowed"
+                                            placeholder="Username"
+                                        />
+                                        <div
+                                            class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-amber-400/70"
+                                        >
+                                            <svg
+                                                class="w-4 h-4"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <circle
+                                                    cx="12"
+                                                    cy="12"
+                                                    r="9"
+                                                ></circle>
+                                                <line
+                                                    x1="12"
+                                                    y1="16"
+                                                    x2="12"
+                                                    y2="12"
+                                                ></line>
+                                                <line
+                                                    x1="12"
+                                                    y1="8"
+                                                    x2="12.01"
+                                                    y2="8"
+                                                ></line>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- TRADING ACCOUNT NUMBER (Dengan Ikon Info Bulat Kanan) -->
+                            <div>
+                                <label
+                                    class="text-[11px] font-bold text-amber-400 uppercase mb-2 flex items-center gap-1.5 tracking-wider font-montserrat"
+                                >
+                                    <span
+                                        class="w-1 h-3 bg-amber-400 rounded-full inline-block"
+                                    ></span>
+                                    TRADING ACCOUNT NUMBER
+                                </label>
+                                <div class="relative">
+                                    <input
+                                        type="text"
+                                        name="valetax_id"
+                                        disabled
+                                        class="w-full py-3.5 px-4 sm:py-4 sm:px-4 pr-11 rounded-2xl text-slate-200 input-field text-xs sm:text-sm placeholder:text-slate-500 cursor-not-allowed"
+                                        placeholder="Cth: 8892102"
+                                    />
+                                    <div
+                                        class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-amber-400/70"
+                                    >
+                                        <svg
+                                            class="w-4 h-4"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <circle
+                                                cx="12"
+                                                cy="12"
+                                                r="9"
+                                            ></circle>
+                                            <line
+                                                x1="12"
+                                                y1="16"
+                                                x2="12"
+                                                y2="12"
+                                            ></line>
+                                            <line
+                                                x1="12"
+                                                y1="8"
+                                                x2="12.01"
+                                                y2="8"
+                                            ></line>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                <!-- Nota Keterangan -->
+                                <div class="mt-2.5 flex items-center gap-1.5">
+                                    <svg
+                                        class="w-3.5 h-3.5 text-amber-400/90 shrink-0"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                            clip-rule="evenodd"
+                                        ></path>
+                                    </svg>
+                                    <span
+                                        class="text-[10px] sm:text-[11px] text-amber-200/70 italic tracking-wide font-montserrat"
+                                    >
+                                        Pastikan Valetax ID anda adalah sah di
+                                        bawah rangkaian OWLFX.
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- SUBMIT BUTTON SERAGAM -->
+                            <button
+                                type="button"
+                                disabled
+                                class="w-full vip-button font-black py-4 sm:py-4.5 rounded-2xl uppercase tracking-[0.22em] text-xs sm:text-sm mt-4 text-[#0c0a04] cursor-not-allowed opacity-95 flex items-center justify-center font-sans"
+                            >
+                                AKTIFKAN KEAHLIAN VIP
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LAYER 4: Dynamic Trading Nodes Script -->
+        <script>
+            const canvas = document.getElementById("iqwanTradingMatrix");
+            const ctx = canvas.getContext("2d");
+            let width, height;
+            let nodes = [];
+
+            function initCanvas() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+
+            window.addEventListener("resize", () => {
+                initCanvas();
+                createNodes();
+            });
+
+            class Node {
+                constructor() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                    this.vx = (Math.random() - 0.5) * 0.5;
+                    this.vy = (Math.random() - 0.5) * 0.5;
+                    this.radius = Math.random() * 1.5 + 0.5;
+                }
+
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+
+                    if (this.x < 0 || this.x > width) this.vx = -this.vx;
+                    if (this.y < 0 || this.y > height) this.vy = -this.vy;
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = "rgba(245, 158, 11, 0.8)";
+                    ctx.fill();
+                }
+            }
+
+            function createNodes() {
+                nodes = [];
+                const nodeCount = Math.min(
+                    Math.floor((width * height) / 14000),
+                    120,
+                );
+                for (let i = 0; i < nodeCount; i++) {
+                    nodes.push(new Node());
+                }
+            }
+
+            function animateNodes() {
+                ctx.clearRect(0, 0, width, height);
+
+                for (let i = 0; i < nodes.length; i++) {
+                    nodes[i].update();
+                    nodes[i].draw();
+
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const dx = nodes[i].x - nodes[j].x;
+                        const dy = nodes[i].y - nodes[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < 120) {
+                            ctx.beginPath();
+                            ctx.strokeStyle = `rgba(245, 158, 11, ${0.4 - (distance / 120) * 0.4})`;
+                            ctx.lineWidth = 0.4;
+                            ctx.moveTo(nodes[i].x, nodes[i].y);
+                            ctx.lineTo(nodes[j].x, nodes[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(animateNodes);
+            }
+
+            initCanvas();
+            createNodes();
+            animateNodes();
+        </script>
+    </body>
+</html>
