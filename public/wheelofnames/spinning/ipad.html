@@ -1,11 +1,3 @@
-<!-- // =============================================================================
-//  ██╗ ██████╗ ██╗    ██╗ █████╗ ███╗   ██╗███████╗███╗   ██╗ ██████╗ ██╗███╗   ██╗███████╗
-//  ██║██╔═══██╗██║    ██║██╔══██╗████╗  ██║██╔════╝████╗  ██║██╔════╝ ██║████╗  ██║██╔════╝
-//  ██║██║   ██║██║ █╗ ██║███████║██╔██╗ ██║█████╗  ██╔██╗ ██║██║  ███╗██║██╔██╗ ██║█████╗
-//  ██║██║▄▄ ██║██║███╗██║██╔══██║██║╚██╗██║██╔══╝  ██║╚██╗██║██║   ██║██║██║╚██╗██║██╔══╝
-//  ██║╚██████╔╝╚███╔███╔╝██║  ██║██║ ╚████║███████╗██║ ╚████║╚██████╔╝██║██║ ╚████║███████╗
-//  ╚═╝ ╚══▀▀═╝  ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝╚═╝  ╚═══╝╚══════╝
-// ============================================================================= -->
 <!-- Powered by IqwanEngine -->
 <!doctype html>
 <html lang="ms">
@@ -330,7 +322,6 @@
             }
         </style>
     </head>
-    <!-- FIX: Gunakan min-h-[100dvh] supaya tidak melimpah keluar dari bar alamat telefon -->
     <body
         class="bg-luxury-mesh text-white min-h-[100dvh] flex flex-col justify-between items-center p-3 md:p-6 overflow-hidden relative"
     >
@@ -453,16 +444,20 @@
                 OWLFX SPINNING WHEEL
             </h1>
             <p
-                class="text-xs md:text-sm text-slate-400 font-medium tracking-wide mt-0.5"
+                class="text-xs md:text-sm text-slate-400 font-medium tracking-wide mt-1.5 flex items-center justify-center gap-1.5"
             >
-                Tekan & tahan butang tengah untuk HOLD dan SPIN the WHEELS!
+                Tekan &
+                <span
+                    class="text-amber-400 font-bold uppercase tracking-wider decoration-amber-500/50-offset-4"
+                    >HOLD</span
+                >
+                to SPIN the WHEELS!
             </p>
         </header>
 
         <main
             class="relative flex-1 flex items-center justify-center w-full px-2 my-auto z-10"
         >
-            <!-- FIX: Skala Responsif roda w-[min(90vw,50dvh)] agar serasi Tablet & Phone -->
             <div
                 id="wheelContainer"
                 class="relative flex items-center justify-center w-[min(90vw,50dvh)] sm:w-[min(82vw,43dvh)] max-w-[540px] md:max-w-[620px] aspect-square transition-transform duration-300"
@@ -556,7 +551,6 @@
                             style="z-index: -1"
                         ></div>
 
-                        <!-- FIX: touch-action: none wajib untuk elak pointer capture conflicts -->
                         <button
                             id="spinBtn"
                             style="touch-action: none"
@@ -617,18 +611,15 @@
             id="resultModal"
             class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300"
         >
-            <!-- FIX: Buang overflow-hidden agar margin-top ikon tidak terpotong.-->
             <div
                 id="modalCard"
                 class="relative w-full max-w-sm rounded-3xl bg-gradient-to-b from-slate-900 via-slate-950 to-neutral-950 border border-amber-500/40 p-6 md:p-8 text-center shadow-[0_0_60px_rgba(245,158,11,0.2)] transition-colors duration-300"
             >
-                <!-- FIX: Shine Wrapper ditambah untuk mengawal animasi kilauan agar tidak melimpah dari kad -->
                 <div
                     id="modalShineWrapper"
                     class="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none z-0"
                 ></div>
 
-                <!-- CONTENT WRAPPER -->
                 <div class="relative z-10">
                     <div
                         id="modalIconContainer"
@@ -776,7 +767,6 @@
             }
             const networkBg = new NetworkBackground("bgCanvas");
 
-            // FIX: Sistem Audio Mudah Alih yang Lebih Teguh
             const AudioContext =
                 window.AudioContext || window.webkitAudioContext;
             const audioCtx = new AudioContext();
@@ -790,7 +780,6 @@
                 if (!masterGain) {
                     masterGain = audioCtx.createGain();
                     masterGain.connect(audioCtx.destination);
-                    // Pastikan ia sync dengan status mute di awal
                     masterGain.gain.value = isMuted ? 0 : 1;
                 }
 
@@ -803,7 +792,6 @@
                 }
             }
 
-            // Audio Unlocker Global (Menembak 1 silent buffer untuk iOS hardware)
             async function unlockAudio() {
                 if (audioUnlocked) return;
                 await initAudio();
@@ -817,7 +805,6 @@
                     else source.noteOn(0);
 
                     audioUnlocked = true;
-                    // Bersihkan listeners apabila sudah dibuka kuncinya
                     ["touchstart", "touchend", "pointerdown", "click"].forEach(
                         (evt) => {
                             window.removeEventListener(evt, unlockAudio, {
@@ -828,7 +815,6 @@
                 }
             }
 
-            // Daftarkan event listener global
             ["touchstart", "touchend", "pointerdown", "click"].forEach(
                 (evt) => {
                     window.addEventListener(evt, unlockAudio, {
@@ -846,7 +832,7 @@
                 const osc = audioCtx.createOscillator();
                 const gain = audioCtx.createGain();
                 osc.connect(gain);
-                gain.connect(masterGain); // Sambungkan kepada masterGain!
+                gain.connect(masterGain);
 
                 osc.type = "triangle";
                 osc.frequency.setValueAtTime(600, audioCtx.currentTime);
@@ -947,9 +933,7 @@
                             audioCtx.currentTime + 0.1,
                         );
                         chargeOscillator.stop(audioCtx.currentTime + 0.1);
-                    } catch (e) {
-                        // Telah diberhentikan dengan selamat
-                    }
+                    } catch (e) {}
                     chargeOscillator = null;
                 }
             }
@@ -1014,6 +998,7 @@
                 });
             }
 
+            // KINI TERDAPAT 20 BAHAGIAN KESELURUHAN (10 MENANG, 10 TROLL)
             const SLICES = [
                 { text: "RM 1", isWin: true, type: "cash-sm", weight: 0.125 },
                 {
@@ -1073,11 +1058,27 @@
                     type: "troll",
                     weight: 0.05,
                 },
+                {
+                    text: "RM 100",
+                    isWin: true,
+                    type: "jackpot",
+                    weight: 0.005,
+                },
+                {
+                    text: "Cuba Lagi Hari Lain!",
+                    isWin: false,
+                    type: "troll",
+                    weight: 0.05,
+                },
             ];
 
             const numSlices = SLICES.length;
             const arc = (2 * Math.PI) / numSlices;
-            const jackpotIndex = SLICES.findIndex((s) => s.type === "jackpot");
+
+            // PENGESAN MULTIPLE JACKPOT (Akan tangkap semua index 'jackpot')
+            const jackpotIndices = SLICES.map((s, i) =>
+                s.type === "jackpot" ? i : -1,
+            ).filter((i) => i !== -1);
 
             const wheelCanvas = document.getElementById("wheelCanvas");
             const ctx = wheelCanvas.getContext("2d");
@@ -1382,13 +1383,18 @@
                     (wheelState === "SPINNING" || wheelState === "CHARGING")
                 ) {
                     lastPassedSlice = currentSlice;
+
+                    // MENYEMAK NEAR MISS UNTUK SEMUA JACKPOT
                     const isNearMissZone =
                         wheelState === "SPINNING" &&
                         isNearMissScenario &&
-                        (currentSlice === jackpotIndex ||
-                            currentSlice ===
-                                (jackpotIndex - 1 + numSlices) % numSlices ||
-                            currentSlice === (jackpotIndex + 1) % numSlices);
+                        jackpotIndices.some(
+                            (jIdx) =>
+                                currentSlice === jIdx ||
+                                currentSlice ===
+                                    (jIdx - 1 + numSlices) % numSlices ||
+                                currentSlice === (jIdx + 1) % numSlices,
+                        );
 
                     playTick();
 
@@ -1520,8 +1526,13 @@
                 );
             }
 
+            // MENGIRA KEBARANGKALIAN BERASASKAN JUMLAH WEIGHT DINAMIK
             function getWeightedWinner() {
-                const rand = Math.random();
+                const totalWeight = SLICES.reduce(
+                    (sum, slice) => sum + slice.weight,
+                    0,
+                );
+                const rand = Math.random() * totalWeight;
                 let cumulative = 0;
                 for (let i = 0; i < numSlices; i++) {
                     cumulative += SLICES[i].weight;
@@ -1600,7 +1611,15 @@
 
                 let winIndex;
                 if (easterEggTapCount === 3) {
-                    winIndex = jackpotIndex >= 0 ? jackpotIndex : 10;
+                    // MENGESAN SEBARANG JACKPOT SECARA RAWAK JIKA DITEKAN 3 KALI
+                    winIndex =
+                        jackpotIndices.length > 0
+                            ? jackpotIndices[
+                                  Math.floor(
+                                      Math.random() * jackpotIndices.length,
+                                  )
+                              ]
+                            : 10;
                 } else if (easterEggTapCount === 2) {
                     const idx50 = SLICES.findIndex((s) => s.text === "RM 50");
                     winIndex = idx50 >= 0 ? idx50 : 6;
@@ -1612,9 +1631,13 @@
                 winningSlice = SLICES[winIndex];
                 winningIndex = winIndex;
 
-                const isAdjacentToJackpot =
-                    winIndex === (jackpotIndex - 1 + numSlices) % numSlices ||
-                    winIndex === (jackpotIndex + 1) % numSlices;
+                // MENGESAN JIKA KEPUTUSAN BERSEBELAHAN DENGAN MANA-MANA JACKPOT
+                const isAdjacentToJackpot = jackpotIndices.some((jIdx) => {
+                    return (
+                        winIndex === (jIdx - 1 + numSlices) % numSlices ||
+                        winIndex === (jIdx + 1) % numSlices
+                    );
+                });
 
                 isNearMissScenario = isAdjacentToJackpot && !winningSlice.isWin;
                 nearMissTriggered = false;
@@ -1703,7 +1726,6 @@
                     "animate-win-pop",
                     "animate-troll-shake",
                 );
-                // FIX: Buang shine-sweep dari wrapper, bukan card utama
                 modalShineWrapper.classList.remove("shine-sweep");
                 modalIconInner.classList.remove("icon-bounce");
                 void modalCard.offsetWidth;
@@ -1719,7 +1741,6 @@
                         "text-4xl md:text-5xl font-black bg-gradient-to-r from-amber-300 via-amber-500 to-yellow-600 md:from-amber-200 md:via-amber-400 md:to-yellow-500 bg-clip-text text-transparent mb-2";
                     modalDesc.textContent = `Syabas! Anda berjaya membawa pulang hadiah bernilai ${winningSlice.text}.`;
 
-                    // FIX: Letak animasi kilauan di dalam wrapper khas
                     modalShineWrapper.classList.add("shine-sweep");
                     modalCard.classList.add("animate-win-pop");
 
@@ -1733,7 +1754,6 @@
                         "inline-block px-3 py-1 rounded-full text-xs font-bold tracking-widest uppercase bg-rose-500/20 text-rose-500 md:text-rose-300 border border-rose-500/40 mb-2";
                     modalTitle.textContent = winningSlice.text;
 
-                    // FIX: Tukar "text-slate-800" kepada "text-slate-100" untuk kontras tinggi di mod gelap bimbit
                     modalTitle.className =
                         "text-2xl md:text-3xl font-extrabold text-slate-100 mb-2";
 
