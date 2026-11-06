@@ -998,77 +998,85 @@
                 });
             }
 
-            // KINI TERDAPAT 20 BAHAGIAN KESELURUHAN (10 MENANG, 10 TROLL)
+            // ==================================================================
+            // SLICES: RM50 & RM100 weight = 0 (hanya keluar pada special spin)
+            // Random spin weights (total = 1.00):
+            //   RM1  = 40%    (0.20 x 2)
+            //   RM5  = 35%    (0.175 x 2)
+            //   RM10 = 12.5%  (0.0625 x 2)
+            //   RM20 = 7.5%   (0.0375 x 2)
+            //   Troll= 5%     (0.00625 x 8)
+            // ==================================================================
             const SLICES = [
-                { text: "RM 1", isWin: true, type: "cash-sm", weight: 0.125 },
+                { text: "RM 1", isWin: true, type: "cash-sm", weight: 0.2 },
                 {
                     text: "Tidak Mengapa, jangan sedih ya!",
                     isWin: false,
                     type: "troll",
-                    weight: 0.05,
+                    weight: 0.00625,
                 },
-                { text: "RM 10", isWin: true, type: "cash-md", weight: 0.06 },
-                { text: "RM 5", isWin: true, type: "cash-sm", weight: 0.09 },
+                { text: "RM 10", isWin: true, type: "cash-md", weight: 0.0625 },
+                { text: "RM 5", isWin: true, type: "cash-sm", weight: 0.175 },
                 {
                     text: "Hmm, bukan rezeki lah...",
                     isWin: false,
                     type: "troll",
-                    weight: 0.05,
+                    weight: 0.00625,
                 },
-                { text: "RM 20", isWin: true, type: "cash-md", weight: 0.035 },
-                { text: "RM 50", isWin: true, type: "cash-lg", weight: 0.0125 },
+                { text: "RM 20", isWin: true, type: "cash-md", weight: 0.0375 },
+                { text: "RM 50", isWin: true, type: "cash-lg", weight: 0 },
                 {
                     text: "Nasib Tak Menyebelahi Anda!",
                     isWin: false,
                     type: "troll",
-                    weight: 0.05,
+                    weight: 0.00625,
                 },
-                { text: "RM 1", isWin: true, type: "cash-sm", weight: 0.125 },
+                { text: "RM 1", isWin: true, type: "cash-sm", weight: 0.2 },
                 {
                     text: "Alahai Sipi-sipi Je Lagi!",
                     isWin: false,
                     type: "troll",
-                    weight: 0.05,
+                    weight: 0.00625,
                 },
                 {
                     text: "RM 100",
                     isWin: true,
                     type: "jackpot",
-                    weight: 0.005,
+                    weight: 0,
                 },
                 {
                     text: "Bawa Balik Senyuman Manis :)",
                     isWin: false,
                     type: "troll",
-                    weight: 0.05,
+                    weight: 0.00625,
                 },
-                { text: "RM 5", isWin: true, type: "cash-sm", weight: 0.09 },
-                { text: "RM 10", isWin: true, type: "cash-md", weight: 0.06 },
+                { text: "RM 5", isWin: true, type: "cash-sm", weight: 0.175 },
+                { text: "RM 10", isWin: true, type: "cash-md", weight: 0.0625 },
                 {
                     text: "Tepuk Tangan Untuk Diri Sendiri!",
                     isWin: false,
                     type: "troll",
-                    weight: 0.05,
+                    weight: 0.00625,
                 },
-                { text: "RM 20", isWin: true, type: "cash-md", weight: 0.035 },
-                { text: "RM 50", isWin: true, type: "cash-lg", weight: 0.0125 },
+                { text: "RM 20", isWin: true, type: "cash-md", weight: 0.0375 },
+                { text: "RM 50", isWin: true, type: "cash-lg", weight: 0 },
                 {
                     text: "Masuk Zon Poket Kering!",
                     isWin: false,
                     type: "troll",
-                    weight: 0.05,
+                    weight: 0.00625,
                 },
                 {
                     text: "RM 100",
                     isWin: true,
                     type: "jackpot",
-                    weight: 0.005,
+                    weight: 0,
                 },
                 {
                     text: "Cuba Lagi Hari Lain!",
                     isWin: false,
                     type: "troll",
-                    weight: 0.05,
+                    weight: 0.00625,
                 },
             ];
 
@@ -1079,6 +1087,17 @@
             const jackpotIndices = SLICES.map((s, i) =>
                 s.type === "jackpot" ? i : -1,
             ).filter((i) => i !== -1);
+
+            // Precompute index RM50 & RM100
+            const rm50Indices = SLICES.map((s, i) =>
+                s.text === "RM 50" ? i : -1,
+            ).filter((i) => i !== -1);
+            const rm100Indices = SLICES.map((s, i) =>
+                s.text === "RM 100" ? i : -1,
+            ).filter((i) => i !== -1);
+
+            // COUNTER SPIN (reset automatik bila refresh / page reload)
+            let spinCount = 0;
 
             const wheelCanvas = document.getElementById("wheelCanvas");
             const ctx = wheelCanvas.getContext("2d");
@@ -1413,8 +1432,6 @@
 
             let chargeStartTime = 0;
             let chargePower = 0;
-            let easterEggTapCount = 0;
-            let lastTapTime = 0;
             let spinStartRotation = 0;
             let spinTargetRotation = 0;
             let spinStartTime = 0;
@@ -1526,8 +1543,28 @@
                 );
             }
 
-            // MENGIRA KEBARANGKALIAN BERASASKAN JUMLAH WEIGHT DINAMIK
-            function getWeightedWinner() {
+            // ==================================================================
+            // LOGIK KEMENANGAN BAHARU:
+            //   - Spin ke-50, 100, 150...  -> RM100
+            //   - Spin ke-25, 75, 125...   -> RM50
+            //   - Selain itu -> weighted random (RM1/RM5/RM10/RM20/troll)
+            // ==================================================================
+            function getWinner() {
+                spinCount++;
+
+                // Check % 50 dulu sebab 50 juga gandaan 25
+                if (spinCount % 50 === 0) {
+                    return rm100Indices[
+                        Math.floor(Math.random() * rm100Indices.length)
+                    ];
+                }
+                if (spinCount % 25 === 0) {
+                    return rm50Indices[
+                        Math.floor(Math.random() * rm50Indices.length)
+                    ];
+                }
+
+                // Random weighted (skip weight 0 = RM50/RM100)
                 const totalWeight = SLICES.reduce(
                     (sum, slice) => sum + slice.weight,
                     0,
@@ -1535,23 +1572,16 @@
                 const rand = Math.random() * totalWeight;
                 let cumulative = 0;
                 for (let i = 0; i < numSlices; i++) {
+                    if (SLICES[i].weight === 0) continue;
                     cumulative += SLICES[i].weight;
                     if (rand <= cumulative) return i;
                 }
-                return numSlices - 1;
+                return 0;
             }
 
             function startCharge(e) {
                 if (e.cancelable) e.preventDefault();
                 if (wheelState !== "IDLE" && wheelState !== "MODAL") return;
-
-                const now = performance.now();
-                if (now - lastTapTime < 450) {
-                    easterEggTapCount++;
-                } else {
-                    easterEggTapCount = 1;
-                }
-                lastTapTime = now;
 
                 initAudio();
                 wheelState = "CHARGING";
@@ -1609,24 +1639,8 @@
                     "animate-pulse",
                 );
 
-                let winIndex;
-                if (easterEggTapCount === 3) {
-                    // MENGESAN SEBARANG JACKPOT SECARA RAWAK JIKA DITEKAN 3 KALI
-                    winIndex =
-                        jackpotIndices.length > 0
-                            ? jackpotIndices[
-                                  Math.floor(
-                                      Math.random() * jackpotIndices.length,
-                                  )
-                              ]
-                            : 10;
-                } else if (easterEggTapCount === 2) {
-                    const idx50 = SLICES.findIndex((s) => s.text === "RM 50");
-                    winIndex = idx50 >= 0 ? idx50 : 6;
-                } else {
-                    winIndex = getWeightedWinner();
-                }
-                easterEggTapCount = 0;
+                // LOGIK KEMENANGAN (easter egg 2x/3x dah dibuang)
+                const winIndex = getWinner();
 
                 winningSlice = SLICES[winIndex];
                 winningIndex = winIndex;
@@ -1721,6 +1735,19 @@
                 powerStatusLabel.textContent = "SELESAI!";
                 chargeProgressCircle.style.strokeDashoffset = 320;
                 footerPowerBar.style.width = "0%";
+
+                // BUTANG TERIMA KASIH JADI MERAH SELEPAS 500 SPIN
+                if (spinCount >= 500) {
+                    modalActionBtn.style.backgroundImage =
+                        "linear-gradient(to right, #ef4444, #dc2626, #991b1b)";
+                    modalActionBtn.style.boxShadow =
+                        "0 8px 25px rgba(220, 38, 38, 0.5)";
+                    modalActionBtn.style.color = "#ffffff";
+                } else {
+                    modalActionBtn.style.backgroundImage = "";
+                    modalActionBtn.style.boxShadow = "";
+                    modalActionBtn.style.color = "";
+                }
 
                 modalCard.classList.remove(
                     "animate-win-pop",
