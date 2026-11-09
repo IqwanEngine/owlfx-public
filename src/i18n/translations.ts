@@ -191,17 +191,17 @@ export interface Translation {
 export const translations: Record<"MY" | "EN", Translation> = {
   MY: {
     nav: {
-      about: "About Us",
-      groupSupport: "VIP Singal & Support",
-      owlAlgo: "OWL ALGO INDICATOR",
-      roadtour: "MASTERCLASS ROADTOUR",
-      ibDevelopment: "IB DEV PROGRAM",
-      education: "BASIC TRADING",
-      community: "Find Us",
-      badge: "Official",
+      about: "Mengenai Kami",
+      groupSupport: "MEJA SOKONGAN VIP",
+      owlAlgo: "PETUNJUK OWL ALGO",
+      roadtour: "JELAJAH MASTERCLASS",
+      ibDevelopment: "PROGRAM PEMBANGUNAN IB",
+      education: "ASAS DAGANGAN",
+      community: "Hubungi Kami",
+      badge: "Rasmi",
       sub: "ONE WORLD LEGACY",
       ctaVip: "MAKLUM BALAS",
-      adminCms: "CMS Portal",
+      adminCms: "Portal CMS",
     },
     hero: {
       statusLive: "OWLFX OFFICIAL LIVE",
