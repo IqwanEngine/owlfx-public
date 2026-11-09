@@ -142,16 +142,13 @@ export const AboutSection: React.FC = () => {
               {/* Main Cutout Container with Seamless Bottom & Side Gradient Blends */}
               <div className="relative w-full max-w-[420px] mx-auto z-0 overflow-hidden rounded-3xl">
                 <img
-                  src="/WanNoBG.webp"
-                  alt="Wan - Founder OWL FX"
-                  className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.9)] select-none pointer-events-none filter contrast-105"
-                  onError={(e) => {
-                    // Fallback to OWLFXpng if asset not loaded
-                    const target = e.currentTarget;
-                    if (!target.src.endsWith('/WanNoBG.webp')) {
-                      target.src = '/WanNoBG.webp';
-                    }
-                  }}
+                  src="/OWLFXpng.webp"
+                  alt="Wan Founder"
+                  width="420"
+                  height="420"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-auto object-cover rounded-xl drop-shadow-[0_20px_50px_rgba(0,0,0,0.9)] select-none pointer-events-none"
                 />
 
                 {/* Seamless Mask Gradients: Feathers image edges into Dark Void (#01040a) */}
