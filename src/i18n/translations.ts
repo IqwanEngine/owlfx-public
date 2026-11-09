@@ -1,233 +1,420 @@
-export const translations = {
+export interface Translation {
+  nav: {
+    about: string;
+    groupSupport: string;
+    owlAlgo: string;
+    roadtour: string;
+    ibDevelopment: string;
+    education: string;
+    community: string;
+    badge: string;
+    sub: string;
+    ctaVip: string;
+    adminCms: string;
+  };
+  hero: {
+    statusLive: string;
+    ecosystem: string;
+    headline1: string;
+    headline2: string;
+    headline3: string;
+    description: string;
+    btnMalaysia: string;
+    btnIndonesia: string;
+    btnAlgoPreview: string;
+    badgeLiquidity: string;
+    badgeExecution: string;
+    badgeLicensed: string;
+    statTraders: string;
+    statTradersSub: string;
+    statWinrate: string;
+    statWinrateSub: string;
+    statLatency: string;
+    statLatencySub: string;
+    statVolume: string;
+    statVolumeSub: string;
+  };
+  about: {
+    badge: string;
+    title1: string;
+    title2: string;
+    description: string;
+    pillarsBadge: string;
+    pillar1Title: string;
+    pillar1Desc: string;
+    pillar2Title: string;
+    pillar2Desc: string;
+    pillar3Title: string;
+    pillar3Desc: string;
+    metric1Label: string;
+    metric1Desc: string;
+    metric2Label: string;
+    metric2Desc: string;
+    metric3Label: string;
+    metric3Desc: string;
+  };
+  vip: {
+    badge: string;
+    title1: string;
+    title2: string;
+    description: string;
+    card1Badge: string;
+    card1Title: string;
+    card1Desc: string;
+    card2Badge: string;
+    card2Title: string;
+    card2Desc: string;
+    card3Badge: string;
+    card3Title: string;
+    card3Desc: string;
+    card4Badge: string;
+    card4Title: string;
+    card4Desc: string;
+    calcBadge: string;
+    calcTitle: string;
+    calcDesc: string;
+    lotLabel: string;
+    daysLabel: string;
+    rateLabel: string;
+    estMonthUsd: string;
+    estMonthLocal: string;
+    estYear: string;
+    disclaimer: string;
+    proofsBadge: string;
+    proofsTitle: string;
+    proofsDesc: string;
+  };
+  algo: {
+    badge: string;
+    title1: string;
+    title2: string;
+    description: string;
+    tvTitle: string;
+    tvSub: string;
+    metricWinrate: string;
+    metricProfitFactor: string;
+    metricAvgRR: string;
+    metricDrawdown: string;
+    accessBadge: string;
+    accessTitle: string;
+    accessDesc: string;
+    feature1: string;
+    feature2: string;
+    feature3: string;
+    btnTradingView: string;
+    btnScript: string;
+    ctaBadge: string;
+    ctaTitle: string;
+    ctaDesc: string;
+    ctaFeature1: string;
+    ctaFeature2: string;
+    ctaFeature3: string;
+    ctaButton: string;
+    testimonialsBadge: string;
+    testimonialsTitle: string;
+  };
+  roadtour: {
+    badge: string;
+    title1: string;
+    title2: string;
+    description: string;
+    zoneAll: string;
+    zoneEast: string;
+    zoneSouth: string;
+    zoneNorth: string;
+    zoneCentral: string;
+    zoneBorneo: string;
+    selectStateLabel: string;
+    statusCompleted: string;
+    statusUpcoming: string;
+    statusSoon: string;
+    attendeesLabel: string;
+    venueLabel: string;
+    viewAlbumBtn: string;
+    badgeGallery: string;
+  };
+  ib: {
+    badge: string;
+    title1: string;
+    title2: string;
+    description: string;
+    tabMY: string;
+    tabID: string;
+    btnRegisterMY: string;
+    btnRegisterID: string;
+    partnerSupport1: string;
+    partnerSupport2: string;
+    partnerSupport3: string;
+    officialUrlLabel: string;
+    supportNote: string;
+  };
+  education: {
+    badge: string;
+    title1: string;
+    title2: string;
+    description: string;
+    step1Badge: string;
+    step1Duration: string;
+    step1Title: string;
+    step1Desc: string;
+    step1Perk: string;
+    step1Action: string;
+    step2Badge: string;
+    step2Duration: string;
+    step2Title: string;
+    step2Desc: string;
+    step2Perk: string;
+    step3Badge: string;
+    step3Duration: string;
+    step3Title: string;
+    step3Desc: string;
+    step3Perk: string;
+    playlistTitle: string;
+    btnMasterclass: string;
+    masterclassSub: string;
+  };
+  footer: {
+    badge: string;
+    headline1: string;
+    headline2: string;
+    desc: string;
+    btnVipCommunity: string;
+    btnWhatsAppAdmin: string;
+    socialHeading: string;
+    socialSub: string;
+    securedBy: string;
+    ecosystemTag: string;
+    disclaimer: string;
+  };
+}
+
+export const translations: Record<"MY" | "EN", Translation> = {
   MY: {
     nav: {
-      about: "About Us",
-      groupSupport: "Group Support",
-      owlAlgo: "OWL ALGO",
-      roadtour: "Roadtour",
-      ibDevelopment: "IB Development",
-      education: "Basic Education",
-      community: "Find Us",
-      badge: "Official",
+      about: "Mengenai Kami",
+      groupSupport: "MEJA SOKONGAN VIP",
+      owlAlgo: "PETUNJUK OWL ALGO",
+      roadtour: "JELAJAH MASTERCLASS",
+      ibDevelopment: "PROGRAM PEMBANGUNAN IB",
+      education: "ASAS DAGANGAN",
+      community: "Hubungi Kami",
+      badge: "Rasmi",
       sub: "ONE WORLD LEGACY",
       ctaVip: "MAKLUM BALAS",
-      adminCms: "CMS Portal",
+      adminCms: "Portal CMS",
     },
     hero: {
       statusLive: "OWLFX OFFICIAL LIVE",
-      ecosystem: "TRADER ECOSYSTEM",
-      headline1: "Evolusi Generasi Baharu",
-      headline2: "Perdagangan Institusi",
-      headline3: "Seni Bina Kuantitatif",
+      ecosystem: "EKOSISTEM TRADER",
+      headline1: "Pemecutan Prestasi",
+      headline2: "Infrastruktur Dagangan",
+      headline3: "Bertaraf Institusi",
       description:
-        "Penyatuan komuniti elit, ketajaman algoritma kuantitatif, dan pulangan rebat tanpa geseran untuk pedagang di Malaysia & Indonesia.",
+        "Kombinasi ketepatan algoritma kuantitatif dan pelaksanaan elit. Kami mengintegrasikan sistem pengagihan rebat automatik dan infrastruktur berprestasi tinggi untuk komuniti trader di Malaysia & Indonesia.",
       btnMalaysia: "Sertai Komuniti Malaysia",
       btnIndonesia: "Pendaftaran Indonesia",
-      btnAlgoPreview: "OWL ALGO Preview",
-      badgeLiquidity: "Multi-Asset Liquidity",
+      btnAlgoPreview: "Pratonton OWL ALGO",
+      badgeLiquidity: "Likuiditi Pelbagai Aset",
       badgeExecution: "Presisi Pelaksanaan Tinggi",
-      badgeLicensed: "Master IB Licensed",
+      badgeLicensed: "Pelesenan Master IB",
       statTraders: "Trader Aktif",
       statTradersSub: "Komuniti MY & ID",
-      statWinrate: "Penanda Aras Winrate",
-      statWinrateSub: "Berdasarkan Data Kuantitatif",
+      statWinrate: "Penanda Aras Ketepatan",
+      statWinrateSub: "Berdasarkan Model Kuantitatif",
       statLatency: "Purata Latensi Pesanan",
       statLatencySub: "Infrastruktur Pelayan ECN",
-      statVolume: "Rebat & Dana Diuruskan",
-      statVolumeSub: "Disalurkan Melalui MIB",
+      statVolume: "Volum Dagangan & Rebat",
+      statVolumeSub: "Diproses Melalui MIB",
     },
     about: {
-      badge: "TENTANG OWLFX",
-      title1: "Merevolusikan Cara Trade yang terbukti berkesan",
-      title2: "Menggunakan Piawaian Institusi",
+      badge: "MENGENAI OWLFX",
+      title1: "Merevolusikan Seni Bina Dagangan Runcit",
+      title2: "Menerusi Piawaian Institusi",
       description:
-        "OWLFX diasaskan dengan satu visi yang jelas: memperkasa komuniti traders di Asia Tenggara melalui capaian kepada alatan dagangan termaju, analitik kuantitatif pintar, serta sokongan modal bertaraf Wall Street — semuanya didokong oleh ekosistem MIB yang terbukti kukuh.",
+        "OWLFX ditubuhkan dengan satu misi yang teguh: Memperkasa komuniti pedagang Asia Tenggara dengan instrumen dagangan tahap Wall Street, sistem analitik kuantitatif, dan sokongan likuiditi elit — dikuasakan oleh ekosistem MIB yang terbukti ampuh.",
       pillarsBadge: "3 TONGGAK UTAMA",
-      pillar1Title: "Algorithmic Intelligence",
+      pillar1Title: "Kecerdasan Algoritma",
       pillar1Desc:
-        "Sistem petunjuk proprietary OWL ALGO yang menghapuskan tekaan emosi melalui pengesanan jejak Smart Money dan kolam likuiditi pasaran.",
-      pillar2Title: "MIB Institutional Power",
+        "Sistem petunjuk proprietari OWL ALGO yang menyingkirkan bias emosi melalui pengesanan jejak wang pintar (Smart Money) dan kolam likuiditi pasaran.",
+      pillar2Title: "Kuasa Institusi MIB",
       pillar2Desc:
-        "Kerjasama bertaraf Master IB yang membolehkan ahli menikmati rebat tunai harian tertinggi, leveraj anjal, dan pengurusan risiko berdisiplin.",
-      pillar3Title: "Financial Literacy & Roadtour",
+        "Kerjasama Master IB elit yang menjana pulangan rebat tunai (self-rebate) tertinggi, tahap leveraj dinamik, dan rangka kerja pengurusan risiko yang sistematik.",
+      pillar3Title: "Literasi Kewangan & Jelajah",
       pillar3Desc:
-        "Ekspedisi jelajah fizikal 14 negeri di seluruh Malaysia dan bandar utama Indonesia bagi menyediakan latihan tatap muka percuma kepada komuniti.",
-      metric1Label: "PERTEMUAN ROADTOUR",
-      metric1Desc: "14 Negeri Bersiri",
-      metric2Label: "ACCURACY BENCHMARK",
+        "Ekspedisi fizikal ke 14 negeri di seluruh Malaysia dan bandar-bandar utama Indonesia untuk menyalurkan latihan secara bersemuka kepada komuniti secara langsung.",
+      metric1Label: "SESI ROADTOUR",
+      metric1Desc: "Siri Jelajah 14 Negeri",
+      metric2Label: "PENANDA ARAS KETEPATAN",
       metric2Desc: "Model Kuantitatif v4.2",
-      metric3Label: "SISTEM SOKONGAN",
+      metric3Label: "INFRASTRUKTUR SOKONGAN",
       metric3Desc: "Meja Bantuan 24/7",
     },
     vip: {
-      badge: "VIP TRADING DESK",
-      title1: "Isyarat Berkualiti &",
+      badge: "MEJA DAGANGAN VIP",
+      title1: "Isyarat Berketepatan Tinggi &",
       title2: "Sokongan Komuniti",
       description:
-        "Dapatkan ketepatan isyarat harian, bimbingan langsung, dan integrasi akaun bersama pulangan rebat automatik tanpa yuran tersembunyi.",
-      card1Badge: "KETEPIKAN TEKAAN",
-      card1Title: "Setup Harian Berketepatan Tinggi",
+        "Alami ketepatan paras kemasukan (setup) harian, bimbingan langsung, dan integrasi akaun lancar dengan pulangan rebat automatik tanpa sebarang caj tersembunyi.",
+      card1Badge: "HAPUSKAN TEKAAN",
+      card1Title: "Setup Harian Berpresisi Tinggi",
       card1Desc:
-        "Setiap setup dilengkapi zon kemasukan jelas, Risk-to-Reward minimum 1:3, paras Stop Loss berdisiplin, dan Taking Profit bertahap.",
-      card2Badge: "PELBAGAI PASARAN",
-      card2Title: "Liputan Multi-Aset",
+        "Setiap setup dilengkapi zon kemasukan yang disahkan, nisbah Risiko-Ganjaran minimum 1:3, Hentian Rugi (SL) berdisiplin, dan sasaran Ambil Untung (TP) berperingkat.",
+      card2Badge: "LIPUTAN MULTI-PASARAN",
+      card2Title: "Analisis Pelbagai Aset",
       card2Desc:
-        "Fokus utama pada XAUUSD (Emas), FX Majors (EURUSD, GBPUSD, USDJPY), dan indeks global terpilih (US30, NAS100).",
-      card3Badge: "MAKLUMAT PANTAS",
-      card3Title: "Analisis Fundamental & Berita",
+        "Pengkhususan utama pada instrumen XAUUSD (Emas), FX Majors (EURUSD, GBPUSD, USDJPY), serta indeks penanda aras global (US30, NAS100).",
+      card3Badge: "DATA MASA NYATA",
+      card3Title: "Makroekonomi & Fundamental",
       card3Desc:
-        "Kupas tuntas impak berita berimpak tinggi seperti NFP, CPI, dan keputusan kadar faedah FOMC sebelum pasaran bergerak ganas.",
-      card4Badge: "KOMUNITI AKTIF",
-      card4Title: "Sokongan Langsung 24/7",
+        "Analisis mendalam mengenai peristiwa makroekonomi berimpak tinggi termasuk NFP, bacaan inflasi CPI, dan peralihan dasar FOMC sebelum pasaran bertindak balas.",
+      card4Badge: "EKOSISTEM AKTIF",
+      card4Title: "Meja Bantuan Langsung 24/7",
       card4Desc:
-        "Bilik bimbingan Telegram eksklusif bersama barisan penganalisis kanan untuk menjawab pertanyaan analisa teknikal anda.",
-      calcBadge: "KALKULATOR PULANGAN SELF-REBATE",
-      calcTitle: "Simulasi Rebat Tunai Akaun Trading Anda",
+        "Ruang dagangan eksklusif di Telegram bersama penganalisis kuantitatif kanan yang bersedia meleraikan kemusykilan teknikal dan pergerakan pasaran anda.",
+      calcBadge: "SIMULATOR REBAT TUNAI TRADER",
+      calcTitle: "Kalkulator Rebat Tunai Akaun Dagangan",
       calcDesc:
-        "Kira potensi pulangan tunai harian dan bulanan yang dikreditkan terus ke akaun anda berdasarkan volume dagangan.",
-      lotLabel: "Purata Lot Didagangkan Sehari:",
-      daysLabel: "Jumlah Hari Berdagang Sebulan:",
+        "Kira potensi pulangan tunai harian dan bulanan yang dikreditkan terus ke akaun dagangan anda, berdasarkan volum pelaksanaan lot sebenar.",
+      lotLabel: "Purata Volum Lot Harian:",
+      daysLabel: "Jumlah Hari Berdagang (Sebulan):",
       rateLabel: "Kadar Rebat Terjamin:",
       estMonthUsd: "Anggaran Rebat Bulanan (USD)",
-      estMonthLocal: "Anggaran Rebat Tempatan",
-      estYear: "Potensi Rebat Tahunan",
+      estMonthLocal: "Anggaran Nilai Tempatan",
+      estYear: "Unjuran Pulangan Tahunan",
       disclaimer:
-        "Rebat tunai dikreditkan secara automatik ke dalam dompet trading dan boleh dikeluarkan pada bila-bila masa.",
+        "Rebat tunai akan dikreditkan secara automatik ke dalam dompet trader anda dan sedia untuk pengeluaran serta-merta pada bila-bila masa.",
       proofsBadge: "REKOD PRESTASI TERKINI",
-      proofsTitle: "Bukti Setup & Analisis Pasaran",
+      proofsTitle: "Bukti Setup & Rekod Pasaran",
       proofsDesc:
-        "Ketelusan rekod dagangan komuniti berpandukan pengesahan algoritma kuantitatif OWL ALGO.",
+        "Rekod sejarah dagangan komuniti yang telus, diaudit dan disahkan melalui pengiraan algoritma kuantitatif OWL ALGO.",
     },
     algo: {
-      badge: "PETUNJUK KUANTITATIF PROPRIETARY",
-      title1: "Sistem Indicator",
+      badge: "PETUNJUK KUANTITATIF PROPRIETARI",
+      title1: "Sistem Petunjuk",
       title2: "OWL ALGO",
       description:
-        "Dibangunkan khusus untuk platform TradingView. Menggabungkan pengesanan Volume Spread Analysis (VSA), mitigasi Order Block institusi, dan filter False Breakout dalam satu paparan bersih.",
-      tvTitle: "PRATONTON CARTA LANGSUNG TRADINGVIEW",
-      tvSub: "Simulasi Enjin Analisis Multi-Timeframe",
+        "Kejuruteraan khusus untuk platform TradingView. Mengintegrasikan Analisis Volum & Spread (VSA), mitigasi blok pesanan (Order Block) institusi, dan tapisan penembusan palsu (False Breakout) dalam satu paparan yang bersih.",
+      tvTitle: "PRATONTON CARTA TRADINGVIEW LANGSUNG",
+      tvSub: "Simulasi Enjin Analisis Pelbagai Jangka Masa",
       metricWinrate: "KADAR KEMENANGAN",
-      metricProfitFactor: "PROFIT FACTOR",
+      metricProfitFactor: "FAKTOR KEUNTUNGAN",
       metricAvgRR: "PURATA R:R",
-      metricDrawdown: "MAX DRAWDOWN",
+      metricDrawdown: "DRAWDOWN MAKSIMUM",
       accessBadge: "AKSES PENUH TRADINGVIEW",
-      accessTitle: "Buka Akaun dengan OWLFX Untuk Berdaftar",
+      accessTitle: "Buka Akaun OWLFX Untuk Pendaftaran",
       accessDesc:
-        "Indicator OWL ALGO diberikan secara PERCUMA kepada semua trader yang mendaftar dan mengesahkan akaun di bawah kod MIB rasmi OWLFX.",
-      feature1: "Aktiviti automatik dalam 15 minit",
-      feature2: "Termasuk Zone Yang Telah Diberikan",
-      feature3: "Kelayakan Self-Rebate Tunai harian",
+        "Petunjuk OWL ALGO diberikan secara 100% PERCUMA kepada semua trader yang mendaftar dan mengesahkan akaun di bawah struktur MIB rasmi OWLFX.",
+      feature1: "Pengaktifan automatik sepantas 15 minit",
+      feature2: "Akses eksklusif Isyarat Tertutup Telegram VIP",
+      feature3: "Kelayakan rebat tunai harian (Self-Rebate)",
       btnTradingView: "Buka Skrip Rasmi OWL ALGO",
       btnScript: "Akses Skrip TradingView",
       ctaBadge: "AKSES PENUH TRADINGVIEW",
-      ctaTitle: "Buka Akaun dengan OWLFX Untuk Berdaftar",
+      ctaTitle: "Buka Akaun OWLFX Untuk Pendaftaran",
       ctaDesc:
-        "Indicator OWL ALGO diberikan secara PERCUMA kepada semua trader yang mendaftar dan mengesahkan akaun di bawah kod MIB rasmi OWLFX.",
-      ctaFeature1: "Zone Automatik Yang Dapat Membantu",
-      ctaFeature2: "Termasuk Zone Yang Telah Diberikan",
-      ctaFeature3: "Kelayakan Self-Rebate Tunai harian",
-      ctaButton: "Daftar Akaun Trading",
-      testimonialsBadge: "SUARA KOMUNITI TRADERS",
-      testimonialsTitle: "Hasil & Maklum Balas Traders Sebenar",
+        "Petunjuk OWL ALGO diberikan secara 100% PERCUMA kepada semua trader yang mendaftar dan mengesahkan akaun di bawah struktur MIB rasmi OWLFX.",
+      ctaFeature1: "Pengaktifan automatik sepantas 15 minit",
+      ctaFeature2: "Akses eksklusif Isyarat Tertutup Telegram VIP",
+      ctaFeature3: "Kelayakan rebat tunai harian (Self-Rebate)",
+      ctaButton: "Daftar Akaun Dagangan",
+      testimonialsBadge: "SUARA KOMUNITI TRADER",
+      testimonialsTitle: "Maklum Balas & Prestasi Trader Sebenar",
     },
     roadtour: {
-      badge: "NATIONWIDE PHYSICAL EXPEDITION",
-      title1: "Roadtour Jelajah",
-      title2: "Komuniti OWLFX",
+      badge: "EKSPEDISI FIZIKAL BERSIRI",
+      title1: "Jelajah Komuniti",
+      title2: "OWLFX Seluruh Negara",
       description:
-        "Meliputi 14 negeri di seluruh Malaysia. Membawa pendidikan dagangan bertaraf institusi, bedah carta secara langsung, dan agihan faedah komuniti terus ke dewan seminar di negeri anda.",
-      zoneAll: "Semua",
+        "Meliputi 14 buah negeri di seluruh Malaysia. Membawakan literasi pasaran bertaraf institusi, analisis teknikal carta secara langsung, dan insentif komuniti — terus ke dewan seminar di negeri anda.",
+      zoneAll: "Semua Zon",
       zoneEast: "Pantai Timur",
       zoneSouth: "Selatan",
       zoneNorth: "Utara",
       zoneCentral: "Tengah",
       zoneBorneo: "Borneo",
-      selectStateLabel: "PILIH NEGERI UNTUK MEMBUKA ALBUM KHAS:",
+      selectStateLabel: "PILIH NEGERI UNTUK MELIHAT ALBUM EKSKLUSIF:",
       statusCompleted: "SELESAI",
       statusUpcoming: "AKAN DATANG",
-      statusSoon: "SEGERA",
+      statusSoon: "AKAN DIUMUMKAN",
       attendeesLabel: "Kehadiran:",
       venueLabel: "Lokasi:",
-      viewAlbumBtn: "Buka Album Penuh",
+      viewAlbumBtn: "Lihat Album Penuh",
       badgeGallery: "GALERI FOTO EKSKLUSIF",
     },
     ib: {
-      badge: "STRATEGIC PARTNERSHIP & ACCELERATOR",
-      title1: "Program Pembangunan Agensi &",
-      title2: "Introducing Broker (IB)",
+      badge: "PERKONGSIAN STRATEGIK & PEMECUTAN",
+      title1: "Program Pembangunan Agensi",
+      title2: "& Introducing Broker (IB)",
       description:
-        "Infrastruktur keusahawanan kewangan terbesar di Asia Tenggara. Bina agensi dagangan anda sendiri dengan sokongan teknologi OWLFX team, komisen pelbagai peringkat, dan penganjuran dewan latihan fizikal.",
+        "Infrastruktur agensi kewangan terulung di Asia Tenggara. Bina empayar dagangan anda dengan dokongan teknologi OWLFX, sistem komisen pelbagai peringkat, serta geran penajaan lokasi seminar fizikal.",
       tabMY: "Wilayah Malaysia",
       tabID: "Wilayah Indonesia",
-      btnRegisterMY: "Daftar IB Malaysia",
-      btnRegisterID: "Daftar IB Indonesia",
-      partnerSupport1: "Sistem Dashboard Analitik OWLFX",
-      partnerSupport2: "Sokongan Bahan Pemasaran Rasmi",
-      partnerSupport3: "Bantuan Penajaan Dewan Seminar",
+      btnRegisterMY: "Pendaftaran IB Malaysia",
+      btnRegisterID: "Pendaftaran IB Indonesia",
+      partnerSupport1: "Papan Pemuka Analitik Kuantitatif OWLFX",
+      partnerSupport2: "Tajaan Bahan Pemasaran & Barangan Rasmi",
+      partnerSupport3: "Geran Lokasi Seminar & Produksi Media",
       officialUrlLabel: "PAUTAN RASMI:",
       supportNote:
-        "Penyertaan pantas disokong oleh perkhidmatan pelanggan 24/7.",
+        "Penyertaan pantas disokong penuh oleh pasukan bantuan rakan kongsi 24/7.",
     },
     education: {
       badge: "AKADEMI & LITERASI KEWANGAN",
-      title1: "Silibus Pendidikan Berstruktur",
-      title2: "Bermula Dari Asas Hingga Kuantitatif",
+      title1: "Silabus Pendidikan Berstruktur",
+      title2: "Dari Asas Ke Penguasaan Kuantitatif",
       description:
-        "Panduan lengkap langkah demi langkah bagi melatih trader berfikir seperti institusi, mengawal risiko modal secara matematikal, dan menggunakan Owl Algo dengan yakin.",
+        "Kerangka pembelajaran berstruktur untuk melatih trader berfikir secara institusi, mengurus varians risiko secara matematik, dan melaksanakan algoritma dengan keyakinan penuh.",
       step1Badge: "LANGKAH 01",
-      step1Duration: "Masa: ~5 Minit",
-      step1Time: "Masa: ~5 Minit",
+      step1Duration: "Durasi: ~5 Minit",
       step1Title: "Pendaftaran Akaun",
       step1Desc:
-        "Mula berdagang bersama OWLFX. Pilih akaun yang sesuai dengan anda, nikmati spread bermula 0.0 pip, dan rebut pelbagai insentif menarik yang disediakan khas oleh team OWLFX.",
+        "Mulakan dagangan anda menggunakan pautan rasmi OWLFX. Nikmati kefleksibelan jenis akaun, spread serendah 0.0 pip, dan faedah eksklusif yang disediakan oleh pasukan OWLFX.",
       step1Perk: "✓ Kelayakan Percuma",
       step1Action: "Buka Akaun",
       step2Badge: "LANGKAH 02",
-      step2Duration: "Masa: ~10 Minit",
-      step2Time: "Masa: ~10 Minit",
+      step2Duration: "Durasi: ~10 Minit",
       step2Title: "Setup OWL ALGO di TradingView",
       step2Desc:
-        "Gunakan kelebihan zon analisis OWL ALGO dengan menghubungkan akaun TradingView anda. Trade dengan lebih tenang dan berdisiplin berpandukan zon serta notifikasi automatik yang telah disediakan.",
-      step2Perk: "✓ Official E-Book",
+        "Gunakan kelebihan analisis berpresisi OWL ALGO terus di platform TradingView. Sambungkan akaun anda hari ini untuk mengenal pasti zon kemasukan berpotensi tinggi dengan objektif dan tepat.",
+      step2Perk: "✓ E-Buku Rasmi",
       step3Badge: "LANGKAH 03",
-      step3Duration: "Masa: Berterusan",
-      step3Time: "Masa: Berterusan",
-      step3Title: "Pengurusan Modal & Lot Sizing",
+      step3Duration: "Durasi: Berterusan",
+      step3Title: "Risiko Modal & Saiz Lot (Lot Sizing)",
       step3Desc:
-        "Terapkan formula saiz lot institusi, kawal risiko maksimum 1-2% bagi setiap kemasukan posisi, dan nikmati pulangan rebat tunai harian secara konsisten.",
-      step3Perk: "✓ Daily Cash Return",
-      playlistTitle: "SENARAI SIRI MASTERCLASS",
+        "Guna pakai formula penetapan saiz lot institusi, hadkan risiko pada 1-2% setiap kemasukan, dan jana pulangan rebat tunai automatik harian secara konsisten.",
+      step3Perk: "✓ Pulangan Tunai Harian",
+      playlistTitle: "EPISOD MASTERCLASS",
       btnMasterclass: "Daftar Masterclass Percuma",
-      masterclassSub: "Ikuti Langkah demi Langkah Untuk Lebih Memahami",
+      masterclassSub: "Ikuti Panduan Langkah-Demi-Langkah",
     },
     footer: {
-      badge: "KOMUNITI ELIT TRADERS",
+      badge: "KOMUNITI TRADER ELIT",
       headline1: "Sertai Rangkaian Dagangan",
       headline2: "OWLFX Hari Ini",
-      desc: "Dapatkan akses kepada analisis pasaran berketepatan tinggi, bantuan sokongan IB, dan pulangan rebat tunai yang dikreditkan secara automatik.",
+      desc: "Dapatkan akses terus kepada setup pasaran berpresisi tinggi, sokongan infrastruktur agensi, dan rebat tunai harian yang dikreditkan secara automatik.",
       btnVipCommunity: "Sertai Komuniti VIP",
-      btnWhatsAppAdmin: "WhatsApp Admin",
-      socialHeading: "SALURAN MEDIA SOSIAL & HUBUNGI KAMI",
+      btnWhatsAppAdmin: "Hubungi Pentadbir (WhatsApp)",
+      socialHeading: "MEDIA SOSIAL & TALIAN CARELINE RASMI",
       socialSub:
-        "Ikuti perkembangan harian, jadual roadtour, dan video panduan kami di platform rasmi.",
-      securedBy: "Secured By OWLFX Engine",
-      ecosystemTag: "OWLFX ECOSYSTEM",
+        "Ikuti perkembangan harian, jadual siri jelajah, dan video tutorial kami menerusi rangkaian rasmi yang disahkan.",
+      securedBy: "Dikuasakan Oleh Enjin OWLFX",
+      ecosystemTag: "EKOSISTEM OWLFX",
       disclaimer:
-        "PENAFIAN RISIKO: Dagangan instrumen pertukaran mata wang asing (Forex) dan CFD melibatkan risiko kerugian modal yang tinggi. Prestasi masa lalu tidak menjamin hasil masa hadapan. Sila pastikan anda memahami sepenuhnya risiko yang terlibat sebelum memulakan dagangan.",
+        "AMARAN RISIKO: Dagangan berleveraj seperti Pertukaran Mata Wang Asing (Forex) dan CFD membawa tahap risiko yang tinggi ke atas modal anda. Prestasi masa lalu tidak menjamin keputusan masa hadapan. Sila pastikan anda benar-benar memahami risiko yang terlibat sebelum melaksanakan sebarang dagangan sebenar.",
     },
   },
   EN: {
     nav: {
       about: "About Us",
-      groupSupport: "Group Support",
-      owlAlgo: "OWL ALGO",
-      roadtour: "Roadtour",
-      ibDevelopment: "IB Development",
-      education: "Basic Education",
+      groupSupport: "VIP Singal & Support",
+      owlAlgo: "OWL ALGO INDICATOR",
+      roadtour: "MASTERCLASS ROADTOUR",
+      ibDevelopment: "IB DEV PROGRAM",
+      education: "BASIC TRADING",
       community: "Find Us",
       badge: "Official",
       sub: "ONE WORLD LEGACY",
-      ctaVip: "FEEDBACK",
+      ctaVip: "MAKLUM BALAS",
       adminCms: "CMS Portal",
     },
     hero: {
@@ -393,7 +580,6 @@ export const translations = {
         "Step-by-step masterclass framework training traders to think like institutional operators, manage downside variance mathematically, and execute algorithms with conviction.",
       step1Badge: "STEP 01",
       step1Duration: "Duration: ~5 Mins",
-      step1Time: "Duration: ~5 Mins",
       step1Title: "Account Registration",
       step1Desc:
         "Start trading with the official OWLFX link. Enjoy flexible account types to match your style, raw spreads from 0.0 pips, and special perks courtesy of the OWLFX team.",
@@ -401,14 +587,12 @@ export const translations = {
       step1Action: "Open Account",
       step2Badge: "STEP 02",
       step2Duration: "Duration: ~10 Mins",
-      step2Time: "Duration: ~10 Mins",
       step2Title: "Setup OWL ALGO on TradingView",
       step2Desc:
         "Leverage the power of OWL ALGO’s precision zones directly on TradingView. Connect your account today to identify high-probability entries with complete confidence.",
       step2Perk: "✓ Official E-Book",
       step3Badge: "STEP 03",
       step3Duration: "Duration: Ongoing",
-      step3Time: "Duration: Ongoing",
       step3Title: "Capital Risk & Lot Sizing",
       step3Desc:
         "Adopt institutional sizing equations, cap risk at 1-2% per position, and enjoy consistent, automated daily cash rebate distributions.",
