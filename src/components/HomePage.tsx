@@ -786,7 +786,7 @@ export function HomePage() {
                 bg-emerald-400
                 shadow-[0_0_8px_rgba(52,211,153,0.6)]
               " />
-              ONE WORLD LEGACY
+              OWL-FX
             </div>
 
             <span className="
