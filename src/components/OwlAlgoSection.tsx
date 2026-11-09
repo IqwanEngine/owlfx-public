@@ -642,6 +642,16 @@ export const OwlAlgoSection: React.FC<OwlAlgoSectionProps> = ({ onOpenLightbox }
         </div>
       </div>
 
+      <div id="owlalgo-resources" className="mx-auto mt-12 grid max-w-6xl gap-6 lg:grid-cols-2">
+        <article className="rounded-2xl border border-amber-400/20 bg-slate-950/70 p-6">
+          <div className="mb-4 flex items-center gap-2 text-amber-400"><span className="font-mono text-xs uppercase tracking-widest">E-BOOK INTRODUCTION & EDUCATION</span></div>
+          <h3 className="text-2xl font-black text-white">Panduan Rasmi OWLALGO</h3>
+          <p className="mt-3 text-sm leading-relaxed text-slate-400">Muat turun bahan pendidikan rasmi untuk memahami asas, signal dan setup Owl Algo.</p>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row"><a href="/INTRODUCTION EBOOK OWL ALGO.pdf" download className="rounded-lg bg-amber-400 px-4 py-3 text-center text-xs font-black text-slate-950">Download Introduction</a><a href="/EDUCATION EBOOK OWL ALGO.pdf" download className="rounded-lg border border-amber-400/40 px-4 py-3 text-center text-xs font-bold text-amber-300">Download Education</a></div>
+        </article>
+        <article className="rounded-2xl border border-cyan-400/20 bg-slate-950/70 p-6"><span className="font-mono text-xs uppercase tracking-widest text-cyan-400">PANDUAN PENDAFTARAN & PENGENALAN PLATFORM OWLALGO</span><h3 className="mt-4 text-2xl font-black text-white">Video Walkthrough</h3><p className="mt-3 text-sm text-slate-400">Ikuti panduan ringkas untuk pendaftaran dan pengenalan platform.</p><div className="mt-5 aspect-video overflow-hidden rounded-xl border border-white/10"><iframe className="h-full w-full" src="https://www.youtube-nocookie.com/embed/LroOIJXweVk?rel=0" title="Video Panduan Pendaftaran OWLALGO" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen /></div></article>
+      </div>
+
       {/* Comparison Modal (Setup Buy / Setup Sell) */}
       {modalSetup && (
         <div
