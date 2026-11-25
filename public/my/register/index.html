@@ -1134,7 +1134,7 @@
                         if (badge) badge.innerText = result.status || "ACTIVE";
 
                         // =========================================================================
-                        // IQWANENGINE : DYNAMIC STATUS HANDLING & NOTIFICATION CONTROLLER
+                        // IQWANENGINE v5.2 : DYNAMIC STATUS HANDLING & NOTIFICATION CONTROLLER
                         // =========================================================================
                         if (rawStatus === "NOT VALID") {
                             if (badge) {
@@ -1161,16 +1161,23 @@
                                 notValidBox.classList.add("hidden");
                             if (waWrapper) waWrapper.classList.remove("hidden");
 
+                            const activeAccInfo =
+                                result.activeAccountsSummary &&
+                                result.activeAccountsSummary !== "-"
+                                    ? result.activeAccountsSummary
+                                    : "Tiada rekod akaun aktif";
+
                             const waText = `Salam Admin OWLFX, saya telah daftar owlalgo access.
 
-Access Status : ${rawStatus}
-• Nama: ${traderName}
-• TRADINGVIEW : ${payload.trading_view_username}
-• ACCOUNT TRADING : ${payload.valetax_id}
-• KYC STATUS : ${kycDisplay}
-• WALLET BALANCE : ${walletDisplay}
+                        Access Status : ${rawStatus}
+                        - Nama: ${traderName}
+                        - TRADINGVIEW : ${payload.trading_view_username}
+                        - ACCOUNT TRADING : ${payload.valetax_id}
+                        - KYC STATUS : ${kycDisplay}
+                        - WALLET BALANCE : ${walletDisplay}
+                        - AKAUN AKTIF : ${activeAccInfo}
 
-Mohon percepatkan access OWLALGO ya. Terima kasih!`;
+                        Mohon percepatkan access OWLALGO ya. Terima kasih!`;
 
                             if (waBtn) {
                                 waBtn.href = `https://wa.me/${ADMIN_PHONE_NUMBER}?text=${encodeURIComponent(waText)}`;
@@ -1184,6 +1191,7 @@ Mohon percepatkan access OWLALGO ya. Terima kasih!`;
                                     badge.className =
                                         "font-black uppercase tracking-wider pulse-heartbeat pulse-heartbeat-yellow";
                                 } else if (
+                                    rawStatus === "VALID VIP" ||
                                     rawStatus === "VALID VIP INDICATOR"
                                 ) {
                                     badge.className =
